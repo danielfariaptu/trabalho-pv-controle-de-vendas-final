@@ -1,0 +1,6 @@
+Tipos de uvas
+Aglianico,Barbera,Bobal,Cabernet,Sauvignon,Cape Riesling,Chardonnay,Corte Bordalês,Dolcetto,Gamay,Grenache,Grillo,Malbec,Merlot,Monastrell,Montepulciano,Nero D'Avola,Petit Verdot,Pinot Grigio,Pinot Noir,Primitivo,Sangiovese,Sauvignon Blanc,Syrah,Tannat,Tempranillo,Trebbiano,Várias Uvas,Viognier
+
+
+Tipos de Vinhos
+Tinto,Branco,Espumante Branco,Espumante Rosé,Fortificado,Rosé, Vários tipos
