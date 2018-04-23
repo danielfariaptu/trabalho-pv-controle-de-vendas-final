@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  *
  * @author danie
  */
-public class CadastrarCliente extends javax.swing.JDialog {
+public class AdicionarCliente extends javax.swing.JDialog {
 
     private PessoaJuridica pj;
     private PessoaFisica pf;
@@ -28,9 +28,23 @@ public class CadastrarCliente extends javax.swing.JDialog {
     /**
      * Creates new form NewJDialog
      */
-    public CadastrarCliente(javax.swing.JDialog parent, boolean modal) {
+    public AdicionarCliente(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
+
         initComponents();
+
+        jTF_cpf.setVisible(false);
+        labelCPF.setVisible(false);
+
+        jTF_NomeFantasia.setVisible(false);
+        LabelnomeFantasia.setVisible(false);
+
+        jTF_cnpj.setVisible(false);
+        LabelCNPJ.setVisible(false);
+
+        jRb_Pfisica.setSelected(true);
+        desbloqueiaCampoFisica();
+
     }
 
     /**
@@ -51,11 +65,11 @@ public class CadastrarCliente extends javax.swing.JDialog {
         jRbPessoaJuridica = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
         jTf_Nome = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        labelCPF = new javax.swing.JLabel();
         jTF_cpf = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        LabelnomeFantasia = new javax.swing.JLabel();
         jTF_NomeFantasia = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        LabelCNPJ = new javax.swing.JLabel();
         jTF_cnpj = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jTF_LimiteCredito = new javax.swing.JTextField();
@@ -139,78 +153,64 @@ public class CadastrarCliente extends javax.swing.JDialog {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nome*:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 60, 17));
-
-        jTf_Nome.setEnabled(false);
         jPanel1.add(jTf_Nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 320, 30));
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("CPF*:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
+        labelCPF.setForeground(new java.awt.Color(255, 255, 255));
+        labelCPF.setText("CPF*:");
+        jPanel1.add(labelCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
 
-        jTF_cpf.setEnabled(false);
+        jTF_cpf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTF_cpfActionPerformed(evt);
+            }
+        });
         jPanel1.add(jTF_cpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 320, 30));
 
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Nome Fantasia*:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 150, 120, -1));
-
-        jTF_NomeFantasia.setEnabled(false);
+        LabelnomeFantasia.setForeground(new java.awt.Color(255, 255, 255));
+        LabelnomeFantasia.setText("Nome Fantasia*:");
+        jPanel1.add(LabelnomeFantasia, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 150, 120, -1));
         jPanel1.add(jTF_NomeFantasia, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, 300, 30));
 
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("CNPJ*:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 210, -1, -1));
+        LabelCNPJ.setForeground(new java.awt.Color(255, 255, 255));
+        LabelCNPJ.setText("CNPJ*:");
+        jPanel1.add(LabelCNPJ, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
 
         jTF_cnpj.setEnabled(false);
-        jPanel1.add(jTF_cnpj, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 230, 300, 30));
+        jPanel1.add(jTF_cnpj, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 320, 30));
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Limite de Credito*:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 140, -1));
-
-        jTF_LimiteCredito.setEnabled(false);
         jPanel1.add(jTF_LimiteCredito, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 210, 30));
 
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Logradouro*:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 100, -1));
-
-        jTF_Logradouro.setEnabled(false);
         jPanel1.add(jTF_Logradouro, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 430, 30));
 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Numero*:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 340, 80, 20));
-
-        jTF_numero.setEnabled(false);
         jPanel1.add(jTF_numero, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 360, 190, 30));
 
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Complemento:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 110, -1));
-
-        jTF_Complemento.setEnabled(false);
         jPanel1.add(jTF_Complemento, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 430, 30));
 
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Bairro*:");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 400, -1, -1));
-
-        jTF_Bairro.setEnabled(false);
         jPanel1.add(jTF_Bairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 420, 190, 30));
 
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Municipio*:");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 80, -1));
-
-        jTF_Municipio.setEnabled(false);
         jPanel1.add(jTF_Municipio, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 480, 330, 30));
 
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("CEP*:");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 460, 57, -1));
-
-        jTF_cep.setEnabled(false);
         jPanel1.add(jTF_cep, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 480, 190, 30));
 
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
@@ -222,8 +222,8 @@ public class CadastrarCliente extends javax.swing.JDialog {
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 520, 140, -1));
 
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("Campos \"*\" sao obrigatorios");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 620, 200, -1));
+        jLabel15.setText("Campos marcados com \"*\" são obrigatórios");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 620, 230, 40));
 
         jBtn_Salvar.setBackground(new java.awt.Color(255, 255, 255));
         jBtn_Salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-ok-32.png"))); // NOI18N
@@ -239,17 +239,15 @@ public class CadastrarCliente extends javax.swing.JDialog {
         jPanel1.add(jBtn_Salvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 630, 120, 40));
 
         jCBoxUf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Selecione -", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
-        jCBoxUf.setEnabled(false);
         jCBoxUf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCBoxUfActionPerformed(evt);
             }
         });
-        jPanel1.add(jCBoxUf, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 540, 130, -1));
+        jPanel1.add(jCBoxUf, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 540, 130, 30));
 
         jCBoxTipoEndereco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Selecione -", "Residencial", "Comercial" }));
-        jCBoxTipoEndereco.setEnabled(false);
-        jPanel1.add(jCBoxTipoEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 550, 190, -1));
+        jPanel1.add(jCBoxTipoEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 550, 190, 30));
 
         jBtn_Limpar.setBackground(new java.awt.Color(255, 255, 255));
         jBtn_Limpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-apagar-32.png"))); // NOI18N
@@ -288,12 +286,16 @@ public class CadastrarCliente extends javax.swing.JDialog {
     private void jBtn_SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_SalvarActionPerformed
         // TODO add your handling code here:
         if (jRbPessoaJuridica.isSelected()) {
-           CadastrarPessoaJuridica();
+            CadastrarPessoaJuridica();
+
         } else if (jRb_Pfisica.isSelected()) {
             CadastrarPessoaFisica();
-        } else {
-            JOptionPane.showMessageDialog(null, "Informe o tipo de cliente!", "Erro", JOptionPane.ERROR_MESSAGE);
+
         }
+        //else {
+        CadastrarPessoaFisica();
+        //JOptionPane.showMessageDialog(null, "Informe o tipo de cliente!", "Erro", JOptionPane.ERROR_MESSAGE);
+        //}
     }//GEN-LAST:event_jBtn_SalvarActionPerformed
 
     private void jRb_PfisicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRb_PfisicaActionPerformed
@@ -309,8 +311,12 @@ public class CadastrarCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_jCBoxUfActionPerformed
 
     private void jBtn_LimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_LimparActionPerformed
-       limparCampos();
+        limparCampos();
     }//GEN-LAST:event_jBtn_LimparActionPerformed
+
+    private void jTF_cpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTF_cpfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTF_cpfActionPerformed
 
     /**
      * @param args the command line arguments
@@ -329,21 +335,35 @@ public class CadastrarCliente extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastrarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdicionarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastrarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdicionarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastrarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdicionarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastrarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdicionarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                CadastrarCliente dialog = new CadastrarCliente(new javax.swing.JDialog(), true);
+                AdicionarCliente dialog = new AdicionarCliente(new javax.swing.JDialog(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -356,7 +376,8 @@ public class CadastrarCliente extends javax.swing.JDialog {
     }
 
     //jCBoxTipoEndereco.getItemAt(jCBoxTipoEndereco.getSelectedIndex())
-   private void CadastrarPessoaFisica() {
+    private void CadastrarPessoaFisica() {
+
         if (!jTf_Nome.getText().isEmpty()) {
             if (!jTF_cpf.getText().isEmpty()) {
                 if (!jTF_LimiteCredito.getText().isEmpty()) {
@@ -367,18 +388,19 @@ public class CadastrarCliente extends javax.swing.JDialog {
                                     if (!jTF_cep.getText().isEmpty()) {
                                         if (!jCBoxUf.getItemAt(jCBoxUf.getSelectedIndex()).equals("- Selecione -")) {
                                             if (!jCBoxTipoEndereco.getItemAt(jCBoxTipoEndereco.getSelectedIndex()).equals("- Selecione -")) {
-                                               int opcao= JOptionPane.showConfirmDialog(rootPane, "Deseja adicionar algum endereço ?");
-                                                
+                                                int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja adicionar algum endereço ?");
+
                                                 if (JOptionPane.YES_OPTION == opcao) {
 
-                                                 AdicionarEndereco dialog = new AdicionarEndereco(new java.awt.Frame(), true);
+                                                    AdicionarEndereco dialog = new AdicionarEndereco(new java.awt.Frame(), true);
                                                     dialog.setLocationRelativeTo(null);
                                                     dialog.setVisible(true);
                                                     //addEnderecosArray(dialog.getEnderecos());
-                                                   
+
                                                     pf = new PessoaFisica(jTF_cpf.getText(), jTf_Nome.getText(), enderecos, Double.valueOf(jTF_LimiteCredito.getText()));
 
-                                                }if (JOptionPane.NO_OPTION == opcao){
+                                                }
+                                                if (JOptionPane.NO_OPTION == opcao) {
 
                                                     enderecos.add(capturarEndereco());
                                                     pf = new PessoaFisica(jTF_cpf.getText(), jTf_Nome.getText(), enderecos, Double.valueOf(jTF_LimiteCredito.getText()));
@@ -433,8 +455,9 @@ public class CadastrarCliente extends javax.swing.JDialog {
             jTf_Nome.requestFocus();
         }
     }
+
     private void CadastrarPessoaJuridica() {
-        
+
         if (!jTF_cnpj.getText().isEmpty()) {
             if (!jTf_Nome.getText().isEmpty()) {
                 if (!jTF_NomeFantasia.getText().isEmpty()) {
@@ -448,15 +471,15 @@ public class CadastrarCliente extends javax.swing.JDialog {
                                                 if (!jCBoxTipoEndereco.getItemAt(jCBoxTipoEndereco.getSelectedIndex()).equals("- Selecione -")) {
                                                     int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja adicionar algum endereço ?");
                                                     if (JOptionPane.YES_OPTION == opcao) {
-                                                        
+
                                                         AdicionarEndereco dialog = new AdicionarEndereco(new java.awt.Frame(), true);
                                                         dialog.setLocationRelativeTo(null);
                                                         dialog.setVisible(true);
-                                                        
+
                                                         addEnderecosArray(dialog.getEnderecos());
-                                                        
+
                                                         pj = new PessoaJuridica(jTF_NomeFantasia.getText(), jTF_cnpj.getText(), jTf_Nome.getText(), enderecos, Double.parseDouble(jTF_LimiteCredito.getText()));
-                                                        
+
                                                         if (pDAO.inserirPessoaJuridica(pj)) {
                                                             limparCampos();
                                                             JOptionPane.showMessageDialog(rootPane, "Cliente salvo com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
@@ -464,9 +487,9 @@ public class CadastrarCliente extends javax.swing.JDialog {
                                                             this.dispose();
                                                         } else {
                                                             JOptionPane.showMessageDialog(rootPane, "Erro ao salvar cliente", "Mensagem", JOptionPane.ERROR_MESSAGE);
-                                                            
+
                                                         }
-                                                        
+
                                                     } else if (JOptionPane.NO_OPTION == opcao) {
                                                         enderecos.add(capturarEndereco());
                                                         pj = new PessoaJuridica(jTF_NomeFantasia.getText(), jTF_cnpj.getText(), jTf_Nome.getText(), enderecos, Double.parseDouble(jTF_LimiteCredito.getText()));
@@ -477,9 +500,9 @@ public class CadastrarCliente extends javax.swing.JDialog {
                                                             this.dispose();
                                                         } else {
                                                             JOptionPane.showMessageDialog(rootPane, "Erro ao salvar cliente", "Mensagem", JOptionPane.ERROR_MESSAGE);
-                                                            
+
                                                         }
-                                                        
+
                                                     }
                                                 } else {
                                                     JOptionPane.showMessageDialog(rootPane, "Tipo de endereco e  obrigatorio!");
@@ -525,58 +548,45 @@ public class CadastrarCliente extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Campo CNPJ e obrigatorio!");
             jTF_cnpj.requestFocus();
         }
-        
+
     }
-   
+
     private void desbloqueiaCampoFisica() {
-        jTF_Bairro.setEnabled(true);
-        jTF_Complemento.setEnabled(true);
-        jTF_LimiteCredito.setEnabled(true);
-        jTF_Logradouro.setEnabled(true);
-        jTF_Municipio.setEnabled(true);
-        jTF_NomeFantasia.setText(null);
-        jTF_NomeFantasia.setEnabled(false);
-        jCBoxTipoEndereco.setEnabled(true);
-        jTF_cep.setEnabled(true);
-        jTF_cnpj.setText(null);
-        jTF_cnpj.setEnabled(false);
-        jTF_cpf.setEnabled(true);
-        jTF_numero.setEnabled(true);
-        jTf_Nome.setEnabled(true);
-        jCBoxUf.setEnabled(true);
+        jTF_cpf.setVisible(true);
+        labelCPF.setVisible(true);
+        
+        jTF_cnpj.setVisible(false);
+        LabelCNPJ.setVisible(false);
+        jTF_NomeFantasia.setVisible(false);
+        LabelnomeFantasia.setVisible(false);
+
     }
 
     private void desbloqueiaCampoJuridica() {
-        jTF_Bairro.setEnabled(true);
-        jTF_Complemento.setEnabled(true);
-        jTF_LimiteCredito.setEnabled(true);
-        jTF_Logradouro.setEnabled(true);
-        jTF_Municipio.setEnabled(true);
-        jTF_NomeFantasia.setEnabled(true);
-        jTF_cep.setEnabled(true);
-        jTF_cnpj.setEnabled(true);
-        jTF_cpf.setText(null);
-        jTF_cpf.setEnabled(false);
-        jTF_numero.setEnabled(true);
-        jTf_Nome.setEnabled(true);
-        jCBoxTipoEndereco.setEnabled(true);
-        jCBoxUf.setEnabled(true);
+
+        jTF_cnpj.setVisible(true);
+        LabelCNPJ.setVisible(true);
+        jTF_NomeFantasia.setVisible(true);
+        LabelnomeFantasia.setVisible(true);
+
+        jTF_cpf.setVisible(false);
+        labelCPF.setVisible(false);
     }
 
     private void limparCampos() {
 
-        jTF_Bairro.setText(null);
-        jTF_Complemento.setText(null);
-        jTF_LimiteCredito.setText(null);
-        jTF_Logradouro.setText(null);
-        jTF_Municipio.setText(null);
-        jTF_NomeFantasia.setText(null);
+        jTF_Bairro.setText("");
+        jTF_Complemento.setText("");
+        jTF_LimiteCredito.setText("");
+        jTF_Logradouro.setText("");
+        jTF_Municipio.setText("");
+        jTF_NomeFantasia.setText("");
         jCBoxTipoEndereco.setSelectedIndex(0);
-        jTF_cep.setText(null);
-        jTF_cnpj.setText(null);
-        jTF_cpf.setText(null);
-        jTF_numero.setText(null);
-        jTf_Nome.setText(null);
+        jTF_cep.setText("");
+        jTF_cnpj.setText("");
+        jTF_cpf.setText("");
+        jTF_numero.setText("");
+        jTf_Nome.setText("");
         jCBoxUf.setSelectedIndex(0);
     }
 
@@ -595,12 +605,15 @@ public class CadastrarCliente extends javax.swing.JDialog {
         }
         return end;
     }
-    private void addEnderecosArray(ArrayList<Endereco> add){
-        enderecos= add;
+
+    private void addEnderecosArray(ArrayList<Endereco> add) {
+        enderecos = add;
         enderecos.add(capturarEndereco());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel LabelCNPJ;
+    private javax.swing.JLabel LabelnomeFantasia;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel closeIcon;
     private javax.swing.JButton jBtn_Limpar;
@@ -615,9 +628,6 @@ public class CadastrarCliente extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -637,5 +647,6 @@ public class CadastrarCliente extends javax.swing.JDialog {
     private javax.swing.JTextField jTF_cpf;
     private javax.swing.JTextField jTF_numero;
     private javax.swing.JTextField jTf_Nome;
+    private javax.swing.JLabel labelCPF;
     // End of variables declaration//GEN-END:variables
 }

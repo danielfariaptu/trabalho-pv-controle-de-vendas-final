@@ -191,16 +191,13 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="jTf_Nome">
-          <Properties>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="40" y="170" width="320" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="labelCPF">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -214,16 +211,16 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="jTF_cpf">
-          <Properties>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTF_cpfActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="40" y="230" width="320" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
+        <Component class="javax.swing.JLabel" name="LabelnomeFantasia">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -237,16 +234,13 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="jTF_NomeFantasia">
-          <Properties>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="410" y="170" width="300" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel5">
+        <Component class="javax.swing.JLabel" name="LabelCNPJ">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -255,7 +249,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="410" y="210" width="-1" height="-1"/>
+              <AbsoluteConstraints x="40" y="210" width="-1" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -265,7 +259,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="410" y="230" width="300" height="30"/>
+              <AbsoluteConstraints x="40" y="230" width="320" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -283,9 +277,6 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="jTF_LimiteCredito">
-          <Properties>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="40" y="290" width="210" height="30"/>
@@ -306,9 +297,6 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="jTF_Logradouro">
-          <Properties>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="40" y="360" width="430" height="30"/>
@@ -329,9 +317,6 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="jTF_numero">
-          <Properties>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="510" y="360" width="190" height="30"/>
@@ -352,9 +337,6 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="jTF_Complemento">
-          <Properties>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="40" y="420" width="430" height="30"/>
@@ -375,9 +357,6 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="jTF_Bairro">
-          <Properties>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="510" y="420" width="190" height="30"/>
@@ -398,9 +377,6 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="jTF_Municipio">
-          <Properties>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="40" y="480" width="330" height="30"/>
@@ -421,9 +397,6 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="jTF_cep">
-          <Properties>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="510" y="480" width="190" height="30"/>
@@ -461,11 +434,11 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Campos &quot;*&quot; sao obrigatorios"/>
+            <Property name="text" type="java.lang.String" value="Campos marcados com &quot;*&quot; s&#xe3;o obrigat&#xf3;rios"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="40" y="620" width="200" height="-1"/>
+              <AbsoluteConstraints x="40" y="620" width="230" height="40"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -525,7 +498,6 @@
                 <StringItem index="27" value="TO"/>
               </StringArray>
             </Property>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBoxUfActionPerformed"/>
@@ -535,7 +507,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="40" y="540" width="130" height="-1"/>
+              <AbsoluteConstraints x="40" y="540" width="130" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -548,14 +520,13 @@
                 <StringItem index="2" value="Comercial"/>
               </StringArray>
             </Property>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="510" y="550" width="190" height="-1"/>
+              <AbsoluteConstraints x="510" y="550" width="190" height="30"/>
             </Constraint>
           </Constraints>
         </Component>

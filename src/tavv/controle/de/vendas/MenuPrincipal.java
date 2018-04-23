@@ -1618,7 +1618,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoRemoverCliMouseClicked
 
     private void botaoIncluirCliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoIncluirCliMouseClicked
-        CadastrarCliente dialog = new CadastrarCliente(new javax.swing.JDialog(), true);
+        AdicionarCliente dialog = new AdicionarCliente(new javax.swing.JDialog(), true);
         dialog.setLocationRelativeTo(null);
         overlay.setVisible(true);
 	dialog.setVisible(true);

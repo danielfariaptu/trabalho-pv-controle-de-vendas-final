@@ -1,6 +1,7 @@
-package Interface.Produto;
+package Interface.Cliente;
 
-import Interface.Cliente.CadastrarCliente;
+import Interface.Produto.*;
+import Interface.Cliente.*;
 import Controle.GerenciaProduto;
 import Model.*;
 import java.awt.AWTKeyStroke;
@@ -13,7 +14,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
 
-public class ProcurarProduto extends javax.swing.JDialog {
+public class PesquisarCliente extends javax.swing.JDialog {
 
     HashSet backup = new HashSet(this.getFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS));
     HashSet teclaEnter = (HashSet) backup.clone();
@@ -21,12 +22,12 @@ public class ProcurarProduto extends javax.swing.JDialog {
    
     int x;
     
-    public ProcurarProduto(java.awt.Frame parent, boolean modal) {
+    public PesquisarCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
   
-    public ProcurarProduto(java.awt.Frame parent, boolean modal, GerenciaProduto gp, int x) {
+    public PesquisarCliente(java.awt.Frame parent, boolean modal, GerenciaProduto gp, int x) {
         super(parent, modal);
         initComponents();
         this.gp = gp;
@@ -39,7 +40,7 @@ public class ProcurarProduto extends javax.swing.JDialog {
 
         CadastroProduto = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        tfIDProd = new javax.swing.JTextField();
+        field_idCliente = new javax.swing.JTextField();
         lbIDProd = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
         closeIcon = new javax.swing.JLabel();
@@ -60,16 +61,15 @@ public class ProcurarProduto extends javax.swing.JDialog {
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("PROCURAR PRODUTO");
+        jLabel1.setText("PROCURAR CLIENTE");
         CadastroProduto.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 350, 43));
-
-        CadastroProduto.add(tfIDProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 300, 29));
+        CadastroProduto.add(field_idCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 300, 29));
 
         lbIDProd.setDisplayedMnemonic('n');
         lbIDProd.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lbIDProd.setForeground(new java.awt.Color(255, 255, 255));
         lbIDProd.setLabelFor(lbIDProd);
-        lbIDProd.setText("ID DO PRODUTO:");
+        lbIDProd.setText("ID DO CLIENTE:");
         CadastroProduto.add(lbIDProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, -1, -1));
 
         btnBuscar.setBackground(new java.awt.Color(255, 255, 255));
@@ -99,7 +99,7 @@ public class ProcurarProduto extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-      
+      if (!lbIDProd.getText().isEmpty()) {
        /*
         
         ArrayList<Produto> prod = gp.getProdutos();
@@ -131,10 +131,14 @@ public class ProcurarProduto extends javax.swing.JDialog {
             naoEncontrado.setVisible(true);
             over.dispose();
         }
-                           if (!lbIDProd.getText().isEmpty()) {
+                           
+       */   
+       
                              
-                           }
-       */               
+         }else {
+          JOptionPane.showMessageDialog(rootPane, "Digite o ID do Cliente!");
+            field_idCliente.requestFocus();
+      }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void CadastroProdutoComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_CadastroProdutoComponentShown
@@ -160,7 +164,7 @@ public class ProcurarProduto extends javax.swing.JDialog {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
+        /*try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -168,21 +172,23 @@ public class ProcurarProduto extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastrarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastrarClientebackup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastrarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastrarClientebackup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastrarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastrarClientebackup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastrarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+            java.util.logging.Logger.getLogger(CadastrarClientebackup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }*/
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
        java.awt.EventQueue.invokeLater(new Runnable() {
 	public void run() {
-		ProcurarProduto dialog = new ProcurarProduto(new javax.swing.JFrame(), true);
+		PesquisarCliente dialog = new PesquisarCliente(new javax.swing.JFrame(), true);
 		dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 			@Override
 			public void windowClosing(java.awt.event.WindowEvent e) {
@@ -198,8 +204,8 @@ public class ProcurarProduto extends javax.swing.JDialog {
     private javax.swing.JPanel CadastroProduto;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JLabel closeIcon;
+    private javax.swing.JTextField field_idCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lbIDProd;
-    private javax.swing.JTextField tfIDProd;
     // End of variables declaration//GEN-END:variables
 }

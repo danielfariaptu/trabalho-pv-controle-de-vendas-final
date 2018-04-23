@@ -1,6 +1,6 @@
 package Interface.Produto;
 
-import Interface.Cliente.CadastrarCliente;
+import Interface.*;
 import Controle.GerenciaProduto;
 import java.awt.AWTKeyStroke;
 import java.awt.Color;
@@ -292,10 +292,10 @@ public class CadastroProduto extends javax.swing.JDialog {
     }//GEN-LAST:event_JCBoxVinhoActionPerformed
 
     public void limpaCampos() {
-        tfNome.setText(null);
-        tfPreco.setText(null);
-        tfCodigoBarras.setText(null);
-        tfPaisOrigem.setText(null);
+        tfNome.setText("");
+        tfPreco.setText("");
+        tfCodigoBarras.setText("");
+        tfPaisOrigem.setText("");
         JCBoxUva.setSelectedIndex(0);
         JCBoxVinho.setSelectedIndex(0);
     }
@@ -321,7 +321,8 @@ public class CadastroProduto extends javax.swing.JDialog {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
+        
+        /*try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -329,14 +330,16 @@ public class CadastroProduto extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastrarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastrarClientebackup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastrarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastrarClientebackup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastrarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastrarClientebackup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastrarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+            java.util.logging.Logger.getLogger(CadastrarClientebackup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }*/
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
