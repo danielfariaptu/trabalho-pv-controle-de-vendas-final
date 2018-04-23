@@ -511,10 +511,11 @@
         <Component class="javax.swing.JComboBox" name="jCBoxTipoEndereco">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
+              <StringArray count="4">
                 <StringItem index="0" value="- Selecione -"/>
                 <StringItem index="1" value="Residencial"/>
                 <StringItem index="2" value="Comercial"/>
+                <StringItem index="3" value="Outro"/>
               </StringArray>
             </Property>
           </Properties>

@@ -32,6 +32,7 @@ public class PesquisarCliente extends javax.swing.JDialog {
         initComponents();
         this.x = x;
         this.clientes = clientes;
+        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -69,7 +70,7 @@ public class PesquisarCliente extends javax.swing.JDialog {
         lbIDProd.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lbIDProd.setForeground(new java.awt.Color(255, 255, 255));
         lbIDProd.setLabelFor(lbIDProd);
-        lbIDProd.setText("ID DO CLIENTE:");
+        lbIDProd.setText("DIGITE O CÓDIGO DO CLIENTE:");
         CadastroProduto.add(lbIDProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, -1, -1));
 
         btnBuscar.setBackground(new java.awt.Color(255, 255, 255));
@@ -115,12 +116,15 @@ public class PesquisarCliente extends javax.swing.JDialog {
                     if (x == 1) {
                         ConsultarCliente consultar = new ConsultarCliente(this, true, tipo, cliente);
                         consultar.setVisible(true);
+                        this.dispose();
                     } else if (x == 2) {
                         AlterarCliente alterar = new AlterarCliente(this, true, tipo, cliente);
                         alterar.setVisible(true);
+                        this.dispose();
                     } else {
                         ExcluirCliente excluir = new ExcluirCliente(this, true, tipo, cliente);
                         excluir.setVisible(true);
+                        this.dispose();
                     }
                 }else{
                     cont++;

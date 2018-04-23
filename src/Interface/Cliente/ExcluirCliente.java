@@ -33,7 +33,7 @@ public class ExcluirCliente extends javax.swing.JDialog {
     public ExcluirCliente(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
-       
+
     }
 
     public ExcluirCliente(javax.swing.JDialog parent, boolean modal, int tipoCliente, Cliente cliente) {
@@ -41,18 +41,17 @@ public class ExcluirCliente extends javax.swing.JDialog {
         this.tipoCliente = tipoCliente;
         this.cliente = cliente;
         initComponents();
-        
+
+        setLocationRelativeTo(null);
+
         TablePessoaJuridica.setVisible(false);
         TablePessoaFisica.setVisible(false);
-      
-        
+
         if (tipoCliente == 1) {
             desbloqueiaCampoJuridica();
-           
 
         } else if (tipoCliente == 2) {
             desbloqueiaCampoFisica();
-            
 
         }
 
@@ -540,15 +539,13 @@ public class ExcluirCliente extends javax.swing.JDialog {
     private void jBtn_ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_ExcluirActionPerformed
         if (tipoCliente == 1) {
             ExcluirPessoaJuridica();
-           
 
         } else if (tipoCliente == 2) {
             ExcluirPessoaFisica();
-            
 
         }
 
-        
+
     }//GEN-LAST:event_jBtn_ExcluirActionPerformed
 
     private void closeIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeIconMouseClicked
@@ -582,8 +579,6 @@ public class ExcluirCliente extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(ExcluirCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-     
-       
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -603,7 +598,6 @@ public class ExcluirCliente extends javax.swing.JDialog {
     //jCBoxTipoEndereco.getItemAt(jCBoxTipoEndereco.getSelectedIndex())
     private void ExcluirPessoaFisica() {
 
-        
         int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja Realmente excluir a Pessoa Física informada?");
 
         if (JOptionPane.YES_OPTION == opcao) {
@@ -617,13 +611,11 @@ public class ExcluirCliente extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Cliente não excluído!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         }
-        
-        
 
     }
 
     private void ExcluirPessoaJuridica() {
-        
+
         int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja Realmente excluir a Pessoa Jurídica informada?");
 
         if (JOptionPane.YES_OPTION == opcao) {
@@ -643,26 +635,24 @@ public class ExcluirCliente extends javax.swing.JDialog {
     private void desbloqueiaCampoFisica() {
         TablePessoaFisica.setVisible(true);
         PessoaFisica pf = (PessoaFisica) cliente;
-         
+
         id.setText(String.valueOf(pf.getCodigo()));
         nome.setText(pf.getNome());
         cpf.setText(pf.getCpf());
         LimiteDeCredito.setText(String.valueOf(pf.getLimiteCredito()));
-        
-        
-       
+
     }
 
     private void desbloqueiaCampoJuridica() {
-        TablePessoaJuridica.setVisible(true);        
+        TablePessoaJuridica.setVisible(true);
         PessoaJuridica pj = (PessoaJuridica) cliente;
-        
+
         idJuridica.setText(String.valueOf(pj.getCodigo()));
         nomeJuridica.setText(pj.getNome());
         nomeFantasia.setText(pj.getNomeFantasia());
         cnpj.setText(pj.getCnpj());
-        LimiteDeCredito.setText(String.valueOf(pj.getLimiteCredito())); 
-        
+        LimiteDeCredito.setText(String.valueOf(pj.getLimiteCredito()));
+
     }
 
 

@@ -1457,11 +1457,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void botaoPainelLogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPainelLogOutMouseClicked
          Login lg = new Login ();
-              	lg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                lg.setLocationRelativeTo(null);
-		lg.setVisible(true);
-                
-                this.dispose();
+	 lg.setVisible(true);
+         this.dispose();
     }//GEN-LAST:event_botaoPainelLogOutMouseClicked
 
     private void botaoPainelProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPainelProdutoMouseClicked
@@ -1628,7 +1625,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void botaoIncluirCliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoIncluirCliMouseClicked
         AdicionarCliente dialog = new AdicionarCliente(new javax.swing.JDialog(), true);
-        dialog.setLocationRelativeTo(null);
         overlay.setVisible(true);
 	dialog.setVisible(true);
         overlay.setVisible(false);
@@ -1706,7 +1702,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void botaoIncluirProdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoIncluirProdMouseClicked
          CadastroProduto dialog = new CadastroProduto(this, true,gp);
-        dialog.setLocationRelativeTo(null);
         overlay.setVisible(true);
 	dialog.setVisible(true);
         overlay.setVisible(false);
@@ -1714,7 +1709,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void botaoAlterarProdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoAlterarProdMouseClicked
         AlterarProduto dialog = new AlterarProduto(this, true,gp);
-        dialog.setLocationRelativeTo(null);
         overlay.setVisible(true);
 	dialog.setVisible(true);
         overlay.setVisible(false);

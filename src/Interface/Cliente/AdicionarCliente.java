@@ -32,6 +32,8 @@ public class AdicionarCliente extends javax.swing.JDialog {
         super(parent, modal);
 
         initComponents();
+        
+        setLocationRelativeTo(null);
 
         jTF_cpf.setVisible(false);
         labelCPF.setVisible(false);
@@ -244,7 +246,7 @@ public class AdicionarCliente extends javax.swing.JDialog {
         });
         jPanel1.add(jCBoxUf, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 540, 130, 30));
 
-        jCBoxTipoEndereco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Selecione -", "Residencial", "Comercial" }));
+        jCBoxTipoEndereco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Selecione -", "Residencial", "Comercial", "Outro" }));
         jPanel1.add(jCBoxTipoEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 550, 190, 30));
 
         jBtn_Limpar.setBackground(new java.awt.Color(255, 255, 255));
@@ -290,10 +292,7 @@ public class AdicionarCliente extends javax.swing.JDialog {
             CadastrarPessoaFisica();
 
         }
-        //else {
-        CadastrarPessoaFisica();
-        //JOptionPane.showMessageDialog(null, "Informe o tipo de cliente!", "Erro", JOptionPane.ERROR_MESSAGE);
-        //}
+        
     }//GEN-LAST:event_jBtn_SalvarActionPerformed
 
     private void jRb_PfisicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRb_PfisicaActionPerformed
@@ -373,7 +372,7 @@ public class AdicionarCliente extends javax.swing.JDialog {
         });
     }
 
-    //jCBoxTipoEndereco.getItemAt(jCBoxTipoEndereco.getSelectedIndex())
+    
     private void CadastrarPessoaFisica() {
 
         if (!jTf_Nome.getText().isEmpty()) {
@@ -387,7 +386,6 @@ public class AdicionarCliente extends javax.swing.JDialog {
                                         if (!jCBoxUf.getItemAt(jCBoxUf.getSelectedIndex()).equals("- Selecione -")) {
                                             if (!jCBoxTipoEndereco.getItemAt(jCBoxTipoEndereco.getSelectedIndex()).equals("- Selecione -")) {
                                                 int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja adicionar algum endereço ?");
-
                                                 if (JOptionPane.YES_OPTION == opcao) {
 
                                                     AdicionarEndereco dialog = new AdicionarEndereco(new java.awt.Frame(), true);
@@ -397,68 +395,70 @@ public class AdicionarCliente extends javax.swing.JDialog {
 
                                                     pf = new PessoaFisica(jTF_cpf.getText(), jTf_Nome.getText(), enderecos, Double.valueOf(jTF_LimiteCredito.getText()));
 
+                                                    
                                                 }
-                                                if (JOptionPane.NO_OPTION == opcao) {
+                                                else if (JOptionPane.NO_OPTION == opcao) {
 
                                                     enderecos.add(capturarEndereco());
                                                     pf = new PessoaFisica(jTF_cpf.getText(), jTf_Nome.getText(), enderecos, Double.valueOf(jTF_LimiteCredito.getText()));
                                                     if (pDAO.inserirPessoaFisica(pf)) {
                                                         limparCampos();
                                                         JOptionPane.showMessageDialog(rootPane, "Cliente salvo com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
-                                                        this.dispose();
+                                                        dispose();
                                                     } else {
                                                         JOptionPane.showMessageDialog(rootPane, "Erro ao salvar cliente", "Mensagem", JOptionPane.ERROR_MESSAGE);
-
+                                                        dispose();
                                                     }
 
                                                 }
                                             } else {
-                                                JOptionPane.showMessageDialog(rootPane, "Tipo de endereco e  obrigatorio!");
+                                                JOptionPane.showMessageDialog(rootPane, "Tipo de endereco é obrigatório");
                                                 jCBoxTipoEndereco.requestFocus();
                                             }
                                         } else {
-                                            JOptionPane.showMessageDialog(rootPane, "UF e  obrigatorio!");
+                                            JOptionPane.showMessageDialog(rootPane, "UF é obrigatório");
                                             jCBoxUf.requestFocus();
                                         }
                                     } else {
-                                        JOptionPane.showMessageDialog(rootPane, "Campo CEP e  obrigatorio!");
+                                        JOptionPane.showMessageDialog(rootPane, "Campo CEP é obrigatório");
                                         jTF_cep.requestFocus();
                                     }
                                 } else {
-                                    JOptionPane.showMessageDialog(rootPane, "Campo Municipio e  obrigatorio!");
+                                    JOptionPane.showMessageDialog(rootPane, "Campo Municipio é obrigatório");
                                     jTF_Municipio.requestFocus();
                                 }
                             } else {
-                                JOptionPane.showMessageDialog(rootPane, "Campo Bairro e  obrigatorio!");
+                                JOptionPane.showMessageDialog(rootPane, "Campo Bairro é obrigatório!");
                                 jTF_Bairro.requestFocus();
                             }
                         } else {
-                            JOptionPane.showMessageDialog(rootPane, "Campo Numero e obrigatorio!");
+                            JOptionPane.showMessageDialog(rootPane, "Campo Numero  é obrigatório!");
                             jTF_numero.requestFocus();
                         }
                     } else {
-                        JOptionPane.showMessageDialog(rootPane, "Campo Logradouro e obrigatorio!");
+                        JOptionPane.showMessageDialog(rootPane, "Campo Logradouro  é obrigatório!");
                         jTF_Logradouro.requestFocus();
                     }
                 } else {
-                    JOptionPane.showMessageDialog(rootPane, "Campo Limite de credito e obrigatorio!");
+                    JOptionPane.showMessageDialog(rootPane, "Campo Limite de credito  é obrigatório!");
                     jTF_LimiteCredito.requestFocus();
                 }
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Campo CPF e obrigatorio!");
+                JOptionPane.showMessageDialog(rootPane, "Campo CPF é obrigatório!");
                 jTF_cpf.requestFocus();
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Campo Nome e obrigatorio!");
+            JOptionPane.showMessageDialog(rootPane, "Campo Nome é obrigatório");
             jTf_Nome.requestFocus();
         }
     }
 
     private void CadastrarPessoaJuridica() {
 
-        if (!jTF_cnpj.getText().isEmpty()) {
+        
             if (!jTf_Nome.getText().isEmpty()) {
                 if (!jTF_NomeFantasia.getText().isEmpty()) {
+                    if (!jTF_cnpj.getText().isEmpty()) {
                     if (!jTF_LimiteCredito.getText().isEmpty()) {
                         if (!jTF_Logradouro.getText().isEmpty()) {
                             if (!jTF_numero.getText().isEmpty()) {
@@ -471,7 +471,6 @@ public class AdicionarCliente extends javax.swing.JDialog {
                                                     if (JOptionPane.YES_OPTION == opcao) {
 
                                                         AdicionarEndereco dialog = new AdicionarEndereco(new java.awt.Frame(), true);
-                                                        dialog.setLocationRelativeTo(null);
                                                         dialog.setVisible(true);
 
                                                         addEnderecosArray(dialog.getEnderecos());
@@ -503,47 +502,47 @@ public class AdicionarCliente extends javax.swing.JDialog {
 
                                                     }
                                                 } else {
-                                                    JOptionPane.showMessageDialog(rootPane, "Tipo de endereco e  obrigatorio!");
+                                                    JOptionPane.showMessageDialog(rootPane, "Tipo de endereco é obrigatório!");
                                                     jCBoxTipoEndereco.requestFocus();
                                                 }
                                             } else {
-                                                JOptionPane.showMessageDialog(rootPane, "UF e  obrigatorio!");
+                                                JOptionPane.showMessageDialog(rootPane, "UF é obrigatório!");
                                                 jCBoxUf.requestFocus();
                                             }
                                         } else {
-                                            JOptionPane.showMessageDialog(rootPane, "Campo CEP e  obrigatorio!");
+                                            JOptionPane.showMessageDialog(rootPane, "Campo CEP é obrigatório!");
                                             jTF_cep.requestFocus();
                                         }
                                     } else {
-                                        JOptionPane.showMessageDialog(rootPane, "Campo Municipio e  obrigatorio!");
+                                        JOptionPane.showMessageDialog(rootPane, "Campo Municipio é obrigatório!");
                                         jTF_Municipio.requestFocus();
                                     }
                                 } else {
-                                    JOptionPane.showMessageDialog(rootPane, "Campo Bairro e  obrigatorio!");
+                                    JOptionPane.showMessageDialog(rootPane, "Campo Bairro é obrigatório!");
                                     jTF_Bairro.requestFocus();
                                 }
                             } else {
-                                JOptionPane.showMessageDialog(rootPane, "Campo Numero e obrigatorio!");
+                                JOptionPane.showMessageDialog(rootPane, "Campo Numero é obrigatório!");
                                 jTF_numero.requestFocus();
                             }
                         } else {
-                            JOptionPane.showMessageDialog(rootPane, "Campo Logradouro e obrigatorio!");
+                            JOptionPane.showMessageDialog(rootPane, "Campo Logradouro é obrigatório!");
                             jTF_Logradouro.requestFocus();
                         }
                     } else {
-                        JOptionPane.showMessageDialog(rootPane, "Campo Limite de credito e obrigatorio!");
+                        JOptionPane.showMessageDialog(rootPane, "Campo Limite de credito é obrigatório!");
                         jTF_LimiteCredito.requestFocus();
                     }
                 } else {
-                    JOptionPane.showMessageDialog(rootPane, "Campo Nome fantasia e obrigatorio!");
+                    JOptionPane.showMessageDialog(rootPane, "Campo CPNJ é obrigatório!");
                     jTF_NomeFantasia.requestFocus();
                 }
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Campo Nome e obrigatorio!");
+                JOptionPane.showMessageDialog(rootPane, "Campo Nome Fantasia é obrigatório!");
                 jTf_Nome.requestFocus();
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Campo CNPJ e obrigatorio!");
+            JOptionPane.showMessageDialog(rootPane, "Campo Nome é obrigatório!");
             jTF_cnpj.requestFocus();
         }
 
@@ -599,8 +598,12 @@ public class AdicionarCliente extends javax.swing.JDialog {
         end.setEstado(jCBoxUf.getItemAt(jCBoxUf.getSelectedIndex()));
         if (jCBoxTipoEndereco.getItemAt(jCBoxTipoEndereco.getSelectedIndex()).equals("Residencial")) {
             end.setTipoEndereco(1);
-        } else {
+        } else if(jCBoxTipoEndereco.getItemAt(jCBoxTipoEndereco.getSelectedIndex()).equals("Comercial")) {
             end.setTipoEndereco(2);
+        }
+        else {
+             end.setTipoEndereco(3);
+            
         }
         return end;
     }

@@ -15,21 +15,20 @@ import javax.swing.JOptionPane;
 
 public class AdicionarEndereco extends javax.swing.JDialog {
 
-    HashSet backup = new HashSet(this.getFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS));
-    HashSet teclaEnter = (HashSet) backup.clone();
-    
     private Endereco end;
     private ArrayList<Endereco> enderecos = new ArrayList<>();
-    
+
     public AdicionarEndereco(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
-  
+
     public AdicionarEndereco(java.awt.Frame parent, boolean modal, Endereco end) {
         super(parent, modal);
         initComponents();
         this.end = end;
+
+        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -201,6 +200,7 @@ public class AdicionarEndereco extends javax.swing.JDialog {
 
         jCBoxUf.setMaximumRowCount(4);
         jCBoxUf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Selecione -", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+        jCBoxUf.setToolTipText("");
         CadastroProduto.add(jCBoxUf, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 300, 30));
 
         lbCodigoBarras1.setDisplayedMnemonic('c');
@@ -227,7 +227,7 @@ public class AdicionarEndereco extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-         if (!field_Logradouro.getText().isEmpty()) {
+        if (!field_Logradouro.getText().isEmpty()) {
             if (!field_Numero.getText().isEmpty()) {
                 if (!field_Bairro.getText().isEmpty()) {
                     if (!field_Municipio.getText().isEmpty()) {
@@ -237,7 +237,7 @@ public class AdicionarEndereco extends javax.swing.JDialog {
                                     int tipo;
                                     if (jCBoxTipoEndereco.getItemAt(jCBoxTipoEndereco.getSelectedIndex()).equals("Residencial")) {
                                         tipo = 1;
-                                    } else if(jCBoxTipoEndereco.getItemAt(jCBoxTipoEndereco.getSelectedIndex()).equals("Comercial")){
+                                    } else if (jCBoxTipoEndereco.getItemAt(jCBoxTipoEndereco.getSelectedIndex()).equals("Comercial")) {
                                         tipo = 2;
                                     } else {
                                         tipo = 3;
@@ -292,21 +292,15 @@ public class AdicionarEndereco extends javax.swing.JDialog {
     }//GEN-LAST:event_btnFecharActionPerformed
 
     private void CadastroProdutoComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_CadastroProdutoComponentShown
-        lbAviso.setVisible(true);
-        lbAviso.setForeground(Color.black);
-        lbAviso.setText("Os campos marcados com * são obrigatórios.");
-        enterToTab();
-        limpaCampos();
-        btnConfirmar.setEnabled(true);
-        field_Logradouro.requestFocus();
+
     }//GEN-LAST:event_CadastroProdutoComponentShown
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-         limpaCampos();
+        limpaCampos();
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnLimparKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnLimparKeyPressed
-         if (evt.getKeyCode() == 10) {
+        if (evt.getKeyCode() == 10) {
             btnLimparActionPerformed(null);
         }
     }//GEN-LAST:event_btnLimparKeyPressed
@@ -321,7 +315,7 @@ public class AdicionarEndereco extends javax.swing.JDialog {
     }//GEN-LAST:event_field_NumeroFocusLost
 
     private void field_NumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_field_NumeroKeyTyped
-        
+
     }//GEN-LAST:event_field_NumeroKeyTyped
 
     private void field_NumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_field_NumeroActionPerformed
@@ -334,29 +328,23 @@ public class AdicionarEndereco extends javax.swing.JDialog {
         field_Complemento.setText("");
         field_Bairro.setText("");
         field_Municipio.setText("");
+        field_CEP.setText("");
         jCBoxTipoEndereco.setSelectedIndex(0);
         jCBoxUf.setSelectedIndex(0);
     }
 
-    public void enterToTab() {
-        teclaEnter.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_ENTER, 0));
-        this.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, teclaEnter);
-        btnFechar.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, backup);
-        btnConfirmar.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, backup);
-    }
-
-     public ArrayList<Endereco> getEnderecos() {
+    public ArrayList<Endereco> getEnderecos() {
         return enderecos;
     }
-   
-       public static void main(String args[]) {
+
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        
-        /*try {
+
+ /*try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -378,20 +366,20 @@ public class AdicionarEndereco extends javax.swing.JDialog {
         //</editor-fold>
 
         /* Create and display the dialog */
-       java.awt.EventQueue.invokeLater(new Runnable() {
-	public void run() {
-		AdicionarEndereco dialog = new AdicionarEndereco(new javax.swing.JFrame(), true);
-		dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-			@Override
-			public void windowClosing(java.awt.event.WindowEvent e) {
-				System.exit(0);
-			}
-		});
-		dialog.setVisible(true);
-	}
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                AdicionarEndereco dialog = new AdicionarEndereco(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
         });
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CadastroProduto;
     private javax.swing.JButton btnConfirmar;

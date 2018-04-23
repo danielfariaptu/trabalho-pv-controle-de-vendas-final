@@ -39,6 +39,7 @@ public class AlterarCliente extends javax.swing.JDialog {
         super(parent, modal);
 
         initComponents();
+        setLocationRelativeTo(null);
         this.cliente = cliente;
         this.tipoPessoa = tipoPessoa;
         jTF_cpf.setVisible(false);

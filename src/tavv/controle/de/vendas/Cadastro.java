@@ -21,9 +21,8 @@ public class Cadastro extends javax.swing.JDialog{
     
     public Cadastro(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
-        setResizable(false);
-       
-        this.setLocationRelativeTo(null);
+        
+        setLocationRelativeTo(null);
         initComponents();
         URL caminhoIcone = getClass().getResource("/icons/icone.png");
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(caminhoIcone);

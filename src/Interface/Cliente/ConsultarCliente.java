@@ -42,6 +42,8 @@ public class ConsultarCliente extends javax.swing.JDialog {
         this.cliente = cliente;
         initComponents();
         
+         
+        
         TablePessoaJuridica.setVisible(false);
         TablePessoaFisica.setVisible(false);
       

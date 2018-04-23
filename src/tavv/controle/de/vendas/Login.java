@@ -21,8 +21,11 @@ public class Login extends javax.swing.JFrame {
 
     public Login() {
        
-        setResizable(false);
+        
+        
         initComponents();
+        setResizable(false);
+        setLocationRelativeTo(null);
         overlay.setVisible(false);
         overlay.setBackground(new Color(51,34,94,80));
         URL caminhoIcone = getClass().getResource("/icons/icone.png");
@@ -220,7 +223,6 @@ public class Login extends javax.swing.JFrame {
             
             if(chamarMenuPrincipal){
              MenuPrincipal mp = new MenuPrincipal();
-                mp.setLocationRelativeTo(null);
 		mp.setVisible(true);
                 this.dispose();
              
@@ -231,15 +233,8 @@ public class Login extends javax.swing.JFrame {
 
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-       // new Cadastro().show();
-     
-        //Cadastro cad = new Cadastro();
-        //cad.setLocationRelativeTo(null);
-        //cad.setVisible(true);
-       
-        
+      
         Cadastro dialog = new Cadastro(new javax.swing.JDialog(), true);
-        dialog.setLocationRelativeTo(null);
         overlay.setVisible(true);
 	dialog.setVisible(true);
         overlay.setVisible(false);
