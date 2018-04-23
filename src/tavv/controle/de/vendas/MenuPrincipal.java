@@ -22,7 +22,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
        
         initComponents();
         
-         URL caminhoIcone = getClass().getResource("/icons/icone.png");
+        URL caminhoIcone = getClass().getResource("/icons/icone.png");
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(caminhoIcone);
         this.setIconImage(iconeTitulo);
         
@@ -91,6 +91,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botaoInicio = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
+        PainelCliente = new javax.swing.JPanel();
+        ClienteTitle = new javax.swing.JPanel();
+        labelCliente = new javax.swing.JLabel();
+        botaoIncluirCli = new javax.swing.JPanel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        botaoAlterarCli = new javax.swing.JPanel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        botaoRemoverCli = new javax.swing.JPanel();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        botaoMostrarCli = new javax.swing.JPanel();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
         PainelProduto = new javax.swing.JPanel();
         ProdTitle = new javax.swing.JPanel();
         labelPag = new javax.swing.JLabel();
@@ -166,21 +181,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botaoMostrarE = new javax.swing.JPanel();
         jLabel42 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
-        PainelCliente = new javax.swing.JPanel();
-        ClienteTitle = new javax.swing.JPanel();
-        labelCliente = new javax.swing.JLabel();
-        botaoIncluirCli = new javax.swing.JPanel();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        botaoAlterarCli = new javax.swing.JPanel();
-        jLabel30 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        botaoRemoverCli = new javax.swing.JPanel();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        botaoMostrarCli = new javax.swing.JPanel();
-        jLabel34 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
         PainelInicio = new javax.swing.JPanel();
         InicioTitle = new javax.swing.JPanel();
         labelCliente1 = new javax.swing.JLabel();
@@ -568,6 +568,145 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Navegation.add(botaoInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 240, 60));
 
         getContentPane().add(Navegation, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 960));
+
+        PainelCliente.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        ClienteTitle.setBackground(new java.awt.Color(80, 77, 90));
+        ClienteTitle.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelCliente.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        labelCliente.setForeground(new java.awt.Color(255, 255, 255));
+        labelCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelCliente.setText("CLIENTE");
+        ClienteTitle.add(labelCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(323, 11, 137, 38));
+
+        PainelCliente.add(ClienteTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 810, 80));
+
+        botaoIncluirCli.setBackground(new java.awt.Color(80, 77, 90));
+        botaoIncluirCli.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
+        botaoIncluirCli.setForeground(new java.awt.Color(255, 255, 255));
+        botaoIncluirCli.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoIncluirCli.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botaoIncluirCliMouseClicked(evt);
+            }
+        });
+        botaoIncluirCli.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel28.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel28.setText("Incluir");
+        botaoIncluirCli.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 12, 48, 50));
+
+        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/incluir.png"))); // NOI18N
+        botaoIncluirCli.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 12, -1, -1));
+
+        PainelCliente.add(botaoIncluirCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 150, 70));
+
+        botaoAlterarCli.setBackground(new java.awt.Color(80, 77, 90));
+        botaoAlterarCli.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
+        botaoAlterarCli.setForeground(new java.awt.Color(255, 255, 255));
+        botaoAlterarCli.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoAlterarCli.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botaoAlterarCliMouseClicked(evt);
+            }
+        });
+        botaoAlterarCli.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel30.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel30.setText("Alterar");
+        botaoAlterarCli.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 12, 48, 50));
+
+        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/editar2.png"))); // NOI18N
+        botaoAlterarCli.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 12, -1, -1));
+
+        PainelCliente.add(botaoAlterarCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, 150, 70));
+
+        botaoRemoverCli.setBackground(new java.awt.Color(80, 77, 90));
+        botaoRemoverCli.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
+        botaoRemoverCli.setForeground(new java.awt.Color(255, 255, 255));
+        botaoRemoverCli.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoRemoverCli.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botaoRemoverCliMouseClicked(evt);
+            }
+        });
+
+        jLabel32.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel32.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel32.setText("Remover");
+
+        jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/remove.png"))); // NOI18N
+
+        javax.swing.GroupLayout botaoRemoverCliLayout = new javax.swing.GroupLayout(botaoRemoverCli);
+        botaoRemoverCli.setLayout(botaoRemoverCliLayout);
+        botaoRemoverCliLayout.setHorizontalGroup(
+            botaoRemoverCliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, botaoRemoverCliLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jLabel33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        botaoRemoverCliLayout.setVerticalGroup(
+            botaoRemoverCliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, botaoRemoverCliLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(botaoRemoverCliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel32, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, botaoRemoverCliLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel33)))
+                .addGap(21, 21, 21))
+        );
+
+        PainelCliente.add(botaoRemoverCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, -1, 70));
+
+        botaoMostrarCli.setBackground(new java.awt.Color(80, 77, 90));
+        botaoMostrarCli.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
+        botaoMostrarCli.setForeground(new java.awt.Color(255, 255, 255));
+        botaoMostrarCli.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoMostrarCli.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botaoMostrarCliMouseClicked(evt);
+            }
+        });
+
+        jLabel34.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel34.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel34.setText("Mostrar");
+
+        jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/mostrar.png"))); // NOI18N
+
+        javax.swing.GroupLayout botaoMostrarCliLayout = new javax.swing.GroupLayout(botaoMostrarCli);
+        botaoMostrarCli.setLayout(botaoMostrarCliLayout);
+        botaoMostrarCliLayout.setHorizontalGroup(
+            botaoMostrarCliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, botaoMostrarCliLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        botaoMostrarCliLayout.setVerticalGroup(
+            botaoMostrarCliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, botaoMostrarCliLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(botaoMostrarCliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel34, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, botaoMostrarCliLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel35)))
+                .addGap(21, 21, 21))
+        );
+
+        PainelCliente.add(botaoMostrarCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 320, -1, 70));
+
+        getContentPane().add(PainelCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 800, 530));
 
         PainelProduto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1267,145 +1406,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         getContentPane().add(PainelEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 800, 530));
 
-        PainelCliente.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        ClienteTitle.setBackground(new java.awt.Color(80, 77, 90));
-        ClienteTitle.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        labelCliente.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        labelCliente.setForeground(new java.awt.Color(255, 255, 255));
-        labelCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelCliente.setText("CLIENTE");
-        ClienteTitle.add(labelCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(323, 11, 137, 38));
-
-        PainelCliente.add(ClienteTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 810, 80));
-
-        botaoIncluirCli.setBackground(new java.awt.Color(80, 77, 90));
-        botaoIncluirCli.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
-        botaoIncluirCli.setForeground(new java.awt.Color(255, 255, 255));
-        botaoIncluirCli.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        botaoIncluirCli.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botaoIncluirCliMouseClicked(evt);
-            }
-        });
-        botaoIncluirCli.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel28.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel28.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel28.setText("Incluir");
-        botaoIncluirCli.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 12, 48, 50));
-
-        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/incluir.png"))); // NOI18N
-        botaoIncluirCli.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 12, -1, -1));
-
-        PainelCliente.add(botaoIncluirCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 150, 70));
-
-        botaoAlterarCli.setBackground(new java.awt.Color(80, 77, 90));
-        botaoAlterarCli.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
-        botaoAlterarCli.setForeground(new java.awt.Color(255, 255, 255));
-        botaoAlterarCli.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        botaoAlterarCli.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botaoAlterarCliMouseClicked(evt);
-            }
-        });
-        botaoAlterarCli.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel30.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel30.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel30.setText("Alterar");
-        botaoAlterarCli.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 12, 48, 50));
-
-        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/editar2.png"))); // NOI18N
-        botaoAlterarCli.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 12, -1, -1));
-
-        PainelCliente.add(botaoAlterarCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, 150, 70));
-
-        botaoRemoverCli.setBackground(new java.awt.Color(80, 77, 90));
-        botaoRemoverCli.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
-        botaoRemoverCli.setForeground(new java.awt.Color(255, 255, 255));
-        botaoRemoverCli.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        botaoRemoverCli.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botaoRemoverCliMouseClicked(evt);
-            }
-        });
-
-        jLabel32.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel32.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel32.setText("Remover");
-
-        jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/remove.png"))); // NOI18N
-
-        javax.swing.GroupLayout botaoRemoverCliLayout = new javax.swing.GroupLayout(botaoRemoverCli);
-        botaoRemoverCli.setLayout(botaoRemoverCliLayout);
-        botaoRemoverCliLayout.setHorizontalGroup(
-            botaoRemoverCliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, botaoRemoverCliLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jLabel33)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        botaoRemoverCliLayout.setVerticalGroup(
-            botaoRemoverCliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, botaoRemoverCliLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(botaoRemoverCliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel32, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, botaoRemoverCliLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel33)))
-                .addGap(21, 21, 21))
-        );
-
-        PainelCliente.add(botaoRemoverCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, -1, 70));
-
-        botaoMostrarCli.setBackground(new java.awt.Color(80, 77, 90));
-        botaoMostrarCli.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
-        botaoMostrarCli.setForeground(new java.awt.Color(255, 255, 255));
-        botaoMostrarCli.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        botaoMostrarCli.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botaoMostrarCliMouseClicked(evt);
-            }
-        });
-
-        jLabel34.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel34.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel34.setText("Mostrar");
-
-        jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/mostrar.png"))); // NOI18N
-
-        javax.swing.GroupLayout botaoMostrarCliLayout = new javax.swing.GroupLayout(botaoMostrarCli);
-        botaoMostrarCli.setLayout(botaoMostrarCliLayout);
-        botaoMostrarCliLayout.setHorizontalGroup(
-            botaoMostrarCliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, botaoMostrarCliLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel35)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        botaoMostrarCliLayout.setVerticalGroup(
-            botaoMostrarCliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, botaoMostrarCliLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(botaoMostrarCliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel34, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, botaoMostrarCliLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel35)))
-                .addGap(21, 21, 21))
-        );
-
-        PainelCliente.add(botaoMostrarCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 320, -1, 70));
-
-        getContentPane().add(PainelCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 800, 530));
-
         PainelInicio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         InicioTitle.setBackground(new java.awt.Color(80, 77, 90));
@@ -1610,11 +1610,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoInicioMouseClicked
 
     private void botaoMostrarCliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoMostrarCliMouseClicked
-        // TODO add your handling code here:
+        PesquisarCliente pesquisa = new PesquisarCliente(this,true,1);
+        pesquisa.setVisible(true);
     }//GEN-LAST:event_botaoMostrarCliMouseClicked
 
     private void botaoRemoverCliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoRemoverCliMouseClicked
-        // TODO add your handling code here:
+        PesquisarCliente pesquisa = new PesquisarCliente(this,true,3);
+        pesquisa.setVisible(true);
     }//GEN-LAST:event_botaoRemoverCliMouseClicked
 
     private void botaoIncluirCliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoIncluirCliMouseClicked
@@ -1626,7 +1628,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoIncluirCliMouseClicked
 
     private void botaoAlterarCliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoAlterarCliMouseClicked
-        // TODO add your handling code here:
+        PesquisarCliente pesquisa = new PesquisarCliente(this,true,2);
+        pesquisa.setVisible(true);
     }//GEN-LAST:event_botaoAlterarCliMouseClicked
 
     private void botaoIncluirEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoIncluirEMouseClicked

@@ -18,7 +18,6 @@ public class PesquisarCliente extends javax.swing.JDialog {
 
     HashSet backup = new HashSet(this.getFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS));
     HashSet teclaEnter = (HashSet) backup.clone();
-    GerenciaProduto gp;
    
     int x;
     
@@ -27,10 +26,9 @@ public class PesquisarCliente extends javax.swing.JDialog {
         initComponents();
     }
   
-    public PesquisarCliente(java.awt.Frame parent, boolean modal, GerenciaProduto gp, int x) {
+    public PesquisarCliente(java.awt.Frame parent, boolean modal, int x) {
         super(parent, modal);
         initComponents();
-        this.gp = gp;
         this.x = x;
     }
 
@@ -99,7 +97,19 @@ public class PesquisarCliente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-      if (!lbIDProd.getText().isEmpty()) {
+      if (!field_idCliente.getText().isEmpty()) {
+          
+          if(x==1){
+              ConsultarCliente consultar = new ConsultarCliente(this, true);
+              consultar.setVisible(true);
+          }else if(x==2){
+              AlterarCliente alterar = new AlterarCliente(this, true);
+              alterar.setVisible(true);
+          }else{
+              ExcluirCliente excluir = new ExcluirCliente(this, true);
+              excluir.setVisible(true);
+          }
+          
        /*
         
         ArrayList<Produto> prod = gp.getProdutos();

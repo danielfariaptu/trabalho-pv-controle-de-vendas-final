@@ -30,8 +30,7 @@ public class ConsultarCliente extends javax.swing.JDialog {
      */
     public ConsultarCliente(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
-        initComponents();
-        
+        initComponents();       
        
     }
 
