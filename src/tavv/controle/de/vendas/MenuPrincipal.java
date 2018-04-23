@@ -2,19 +2,23 @@
 
 package tavv.controle.de.vendas;
 
+import Banco.PessoaDAO;
 import Controle.GerenciaProduto;
 import Interface.Cliente.*;
 import Interface.Produto.*;
+import Model.Cliente;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 
 
 public class MenuPrincipal extends javax.swing.JFrame {
 
-     private int b1,b2,b3,b4,b5,b6,b7; 
+     private int b1,b2,b3,b4,b5,b6,b7;
+     private PessoaDAO pdao = new PessoaDAO(); 
      
      GerenciaProduto gp = new GerenciaProduto();
      
@@ -24,7 +28,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         
         URL caminhoIcone = getClass().getResource("/icons/icone.png");
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(caminhoIcone);
-        this.setIconImage(iconeTitulo);
+        this.setIconImage(iconeTitulo);     
+               
         
         setResizable(false);
         setLocationRelativeTo(null);
@@ -1610,12 +1615,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoInicioMouseClicked
 
     private void botaoMostrarCliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoMostrarCliMouseClicked
-        PesquisarCliente pesquisa = new PesquisarCliente(this,true,1);
+        ArrayList<Cliente> clientes = pdao.buscarCliente();
+        PesquisarCliente pesquisa = new PesquisarCliente(this,true,1,clientes);
         pesquisa.setVisible(true);
     }//GEN-LAST:event_botaoMostrarCliMouseClicked
 
     private void botaoRemoverCliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoRemoverCliMouseClicked
-        PesquisarCliente pesquisa = new PesquisarCliente(this,true,3);
+        ArrayList<Cliente> clientes = pdao.buscarCliente();
+        PesquisarCliente pesquisa = new PesquisarCliente(this,true,3, clientes);
         pesquisa.setVisible(true);
     }//GEN-LAST:event_botaoRemoverCliMouseClicked
 
@@ -1628,7 +1635,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoIncluirCliMouseClicked
 
     private void botaoAlterarCliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoAlterarCliMouseClicked
-        PesquisarCliente pesquisa = new PesquisarCliente(this,true,2);
+        ArrayList<Cliente> clientes = pdao.buscarCliente();
+        PesquisarCliente pesquisa = new PesquisarCliente(this,true,2,clientes);
         pesquisa.setVisible(true);
     }//GEN-LAST:event_botaoAlterarCliMouseClicked
 

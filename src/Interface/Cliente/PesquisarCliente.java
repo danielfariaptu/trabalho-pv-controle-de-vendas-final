@@ -18,18 +18,20 @@ public class PesquisarCliente extends javax.swing.JDialog {
 
     HashSet backup = new HashSet(this.getFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS));
     HashSet teclaEnter = (HashSet) backup.clone();
-   
-    int x;
-    
+
+    private int x;
+    private ArrayList<Cliente> clientes;
+
     public PesquisarCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
-  
-    public PesquisarCliente(java.awt.Frame parent, boolean modal, int x) {
+
+    public PesquisarCliente(java.awt.Frame parent, boolean modal, int x, ArrayList<Cliente> clientes) {
         super(parent, modal);
         initComponents();
         this.x = x;
+        this.clientes = clientes;
     }
 
     @SuppressWarnings("unchecked")
@@ -97,20 +99,39 @@ public class PesquisarCliente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-      if (!field_idCliente.getText().isEmpty()) {
-          
-          if(x==1){
-              ConsultarCliente consultar = new ConsultarCliente(this, true);
-              consultar.setVisible(true);
-          }else if(x==2){
-              AlterarCliente alterar = new AlterarCliente(this, true);
-              alterar.setVisible(true);
-          }else{
-              ExcluirCliente excluir = new ExcluirCliente(this, true);
-              excluir.setVisible(true);
-          }
-          
-       /*
+        if (!field_idCliente.getText().isEmpty()) {
+            Iterator i = clientes.iterator();
+            int tipo;
+            int cont = 0;
+            while (i.hasNext()) {
+                Cliente cliente = (Cliente) i.next();
+                if(cliente instanceof PessoaFisica){
+                    tipo = 2;
+                }else{
+                    tipo = 1;
+                field_idCliente.requestFocus();
+                }
+                if (cliente.getCodigo() == Integer.parseInt(field_idCliente.getText())){
+                    if (x == 1) {
+                        ConsultarCliente consultar = new ConsultarCliente(this, true, tipo, cliente);
+                        consultar.setVisible(true);
+                    } else if (x == 2) {
+                        AlterarCliente alterar = new AlterarCliente(this, true, tipo, cliente);
+                        alterar.setVisible(true);
+                    } else {
+                        ExcluirCliente excluir = new ExcluirCliente(this, true, tipo, cliente);
+                        excluir.setVisible(true);
+                    }
+                }else{
+                    cont++;
+                }
+            }
+            if(cont==clientes.size()){
+                JOptionPane.showMessageDialog(rootPane, "Codigo não encontrado!");
+                field_idCliente.requestFocus();
+            }
+
+            /*
         
         ArrayList<Produto> prod = gp.getProdutos();
         Iterator i = prod.iterator();
@@ -142,17 +163,15 @@ public class PesquisarCliente extends javax.swing.JDialog {
             over.dispose();
         }
                            
-       */   
-       
-                             
-         }else {
-          JOptionPane.showMessageDialog(rootPane, "Digite o ID do Cliente!");
+             */
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Digite o ID do Cliente!");
             field_idCliente.requestFocus();
-      }
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void CadastroProdutoComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_CadastroProdutoComponentShown
-       
+
     }//GEN-LAST:event_CadastroProdutoComponentShown
 
     private void closeIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeIconMouseClicked
@@ -160,21 +179,19 @@ public class PesquisarCliente extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_closeIconMouseClicked
 
-
     public void enterToTab() {
         teclaEnter.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_ENTER, 0));
         this.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, teclaEnter);
         btnBuscar.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, backup);
     }
 
-   
-       public static void main(String args[]) {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        /*try {
+ /*try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -196,20 +213,20 @@ public class PesquisarCliente extends javax.swing.JDialog {
         //</editor-fold>
 
         /* Create and display the dialog */
-       java.awt.EventQueue.invokeLater(new Runnable() {
-	public void run() {
-		PesquisarCliente dialog = new PesquisarCliente(new javax.swing.JFrame(), true);
-		dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-			@Override
-			public void windowClosing(java.awt.event.WindowEvent e) {
-				System.exit(0);
-			}
-		});
-		dialog.setVisible(true);
-	}
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                PesquisarCliente dialog = new PesquisarCliente(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
         });
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CadastroProduto;
     private javax.swing.JButton btnBuscar;

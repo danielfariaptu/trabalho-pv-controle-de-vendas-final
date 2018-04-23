@@ -65,12 +65,12 @@ public class AdicionarCliente extends javax.swing.JDialog {
         jRbPessoaJuridica = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
         jTf_Nome = new javax.swing.JTextField();
+        LabelCNPJ = new javax.swing.JLabel();
+        jTF_cnpj = new javax.swing.JTextField();
         labelCPF = new javax.swing.JLabel();
         jTF_cpf = new javax.swing.JTextField();
         LabelnomeFantasia = new javax.swing.JLabel();
         jTF_NomeFantasia = new javax.swing.JTextField();
-        LabelCNPJ = new javax.swing.JLabel();
-        jTF_cnpj = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jTF_LimiteCredito = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -155,6 +155,11 @@ public class AdicionarCliente extends javax.swing.JDialog {
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 60, 17));
         jPanel1.add(jTf_Nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 320, 30));
 
+        LabelCNPJ.setForeground(new java.awt.Color(255, 255, 255));
+        LabelCNPJ.setText("CNPJ*:");
+        jPanel1.add(LabelCNPJ, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
+        jPanel1.add(jTF_cnpj, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 320, 30));
+
         labelCPF.setForeground(new java.awt.Color(255, 255, 255));
         labelCPF.setText("CPF*:");
         jPanel1.add(labelCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
@@ -170,13 +175,6 @@ public class AdicionarCliente extends javax.swing.JDialog {
         LabelnomeFantasia.setText("Nome Fantasia*:");
         jPanel1.add(LabelnomeFantasia, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 150, 120, -1));
         jPanel1.add(jTF_NomeFantasia, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, 300, 30));
-
-        LabelCNPJ.setForeground(new java.awt.Color(255, 255, 255));
-        LabelCNPJ.setText("CNPJ*:");
-        jPanel1.add(LabelCNPJ, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
-
-        jTF_cnpj.setEnabled(false);
-        jPanel1.add(jTF_cnpj, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 320, 30));
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Limite de Credito*:");
@@ -553,7 +551,7 @@ public class AdicionarCliente extends javax.swing.JDialog {
 
     private void desbloqueiaCampoFisica() {
         jTF_cpf.setVisible(true);
-        labelCPF.setVisible(true);
+        labelCPF.setVisible(true);        
         
         jTF_cnpj.setVisible(false);
         LabelCNPJ.setVisible(false);
@@ -563,7 +561,8 @@ public class AdicionarCliente extends javax.swing.JDialog {
     }
 
     private void desbloqueiaCampoJuridica() {
-
+        
+        jTF_cnpj.setEditable(true);
         jTF_cnpj.setVisible(true);
         LabelCNPJ.setVisible(true);
         jTF_NomeFantasia.setVisible(true);

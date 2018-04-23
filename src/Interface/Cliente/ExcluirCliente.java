@@ -7,6 +7,7 @@ package Interface.Cliente;
 
 import Banco.PessoaDAO;
 import Interface.Endereco.AdicionarEndereco;
+import Model.Cliente;
 import Model.Endereco;
 import Model.PessoaFisica;
 import Model.PessoaJuridica;
@@ -24,6 +25,7 @@ public class ExcluirCliente extends javax.swing.JDialog {
     private PessoaDAO pDAO = new PessoaDAO();
     private int tipoCliente;
     private int excluido;
+    private Cliente cliente;
 
     /**
      * Creates new form NewJDialog
@@ -34,9 +36,10 @@ public class ExcluirCliente extends javax.swing.JDialog {
        
     }
 
-    public ExcluirCliente(javax.swing.JDialog parent, boolean modal, int tipoCliente) {
+    public ExcluirCliente(javax.swing.JDialog parent, boolean modal, int tipoCliente, Cliente cliente) {
         super(parent, modal);
         this.tipoCliente = tipoCliente;
+        this.cliente = cliente;
         initComponents();
         
         TablePessoaJuridica.setVisible(false);
@@ -605,7 +608,7 @@ public class ExcluirCliente extends javax.swing.JDialog {
 
         if (JOptionPane.YES_OPTION == opcao) {
             excluido = 1;
-            //  pf.setExcluido(excluido);
+            pDAO.deletarPessoa(cliente.getCodigo());
 
             JOptionPane.showMessageDialog(rootPane, "Cliente excluído com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
@@ -625,7 +628,7 @@ public class ExcluirCliente extends javax.swing.JDialog {
 
         if (JOptionPane.YES_OPTION == opcao) {
             excluido = 1;
-            //  pj.setExcluido(excluido);
+            pDAO.deletarPessoa(cliente.getCodigo());
 
             JOptionPane.showMessageDialog(rootPane, "Cliente excluído com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
@@ -639,24 +642,26 @@ public class ExcluirCliente extends javax.swing.JDialog {
 
     private void desbloqueiaCampoFisica() {
         TablePessoaFisica.setVisible(true);
-        
-        id.setText("Testando 123 456 789");
-        nome.setText("Testando 123 456 789");
-        cpf.setText("Testando 123 456 789");
-        LimiteDeCredito.setText("Testando 123 456 789");
+        PessoaFisica pf = (PessoaFisica) cliente;
+         
+        id.setText(String.valueOf(pf.getCodigo()));
+        nome.setText(pf.getNome());
+        cpf.setText(pf.getCpf());
+        LimiteDeCredito.setText(String.valueOf(pf.getLimiteCredito()));
         
         
        
     }
 
     private void desbloqueiaCampoJuridica() {
-        TablePessoaJuridica.setVisible(true);
+        TablePessoaJuridica.setVisible(true);        
+        PessoaJuridica pj = (PessoaJuridica) cliente;
         
-        idJuridica.setText("Testando 123 456 789");
-        nomeJuridica.setText("Testando 123 456 789");
-        nomeFantasia.setText("Testando 123 456 789");
-        cnpj.setText("Testando 123 456 789");
-        limiteCreditoJuridica.setText("Testando 123 456 789");
+        idJuridica.setText(String.valueOf(pj.getCodigo()));
+        nomeJuridica.setText(pj.getNome());
+        nomeFantasia.setText(pj.getNomeFantasia());
+        cnpj.setText(pj.getCnpj());
+        LimiteDeCredito.setText(String.valueOf(pj.getLimiteCredito())); 
         
     }
 

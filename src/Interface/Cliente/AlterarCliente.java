@@ -7,6 +7,7 @@ package Interface.Cliente;
 
 import Banco.PessoaDAO;
 import Interface.Endereco.AdicionarEndereco;
+import Model.Cliente;
 import Model.Endereco;
 import Model.PessoaFisica;
 import Model.PessoaJuridica;
@@ -20,22 +21,25 @@ import javax.swing.JOptionPane;
 public class AlterarCliente extends javax.swing.JDialog {
 
     private PessoaDAO pDAO = new PessoaDAO();
+    private Cliente cliente;
     int tipoPessoa;
+
     /**
      * Creates new form NewJDialog
      */
-    
+
     public AlterarCliente(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
 
         initComponents();
-        
+
     }
-    public AlterarCliente(javax.swing.JDialog parent, boolean modal,  int tipoPessoa) {
+
+    public AlterarCliente(javax.swing.JDialog parent, boolean modal, int tipoPessoa, Cliente cliente) {
         super(parent, modal);
 
         initComponents();
-
+        this.cliente = cliente;
         this.tipoPessoa = tipoPessoa;
         jTF_cpf.setVisible(false);
         labelCPF.setVisible(false);
@@ -46,11 +50,10 @@ public class AlterarCliente extends javax.swing.JDialog {
         jTF_cnpj.setVisible(false);
         LabelCNPJ.setVisible(false);
 
-        if(tipoPessoa == 1){
-        desbloqueiaCampoFisica();
-        }
-        else if(tipoPessoa == 2){
-        desbloqueiaCampoJuridica();
+        if (tipoPessoa == 2) {
+            desbloqueiaCampoFisica();
+        } else if (tipoPessoa == 1) {
+            desbloqueiaCampoJuridica();
         }
 
     }
@@ -185,13 +188,12 @@ public class AlterarCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtn_LimparActionPerformed
 
     private void jBtn_SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_SalvarActionPerformed
-        // TODO add your handling code here:
-        if(tipoPessoa == 1){
-        AlterarPessoaFisica();
+        if (tipoPessoa == 2) {
+            AlterarPessoaFisica();
+        } else if (tipoPessoa == 1) {
+            AlterarPessoaJuridica();
         }
-        else if(tipoPessoa == 2){
-        AlterarPessoaJuridica();
-        }
+        
     }//GEN-LAST:event_jBtn_SalvarActionPerformed
 
     private void jTF_cpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTF_cpfActionPerformed
@@ -261,17 +263,17 @@ public class AlterarCliente extends javax.swing.JDialog {
     }
 
     //jCBoxTipoEndereco.getItemAt(jCBoxTipoEndereco.getSelectedIndex())
-    private void AlterarPessoaFisica() {
-
+    private void AlterarPessoaFisica() {        
+        PessoaFisica pf = (PessoaFisica) cliente;
+         
         if (!jTf_Nome.getText().isEmpty()) {
             if (!jTF_cpf.getText().isEmpty()) {
                 if (!jTF_LimiteCredito.getText().isEmpty()) {
-                   
-                    
-                    /* codigo aqui */
-                    
-                    
-                    
+                     pf.setNome(jTf_Nome.getText());
+                     pf.setCpf(jTF_cpf.getText());
+                     pf.setLimiteCredito(Double.parseDouble(jTF_LimiteCredito.getText()));
+                     
+                     pDAO.alterarPessoa(pf);
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Campo Limite de credito é obrigatório!");
                     jTF_LimiteCredito.requestFocus();
@@ -287,17 +289,19 @@ public class AlterarCliente extends javax.swing.JDialog {
     }
 
     private void AlterarPessoaJuridica() {
+        
+        PessoaJuridica pj = (PessoaJuridica) cliente;
 
         if (!jTF_cnpj.getText().isEmpty()) {
             if (!jTf_Nome.getText().isEmpty()) {
                 if (!jTF_NomeFantasia.getText().isEmpty()) {
                     if (!jTF_LimiteCredito.getText().isEmpty()) {
-                      
-                        
-                    /* codigo aqui */
-                    
-                        
-                        
+                       pj.setNome(jTf_Nome.getText());
+                       pj.setCnpj(jTF_cnpj.getText());
+                       pj.setLimiteCredito(Double.parseDouble(jTF_LimiteCredito.getText()));
+                       pj.setNomeFantasia(jTF_NomeFantasia.getText());
+                       
+                       pDAO.alterarPessoa(pj);
                     } else {
                         JOptionPane.showMessageDialog(rootPane, "Campo Limite de credito é obrigatório!");
                         jTF_LimiteCredito.requestFocus();
@@ -318,6 +322,12 @@ public class AlterarCliente extends javax.swing.JDialog {
     }
 
     private void desbloqueiaCampoFisica() {
+        PessoaFisica pf = (PessoaFisica) cliente;
+         
+        jTf_Nome.setText(pf.getNome());
+        jTF_cpf.setText(pf.getCpf());
+        jTF_LimiteCredito.setText(String.valueOf(pf.getLimiteCredito()));
+        
         jTF_cpf.setVisible(true);
         labelCPF.setVisible(true);
 
@@ -329,6 +339,12 @@ public class AlterarCliente extends javax.swing.JDialog {
     }
 
     private void desbloqueiaCampoJuridica() {
+        PessoaJuridica pj = (PessoaJuridica) cliente;
+
+        jTf_Nome.setText(pj.getNome());
+        jTF_NomeFantasia.setText(pj.getNomeFantasia());
+        jTF_cnpj.setText(pj.getCnpj());
+        jTF_LimiteCredito.setText(String.valueOf(pj.getLimiteCredito()));
 
         jTF_cnpj.setVisible(true);
         LabelCNPJ.setVisible(true);
@@ -341,7 +357,6 @@ public class AlterarCliente extends javax.swing.JDialog {
 
     private void limparCampos() {
 
-        
         jTF_LimiteCredito.setText("");
         jTF_NomeFantasia.setText("");
         jTF_cnpj.setText("");

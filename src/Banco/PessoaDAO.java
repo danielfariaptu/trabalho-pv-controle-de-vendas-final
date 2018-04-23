@@ -6,6 +6,7 @@
 package Banco;
 
 import Login.Conexao;
+import Model.Cliente;
 import Model.Endereco;
 import Model.PessoaFisica;
 import Model.PessoaJuridica;
@@ -13,7 +14,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,6 +28,7 @@ public class PessoaDAO {
     private PessoaFisica pf;
     private PessoaJuridica pj;
     private Connection conn;
+    private EnderecoDAO endDAO = new EnderecoDAO();
 
     public PessoaDAO() {
         conn = Conexao.getConexao();
@@ -133,8 +137,21 @@ public class PessoaDAO {
         String sql;
         PreparedStatement ps;
         
-        sql = "DELETE FROM cliente WHERE cliente_id = ?";
+        sql = "DELETE FROM endereco WHERE fk_cliente_id = ?";
         
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.execute();
+            ps.close();
+           
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }        
+        
+        sql = "DELETE FROM cliente WHERE cliente_id = ?";
+
         try {
             ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
@@ -146,5 +163,93 @@ public class PessoaDAO {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
             return false;
         }
+        
     }
+    public void alterarPessoa(Cliente cliente){
+        String sqlF,sqlJ;
+        PreparedStatement ps;
+
+        sqlF = "UPDATE cliente set nome = ?, cpf = ?, limite_de_credito = ? where cliente_id = ?";
+        sqlJ = "UPDATE cliente set nome = ?, cnpj = ?,nomefantasia =?, limite_de_credito = ? where cliente_id = ?";
+        
+        if(cliente instanceof PessoaFisica){
+            PessoaFisica pf = (PessoaFisica) cliente;
+            
+            try {
+            ps = conn.prepareStatement(sqlF);
+            ps.setString(1, pf.getNome());
+            ps.setDouble(2, pf.getLimiteCredito());
+            ps.setString(3, pf.getCpf());
+            ps.setInt(4, pf.getCodigo());
+            ps.execute();
+            ps.close();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro333", JOptionPane.ERROR_MESSAGE);
+        }
+        }else{
+            PessoaJuridica pj = (PessoaJuridica) cliente;
+            
+            try {
+            ps = conn.prepareStatement(sqlJ);
+            ps.setString(1, pj.getNome());            
+            ps.setString(2, pj.getCnpj());
+            ps.setString(3, pj.getNomeFantasia());
+            ps.setDouble(4, pj.getLimiteCredito());
+            ps.setInt(5, pf.getCodigo());
+            ps.execute();
+            ps.close();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro555", JOptionPane.ERROR_MESSAGE);
+        }
+        }
+        
+        
+    }
+
+    public ArrayList<Cliente> buscarCliente() {
+        Statement ps = null;
+        ResultSet rs = null;
+
+        ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+
+        String sql = "SELECT * FROM cliente";
+
+        try {
+            ps = conn.createStatement();
+            rs = ps.executeQuery(sql);
+
+            while (rs.next()) {
+
+                int id = rs.getInt("cliente_id");
+
+                ArrayList<Endereco> enderecos = endDAO.buscarEnderecos(id);  
+                
+                if(rs.getString("cpf")!=null) {
+                    System.out.println("Nome: "+rs.getString("nome"));
+                    PessoaFisica cliente = new PessoaFisica(rs.getString("cpf"), rs.getString("nome"), enderecos, rs.getDouble("limite_de_credito"));
+                    System.out.println("Cpf: "+cliente.getCpf());
+                    cliente.setEnderecos(enderecos);
+                    System.out.println("End: "+enderecos.size());
+                    cliente.setCodigo(id);
+                    clientes.add(cliente);
+                } else {
+                    System.out.println("Nome: "+rs.getString("nome"));
+                    PessoaJuridica cliente = new PessoaJuridica(rs.getString("nomefantasia"), rs.getString("cnpj"), rs.getString("nome"), enderecos, rs.getDouble("limite_de_credito"));
+                    System.out.println("Cpf: "+cliente.getCnpj());
+                    cliente.setEnderecos(enderecos);
+                    System.out.println("End: "+enderecos.size());
+                    cliente.setCodigo(id);
+                    clientes.add(cliente);
+                }
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro444", JOptionPane.ERROR_MESSAGE);
+        }
+        return clientes;
+    }
+
 }

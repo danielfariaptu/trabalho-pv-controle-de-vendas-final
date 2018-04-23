@@ -16,11 +16,20 @@ public abstract class Cliente {
     private String nome;
     private ArrayList<Endereco> enderecos;
     private double limiteCredito;
+    private int codigo;   
 
     public Cliente(String nome, ArrayList<Endereco> enderecos, double limiteCredito) {
         this.nome = nome;
         this.enderecos = enderecos;
         this.limiteCredito = limiteCredito;
+    }    
+    
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
     public String getNome() {
