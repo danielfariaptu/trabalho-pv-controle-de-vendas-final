@@ -74,7 +74,7 @@ public class PessoaDAO {
 
             return inserirEndereco(cliente.getEnderecos(), chave());
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+             JOptionPane.showMessageDialog(null, "Usuário com o mesmo CPF foi encontrado! \nUsuário: " , "CPF já existente", JOptionPane.ERROR_MESSAGE);
             //JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
         return false;
@@ -129,7 +129,8 @@ public class PessoaDAO {
 
             return inserirEndereco(cliente.getEnderecos(), chave());
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Usuário com o mesmo CNPJ foi encontrado! \nUsuário: " , "CNPJ já existente", JOptionPane.ERROR_MESSAGE);
+            //JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
         return false;
     }
