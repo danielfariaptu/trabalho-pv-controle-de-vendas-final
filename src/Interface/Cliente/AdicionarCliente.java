@@ -10,8 +10,10 @@ import Interface.Endereco.AdicionarEndereco;
 import Model.Endereco;
 import Model.PessoaFisica;
 import Model.PessoaJuridica;
+import java.text.ParseException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -32,7 +34,7 @@ public class AdicionarCliente extends javax.swing.JDialog {
         super(parent, modal);
 
         initComponents();
-        
+
         setLocationRelativeTo(null);
 
         jTF_cpf.setVisible(false);
@@ -46,6 +48,12 @@ public class AdicionarCliente extends javax.swing.JDialog {
 
         jRb_Pfisica.setSelected(true);
         desbloqueiaCampoFisica();
+
+        try {
+            javax.swing.text.MaskFormatter format_textField3 = new javax.swing.text.MaskFormatter("#####-###");
+            jTF_cep = new javax.swing.JFormattedTextField(format_textField3);
+        } catch (Exception e) {
+        }
 
     }
 
@@ -68,9 +76,9 @@ public class AdicionarCliente extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jTf_Nome = new javax.swing.JTextField();
         LabelCNPJ = new javax.swing.JLabel();
-        jTF_cnpj = new javax.swing.JTextField();
+        jTF_cnpj = new javax.swing.JFormattedTextField();
+        jTF_cpf = new javax.swing.JFormattedTextField();
         labelCPF = new javax.swing.JLabel();
-        jTF_cpf = new javax.swing.JTextField();
         LabelnomeFantasia = new javax.swing.JLabel();
         jTF_NomeFantasia = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -86,7 +94,6 @@ public class AdicionarCliente extends javax.swing.JDialog {
         jLabel11 = new javax.swing.JLabel();
         jTF_Municipio = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jTF_cep = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -94,6 +101,7 @@ public class AdicionarCliente extends javax.swing.JDialog {
         jCBoxUf = new javax.swing.JComboBox<>();
         jCBoxTipoEndereco = new javax.swing.JComboBox<>();
         jBtn_Limpar = new javax.swing.JButton();
+        jTF_cep = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -160,18 +168,24 @@ public class AdicionarCliente extends javax.swing.JDialog {
         LabelCNPJ.setForeground(new java.awt.Color(255, 255, 255));
         LabelCNPJ.setText("CNPJ*:");
         jPanel1.add(LabelCNPJ, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
+
+        try {
+            jTF_cnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         jPanel1.add(jTF_cnpj, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 320, 30));
+
+        try {
+            jTF_cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jPanel1.add(jTF_cpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 320, 30));
 
         labelCPF.setForeground(new java.awt.Color(255, 255, 255));
         labelCPF.setText("CPF*:");
         jPanel1.add(labelCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
-
-        jTF_cpf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTF_cpfActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTF_cpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 320, 30));
 
         LabelnomeFantasia.setForeground(new java.awt.Color(255, 255, 255));
         LabelnomeFantasia.setText("Nome Fantasia*:");
@@ -211,7 +225,6 @@ public class AdicionarCliente extends javax.swing.JDialog {
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("CEP*:");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 460, 57, -1));
-        jPanel1.add(jTF_cep, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 480, 190, 30));
 
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("UF*:");
@@ -262,6 +275,13 @@ public class AdicionarCliente extends javax.swing.JDialog {
         });
         jPanel1.add(jBtn_Limpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 630, 120, 40));
 
+        try {
+            jTF_cep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jPanel1.add(jTF_cep, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 480, 190, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -292,7 +312,7 @@ public class AdicionarCliente extends javax.swing.JDialog {
             CadastrarPessoaFisica();
 
         }
-        
+
     }//GEN-LAST:event_jBtn_SalvarActionPerformed
 
     private void jRb_PfisicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRb_PfisicaActionPerformed
@@ -310,10 +330,6 @@ public class AdicionarCliente extends javax.swing.JDialog {
     private void jBtn_LimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_LimparActionPerformed
         limparCampos();
     }//GEN-LAST:event_jBtn_LimparActionPerformed
-
-    private void jTF_cpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTF_cpfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTF_cpfActionPerformed
 
     /**
      * @param args the command line arguments
@@ -372,7 +388,17 @@ public class AdicionarCliente extends javax.swing.JDialog {
         });
     }
 
-    
+    private static String format(String pattern, Object value) {
+        MaskFormatter mask;
+        try {
+            mask = new MaskFormatter(pattern);
+            mask.setValueContainsLiteralCharacters(false);
+            return mask.valueToString(value);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private void CadastrarPessoaFisica() {
 
         if (!jTf_Nome.getText().isEmpty()) {
@@ -395,9 +421,7 @@ public class AdicionarCliente extends javax.swing.JDialog {
 
                                                     pf = new PessoaFisica(jTF_cpf.getText(), jTf_Nome.getText(), enderecos, Double.valueOf(jTF_LimiteCredito.getText()));
 
-                                                    
-                                                }
-                                                else if (JOptionPane.NO_OPTION == opcao) {
+                                                } else if (JOptionPane.NO_OPTION == opcao) {
 
                                                     enderecos.add(capturarEndereco());
                                                     pf = new PessoaFisica(jTF_cpf.getText(), jTf_Nome.getText(), enderecos, Double.valueOf(jTF_LimiteCredito.getText()));
@@ -455,10 +479,9 @@ public class AdicionarCliente extends javax.swing.JDialog {
 
     private void CadastrarPessoaJuridica() {
 
-        
-            if (!jTf_Nome.getText().isEmpty()) {
-                if (!jTF_NomeFantasia.getText().isEmpty()) {
-                    if (!jTF_cnpj.getText().isEmpty()) {
+        if (!jTf_Nome.getText().isEmpty()) {
+            if (!jTF_NomeFantasia.getText().isEmpty()) {
+                if (!jTF_cnpj.getText().isEmpty()) {
                     if (!jTF_LimiteCredito.getText().isEmpty()) {
                         if (!jTF_Logradouro.getText().isEmpty()) {
                             if (!jTF_numero.getText().isEmpty()) {
@@ -550,8 +573,8 @@ public class AdicionarCliente extends javax.swing.JDialog {
 
     private void desbloqueiaCampoFisica() {
         jTF_cpf.setVisible(true);
-        labelCPF.setVisible(true);        
-        
+        labelCPF.setVisible(true);
+
         jTF_cnpj.setVisible(false);
         LabelCNPJ.setVisible(false);
         jTF_NomeFantasia.setVisible(false);
@@ -560,7 +583,7 @@ public class AdicionarCliente extends javax.swing.JDialog {
     }
 
     private void desbloqueiaCampoJuridica() {
-        
+
         jTF_cnpj.setEditable(true);
         jTF_cnpj.setVisible(true);
         LabelCNPJ.setVisible(true);
@@ -598,12 +621,11 @@ public class AdicionarCliente extends javax.swing.JDialog {
         end.setEstado(jCBoxUf.getItemAt(jCBoxUf.getSelectedIndex()));
         if (jCBoxTipoEndereco.getItemAt(jCBoxTipoEndereco.getSelectedIndex()).equals("Residencial")) {
             end.setTipoEndereco(1);
-        } else if(jCBoxTipoEndereco.getItemAt(jCBoxTipoEndereco.getSelectedIndex()).equals("Comercial")) {
+        } else if (jCBoxTipoEndereco.getItemAt(jCBoxTipoEndereco.getSelectedIndex()).equals("Comercial")) {
             end.setTipoEndereco(2);
-        }
-        else {
-             end.setTipoEndereco(3);
-            
+        } else {
+            end.setTipoEndereco(3);
+
         }
         return end;
     }
@@ -644,9 +666,9 @@ public class AdicionarCliente extends javax.swing.JDialog {
     private javax.swing.JTextField jTF_Logradouro;
     private javax.swing.JTextField jTF_Municipio;
     private javax.swing.JTextField jTF_NomeFantasia;
-    private javax.swing.JTextField jTF_cep;
-    private javax.swing.JTextField jTF_cnpj;
-    private javax.swing.JTextField jTF_cpf;
+    private javax.swing.JFormattedTextField jTF_cep;
+    private javax.swing.JFormattedTextField jTF_cnpj;
+    private javax.swing.JFormattedTextField jTF_cpf;
     private javax.swing.JTextField jTF_numero;
     private javax.swing.JTextField jTf_Nome;
     private javax.swing.JLabel labelCPF;

@@ -6,12 +6,10 @@
 package Interface.Cliente;
 
 import Banco.PessoaDAO;
-import Interface.Endereco.AdicionarEndereco;
+
 import Model.Cliente;
-import Model.Endereco;
 import Model.PessoaFisica;
 import Model.PessoaJuridica;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -75,16 +73,16 @@ public class AlterarCliente extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jTf_Nome = new javax.swing.JTextField();
         labelCPF = new javax.swing.JLabel();
-        jTF_cpf = new javax.swing.JTextField();
         LabelnomeFantasia = new javax.swing.JLabel();
         jTF_NomeFantasia = new javax.swing.JTextField();
         LabelCNPJ = new javax.swing.JLabel();
-        jTF_cnpj = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jTF_LimiteCredito = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jBtn_Salvar = new javax.swing.JButton();
         jBtn_Limpar = new javax.swing.JButton();
+        jTF_cnpj = new javax.swing.JFormattedTextField();
+        jTF_cpf = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -106,7 +104,7 @@ public class AlterarCliente extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("ALTERAÇÃO DE CLIENTE");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 290, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, 290, -1));
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -118,13 +116,6 @@ public class AlterarCliente extends javax.swing.JDialog {
         labelCPF.setText("CPF*:");
         jPanel1.add(labelCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
 
-        jTF_cpf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTF_cpfActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTF_cpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 320, 30));
-
         LabelnomeFantasia.setForeground(new java.awt.Color(255, 255, 255));
         LabelnomeFantasia.setText("Nome Fantasia*:");
         jPanel1.add(LabelnomeFantasia, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 150, 120, -1));
@@ -133,7 +124,6 @@ public class AlterarCliente extends javax.swing.JDialog {
         LabelCNPJ.setForeground(new java.awt.Color(255, 255, 255));
         LabelCNPJ.setText("CNPJ*:");
         jPanel1.add(LabelCNPJ, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
-        jPanel1.add(jTF_cnpj, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 320, 30));
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Limite de Credito*:");
@@ -170,6 +160,20 @@ public class AlterarCliente extends javax.swing.JDialog {
         });
         jPanel1.add(jBtn_Limpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 420, 120, 40));
 
+        try {
+            jTF_cnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jPanel1.add(jTF_cnpj, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 320, 30));
+
+        try {
+            jTF_cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jPanel1.add(jTF_cpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 320, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -196,10 +200,6 @@ public class AlterarCliente extends javax.swing.JDialog {
         }
         
     }//GEN-LAST:event_jBtn_SalvarActionPerformed
-
-    private void jTF_cpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTF_cpfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTF_cpfActionPerformed
 
     private void closeIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeIconMouseClicked
         // TODO add your handling code here:
@@ -380,8 +380,8 @@ public class AlterarCliente extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTF_LimiteCredito;
     private javax.swing.JTextField jTF_NomeFantasia;
-    private javax.swing.JTextField jTF_cnpj;
-    private javax.swing.JTextField jTF_cpf;
+    private javax.swing.JFormattedTextField jTF_cnpj;
+    private javax.swing.JFormattedTextField jTF_cpf;
     private javax.swing.JTextField jTf_Nome;
     private javax.swing.JLabel labelCPF;
     // End of variables declaration//GEN-END:variables

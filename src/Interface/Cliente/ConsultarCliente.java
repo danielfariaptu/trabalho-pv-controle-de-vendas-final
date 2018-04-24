@@ -1,23 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Interface.Cliente;
 
+package Interface.Cliente;
 import Banco.PessoaDAO;
-import Interface.Endereco.AdicionarEndereco;
 import Model.Cliente;
-import Model.Endereco;
 import Model.PessoaFisica;
 import Model.PessoaJuridica;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
-/**
- *
- * @author danie
- */
+
 public class ConsultarCliente extends javax.swing.JDialog {
 
     private PessoaJuridica pj;
@@ -27,9 +15,7 @@ public class ConsultarCliente extends javax.swing.JDialog {
     private int excluido;
     private int tipoCliente;
 
-    /**
-     * Creates new form NewJDialog
-     */
+
     public ConsultarCliente(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();       
@@ -41,7 +27,7 @@ public class ConsultarCliente extends javax.swing.JDialog {
         this.tipoCliente = tipoCliente;
         this.cliente = cliente;
         initComponents();
-        
+          setLocationRelativeTo(null);
          
         
         TablePessoaJuridica.setVisible(false);
@@ -185,7 +171,7 @@ public class ConsultarCliente extends javax.swing.JDialog {
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel8.setText("ID:");
+        jLabel8.setText("CÓDIGO:");
 
         idJuridica.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
 

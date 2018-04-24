@@ -6,12 +6,9 @@
 package Interface.Cliente;
 
 import Banco.PessoaDAO;
-import Interface.Endereco.AdicionarEndereco;
 import Model.Cliente;
-import Model.Endereco;
 import Model.PessoaFisica;
 import Model.PessoaJuridica;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -182,7 +179,7 @@ public class ExcluirCliente extends javax.swing.JDialog {
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel8.setText("ID:");
+        jLabel8.setText("CÓDIGO:");
 
         idJuridica.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
 
@@ -520,7 +517,7 @@ public class ExcluirCliente extends javax.swing.JDialog {
                 jBtn_ExcluirActionPerformed(evt);
             }
         });
-        jPanel1.add(jBtn_Excluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 610, 100, 40));
+        jPanel1.add(jBtn_Excluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 580, 100, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

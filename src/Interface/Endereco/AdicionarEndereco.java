@@ -1,16 +1,11 @@
 package Interface.Endereco;
 
-import Interface.Produto.*;
 import Interface.*;
-import Controle.GerenciaProduto;
-import Model.Endereco;
-import java.awt.AWTKeyStroke;
-import java.awt.Color;
-import java.awt.KeyboardFocusManager;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
+import Model.*;
+import Banco.*;
+
 import java.util.ArrayList;
-import java.util.HashSet;
+
 import javax.swing.JOptionPane;
 
 public class AdicionarEndereco extends javax.swing.JDialog {
@@ -40,7 +35,6 @@ public class AdicionarEndereco extends javax.swing.JDialog {
         lbAviso = new javax.swing.JLabel();
         field_Logradouro = new javax.swing.JTextField();
         field_Complemento = new javax.swing.JTextField();
-        field_CEP = new javax.swing.JTextField();
         labelLogradouro = new javax.swing.JLabel();
         lbTipoUva = new javax.swing.JLabel();
         lbPreco = new javax.swing.JLabel();
@@ -58,6 +52,7 @@ public class AdicionarEndereco extends javax.swing.JDialog {
         field_Municipio = new javax.swing.JTextField();
         lbTipoVinho1 = new javax.swing.JLabel();
         jCBoxTipoEndereco = new javax.swing.JComboBox<>();
+        field_CEP = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setUndecorated(true);
@@ -87,7 +82,6 @@ public class AdicionarEndereco extends javax.swing.JDialog {
 
         field_Complemento.setNextFocusableComponent(field_CEP);
         CadastroProduto.add(field_Complemento, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 300, 29));
-        CadastroProduto.add(field_CEP, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 300, 29));
 
         labelLogradouro.setDisplayedMnemonic('n');
         labelLogradouro.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -220,6 +214,13 @@ public class AdicionarEndereco extends javax.swing.JDialog {
         jCBoxTipoEndereco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Selecione -", "Residencial", "Comercial", "Outro" }));
         CadastroProduto.add(jCBoxTipoEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 270, 300, 30));
 
+        try {
+            field_CEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        CadastroProduto.add(field_CEP, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 300, 30));
+
         getContentPane().add(CadastroProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 490));
 
         pack();
@@ -244,38 +245,38 @@ public class AdicionarEndereco extends javax.swing.JDialog {
                                     }
                                     end = new Endereco(field_Logradouro.getText(), Integer.parseInt(field_Numero.getText()), field_Complemento.getText(), field_Bairro.getText(), field_Municipio.getText(), jCBoxUf.getItemAt(jCBoxUf.getSelectedIndex()), tipo);
                                     enderecos.add(end);
-                                    if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(rootPane, "Endereco adicionado ao cliente. Deseja adicionar mais algum?")) {
+                                    if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(rootPane, "Endereço adicionado ao cliente. Deseja adicionar mais algum?")) {
                                         limpaCampos();
                                     } else {
-                                        this.dispose();
+                                        dispose();
                                     }
 
                                 } else {
-                                    JOptionPane.showMessageDialog(rootPane, "Tipo de endereco e  obrigatorio!");
+                                    JOptionPane.showMessageDialog(rootPane, "Tipo de endereco é obrigatório!");
                                     jCBoxTipoEndereco.requestFocus();
                                 }
                             } else {
-                                JOptionPane.showMessageDialog(rootPane, "UF e  obrigatorio!");
+                                JOptionPane.showMessageDialog(rootPane, "UF é obrigatório!");
                                 jCBoxUf.requestFocus();
                             }
                         } else {
-                            JOptionPane.showMessageDialog(rootPane, "Campo CEP e  obrigatorio!");
+                            JOptionPane.showMessageDialog(rootPane, "Campo CEP é obrigatório!");
                             field_CEP.requestFocus();
                         }
                     } else {
-                        JOptionPane.showMessageDialog(rootPane, "Campo Municipio e  obrigatorio!");
+                        JOptionPane.showMessageDialog(rootPane, "Campo Municipio é obrigatório!");
                         field_Municipio.requestFocus();
                     }
                 } else {
-                    JOptionPane.showMessageDialog(rootPane, "Campo Bairro e  obrigatorio!");
+                    JOptionPane.showMessageDialog(rootPane, "Campo Bairro é obrigatório!");
                     field_Bairro.requestFocus();
                 }
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Campo Numero e obrigatorio!");
+                JOptionPane.showMessageDialog(rootPane, "Campo Numero é obrigatório!");
                 field_Numero.requestFocus();
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Campo Logradouro e obrigatorio!");
+            JOptionPane.showMessageDialog(rootPane, "Campo Logradouro é obrigatório!");
             field_Logradouro.requestFocus();
         }
     }//GEN-LAST:event_btnConfirmarActionPerformed
@@ -387,7 +388,7 @@ public class AdicionarEndereco extends javax.swing.JDialog {
     private javax.swing.JButton btnLimpar;
     private javax.swing.JLabel closeIcon;
     private javax.swing.JTextField field_Bairro;
-    private javax.swing.JTextField field_CEP;
+    private javax.swing.JFormattedTextField field_CEP;
     private javax.swing.JTextField field_Complemento;
     private javax.swing.JTextField field_Logradouro;
     private javax.swing.JTextField field_Municipio;

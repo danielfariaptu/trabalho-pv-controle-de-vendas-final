@@ -1,24 +1,34 @@
-package Interface.Cliente;
+package Interface.Endereco;
 
+import Interface.Cliente.*;
+import Interface.Produto.*;
+import Interface.Cliente.*;
+import Controle.GerenciaProduto;
 import Model.*;
-
+import java.awt.AWTKeyStroke;
+import java.awt.Color;
+import java.awt.KeyboardFocusManager;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
 
-public class PesquisarCliente extends javax.swing.JDialog {
+public class PesquisarEndereco extends javax.swing.JDialog {
 
-   
+    HashSet backup = new HashSet(this.getFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS));
+    HashSet teclaEnter = (HashSet) backup.clone();
 
     private int x;
     private ArrayList<Cliente> clientes;
 
-    public PesquisarCliente(java.awt.Frame parent, boolean modal) {
+    public PesquisarEndereco(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
 
-    public PesquisarCliente(java.awt.Frame parent, boolean modal, int x, ArrayList<Cliente> clientes) {
+    public PesquisarEndereco(java.awt.Frame parent, boolean modal, int x, ArrayList<Cliente> clientes) {
         super(parent, modal);
         initComponents();
         this.x = x;
@@ -53,7 +63,7 @@ public class PesquisarCliente extends javax.swing.JDialog {
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("PROCURAR CLIENTE");
+        jLabel1.setText("PROCURAR ENDEREÇO");
         CadastroProduto.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 350, 43));
         CadastroProduto.add(field_idCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 300, 29));
 
@@ -61,7 +71,7 @@ public class PesquisarCliente extends javax.swing.JDialog {
         lbIDProd.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lbIDProd.setForeground(new java.awt.Color(255, 255, 255));
         lbIDProd.setLabelFor(lbIDProd);
-        lbIDProd.setText("DIGITE O CÓDIGO DO CLIENTE:");
+        lbIDProd.setText("DIGITE O CÓDIGO DO ENDEREÇO");
         CadastroProduto.add(lbIDProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, -1, -1));
 
         btnBuscar.setBackground(new java.awt.Color(255, 255, 255));
@@ -126,9 +136,8 @@ public class PesquisarCliente extends javax.swing.JDialog {
                 field_idCliente.requestFocus();
             }
 
-           
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Digite o Código do Cliente!");
+            JOptionPane.showMessageDialog(rootPane, "Digite o ID do Cliente!");
             field_idCliente.requestFocus();
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
@@ -142,7 +151,11 @@ public class PesquisarCliente extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_closeIconMouseClicked
 
-   
+    public void enterToTab() {
+        teclaEnter.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_ENTER, 0));
+        this.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, teclaEnter);
+        btnBuscar.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, backup);
+    }
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -174,7 +187,7 @@ public class PesquisarCliente extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                PesquisarCliente dialog = new PesquisarCliente(new javax.swing.JFrame(), true);
+                PesquisarEndereco dialog = new PesquisarEndereco(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
