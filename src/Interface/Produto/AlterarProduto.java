@@ -3,20 +3,12 @@ package Interface.Produto;
 import Interface.*;
 import Controle.GerenciaProduto;
 import Model.Produto;
-import java.awt.AWTKeyStroke;
-import java.awt.Color;
-import java.awt.KeyboardFocusManager;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.HashSet;
-import javax.swing.DefaultComboBoxModel;
+
 import javax.swing.JOptionPane;
 
 public class AlterarProduto extends javax.swing.JDialog {
 
-    HashSet backup = new HashSet(this.getFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS));
-    HashSet teclaEnter = (HashSet) backup.clone();
     GerenciaProduto gp;
     
     Produto produto;
@@ -259,9 +251,7 @@ public class AlterarProduto extends javax.swing.JDialog {
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void btnConfirmarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnConfirmarKeyPressed
-        if (evt.getKeyCode() == 10) {
-            btnConfirmarActionPerformed(null);
-        }
+        
     }//GEN-LAST:event_btnConfirmarKeyPressed
 
     private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
@@ -270,15 +260,7 @@ public class AlterarProduto extends javax.swing.JDialog {
     }//GEN-LAST:event_btnFecharActionPerformed
 
     private void CadastroProdutoComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_CadastroProdutoComponentShown
-        lbAviso.setVisible(true);
-        lbAviso.setForeground(Color.black);
-        lbAviso.setText("Os campos marcados com * são obrigatórios.");
-        enterToTab();
-        limpaCampos();
-        habilitaCampos(true);
-        
-        btnConfirmar.setEnabled(true);
-        tfNome.requestFocus();
+ 
     }//GEN-LAST:event_CadastroProdutoComponentShown
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
@@ -286,9 +268,7 @@ public class AlterarProduto extends javax.swing.JDialog {
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnLimparKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnLimparKeyPressed
-         if (evt.getKeyCode() == 10) {
-            btnLimparActionPerformed(null);
-        }
+       
     }//GEN-LAST:event_btnLimparKeyPressed
 
     private void closeIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeIconMouseClicked
@@ -320,12 +300,7 @@ public class AlterarProduto extends javax.swing.JDialog {
         tfPaisOrigem.setEnabled(status);
     }
 
-    public void enterToTab() {
-        teclaEnter.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_ENTER, 0));
-        this.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, teclaEnter);
-        btnFechar.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, backup);
-        btnConfirmar.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, backup);
-    }
+  
  public void mostrar(){     
         
         

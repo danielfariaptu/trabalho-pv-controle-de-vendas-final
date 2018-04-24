@@ -1,22 +1,16 @@
 package Interface.Produto;
 
-import Interface.Cliente.*;
-import Controle.GerenciaProduto;
+import Interface.*;
 import Model.*;
-import java.awt.AWTKeyStroke;
-import java.awt.Color;
-import java.awt.KeyboardFocusManager;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
+import Banco.*;
+import Controle.*;
+
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
 
 public class PesquisarProduto extends javax.swing.JDialog {
 
-    HashSet backup = new HashSet(this.getFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS));
-    HashSet teclaEnter = (HashSet) backup.clone();
     GerenciaProduto gp;
    
     int x;
@@ -149,13 +143,6 @@ public class PesquisarProduto extends javax.swing.JDialog {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_closeIconMouseClicked
-
-
-    public void enterToTab() {
-        teclaEnter.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_ENTER, 0));
-        this.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, teclaEnter);
-        btnBuscar.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, backup);
-    }
 
    
        public static void main(String args[]) {

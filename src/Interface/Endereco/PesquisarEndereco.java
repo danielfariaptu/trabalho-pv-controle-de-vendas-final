@@ -1,24 +1,20 @@
 package Interface.Endereco;
 
-import Interface.Cliente.*;
-import Interface.Produto.*;
-import Interface.Cliente.*;
-import Controle.GerenciaProduto;
+import Interface.*;
 import Model.*;
-import java.awt.AWTKeyStroke;
-import java.awt.Color;
-import java.awt.KeyboardFocusManager;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
+import Banco.*;
+import Controle.*;
+import Interface.Endereco.*;
+
+
 import java.util.ArrayList;
-import java.util.HashSet;
+
 import java.util.Iterator;
 import javax.swing.JOptionPane;
 
 public class PesquisarEndereco extends javax.swing.JDialog {
 
-    HashSet backup = new HashSet(this.getFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS));
-    HashSet teclaEnter = (HashSet) backup.clone();
+
 
     private int x;
     private ArrayList<Cliente> clientes;
@@ -113,7 +109,8 @@ public class PesquisarEndereco extends javax.swing.JDialog {
                     tipo = 1;
                 field_idCliente.requestFocus();
                 }
-                if (cliente.getCodigo() == Integer.parseInt(field_idCliente.getText())){
+                /*
+               if (cliente.getCodigo() == Integer.parseInt(field_idCliente.getText())){
                     if (x == 1) {
                         ConsultarCliente consultar = new ConsultarCliente(this, true, tipo, cliente);
                         consultar.setVisible(true);
@@ -129,7 +126,7 @@ public class PesquisarEndereco extends javax.swing.JDialog {
                     }
                 }else{
                     cont++;
-                }
+                }*/
             }
             if(cont==clientes.size()){
                 JOptionPane.showMessageDialog(rootPane, "Codigo não encontrado!");
@@ -151,11 +148,6 @@ public class PesquisarEndereco extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_closeIconMouseClicked
 
-    public void enterToTab() {
-        teclaEnter.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_ENTER, 0));
-        this.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, teclaEnter);
-        btnBuscar.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, backup);
-    }
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

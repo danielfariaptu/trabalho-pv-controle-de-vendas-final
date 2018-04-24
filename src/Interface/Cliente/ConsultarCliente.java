@@ -169,6 +169,8 @@ public class ConsultarCliente extends javax.swing.JDialog {
 
         fundo9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/fundoRelatorio.png"))); // NOI18N
 
+        Painel6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 102), 1, true));
+
         jLabel8.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 102));
         jLabel8.setText("CÓDIGO:");
@@ -318,10 +320,10 @@ public class ConsultarCliente extends javax.swing.JDialog {
                 .addComponent(Painel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(fundo11, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
-        jPanel1.add(TablePessoaJuridica, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 630, 440));
+        jPanel1.add(TablePessoaJuridica, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 630, 370));
 
         TablePessoaFisica.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -479,10 +481,10 @@ public class ConsultarCliente extends javax.swing.JDialog {
                 .addComponent(Painel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(fundo5, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(194, Short.MAX_VALUE))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
 
-        jPanel1.add(TablePessoaFisica, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 630, 440));
+        jPanel1.add(TablePessoaFisica, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 630, 350));
 
         closeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-close-window-40.png"))); // NOI18N
         closeIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -509,7 +511,7 @@ public class ConsultarCliente extends javax.swing.JDialog {
                 jBtn_FecharActionPerformed(evt);
             }
         });
-        jPanel1.add(jBtn_Fechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 560, 120, 40));
+        jPanel1.add(jBtn_Fechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 460, 120, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

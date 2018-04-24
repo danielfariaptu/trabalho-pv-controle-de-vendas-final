@@ -562,17 +562,8 @@ public class ExcluirEndereco extends javax.swing.JDialog {
     
     }
      private void showsCampos(){
-        codigoCliente.setText("Testando 123 456 789");
-        codigoEnd.setText("Testando 123 456 789");
-        logradouro.setText("Testando 123 456 789");
-        numero.setText("Testando 123 456 789");
-        complemento.setText("Testando 123 456 789");
-        bairro.setText("Testando 123 456 789");
-        municipio.setText("Testando 123 456 789");
-        cep.setText(String.valueOf("Testando 123 456 789"));
-        tipoEndereco.setText(String.valueOf("Testando 123 456 789"));
-        estado.setText("Testando 123 456 789");
-         /*
+       // codigoCliente.setText("");
+       // codigoEnd.setText("");
         logradouro.setText(end.getLogradouro());
         numero.setText(String.valueOf(end.getNumero()));
         complemento.setText(end.getComplemento());
@@ -581,7 +572,6 @@ public class ExcluirEndereco extends javax.swing.JDialog {
         cep.setText(String.valueOf(end.getCep()));
         tipoEndereco.setText(String.valueOf(end.getTipoEndereco()));
         estado.setText(end.getEstado());
-*/
     }
 
      
