@@ -25,7 +25,6 @@ public class AlterarCliente extends javax.swing.JDialog {
     /**
      * Creates new form NewJDialog
      */
-
     public AlterarCliente(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
 
@@ -139,6 +138,7 @@ public class AlterarCliente extends javax.swing.JDialog {
         jBtn_Salvar.setMnemonic('S');
         jBtn_Salvar.setText("Salvar");
         jBtn_Salvar.setToolTipText("Salva os registros");
+        jBtn_Salvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBtn_Salvar.setFocusPainted(false);
         jBtn_Salvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,6 +152,7 @@ public class AlterarCliente extends javax.swing.JDialog {
         jBtn_Limpar.setMnemonic('L');
         jBtn_Limpar.setText("Limpar");
         jBtn_Limpar.setToolTipText("Salva os registros");
+        jBtn_Limpar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBtn_Limpar.setFocusPainted(false);
         jBtn_Limpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,12 +194,13 @@ public class AlterarCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtn_LimparActionPerformed
 
     private void jBtn_SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_SalvarActionPerformed
+
         if (tipoPessoa == 2) {
             AlterarPessoaFisica();
         } else if (tipoPessoa == 1) {
             AlterarPessoaJuridica();
         }
-        
+
     }//GEN-LAST:event_jBtn_SalvarActionPerformed
 
     private void closeIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeIconMouseClicked
@@ -264,17 +266,27 @@ public class AlterarCliente extends javax.swing.JDialog {
     }
 
     //jCBoxTipoEndereco.getItemAt(jCBoxTipoEndereco.getSelectedIndex())
-    private void AlterarPessoaFisica() {        
+    private void AlterarPessoaFisica() {
         PessoaFisica pf = (PessoaFisica) cliente;
-         
+
         if (!jTf_Nome.getText().isEmpty()) {
             if (!jTF_cpf.getText().isEmpty()) {
                 if (!jTF_LimiteCredito.getText().isEmpty()) {
-                     pf.setNome(jTf_Nome.getText());
-                     pf.setCpf(jTF_cpf.getText());
-                     pf.setLimiteCredito(Double.parseDouble(jTF_LimiteCredito.getText()));
-                     
-                     pDAO.alterarPessoa(pf);
+
+                    int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja Realmente alterar o Cliente informado?");
+
+                    if (JOptionPane.YES_OPTION == opcao) {
+                        pf.setNome(jTf_Nome.getText());
+                        pf.setCpf(jTF_cpf.getText());
+                        pf.setLimiteCredito(Double.parseDouble(jTF_LimiteCredito.getText()));
+                        pDAO.alterarPessoa(pf);
+                        JOptionPane.showMessageDialog(rootPane, "Cliente modificado com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+                        this.dispose();
+                    } else if (JOptionPane.NO_OPTION == opcao) {
+                        JOptionPane.showMessageDialog(rootPane, "Cliente inalterado!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+                        this.dispose();
+                    }
+
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Campo Limite de credito é obrigatório!");
                     jTF_LimiteCredito.requestFocus();
@@ -290,33 +302,44 @@ public class AlterarCliente extends javax.swing.JDialog {
     }
 
     private void AlterarPessoaJuridica() {
-        
+
         PessoaJuridica pj = (PessoaJuridica) cliente;
 
-        if (!jTF_cnpj.getText().isEmpty()) {
-            if (!jTf_Nome.getText().isEmpty()) {
-                if (!jTF_NomeFantasia.getText().isEmpty()) {
+        if (!jTf_Nome.getText().isEmpty()) {
+            if (!jTF_NomeFantasia.getText().isEmpty()) {
+                if (!jTF_cnpj.getText().isEmpty()) {
                     if (!jTF_LimiteCredito.getText().isEmpty()) {
-                       pj.setNome(jTf_Nome.getText());
-                       pj.setCnpj(jTF_cnpj.getText());
-                       pj.setLimiteCredito(Double.parseDouble(jTF_LimiteCredito.getText()));
-                       pj.setNomeFantasia(jTF_NomeFantasia.getText());
-                       
-                       pDAO.alterarPessoa(pj);
+
+                        int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja Realmente alterar o Cliente informado?");
+
+                        if (JOptionPane.YES_OPTION == opcao) {
+                            pj.setNome(jTf_Nome.getText());
+                            pj.setCnpj(jTF_cnpj.getText());
+                            pj.setLimiteCredito(Double.parseDouble(jTF_LimiteCredito.getText()));
+                            pj.setNomeFantasia(jTF_NomeFantasia.getText());
+
+                            pDAO.alterarPessoa(pj);
+                            JOptionPane.showMessageDialog(rootPane, "Cliente modificado com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+                            this.dispose();
+                        } else if (JOptionPane.NO_OPTION == opcao) {
+                            JOptionPane.showMessageDialog(rootPane, "Cliente inalterado!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+                            this.dispose();
+                        }
+
                     } else {
                         JOptionPane.showMessageDialog(rootPane, "Campo Limite de credito é obrigatório!");
                         jTF_LimiteCredito.requestFocus();
                     }
                 } else {
-                    JOptionPane.showMessageDialog(rootPane, "Campo Nome fantasia é obrigatório!");
+                    JOptionPane.showMessageDialog(rootPane, "Campo CNPJ é obrigatório!");
                     jTF_NomeFantasia.requestFocus();
                 }
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Campo Nome é obrigatório!");
+                JOptionPane.showMessageDialog(rootPane, "Campo Nome Fantasia é obrigatório!");
                 jTf_Nome.requestFocus();
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Campo CNPJ é obrigatório!");
+            JOptionPane.showMessageDialog(rootPane, "Campo Nome é obrigatório!");
             jTF_cnpj.requestFocus();
         }
 
@@ -324,11 +347,11 @@ public class AlterarCliente extends javax.swing.JDialog {
 
     private void desbloqueiaCampoFisica() {
         PessoaFisica pf = (PessoaFisica) cliente;
-         
+
         jTf_Nome.setText(pf.getNome());
         jTF_cpf.setText(pf.getCpf());
-        jTF_LimiteCredito.setText(String.valueOf(pf.getLimiteCredito()));
-        
+        jTF_LimiteCredito.setText(Double.toString(pf.getLimiteCredito()));
+
         jTF_cpf.setVisible(true);
         labelCPF.setVisible(true);
 
@@ -345,7 +368,7 @@ public class AlterarCliente extends javax.swing.JDialog {
         jTf_Nome.setText(pj.getNome());
         jTF_NomeFantasia.setText(pj.getNomeFantasia());
         jTF_cnpj.setText(pj.getCnpj());
-        jTF_LimiteCredito.setText(String.valueOf(pj.getLimiteCredito()));
+        jTF_LimiteCredito.setText(Double.toString(pj.getLimiteCredito()));
 
         jTF_cnpj.setVisible(true);
         LabelCNPJ.setVisible(true);

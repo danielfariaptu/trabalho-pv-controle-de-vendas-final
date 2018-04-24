@@ -584,10 +584,10 @@ public class ConsultarCliente extends javax.swing.JDialog {
     private void ShowsCampoFisica() {
         TablePessoaFisica.setVisible(true);
         PessoaFisica pf = (PessoaFisica) cliente;
-        id.setText(String.valueOf(pf.getCodigo()));
+        id.setText(Integer.toString(pf.getCodigo()));
         nome.setText(pf.getNome());
         cpf.setText(pf.getCpf());
-        LimiteDeCredito.setText(String.valueOf(pf.getLimiteCredito()));   
+        LimiteDeCredito.setText(Double.toString(pf.getLimiteCredito()));   
        
     }
 
@@ -595,11 +595,11 @@ public class ConsultarCliente extends javax.swing.JDialog {
         TablePessoaJuridica.setVisible(true);
         PessoaJuridica pj = (PessoaJuridica) cliente;
         
-        idJuridica.setText(String.valueOf(pj.getCodigo()));
+        idJuridica.setText(Integer.toString(pj.getCodigo()));
         nomeJuridica.setText(pj.getNome());
         nomeFantasia.setText(pj.getNomeFantasia());
         cnpj.setText(pj.getCnpj());
-        limiteCreditoJuridica.setText(String.valueOf(pj.getLimiteCredito())); 
+        limiteCreditoJuridica.setText(Double.toString(pj.getLimiteCredito())); 
         
     }
 

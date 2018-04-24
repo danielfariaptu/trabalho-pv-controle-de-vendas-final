@@ -236,12 +236,20 @@ public class AlterarEndereco extends javax.swing.JDialog {
                         if (!field_CEP.getText().isEmpty()) {
                             if (!jCBoxUf.getItemAt(jCBoxUf.getSelectedIndex()).equals("- Selecione -")) {
                                 if (!jCBoxTipoEndereco.getItemAt(jCBoxTipoEndereco.getSelectedIndex()).equals("- Selecione -")) {
-                                    
-                                    
-                                   // end = new Endereco(field_Logradouro.getText(), Integer.parseInt(field_Numero.getText()), field_Complemento.getText(), field_Bairro.getText(), field_Municipio.getText(), jCBoxUf.getItemAt(jCBoxUf.getSelectedIndex()), tipo);
-                                   // enderecos.add(end);
-                                    // dispose();
 
+                                   
+                                    int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja Realmente alterar o Endereço informado?");
+
+                                    if (JOptionPane.YES_OPTION == opcao) {
+                                        // end = new Endereco(field_Logradouro.getText(), Integer.parseInt(field_Numero.getText()), field_Complemento.getText(), field_Bairro.getText(), field_Municipio.getText(), jCBoxUf.getItemAt(jCBoxUf.getSelectedIndex()), tipo);
+                                        // enderecos.add(end);
+                                        // dispose();
+                                        JOptionPane.showMessageDialog(rootPane, "Endereço modificado com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+                                        this.dispose();
+                                    } else if (JOptionPane.NO_OPTION == opcao) {
+                                        JOptionPane.showMessageDialog(rootPane, "Endereço inalterado!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+                                        this.dispose();
+                                    }
                                 } else {
                                     JOptionPane.showMessageDialog(rootPane, "Tipo de endereco é obrigatório!");
                                     jCBoxTipoEndereco.requestFocus();
@@ -325,7 +333,7 @@ public class AlterarEndereco extends javax.swing.JDialog {
         jCBoxUf.setSelectedIndex(0);
     }
 
-    public void showsCampos(){
+    public void showsCampos() {
         field_Logradouro.setText(end.getLogradouro());
         field_Numero.setText(String.valueOf(end.getNumero()));
         field_Complemento.setText(end.getComplemento());
@@ -335,6 +343,7 @@ public class AlterarEndereco extends javax.swing.JDialog {
         jCBoxTipoEndereco.setSelectedItem(end.getTipoEndereco());
         jCBoxUf.setSelectedItem(end.getEstado());
     }
+
     public ArrayList<Endereco> getEnderecos() {
         return enderecos;
     }

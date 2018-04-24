@@ -412,16 +412,12 @@ public class AdicionarCliente extends javax.swing.JDialog {
                                         if (!jCBoxUf.getItemAt(jCBoxUf.getSelectedIndex()).equals("- Selecione -")) {
                                             if (!jCBoxTipoEndereco.getItemAt(jCBoxTipoEndereco.getSelectedIndex()).equals("- Selecione -")) {
                                                 enderecos.add(capturarEndereco());
-                                                pf = new PessoaFisica(jTF_cpf.getText(), jTf_Nome.getText(), enderecos, Double.valueOf(jTF_LimiteCredito.getText()));
+                                                pf = new PessoaFisica(jTF_cpf.getText().trim(), jTf_Nome.getText().trim(), enderecos, Double.valueOf(jTF_LimiteCredito.getText().trim()));
                                                 int id = pDAO.inserirPessoaFisica(pf);
                                                 if (id >= 0) {
                                                     limparCampos();
                                                     JOptionPane.showMessageDialog(rootPane, "Cliente salvo com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
-                                                    dispose();
-                                                } else {
-                                                    JOptionPane.showMessageDialog(rootPane, "Erro ao salvar cliente", "Mensagem", JOptionPane.ERROR_MESSAGE);
-                                                    dispose();
-                                                }
+                                                    
                                                 int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja adicionar algum endereço ?");
                                                 if (JOptionPane.YES_OPTION == opcao) {
 
@@ -429,6 +425,13 @@ public class AdicionarCliente extends javax.swing.JDialog {
                                                     dialog.setLocationRelativeTo(null);
                                                     dialog.setVisible(true);
                                                 }
+                                                dispose();
+
+                                                } else {
+                                                    JOptionPane.showMessageDialog(rootPane, "Erro ao salvar cliente", "Mensagem", JOptionPane.ERROR_MESSAGE);
+                                                    this.dispose();
+                                                }
+                                                
                                             } else {
                                                 JOptionPane.showMessageDialog(rootPane, "Tipo de endereco é obrigatório");
                                                 jCBoxTipoEndereco.requestFocus();
@@ -484,40 +487,30 @@ public class AdicionarCliente extends javax.swing.JDialog {
                                         if (!jTF_cep.getText().isEmpty()) {
                                             if (!jCBoxUf.getItemAt(jCBoxUf.getSelectedIndex()).equals("- Selecione -")) {
                                                 if (!jCBoxTipoEndereco.getItemAt(jCBoxTipoEndereco.getSelectedIndex()).equals("- Selecione -")) {
-                                                    int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja adicionar algum endereço ?");
-                                                    if (JOptionPane.YES_OPTION == opcao) {
 
-                                                        AdicionarEndereco dialog = new AdicionarEndereco(new java.awt.Frame(), true);
-                                                        dialog.setVisible(true);
+                                                    enderecos.add(capturarEndereco());
+                                                    pj = new PessoaJuridica(jTF_NomeFantasia.getText().trim(), jTF_cnpj.getText().trim(), jTf_Nome.getText().trim(), enderecos, Double.parseDouble(jTF_LimiteCredito.getText().trim()));
 
-                                                        addEnderecosArray(dialog.getEnderecos());
+                                                    int id = pDAO.inserirPessoaJuridica(pj);
+                                                    if (id >= 0) {
+                                                        limparCampos();
+                                                        JOptionPane.showMessageDialog(rootPane, "Cliente salvo com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
 
-                                                        pj = new PessoaJuridica(jTF_NomeFantasia.getText(), jTF_cnpj.getText(), jTf_Nome.getText(), enderecos, Double.parseDouble(jTF_LimiteCredito.getText()));
+                                                        int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja adicionar algum endereço ?");
+                                                        if (JOptionPane.YES_OPTION == opcao) {
 
-                                                        if (pDAO.inserirPessoaJuridica(pj) >= 0) {
-                                                            limparCampos();
-                                                            JOptionPane.showMessageDialog(rootPane, "Cliente salvo com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
-                                                            enderecos = null;
-                                                            this.dispose();
-                                                        } else {
-                                                            JOptionPane.showMessageDialog(rootPane, "Erro ao salvar cliente", "Mensagem", JOptionPane.ERROR_MESSAGE);
-
+                                                            AdicionarEndereco dialog = new AdicionarEndereco(new java.awt.Frame(), true, id);
+                                                            dialog.setLocationRelativeTo(null);
+                                                            dialog.setVisible(true);
                                                         }
+                                                        dispose();
 
-                                                    } else if (JOptionPane.NO_OPTION == opcao) {
-                                                        enderecos.add(capturarEndereco());
-                                                        pj = new PessoaJuridica(jTF_NomeFantasia.getText(), jTF_cnpj.getText(), jTf_Nome.getText(), enderecos, Double.parseDouble(jTF_LimiteCredito.getText()));
-                                                        if (pDAO.inserirPessoaJuridica(pj) >= 0) {
-                                                            limparCampos();
-                                                            JOptionPane.showMessageDialog(rootPane, "Cliente salvo com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
-                                                            enderecos = null;
-                                                            this.dispose();
-                                                        } else {
-                                                            JOptionPane.showMessageDialog(rootPane, "Erro ao salvar cliente", "Mensagem", JOptionPane.ERROR_MESSAGE);
-
-                                                        }
+                                                    } else {
+                                                        JOptionPane.showMessageDialog(rootPane, "Erro ao salvar cliente", "Mensagem", JOptionPane.ERROR_MESSAGE);
+                                                        dispose();
 
                                                     }
+
                                                 } else {
                                                     JOptionPane.showMessageDialog(rootPane, "Tipo de endereco é obrigatório!");
                                                     jCBoxTipoEndereco.requestFocus();

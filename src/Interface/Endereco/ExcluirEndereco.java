@@ -554,7 +554,7 @@ public class ExcluirEndereco extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Endereço excluído com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         }
-        if (JOptionPane.NO_OPTION == opcao) {
+        else if (JOptionPane.NO_OPTION == opcao) {
             JOptionPane.showMessageDialog(rootPane, "Endereço não excluído!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         }
