@@ -38,7 +38,7 @@ public class PessoaDAO {
         String sql;
         PreparedStatement ps;
         ResultSet rs;
-        int proximoCodigo = 0;
+        int proximoCodigo = -1;
 
         sql = "select max(cliente_id) from cliente";
 
@@ -50,37 +50,43 @@ public class PessoaDAO {
                 proximoCodigo = rs.getInt(1);
             }
             ps.close();
-            return proximoCodigo;
+            return proximoCodigo+1;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Erro de Referencia", JOptionPane.ERROR_MESSAGE);
         }
         return 0;
     }
 
-    public boolean inserirPessoaFisica(PessoaFisica cliente) {
+    public int inserirPessoaFisica(PessoaFisica cliente) {
         String sql;
         PreparedStatement ps;
+        int id = chave();
 
-        sql = "INSERT INTO cliente(nome,limite_de_credito,cpf,excluido) VALUES (?,?,?,?)";
+        sql = "INSERT INTO cliente(cliente_id, nome,limite_de_credito,cpf,excluido) VALUES (?,?,?,?,?)";
 
         try {
             ps = conn.prepareStatement(sql);
-            ps.setString(1, cliente.getNome());
-            ps.setDouble(2, cliente.getLimiteCredito());
-            ps.setString(3, cliente.getCpf());
-            ps.setBoolean(4, false);
+            ps.setInt(1, id);
+            ps.setString(2, cliente.getNome());
+            ps.setDouble(3, cliente.getLimiteCredito());
+            ps.setString(4, cliente.getCpf());
+            ps.setBoolean(5, false);
             ps.execute();
             ps.close();
 
-            return inserirEndereco(cliente.getEnderecos(), chave());
+            Iterator iE = cliente.getEnderecos().iterator();
+            while(iE.hasNext()){
+                Endereco end = (Endereco) iE.next();
+                inserirEndereco(end, id);
+            }
         } catch (SQLException e) {
              JOptionPane.showMessageDialog(null, "Usuário com o mesmo CPF foi encontrado! \nUsuário: " , "CPF já existente", JOptionPane.ERROR_MESSAGE);
             //JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
-        return false;
+        return id;
     }
 
-    private boolean inserirEndereco(ArrayList<Endereco> enderecos, int chave) {
+    public boolean inserirEndereco(Endereco end, int chave) {
         String sql;
         PreparedStatement ps = null;
 
@@ -88,11 +94,9 @@ public class PessoaDAO {
 
         try {
 
-            for (Endereco end : enderecos) {
-
                 ps = conn.prepareStatement(sql);
                 ps.setString(1, end.getLogradouro());
-                ps.setString(2, String.valueOf(end.getCep()));
+                ps.setString(2, end.getCep());
                 ps.setInt(3, end.getNumero());
                 ps.setString(4, end.getComplemento());
                 ps.setString(5, end.getBairro());
@@ -102,8 +106,7 @@ public class PessoaDAO {
                 ps.setBoolean(9, false);
                 ps.setInt(10, chave);
                 ps.execute();
-            }
-            ps.close();
+                ps.close();
             return true;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
@@ -111,28 +114,35 @@ public class PessoaDAO {
         return false;
     }
 
-    public boolean inserirPessoaJuridica(PessoaJuridica cliente) {
+    public int  inserirPessoaJuridica(PessoaJuridica cliente) {
         String sql;
         PreparedStatement ps;
+        int id = chave();
 
-        sql = "INSERT INTO cliente(nome,nomefantasia,limite_de_credito,cnpj,excluido) VALUES (?,?,?,?,?)";
+        sql = "INSERT INTO cliente(cliente_id, nome,nomefantasia,limite_de_credito,cnpj,excluido) VALUES (?,?,?,?,?,?)";
 
         try {
             ps = conn.prepareStatement(sql);
-            ps.setString(1, cliente.getNome());
-            ps.setString(2, cliente.getNomeFantasia());
-            ps.setDouble(3, cliente.getLimiteCredito());
-            ps.setString(4, cliente.getCnpj());
-            ps.setBoolean(5, false);
+            ps.setInt(1, id);
+            ps.setString(2, cliente.getNome());
+            ps.setString(3, cliente.getNomeFantasia());
+            ps.setDouble(4, cliente.getLimiteCredito());
+            ps.setString(5, cliente.getCnpj());
+            ps.setBoolean(6, false);
             ps.execute();
             ps.close();
 
-            return inserirEndereco(cliente.getEnderecos(), chave());
+            Iterator iE = cliente.getEnderecos().iterator();
+            while(iE.hasNext()){
+                Endereco end = (Endereco) iE.next();
+                inserirEndereco(end, id);
+            }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Usuário com o mesmo CNPJ foi encontrado! \nUsuário: " , "CNPJ já existente", JOptionPane.ERROR_MESSAGE);
+            return -1;
             //JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
-        return false;
+        return id;
     }
 
     public boolean deletarPessoa(int id) {
@@ -179,9 +189,9 @@ public class PessoaDAO {
             
             try {
             ps = conn.prepareStatement(sqlF);
-            ps.setString(1, pf.getNome());
-            ps.setDouble(2, pf.getLimiteCredito());
-            ps.setString(3, pf.getCpf());
+            ps.setString(1, pf.getNome());            
+            ps.setString(2, pf.getCpf());
+            ps.setDouble(3, pf.getLimiteCredito());
             ps.setInt(4, pf.getCodigo());
             ps.execute();
             ps.close();

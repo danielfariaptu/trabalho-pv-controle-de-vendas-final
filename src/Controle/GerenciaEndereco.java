@@ -11,9 +11,9 @@ public class GerenciaEndereco {
     public GerenciaEndereco() {
         enderecoBD = new EnderecoDAO();
     }
-    public boolean cadastrarEndereco(String logradouro, int numero, String complemento, String bairro, String municipio, String estado, int tipoEndereco) {
+    public boolean cadastrarEndereco(String logradouro, int numero,String cep, String complemento, String bairro, String municipio, String estado, int tipoEndereco) {
 
-        Endereco end = new Endereco(logradouro, numero, complemento, bairro, municipio, estado, tipoEndereco);
+        Endereco end = new Endereco(logradouro, numero,cep , complemento, bairro, municipio, estado, tipoEndereco);
         String result = enderecoBD.inserirNoBanco(end);
 
         return result.equals("sucesso");

@@ -648,7 +648,7 @@ public class ExcluirCliente extends javax.swing.JDialog {
         nomeJuridica.setText(pj.getNome());
         nomeFantasia.setText(pj.getNomeFantasia());
         cnpj.setText(pj.getCnpj());
-        LimiteDeCredito.setText(String.valueOf(pj.getLimiteCredito()));
+        limiteCreditoJuridica.setText(String.valueOf(pj.getLimiteCredito())); 
 
     }
 

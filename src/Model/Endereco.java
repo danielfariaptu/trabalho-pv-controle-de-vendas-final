@@ -11,20 +11,16 @@ package Model;
  */
 public class Endereco {
 
-private String logradouro;
-private int numero;
-private String complemento;
-private String bairro;
-private String municipio;
-private String estado;
-private int tipoEndereco;
-private int cep;
+    private String logradouro;
+    private int numero;
+    private String complemento;
+    private String bairro;
+    private String municipio;
+    private String estado;
+    private int tipoEndereco;
+    private String cep;
 
-    public Endereco(){
-        
-    }
-    
-    public Endereco(String logradouro, int numero, String complemento, String bairro, String municipio, String estado, int tipoEndereco) {
+    public Endereco(String logradouro, int numero,String cep, String complemento, String bairro, String municipio, String estado, int tipoEndereco) {
         this.logradouro = logradouro;
         this.numero = numero;
         this.complemento = complemento;
@@ -32,6 +28,7 @@ private int cep;
         this.municipio = municipio;
         this.estado = estado;
         this.tipoEndereco = tipoEndereco;
+        this.cep = cep;
     }
 
     public String getLogradouro() {
@@ -88,14 +85,18 @@ private int cep;
 
     public void setTipoEndereco(int tipoEndereco) {
         this.tipoEndereco = tipoEndereco;
-    }  
+    }
 
-    public int getCep() {
+    public String getCep() {
         return cep;
     }
 
-    public void setCep(int cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
-    
+
+    public Endereco() {
+
+    }
+
 }

@@ -11,6 +11,8 @@ import javax.swing.JOptionPane;
 public class AdicionarEndereco extends javax.swing.JDialog {
 
     private Endereco end;
+    private int id;
+    private PessoaDAO pDAO = new PessoaDAO();
     private ArrayList<Endereco> enderecos = new ArrayList<>();
 
     public AdicionarEndereco(java.awt.Frame parent, boolean modal) {
@@ -18,11 +20,10 @@ public class AdicionarEndereco extends javax.swing.JDialog {
         initComponents();
     }
 
-    public AdicionarEndereco(java.awt.Frame parent, boolean modal, Endereco end) {
+    public AdicionarEndereco(java.awt.Frame parent, boolean modal, int id) {
         super(parent, modal);
         initComponents();
-        this.end = end;
-
+        this.id = id;
         setLocationRelativeTo(null);
     }
 
@@ -243,8 +244,8 @@ public class AdicionarEndereco extends javax.swing.JDialog {
                                     } else {
                                         tipo = 3;
                                     }
-                                    end = new Endereco(field_Logradouro.getText(), Integer.parseInt(field_Numero.getText()), field_Complemento.getText(), field_Bairro.getText(), field_Municipio.getText(), jCBoxUf.getItemAt(jCBoxUf.getSelectedIndex()), tipo);
-                                    enderecos.add(end);
+                                    end = new Endereco(field_Logradouro.getText(), Integer.parseInt(field_Numero.getText()), field_CEP.getText(),field_Complemento.getText(), field_Bairro.getText(), field_Municipio.getText(), jCBoxUf.getItemAt(jCBoxUf.getSelectedIndex()), tipo);
+                                    pDAO.inserirEndereco(end, id);
                                     if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(rootPane, "Endereço adicionado ao cliente. Deseja adicionar mais algum?")) {
                                         limpaCampos();
                                     } else {

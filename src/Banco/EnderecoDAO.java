@@ -61,7 +61,7 @@ public class EnderecoDAO {
                    endereco.setMunicipio(rs.getString("municipio"));
                    endereco.setEstado(rs.getString("estado"));       
                    endereco.setTipoEndereco(rs.getInt("tipo_endereco")); 
-                   endereco.setCep(rs.getInt("cep"));
+                   endereco.setCep(rs.getString("cep"));
                    
                    enderecos.add(endereco);
             }
