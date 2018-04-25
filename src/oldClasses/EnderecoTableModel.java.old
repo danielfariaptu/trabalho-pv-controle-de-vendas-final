@@ -1,0 +1,70 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Model;
+
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.AbstractTableModel;
+
+/**
+ *
+ * @author danie
+ */
+public class EnderecoTableModel extends AbstractTableModel {
+
+    private List<Endereco> dados = new ArrayList<>();
+    private String[] colunas = {"Logradouro", "Complemento", "Número", "Bairro", "CEP", "Município", "Estado", "Tipo de Endereço"};
+
+    @Override
+    public String getColumnName(int column) {
+        return colunas[column];
+    }
+
+    @Override
+    public int getRowCount() {
+        return dados.size();
+    }
+
+    @Override
+    public int getColumnCount() {
+        return colunas.length;
+
+    }
+
+    @Override
+    public Object getValueAt(int linha, int coluna) {
+
+        switch (coluna) {
+            case 0:
+                return dados.get(linha).getLogradouro();
+
+            case 1:
+                return dados.get(linha).getComplemento();
+
+            case 2:
+                return dados.get(linha).getNumero();
+
+            case 3:
+                return dados.get(linha).getBairro();
+            case 4:
+                return dados.get(linha).getCep();
+
+            case 5:
+                return dados.get(linha).getMunicipio();
+            case 6:
+                return dados.get(linha).getEstado();
+            case 7:
+                return dados.get(linha).getTipoEndereco();
+        }
+
+        return null;
+    }
+    
+    public void addRow(Endereco end){ 
+        this.dados.add(end);
+    }
+
+}

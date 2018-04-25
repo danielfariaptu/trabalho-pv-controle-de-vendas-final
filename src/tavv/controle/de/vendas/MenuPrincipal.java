@@ -2,11 +2,14 @@
 
 package tavv.controle.de.vendas;
 
+import Interface.Login.Login;
 import Banco.PessoaDAO;
 import Controle.GerenciaProduto;
 import Interface.Cliente.*;
 import Interface.Endereco.PesquisarEndereco;
 import Interface.Produto.*;
+import Interface.Endereco.RelatorioEndereco;
+import Model.*;
 import Model.Cliente;
 import java.awt.Color;
 import java.awt.Image;
@@ -1458,6 +1461,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void botaoPainelLogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPainelLogOutMouseClicked
          Login lg = new Login ();
+         lg.setSize(640, 516);
 	 lg.setVisible(true);
          this.dispose();
     }//GEN-LAST:event_botaoPainelLogOutMouseClicked
@@ -1592,7 +1596,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void botaoInicioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoInicioMouseExited
         if(b1 != 1){
-            botaoInicio.setBackground(new Color(41,30,35));
+            botaoInicio.setBackground(new Color(80,77,90));
         }
     }//GEN-LAST:event_botaoInicioMouseExited
 
@@ -1654,7 +1658,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoRemoverEMouseClicked
 
     private void botaoMostrarEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoMostrarEMouseClicked
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_botaoMostrarEMouseClicked
 
     private void botaoIncluirCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoIncluirCompraMouseClicked

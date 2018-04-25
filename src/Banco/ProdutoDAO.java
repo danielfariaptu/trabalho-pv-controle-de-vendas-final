@@ -1,6 +1,5 @@
 package Banco;
 
-import Login.Conexao;
 import Model.Endereco;
 import Model.PessoaFisica;
 import Model.Produto;

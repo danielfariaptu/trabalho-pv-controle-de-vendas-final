@@ -1,5 +1,6 @@
 package tavv.controle.de.vendas;
 
+import Interface.Login.Login;
 import javax.swing.JFrame;
 
 public class Main { 

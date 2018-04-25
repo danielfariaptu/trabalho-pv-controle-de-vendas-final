@@ -1,4 +1,4 @@
-package Interface;
+package Model;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -14,7 +14,7 @@ public class NewTableModel extends AbstractTableModel {
         this.linhas = linhas;
         this.colunas = colunas;
     }
-
+    
     public String[] getColunas() {
         return colunas;
     }

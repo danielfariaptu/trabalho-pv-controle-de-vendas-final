@@ -2,7 +2,7 @@ package Interface;
 
 import Controle.GerenciaProduto;
 import Model.Produto;
-import Interface.NewTableModel;
+import Model.NewTableModel;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
@@ -173,8 +173,8 @@ public class ConsultarProduto extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Por favor informe o nome do produto.");
             tfNome.requestFocus();
         } else {
-            ArrayList<Produto> pro = gp.consultarProduto(tfNome.getText().trim());
-            if (pro.isEmpty()) {
+           // ArrayList<Produto> pro = gp.consultarProduto(tfNome.getText().trim());
+         if (pro.isEmpty()) {
                 dados.clear();
                 NewTableModel dadosProduto = new NewTableModel(dados, colunas);
                 tabelaConsulta.setModel(dadosProduto);
@@ -182,7 +182,7 @@ public class ConsultarProduto extends javax.swing.JDialog {
                 validate();
             } else {
                 dados.clear();
-                for (Produto p : pro) {
+               for (Produto p : pro) {
                     dados.add(new Object[]{p.getNome(), p.getPreco(), p.getCodigoBarras(), p.getTipoUva(), p.getPaisOrigem(), p.getTipoVinho()});
                     NewTableModel dadosProduto = new NewTableModel(dados, colunas);
                     tabelaConsulta.setModel(dadosProduto);

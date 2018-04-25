@@ -70,7 +70,7 @@ public class PesquisarEndereco extends javax.swing.JDialog {
         lbIDProd.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lbIDProd.setForeground(new java.awt.Color(255, 255, 255));
         lbIDProd.setLabelFor(lbIDProd);
-        lbIDProd.setText("DIGITE O CÓDIGO DO CLIENTE");
+        lbIDProd.setText("DIGITE O CÓDIGO DO ENDEREÇO");
         CadastroProduto.add(lbIDProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, -1, -1));
 
         btnBuscar.setBackground(new java.awt.Color(255, 255, 255));

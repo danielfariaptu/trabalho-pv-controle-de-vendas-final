@@ -1,14 +1,15 @@
 
-package tavv.controle.de.vendas;
+package Interface.Login;
 
 import Criptografia.BCrypt;
 
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
-import Login.CadastroDAO;
+import Banco.CadastroDAO;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import tavv.controle.de.vendas.MenuPrincipal;
 
 
 public class Cadastro extends javax.swing.JDialog{

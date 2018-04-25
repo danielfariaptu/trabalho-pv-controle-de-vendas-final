@@ -417,21 +417,21 @@ public class AdicionarCliente extends javax.swing.JDialog {
                                                 if (id >= 0) {
                                                     limparCampos();
                                                     JOptionPane.showMessageDialog(rootPane, "Cliente salvo com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
-                                                    
-                                                int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja adicionar algum endereço ?");
-                                                if (JOptionPane.YES_OPTION == opcao) {
 
-                                                    AdicionarEndereco dialog = new AdicionarEndereco(this, true, id);
-                                                    dialog.setLocationRelativeTo(null);
-                                                    dialog.setVisible(true);
-                                                }
-                                                dispose();
+                                                    int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja adicionar algum endereço ?");
+                                                    if (JOptionPane.YES_OPTION == opcao) {
+
+                                                        AdicionarEndereco dialog = new AdicionarEndereco(this, true, id);
+                                                        dialog.setLocationRelativeTo(null);
+                                                        dialog.setVisible(true);
+                                                    }
+                                                    dispose();
 
                                                 } else {
                                                     JOptionPane.showMessageDialog(rootPane, "Erro ao salvar cliente", "Mensagem", JOptionPane.ERROR_MESSAGE);
                                                     this.dispose();
                                                 }
-                                                
+
                                             } else {
                                                 JOptionPane.showMessageDialog(rootPane, "Tipo de endereco é obrigatório");
                                                 jCBoxTipoEndereco.requestFocus();

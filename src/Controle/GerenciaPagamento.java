@@ -6,9 +6,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class GerenciaPagamento {
-    
-     private PagamentoDAO pagamentoBD;
-     
+
+    private PagamentoDAO pagamentoBD;
+
     public GerenciaPagamento() {
         pagamentoBD = new PagamentoDAO();
     }

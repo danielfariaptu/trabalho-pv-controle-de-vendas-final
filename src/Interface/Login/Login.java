@@ -1,13 +1,14 @@
-package tavv.controle.de.vendas;
+package Interface.Login;
 
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
-import Login.LoginDAO;
+import Banco.LoginDAO;
 import java.awt.Color;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import tavv.controle.de.vendas.MenuPrincipal;
 
 public class Login extends javax.swing.JFrame {
 
@@ -53,7 +54,6 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login - Sistema Tabajara Atacado e Varejo de Vinhos");
-        setPreferredSize(new java.awt.Dimension(640, 516));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         JPanel.setBackground(new java.awt.Color(0, 0, 51));

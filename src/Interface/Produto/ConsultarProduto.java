@@ -107,7 +107,7 @@ public class ConsultarProduto extends javax.swing.JDialog {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("CONSULTAR ENDEREÇO");
+        jLabel1.setText("CONSULTAR PRODUTO");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, 300, -1));
 
         jBtn_Fechar.setBackground(new java.awt.Color(255, 255, 255));

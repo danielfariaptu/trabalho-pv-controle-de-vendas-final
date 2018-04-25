@@ -5,7 +5,6 @@
  */
 package Banco;
 
-import Login.Conexao;
 import Model.Cliente;
 import Model.Endereco;
 import Model.PessoaFisica;
@@ -178,7 +177,7 @@ public class PessoaDAO {
         }
         
     }
-    public void alterarPessoa(Cliente cliente){
+    public int alterarPessoa(Cliente cliente){
         String sqlF,sqlJ;
         PreparedStatement ps;
 
@@ -199,6 +198,8 @@ public class PessoaDAO {
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Erro333", JOptionPane.ERROR_MESSAGE);
+            return -1;
+           
         }
         }else{
             PessoaJuridica pj = (PessoaJuridica) cliente;            
@@ -214,10 +215,11 @@ public class PessoaDAO {
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Erro555", JOptionPane.ERROR_MESSAGE);
+            return -1;
         }
         }
         
-        
+        return 1;
     }
 
     public ArrayList<Cliente> buscarCliente() {

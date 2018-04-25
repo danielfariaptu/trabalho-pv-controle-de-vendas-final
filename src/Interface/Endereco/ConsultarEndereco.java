@@ -37,6 +37,7 @@ public class ConsultarEndereco extends javax.swing.JDialog {
         super(parent, modal);
         this.tipoCliente = tipoCliente;
         this.cliente = cliente;
+        this.end = end;
         initComponents();
           setLocationRelativeTo(null);
             showsCampos();

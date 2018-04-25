@@ -279,7 +279,11 @@ public class AlterarCliente extends javax.swing.JDialog {
                         pf.setNome(jTf_Nome.getText());
                         pf.setCpf(jTF_cpf.getText());
                         pf.setLimiteCredito(Double.parseDouble(jTF_LimiteCredito.getText()));
-                        pDAO.alterarPessoa(pf);
+                        int result = pDAO.alterarPessoa(pf);
+                        if (result == -1) {
+                            JOptionPane.showMessageDialog(null, "Usuário com o mesmo CPF foi encontrado! ", "Cliente Existente", JOptionPane.ERROR_MESSAGE);
+                            dispose();
+                        }
                         JOptionPane.showMessageDialog(rootPane, "Cliente modificado com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
                         this.dispose();
                     } else if (JOptionPane.NO_OPTION == opcao) {
@@ -317,8 +321,12 @@ public class AlterarCliente extends javax.swing.JDialog {
                             pj.setCnpj(jTF_cnpj.getText());
                             pj.setLimiteCredito(Double.parseDouble(jTF_LimiteCredito.getText()));
                             pj.setNomeFantasia(jTF_NomeFantasia.getText());
-                            
-                            pDAO.alterarPessoa(pj);
+
+                            int result = pDAO.alterarPessoa(pj);
+                            if (result == -1) {
+                                JOptionPane.showMessageDialog(null, "Usuário com o mesmo CNPJ foi encontrado! ", "Cliente Existente", JOptionPane.ERROR_MESSAGE);
+                                dispose();
+                            }
                             JOptionPane.showMessageDialog(rootPane, "Cliente modificado com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
                             this.dispose();
                         } else if (JOptionPane.NO_OPTION == opcao) {
