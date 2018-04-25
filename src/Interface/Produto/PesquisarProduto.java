@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 public class PesquisarProduto extends javax.swing.JDialog {
 
     GerenciaProduto gp;
+    ProdutoDAO pDAO = new ProdutoDAO();
    
     int x;
     
@@ -93,45 +94,17 @@ public class PesquisarProduto extends javax.swing.JDialog {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
       
-        if (!field_idProduto.getText().isEmpty()) {
-       /*
-        
-        ArrayList<Produto> prod = gp.getProdutos();
-        Iterator i = prod.iterator();
-        int cont = 0;
-        Produto encontrado=new Cliente();
-        while(i.hasNext()){
-            Cliente cliente = (Cliente)i.next();
-            if(Integer.parseInt(tfIDProd.getText())==cliente.getCodigo()){
-                encontrado = cliente;
-                cont++;
-            }
-        }
-        if(cont==1 && x==0){
-            MostrarCliente mostrarCliente = new MostrarCliente(this,true,encontrado);
-            mostrarCliente.setVisible(true);
-            this.setVisible(false);
-        }else if(cont==1 && x==1){
-            AlterarCliente alterarCliente = new AlterarCliente(this,true,encontrado);
-            alterarCliente.setVisible(true);
-        }else if(cont==1 && x==2){
-            ExcluirCliente excluirCliente = new ExcluirCliente (this,true,encontrado,gerenciaCliente);
-            excluirCliente.setVisible(true);
-            dispose();
-        }else if(cont==0){
-            NaoEncontrado naoEncontrado =new NaoEncontrado (this,true);
-            overlayDialog over = new overlayDialog(this,false);
-            over.setVisible(true);
-            naoEncontrado.setVisible(true);
-            over.dispose();
-        }
-                           
-       */   
-       
-                             
+        if (!field_idProduto.getText().isEmpty()) {      
+                Produto produto = gp.acharProduto(field_idProduto.getText());
+                if(produto != null){
+                    pDAO.excluirDoBanco(produto.getCodigoBarras());
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "Codigo não encontrado!");
+                    field_idProduto.requestFocus();
+                }
          }else {
           JOptionPane.showMessageDialog(rootPane, "Digite o ID do Produto!");
-            field_idProduto.requestFocus();
+          field_idProduto.requestFocus();
       }          
     }//GEN-LAST:event_btnBuscarActionPerformed
 

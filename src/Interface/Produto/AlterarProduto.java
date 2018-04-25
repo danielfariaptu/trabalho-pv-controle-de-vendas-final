@@ -208,19 +208,12 @@ public class AlterarProduto extends javax.swing.JDialog {
                            if (!JCBoxVinho.getItemAt(JCBoxVinho.getSelectedIndex()).equals("- Selecione -")) {
                                 if (JOptionPane.showConfirmDialog(rootPane, "Deseja realmente alterar este produto? ", "Comfirma salvar?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
                                     
-                                     Produto pro = new Produto(tfNome.getText().trim(), Integer.valueOf(tfPreco.getText().trim()), tfCodigoBarras.getText().trim(), JCBoxUva.getItemAt(JCBoxUva.getSelectedIndex()), tfPaisOrigem.getText().trim(), JCBoxVinho.getItemAt(JCBoxUva.getSelectedIndex()));
-                                     boolean result = gp.alterarProduto(pro);
-                                   
+                                     
                                     
-                                    if (!result) {
-                                        habilitaCampos(false);
-                                        btnConfirmar.setEnabled(false);
-                                      
-                                        JOptionPane.showMessageDialog(rootPane, "Produto alterado com sucesso!");
-                                    } else {
+                                    
                                         JOptionPane.showMessageDialog(this, "Produto não alterado!", "Atenção!", JOptionPane.WARNING_MESSAGE);
                                         tfNome.requestFocus();
-                                    }
+                                    
                                 } else {
                                     tfNome.requestFocus();
                                 }

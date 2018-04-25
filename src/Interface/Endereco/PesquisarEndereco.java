@@ -4,6 +4,9 @@ import Interface.*;
 import Model.*;
 import Banco.*;
 import Controle.*;
+import Interface.Cliente.AlterarCliente;
+import Interface.Cliente.ConsultarCliente;
+import Interface.Cliente.ExcluirCliente;
 import Interface.Endereco.*;
 
 
@@ -67,7 +70,7 @@ public class PesquisarEndereco extends javax.swing.JDialog {
         lbIDProd.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lbIDProd.setForeground(new java.awt.Color(255, 255, 255));
         lbIDProd.setLabelFor(lbIDProd);
-        lbIDProd.setText("DIGITE O CÓDIGO DO ENDEREÇO");
+        lbIDProd.setText("DIGITE O CÓDIGO DO CLIENTE");
         CadastroProduto.add(lbIDProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, -1, -1));
 
         btnBuscar.setBackground(new java.awt.Color(255, 255, 255));
@@ -103,38 +106,38 @@ public class PesquisarEndereco extends javax.swing.JDialog {
             int cont = 0;
             while (i.hasNext()) {
                 Cliente cliente = (Cliente) i.next();
-                if(cliente instanceof PessoaFisica){
+                if (cliente instanceof PessoaFisica) {
                     tipo = 2;
-                }else{
+                } else {
                     tipo = 1;
-                field_idCliente.requestFocus();
+                    field_idCliente.requestFocus();
                 }
-                /*
-               if (cliente.getCodigo() == Integer.parseInt(field_idCliente.getText())){
+                if (cliente.getCodigo() == Integer.parseInt(field_idCliente.getText())) {
                     if (x == 1) {
-                        ConsultarCliente consultar = new ConsultarCliente(this, true, tipo, cliente);
-                        consultar.setVisible(true);
-                        this.dispose();
-                    } else if (x == 2) {
+                        AdicionarEndereco adicionar = new AdicionarEndereco(this, true, cliente.getCodigo() );        
+                        adicionar.setVisible(true);
+                    } else if (x == 2) {/*
                         AlterarCliente alterar = new AlterarCliente(this, true, tipo, cliente);
                         alterar.setVisible(true);
-                        this.dispose();
-                    } else {
+                        this.dispose();*/
+                    } else if (x == 3){/*
                         ExcluirCliente excluir = new ExcluirCliente(this, true, tipo, cliente);
                         excluir.setVisible(true);
-                        this.dispose();
+                        this.dispose();*/
+                    }else{
+                        
                     }
-                }else{
+                } else {
                     cont++;
-                }*/
+                }
             }
-            if(cont==clientes.size()){
+            if (cont == clientes.size()) {
                 JOptionPane.showMessageDialog(rootPane, "Codigo não encontrado!");
                 field_idCliente.requestFocus();
             }
 
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Digite o ID do Cliente!");
+            JOptionPane.showMessageDialog(rootPane, "Digite o Código do Cliente!");
             field_idCliente.requestFocus();
         }
     }//GEN-LAST:event_btnBuscarActionPerformed

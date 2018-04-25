@@ -8,8 +8,6 @@ import javax.swing.JOptionPane;
 
 public class PesquisarCliente extends javax.swing.JDialog {
 
-   
-
     private int x;
     private ArrayList<Cliente> clientes;
 
@@ -97,13 +95,13 @@ public class PesquisarCliente extends javax.swing.JDialog {
             int cont = 0;
             while (i.hasNext()) {
                 Cliente cliente = (Cliente) i.next();
-                if(cliente instanceof PessoaFisica){
+                if (cliente instanceof PessoaFisica) {
                     tipo = 2;
-                }else{
+                } else {
                     tipo = 1;
-                field_idCliente.requestFocus();
+                    field_idCliente.requestFocus();
                 }
-                if (cliente.getCodigo() == Integer.parseInt(field_idCliente.getText())){
+                if (cliente.getCodigo() == Integer.parseInt(field_idCliente.getText())) {
                     if (x == 1) {
                         ConsultarCliente consultar = new ConsultarCliente(this, true, tipo, cliente);
                         consultar.setVisible(true);
@@ -117,16 +115,15 @@ public class PesquisarCliente extends javax.swing.JDialog {
                         excluir.setVisible(true);
                         this.dispose();
                     }
-                }else{
+                } else {
                     cont++;
                 }
             }
-            if(cont==clientes.size()){
+            if (cont == clientes.size()) {
                 JOptionPane.showMessageDialog(rootPane, "Codigo não encontrado!");
                 field_idCliente.requestFocus();
             }
 
-           
         } else {
             JOptionPane.showMessageDialog(rootPane, "Digite o Código do Cliente!");
             field_idCliente.requestFocus();
@@ -141,8 +138,6 @@ public class PesquisarCliente extends javax.swing.JDialog {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_closeIconMouseClicked
-
-   
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

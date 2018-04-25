@@ -33,7 +33,7 @@ public class ConsultarEndereco extends javax.swing.JDialog {
        
     }
 
-    public ConsultarEndereco(javax.swing.JDialog parent, boolean modal, Endereco end, Cliente cliente) {
+    public ConsultarEndereco(javax.swing.JDialog parent, boolean modal, Endereco end) {
         super(parent, modal);
         this.tipoCliente = tipoCliente;
         this.cliente = cliente;

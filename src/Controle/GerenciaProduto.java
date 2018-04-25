@@ -3,6 +3,7 @@ package Controle;
 import Banco.ProdutoDAO;
 import Model.Produto;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class GerenciaProduto {
 ArrayList<Produto> prod = new ArrayList<Produto>();
@@ -13,17 +14,15 @@ ArrayList<Produto> prod = new ArrayList<Produto>();
         
     }
 
-    public boolean cadastrarProduto(String nome, double preco, String codigoBarras, String tipoUva, String paisOrigem, String tipoVinho) {
+    public void cadastrarProduto(String nome, double preco, int estoque, String codigoBarras, String tipoUva, String paisOrigem, String tipoVinho) {
 
-        Produto pro = new Produto(nome, preco, codigoBarras, tipoUva, paisOrigem, tipoVinho);
-        String result = produtoBD.inserirNoBanco(pro);
+        Produto pro = new Produto(nome, preco,estoque ,codigoBarras, tipoUva, paisOrigem, tipoVinho);
+        produtoBD.inserirNoBanco(pro);
 
-        return true;
     }
 
-    public boolean alterarProduto(Produto pro) {
-        String result = produtoBD.alterarNoBanco(pro);
-        return result.equals("sucesso");
+    public void alterarProduto(Produto produto) {
+        
     }
 
     public boolean excluirProduto(String nome) {
@@ -31,9 +30,10 @@ ArrayList<Produto> prod = new ArrayList<Produto>();
         return result.equals("sucesso");
     }
 
-    public ArrayList consultarProduto(String nome) {
+    public void consultarProduto(String nome) {
+        /*
         ArrayList<Produto> pros = produtoBD.consultarNoBanco(nome);
-        return pros;
+        return pros;*/
     }
 
     public ArrayList relatorioProduto() {
@@ -56,9 +56,17 @@ ArrayList<Produto> prod = new ArrayList<Produto>();
         return relatorioProduto().size();
     }
 
-    public Produto acharProduto(int i) {
-        Produto p = (Produto) relatorioProduto().get(i);
-        return p;
+    public Produto acharProduto(String id) {
+        Produto produto = null;
+        ArrayList<Produto> produtos = produtoBD.relatorioProduto();
+        Iterator i = produtos.iterator();
+        while(i.hasNext()){
+            produto = (Produto) i.next();
+            if(id.equals(produto.getCodigoBarras())){
+                return produto;
+            }
+        }
+        return produto;
     }
     
     public ArrayList<Produto> getProdutos(){

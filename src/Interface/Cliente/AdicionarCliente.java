@@ -421,7 +421,7 @@ public class AdicionarCliente extends javax.swing.JDialog {
                                                 int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja adicionar algum endereço ?");
                                                 if (JOptionPane.YES_OPTION == opcao) {
 
-                                                    AdicionarEndereco dialog = new AdicionarEndereco(new java.awt.Frame(), true, id);
+                                                    AdicionarEndereco dialog = new AdicionarEndereco(this, true, id);
                                                     dialog.setLocationRelativeTo(null);
                                                     dialog.setVisible(true);
                                                 }
@@ -499,7 +499,7 @@ public class AdicionarCliente extends javax.swing.JDialog {
                                                         int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja adicionar algum endereço ?");
                                                         if (JOptionPane.YES_OPTION == opcao) {
 
-                                                            AdicionarEndereco dialog = new AdicionarEndereco(new java.awt.Frame(), true, id);
+                                                            AdicionarEndereco dialog = new AdicionarEndereco(this, true, id);
                                                             dialog.setLocationRelativeTo(null);
                                                             dialog.setVisible(true);
                                                         }

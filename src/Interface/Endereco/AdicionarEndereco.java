@@ -22,7 +22,7 @@ public class AdicionarEndereco extends javax.swing.JDialog {
         initComponents();
     }
 
-    public AdicionarEndereco(java.awt.Frame parent, boolean modal, int id) {
+    public AdicionarEndereco(javax.swing.JDialog parent, boolean modal, int id) {
         super(parent, modal);
         initComponents();
         this.id = id;

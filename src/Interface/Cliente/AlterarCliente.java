@@ -317,7 +317,7 @@ public class AlterarCliente extends javax.swing.JDialog {
                             pj.setCnpj(jTF_cnpj.getText());
                             pj.setLimiteCredito(Double.parseDouble(jTF_LimiteCredito.getText()));
                             pj.setNomeFantasia(jTF_NomeFantasia.getText());
-
+                            
                             pDAO.alterarPessoa(pj);
                             JOptionPane.showMessageDialog(rootPane, "Cliente modificado com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
                             this.dispose();

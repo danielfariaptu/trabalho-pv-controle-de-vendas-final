@@ -183,7 +183,7 @@ public class PessoaDAO {
         PreparedStatement ps;
 
         sqlF = "UPDATE cliente set nome = ?, cpf = ?, limite_de_credito = ? where cliente_id = ?";
-        sqlJ = "UPDATE cliente set nome = ?, cnpj = ?,nomefantasia =?, limite_de_credito = ? where cliente_id = ?";
+        sqlJ = "UPDATE cliente set nome = ?, cnpj = ?,nomefantasia = ?, limite_de_credito = ? where cliente_id = ?";
         
         if(cliente instanceof PessoaFisica){
             PessoaFisica pf = (PessoaFisica) cliente;
@@ -201,15 +201,14 @@ public class PessoaDAO {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Erro333", JOptionPane.ERROR_MESSAGE);
         }
         }else{
-            PessoaJuridica pj = (PessoaJuridica) cliente;
-            
+            PessoaJuridica pj = (PessoaJuridica) cliente;            
             try {
             ps = conn.prepareStatement(sqlJ);
             ps.setString(1, pj.getNome());            
             ps.setString(2, pj.getCnpj());
             ps.setString(3, pj.getNomeFantasia());
             ps.setDouble(4, pj.getLimiteCredito());
-            ps.setInt(5, pf.getCodigo());
+            ps.setInt(5, pj.getCodigo());
             ps.execute();
             ps.close();
 

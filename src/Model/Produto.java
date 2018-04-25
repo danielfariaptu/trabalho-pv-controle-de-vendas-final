@@ -17,14 +17,16 @@ public class Produto {
     private String tipoUva;
     private String paisOrigem;
     private String tipoVinho;
+    private int estoque;
 
-    public Produto(String nome, double preco, String codigoBarras, String tipoUva, String paisOrigem, String tipoVinho) {
+    public Produto(String nome, double preco, int estoque, String codigoBarras, String tipoUva, String paisOrigem, String tipoVinho) {
         this.nome = nome;
         this.preco = preco;
         this.codigoBarras = codigoBarras;
         this.tipoUva = tipoUva;
         this.paisOrigem = paisOrigem;
         this.tipoVinho = tipoVinho;
+        this.estoque = estoque;
     }
 
     public String getNome() {
@@ -35,6 +37,14 @@ public class Produto {
         this.nome = nome;
     }
 
+    public int getEstoque() {
+        return estoque;
+    }
+
+    public void setEstoque(int estoque) {
+        this.estoque = estoque;
+    }
+    
     public double getPreco() {
         return preco;
     }
