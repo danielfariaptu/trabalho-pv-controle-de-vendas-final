@@ -46,7 +46,8 @@ public class EnderecoDAO {
 
             while (rs.next()) {
                 Endereco endereco = new Endereco();
-
+                
+                endereco.setCodigo(rs.getInt("endereco_id"));
                 endereco.setLogradouro(rs.getString("logradouro"));
                 endereco.setNumero(rs.getInt("numero"));
                 endereco.setComplemento(rs.getString("complemento"));
@@ -96,5 +97,53 @@ public class EnderecoDAO {
         }
 
     }
+        public boolean deletarEndereco(int id) {
+        String sql;
+        PreparedStatement ps;
+        
+        sql = "DELETE FROM endereco WHERE endereco_id = ?";        
+       
+
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.execute();
+            ps.close();
+
+            return true;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
+    }
+    
+        public void alterarEndereco(Endereco endereco) {
+            
+        String sql;
+        PreparedStatement ps;
+
+        sql = "UPDATE endereco SET logradouro = ?, numero = ?, complemento = ?, bairro = ?, municipio = ?, estado = ?, tipo_endereco = ?, cep = ? WHERE endereco_id = ?";
+        
+            
+            try {
+                ps = conn.prepareStatement(sql);
+                
+                ps.setString(1, endereco.getLogradouro());
+                ps.setInt(2, endereco.getNumero());
+                ps.setString(3, endereco.getComplemento());
+                ps.setString(4, endereco.getBairro());
+                ps.setString(5, endereco.getMunicipio());
+                ps.setString(6, endereco.getEstado());
+                ps.setInt(7, endereco.getTipoEndereco());
+                ps.setString(8, endereco.getCep());
+                ps.setInt(9, endereco.getCodigo());
+            ps.execute();
+            ps.close();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro333", JOptionPane.ERROR_MESSAGE);
+        }
+}
 
 }

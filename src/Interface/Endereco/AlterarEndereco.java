@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 public class AlterarEndereco extends javax.swing.JDialog {
 
     private Endereco end;
+    private EnderecoDAO eDAO = new EnderecoDAO();
     private ArrayList<Endereco> enderecos = new ArrayList<>();
 
     public AlterarEndereco(java.awt.Frame parent, boolean modal) {
@@ -20,7 +21,7 @@ public class AlterarEndereco extends javax.swing.JDialog {
         initComponents();
     }
 
-    public AlterarEndereco(java.awt.Frame parent, boolean modal, Endereco end) {
+    public AlterarEndereco(javax.swing.JDialog parent, boolean modal, Endereco end) {
         super(parent, modal);
         initComponents();
         this.end = end;
@@ -243,9 +244,17 @@ public class AlterarEndereco extends javax.swing.JDialog {
                                     int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja Realmente alterar o Endereço informado?");
 
                                     if (JOptionPane.YES_OPTION == opcao) {
-                                        // end = new Endereco(field_Logradouro.getText(), Integer.parseInt(field_Numero.getText()), field_Complemento.getText(), field_Bairro.getText(), field_Municipio.getText(), jCBoxUf.getItemAt(jCBoxUf.getSelectedIndex()), tipo);
-                                        // enderecos.add(end);
-                                        // dispose();
+                                        
+                                         end.setLogradouro(field_Logradouro.getText());
+                                         end.setNumero(Integer.parseInt(field_Numero.getText()));
+                                         end.setComplemento(field_Complemento.getText());
+                                         end.setBairro(field_Bairro.getText());
+                                         end.setMunicipio(field_Municipio.getText());
+                                         end.setEstado(jCBoxUf.getItemAt(jCBoxUf.getSelectedIndex()));
+                                         end.setTipoEndereco(jCBoxTipoEndereco.getSelectedIndex());
+                                        
+                                        eDAO.alterarEndereco(end);
+                                        
                                         JOptionPane.showMessageDialog(rootPane, "Endereço modificado com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
                                         this.dispose();
                                     } else if (JOptionPane.NO_OPTION == opcao) {

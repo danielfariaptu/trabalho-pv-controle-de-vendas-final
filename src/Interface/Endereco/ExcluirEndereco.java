@@ -17,8 +17,8 @@ public class ExcluirEndereco extends javax.swing.JDialog {
 
     private PessoaJuridica pj;
     private PessoaFisica pf;
-    private PessoaDAO pDAO = new PessoaDAO();
-    private Cliente cliente;
+    private EnderecoDAO eDAO = new EnderecoDAO();
+    private int id;
     private int excluido;
     private int tipoCliente;
     private Endereco end;
@@ -33,10 +33,10 @@ public class ExcluirEndereco extends javax.swing.JDialog {
        
     }
 
-    public ExcluirEndereco(javax.swing.JDialog parent, boolean modal, Endereco end, Cliente cliente) {
+    public ExcluirEndereco(javax.swing.JDialog parent, boolean modal, int id, Endereco endereco) {
         super(parent, modal);
-        this.tipoCliente = tipoCliente;
-        this.cliente = cliente;
+        this.id = id;
+        this.end = endereco;
         initComponents();
           setLocationRelativeTo(null);
             showsCampos();
@@ -549,7 +549,7 @@ public class ExcluirEndereco extends javax.swing.JDialog {
         if (JOptionPane.YES_OPTION == opcao) {
             excluido = 1;
             
-            //excluir aqui
+            eDAO.deletarEndereco(id);
 
             JOptionPane.showMessageDialog(rootPane, "Endereço excluído com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();

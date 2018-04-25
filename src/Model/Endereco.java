@@ -19,7 +19,8 @@ public class Endereco {
     private String estado;
     private int tipoEndereco;
     private String cep;
-
+    private int codigo;
+    
     public Endereco(String logradouro, int numero,String cep, String complemento, String bairro, String municipio, String estado, int tipoEndereco) {
         this.logradouro = logradouro;
         this.numero = numero;
@@ -31,6 +32,15 @@ public class Endereco {
         this.cep = cep;
     }
 
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    
     public String getLogradouro() {
         return logradouro;
     }

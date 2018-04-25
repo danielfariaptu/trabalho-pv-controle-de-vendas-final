@@ -93,7 +93,8 @@ public class PessoaDAO {
         sql = "INSERT INTO endereco(logradouro,cep,numero,complemento,bairro,municipio,estado,tipo_endereco,excluido,fk_cliente_id) VALUES (?,?,?,?,?,?,?,?,?,?)";
 
         try {
-
+                
+            
                 ps = conn.prepareStatement(sql);
                 ps.setString(1, end.getLogradouro());
                 ps.setString(2, end.getCep());

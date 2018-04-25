@@ -116,16 +116,15 @@ public class PesquisarEndereco extends javax.swing.JDialog {
                     if (x == 1) {
                         AdicionarEndereco adicionar = new AdicionarEndereco(this, true, cliente.getCodigo() );        
                         adicionar.setVisible(true);
-                    } else if (x == 2) {/*
-                        AlterarCliente alterar = new AlterarCliente(this, true, tipo, cliente);
+                    } else if (x == 2) {
+                        RelatorioEndereco alterar = new RelatorioEndereco(this, true, cliente,2);
                         alterar.setVisible(true);
-                        this.dispose();*/
-                    } else if (x == 3){/*
-                        ExcluirCliente excluir = new ExcluirCliente(this, true, tipo, cliente);
-                        excluir.setVisible(true);
-                        this.dispose();*/
+                    } else if (x == 3){
+                        RelatorioEndereco mostrar = new RelatorioEndereco(this, true, cliente,3);
+                        mostrar.setVisible(true);
                     }else{
-                        
+                        RelatorioEndereco excluir = new RelatorioEndereco(this, true, cliente,4);
+                        excluir.setVisible(true);
                     }
                 } else {
                     cont++;

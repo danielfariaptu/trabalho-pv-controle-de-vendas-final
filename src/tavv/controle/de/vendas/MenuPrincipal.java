@@ -1650,15 +1650,27 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoIncluirEMouseClicked
 
     private void botaoAlterarEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoAlterarEMouseClicked
-        // TODO add your handling code here:
+        ArrayList<Cliente> clientes = pdao.buscarCliente();
+        PesquisarEndereco pesquisar = new PesquisarEndereco(this, true, 2, clientes);
+        overlay.setVisible(true);
+	pesquisar.setVisible(true);
+        overlay.setVisible(false);
     }//GEN-LAST:event_botaoAlterarEMouseClicked
 
     private void botaoRemoverEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoRemoverEMouseClicked
-        // TODO add your handling code here:
+        ArrayList<Cliente> clientes = pdao.buscarCliente();
+        PesquisarEndereco pesquisar = new PesquisarEndereco(this, true, 4, clientes);
+        overlay.setVisible(true);
+	pesquisar.setVisible(true);
+        overlay.setVisible(false);
     }//GEN-LAST:event_botaoRemoverEMouseClicked
 
     private void botaoMostrarEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoMostrarEMouseClicked
-      
+        ArrayList<Cliente> clientes = pdao.buscarCliente();
+        PesquisarEndereco pesquisar = new PesquisarEndereco(this, true, 3, clientes);
+        overlay.setVisible(true);
+	pesquisar.setVisible(true);
+        overlay.setVisible(false);
     }//GEN-LAST:event_botaoMostrarEMouseClicked
 
     private void botaoIncluirCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoIncluirCompraMouseClicked

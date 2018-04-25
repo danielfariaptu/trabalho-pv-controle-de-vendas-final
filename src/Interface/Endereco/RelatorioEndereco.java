@@ -16,11 +16,11 @@ import javax.swing.table.TableModel;
 public class RelatorioEndereco extends javax.swing.JDialog {
 
     private int fk_cliente;
-    private int x;
-    private String[] colunas = {"Logradouro", "Complemento", "Número", "Bairro", "CEP", "Município", "Estado", "Tipo de Endereço"};
+    private String[] colunas = {"Codigo", "Logradouro", "Número", "Bairro", "CEP"};
 
     private EnderecoDAO endDAO;
-    private ArrayList<Cliente> clientes;
+    private int tipo;
+    private Cliente cliente;
     private Endereco end;
     ArrayList<Object> dados = new ArrayList<>();
 
@@ -32,32 +32,19 @@ public class RelatorioEndereco extends javax.swing.JDialog {
 
         labelEnd.setVisible(false);
         field_codEndereco.setVisible(false);
-        MostrarCodEnd.setVisible(false);
-
-        labelClienteCod.setVisible(false);
-        field_codCliente.setVisible(false);
-        MostrarCodCli.setVisible(false);
 
         RadioCliCod.setSelected(true);
         desbloqueiaCliCod();
     }
 
-    public RelatorioEndereco(java.awt.Frame parent, boolean modal, int x, Cliente cli, Endereco end) {
+    public RelatorioEndereco(javax.swing.JDialog parent, boolean modal, Cliente cliente, int tipo) {
         super(parent, modal);
         initComponents();
-        this.x = x;
-        this.clientes = clientes;
-        this.fk_cliente = fk_cliente;
-        labelEnd.setVisible(false);
-        field_codEndereco.setVisible(false);
-        MostrarCodEnd.setVisible(false);
-
-        labelClienteCod.setVisible(false);
-        field_codCliente.setVisible(false);
-        MostrarCodCli.setVisible(false);
+        this.cliente = cliente;
+        this.tipo = tipo;
 
         setLocationRelativeTo(null);
-
+        tbShowDados();
         RadioCliCod.setSelected(true);
         desbloqueiaCliCod();
     }
@@ -78,9 +65,6 @@ public class RelatorioEndereco extends javax.swing.JDialog {
         labelEnd = new javax.swing.JLabel();
         closeIcon = new javax.swing.JLabel();
         MostrarCodEnd = new javax.swing.JButton();
-        field_codCliente = new javax.swing.JTextField();
-        MostrarCodCli = new javax.swing.JButton();
-        labelClienteCod = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setUndecorated(true);
@@ -165,25 +149,6 @@ public class RelatorioEndereco extends javax.swing.JDialog {
             }
         });
         CadastroProduto.add(MostrarCodEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 130, 30));
-        CadastroProduto.add(field_codCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 300, 29));
-
-        MostrarCodCli.setBackground(new java.awt.Color(255, 255, 255));
-        MostrarCodCli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-mostrar-propriedade.-26.png"))); // NOI18N
-        MostrarCodCli.setText("MOSTRAR");
-        MostrarCodCli.setFocusPainted(false);
-        MostrarCodCli.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MostrarCodCliActionPerformed(evt);
-            }
-        });
-        CadastroProduto.add(MostrarCodCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 130, 30));
-
-        labelClienteCod.setDisplayedMnemonic('n');
-        labelClienteCod.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        labelClienteCod.setForeground(new java.awt.Color(255, 255, 255));
-        labelClienteCod.setLabelFor(labelEnd);
-        labelClienteCod.setText("DIGITE O CÓDIGO DO CLIENTE");
-        CadastroProduto.add(labelClienteCod, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
 
         getContentPane().add(CadastroProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 530));
 
@@ -204,74 +169,38 @@ public class RelatorioEndereco extends javax.swing.JDialog {
         if ((field_codEndereco.getText().isEmpty())) {
             JOptionPane.showMessageDialog(this, "Por favor informe o código do endereço!");
             field_codEndereco.requestFocus();
-        }
-
-        /*int linhaSelecionada = table.getSelectedRow();
-            if (linhaSelecionada == -1) {
-                return; //Nada selecionado
-            }
-            TesteTableModel model = (TesteTableModel)table.getModel();
-            Contato selecionado = model.getContato(linhaSelecionada);
-            ContatosDialog cf = new ContatosDialog(selecionado);
-            cf.setVisible(true); */
-        
-        
-        if (tmEnderecos.getSelectedRow() == -1) {
-            JOptionPane.showMessageDialog(rootPane, "Por favor selecione uma linha!", "Atenção", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            TableModel tm = tmEnderecos.getModel();
-            //Implementar backend// Endereco endereco = ge.retornaEndereco((tm.getValueAt(tmEnderecos.getSelectedRow(), 0).toString()));
+            Iterator i = cliente.getEnderecos().iterator();
+            int cont = 0;
+            while (i.hasNext()) {
+                Endereco endereco = (Endereco) i.next();
+                if (Integer.parseInt(field_codEndereco.getText()) == endereco.getCodigo()) {
+                    if (tipo == 2) {
+                        AlterarEndereco alterar = new AlterarEndereco(this, true, endereco);
+                        alterar.setVisible(true);
+                    } else if (tipo == 3) {
+                           ConsultarEndereco consultar = new  ConsultarEndereco(this, true, endereco);
+                           consultar.setVisible(true);
+                    } else {
+                        ExcluirEndereco excluir = new ExcluirEndereco(this, true, Integer.parseInt(field_codEndereco.getText()),endereco);
+                        excluir.setVisible(true);
+                    }
+                }else{
+                    cont++;
+                }
+                if(cont == cliente.getEnderecos().size()){
+                    JOptionPane.showMessageDialog(rootPane, "Codigo não encontrado!");
+                }
 
-            end = ge.retornaEndereco((tm.getValueAt(tmEnderecos.getSelectedRow(), 0).toString()));
-
-            ConsultarEndereco pesquisar = new ConsultarEndereco(this, true, end);
-            pesquisar.setVisible(true);
+            }
 
         }
+
 
     }//GEN-LAST:event_MostrarCodEndActionPerformed
 
-
-    private void MostrarCodCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarCodCliActionPerformed
-        if ((field_codCliente.getText().isEmpty())) {
-            JOptionPane.showMessageDialog(this, "Por favor informe o código do endereço!");
-            field_codCliente.requestFocus();
-        } else {
-            int codigo =  Integer.valueOf(field_codCliente.getText());
-            ArrayList<Endereco> end = endDAO.buscarEnderecos(codigo);
-            if (end.isEmpty()) {
-                dados.clear();
-                NewTableModel dadosProduto = new NewTableModel(dados, colunas);
-                tmEnderecos.setModel(dadosProduto);
-                repaint();
-                validate();
-            } else {
-                dados.clear();
-                for (Endereco e : end) {
-                    dados.add(new Object[]{
-                        e.getLogradouro(),
-                        e.getComplemento(),
-                        e.getNumero(),
-                        e.getBairro(),
-                        e.getCep(),
-                        e.getMunicipio(),
-                        e.getEstado(),
-                        e.getTipoEndereco()});
-                    NewTableModel dadosEndereco = new NewTableModel(dados, colunas);
-                    tmEnderecos.setModel(dadosEndereco);
-                    repaint();
-                    validate();
-                }
-            }
-        }
-        
-    }//GEN-LAST:event_MostrarCodCliActionPerformed
-
     private void RadioCliCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioCliCodActionPerformed
         resetaCampos();
-        labelClienteCod.setVisible(true);
-        field_codCliente.setVisible(true);
-        MostrarCodCli.setVisible(true);
     }//GEN-LAST:event_RadioCliCodActionPerformed
 
     private void RadioEndCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioEndCodActionPerformed
@@ -283,40 +212,28 @@ public class RelatorioEndereco extends javax.swing.JDialog {
     }//GEN-LAST:event_RadioEndCodActionPerformed
 
     public void tbShowDados() {
-        ArrayList<Endereco> end = ge.relatorioEnderecos();
+        ArrayList<Endereco> end = cliente.getEnderecos();
         dados.clear();
         for (Endereco e : end) {
             dados.add(new Object[]{
+                e.getCodigo(),
                 e.getLogradouro(),
-                e.getComplemento(),
                 e.getNumero(),
                 e.getBairro(),
-                e.getCep(),
-                e.getMunicipio(),
-                e.getEstado(),
-                e.getTipoEndereco()});
+                e.getCep(),});
             NewTableModel dadosEndereco = new NewTableModel(dados, colunas);
             tmEnderecos.setModel(dadosEndereco);
             repaint();
             validate();
         }
-        //tmEnderecos.isCellEditable(tmEnderecos.getSelectedRow(), tmEnderecos.getSelectedColumn());
     }
 
     private void resetaCampos() {
-        labelClienteCod.setVisible(false);
-        field_codCliente.setVisible(false);
-        MostrarCodCli.setVisible(false);
 
-        labelEnd.setVisible(false);
-        field_codEndereco.setVisible(false);
         MostrarCodEnd.setVisible(false);
     }
 
     private void desbloqueiaCliCod() {
-        labelClienteCod.setVisible(true);
-        field_codCliente.setVisible(true);
-        MostrarCodCli.setVisible(true);
     }
 
     private void desbloqueiaEndCod() {
@@ -369,18 +286,15 @@ public class RelatorioEndereco extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CadastroProduto;
-    private javax.swing.JButton MostrarCodCli;
     private javax.swing.JButton MostrarCodEnd;
     private javax.swing.JRadioButton RadioCliCod;
     private javax.swing.JRadioButton RadioEndCod;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel closeIcon;
-    private javax.swing.JTextField field_codCliente;
     private javax.swing.JTextField field_codEndereco;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel labelClienteCod;
     private javax.swing.JLabel labelEnd;
     private javax.swing.JTable tmEnderecos;
     // End of variables declaration//GEN-END:variables
