@@ -1,5 +1,6 @@
 package Interface.Produto;
 
+import Banco.ProdutoDAO;
 import Interface.*;
 import Controle.GerenciaProduto;
 import Model.Produto;
@@ -10,20 +11,21 @@ import javax.swing.JOptionPane;
 public class AlterarProduto extends javax.swing.JDialog {
 
     GerenciaProduto gp;
-    
+    ProdutoDAO proDAO = new ProdutoDAO();
     Produto produto;
-    
+
     public AlterarProduto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
-  
-    public AlterarProduto(java.awt.Frame parent, boolean modal, GerenciaProduto gp) {
+
+    public AlterarProduto(javax.swing.JDialog parent, boolean modal, Produto produto) {
         super(parent, modal);
         initComponents();
+        this.produto = produto;
         this.gp = gp;
-        
-          
+        mostrar();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -49,6 +51,8 @@ public class AlterarProduto extends javax.swing.JDialog {
         btnLimpar = new javax.swing.JButton();
         closeIcon = new javax.swing.JLabel();
         JCBoxVinho = new javax.swing.JComboBox<>();
+        tfEstoque = new javax.swing.JTextField();
+        lbCodigoBarras1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setUndecorated(true);
@@ -120,8 +124,8 @@ public class AlterarProduto extends javax.swing.JDialog {
         lbCodigoBarras.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lbCodigoBarras.setForeground(new java.awt.Color(255, 255, 255));
         lbCodigoBarras.setLabelFor(tfCodigoBarras);
-        lbCodigoBarras.setText("CÓDIGO DE BARRAS*:");
-        CadastroProduto.add(lbCodigoBarras, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, -1, -1));
+        lbCodigoBarras.setText("ESTOQUE*:");
+        CadastroProduto.add(lbCodigoBarras, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, -1, -1));
 
         lbTipoVinho.setDisplayedMnemonic('I');
         lbTipoVinho.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -147,11 +151,6 @@ public class AlterarProduto extends javax.swing.JDialog {
         btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfirmarActionPerformed(evt);
-            }
-        });
-        btnConfirmar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnConfirmarKeyPressed(evt);
             }
         });
         CadastroProduto.add(btnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 340, 140, 60));
@@ -188,6 +187,14 @@ public class AlterarProduto extends javax.swing.JDialog {
             }
         });
         CadastroProduto.add(JCBoxVinho, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, 300, 30));
+        CadastroProduto.add(tfEstoque, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 300, 29));
+
+        lbCodigoBarras1.setDisplayedMnemonic('c');
+        lbCodigoBarras1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lbCodigoBarras1.setForeground(new java.awt.Color(255, 255, 255));
+        lbCodigoBarras1.setLabelFor(tfCodigoBarras);
+        lbCodigoBarras1.setText("CÓDIGO DE BARRAS*:");
+        CadastroProduto.add(lbCodigoBarras1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, -1, -1));
 
         getContentPane().add(CadastroProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 490));
 
@@ -196,56 +203,57 @@ public class AlterarProduto extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        
+
         mostrar();
-        
-        
+
         if (!tfNome.getText().isEmpty()) {
             if (!tfPreco.getText().isEmpty()) {
                 if (!tfCodigoBarras.getText().isEmpty()) {
                     if (!JCBoxUva.getItemAt(JCBoxUva.getSelectedIndex()).equals("- Selecione -")) {
                         if (!tfPaisOrigem.getText().isEmpty()) {
-                           if (!JCBoxVinho.getItemAt(JCBoxVinho.getSelectedIndex()).equals("- Selecione -")) {
-                                if (JOptionPane.showConfirmDialog(rootPane, "Deseja realmente alterar este produto? ", "Comfirma salvar?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+                            if (!JCBoxVinho.getItemAt(JCBoxVinho.getSelectedIndex()).equals("- Selecione -")) {
+                               
+                                int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja Realmente alterar o Produto?");
+
+                                if (JOptionPane.YES_OPTION == opcao) {                                   
                                     
-                                     
-                                    
-                                    
-                                        JOptionPane.showMessageDialog(this, "Produto não alterado!", "Atenção!", JOptionPane.WARNING_MESSAGE);
-                                        tfNome.requestFocus();
-                                    
-                                } else {
-                                    tfNome.requestFocus();
-                                }
+                                    produto.setNome(tfNome.getText());
+                                    produto.setPreco(Double.parseDouble(tfPreco.getText()));
+                                    produto.setEstoque(Integer.parseInt(tfEstoque.getText()));
+                                    produto.setTipoUva(JCBoxUva.getItemAt(JCBoxUva.getSelectedIndex()));
+                                    produto.setPaisOrigem(tfPaisOrigem.getText());
+                                    produto.setTipoVinho(JCBoxVinho.getItemAt(JCBoxVinho.getSelectedIndex()));
+                                    proDAO.alterarProduto(produto);
+
+                                    JOptionPane.showMessageDialog(rootPane, "Produto alterado com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+                                    this.dispose();
+                                } else if (JOptionPane.NO_OPTION == opcao) {
+                                    JOptionPane.showMessageDialog(rootPane, "Produto não alterado!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+                                    this.dispose();
+                                } 
+
                             } else {
-                                JOptionPane.showMessageDialog(rootPane, "Campo Tipo de Vinho obrigatório!");
-                                tfPreco.requestFocus();
+                                JOptionPane.showMessageDialog(rootPane, "Campo País de Origem obrigatório!");
+                                tfCodigoBarras.requestFocus();
                             }
                         } else {
-                            JOptionPane.showMessageDialog(rootPane, "Campo País de Origem obrigatório!");
-                            tfCodigoBarras.requestFocus();
+                            JOptionPane.showMessageDialog(rootPane, "Campo Tipo de Uva obrigatório!");
+                            JCBoxUva.requestFocus();
                         }
                     } else {
-                        JOptionPane.showMessageDialog(rootPane, "Campo Tipo de Uva obrigatório!");
-                        JCBoxUva.requestFocus();
+                        JOptionPane.showMessageDialog(rootPane, "Campo Código de Barras obrigatório!");
+                        tfPaisOrigem.requestFocus();
                     }
                 } else {
-                    JOptionPane.showMessageDialog(rootPane, "Campo Código de Barras obrigatório!");
-                    tfPaisOrigem.requestFocus();
+                    JOptionPane.showMessageDialog(rootPane, "Campo Preço obrigatório!");
+                    JCBoxVinho.requestFocus();
                 }
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Campo Preço obrigatório!");
-                JCBoxVinho.requestFocus();
+                JOptionPane.showMessageDialog(rootPane, "Campo Nome obrigatório!");
+                tfNome.requestFocus();
             }
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Campo Nome obrigatório!");
-            tfNome.requestFocus();
         }
     }//GEN-LAST:event_btnConfirmarActionPerformed
-
-    private void btnConfirmarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnConfirmarKeyPressed
-        
-    }//GEN-LAST:event_btnConfirmarKeyPressed
 
     private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
         setVisible(false);
@@ -253,15 +261,15 @@ public class AlterarProduto extends javax.swing.JDialog {
     }//GEN-LAST:event_btnFecharActionPerformed
 
     private void CadastroProdutoComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_CadastroProdutoComponentShown
- 
+
     }//GEN-LAST:event_CadastroProdutoComponentShown
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-         limpaCampos();
+        limpaCampos();
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnLimparKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnLimparKeyPressed
-       
+
     }//GEN-LAST:event_btnLimparKeyPressed
 
     private void closeIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeIconMouseClicked
@@ -293,31 +301,29 @@ public class AlterarProduto extends javax.swing.JDialog {
         tfPaisOrigem.setEnabled(status);
     }
 
-  
- public void mostrar(){     
-        
-        
+    public void mostrar() {
+
         tfNome.setText(produto.getNome());
-        
+
         tfPreco.setText(String.valueOf(produto.getPreco()));
-        
+
         tfCodigoBarras.setText(produto.getCodigoBarras());
-        
+
         tfPaisOrigem.setText(produto.getPaisOrigem());
-        
+
         JCBoxUva.setSelectedItem(produto.getTipoUva());
-        
+
         JCBoxVinho.setSelectedItem(produto.getTipoVinho());
-        
+
     }
-   
-       public static void main(String args[]) {
+
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-       /* try {
+ /* try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -339,20 +345,20 @@ public class AlterarProduto extends javax.swing.JDialog {
         //</editor-fold>
 
         /* Create and display the dialog */
-       java.awt.EventQueue.invokeLater(new Runnable() {
-	public void run() {
-		AlterarProduto dialog = new AlterarProduto(new javax.swing.JFrame(), true);
-		dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-			@Override
-			public void windowClosing(java.awt.event.WindowEvent e) {
-				System.exit(0);
-			}
-		});
-		dialog.setVisible(true);
-	}
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                AlterarProduto dialog = new AlterarProduto(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
         });
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CadastroProduto;
     private javax.swing.JComboBox<String> JCBoxUva;
@@ -364,12 +370,14 @@ public class AlterarProduto extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lbAviso;
     private javax.swing.JLabel lbCodigoBarras;
+    private javax.swing.JLabel lbCodigoBarras1;
     private javax.swing.JLabel lbNome;
     private javax.swing.JLabel lbPaisOrigem;
     private javax.swing.JLabel lbPreco;
     private javax.swing.JLabel lbTipoUva;
     private javax.swing.JLabel lbTipoVinho;
     private javax.swing.JTextField tfCodigoBarras;
+    private javax.swing.JTextField tfEstoque;
     private javax.swing.JTextField tfNome;
     private javax.swing.JTextField tfPaisOrigem;
     private javax.swing.JTextField tfPreco;

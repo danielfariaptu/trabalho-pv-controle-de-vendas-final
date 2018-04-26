@@ -17,6 +17,7 @@ public class ExcluirProduto extends javax.swing.JDialog {
 
     
     private Produto prod;
+    private ProdutoDAO proDAO = new ProdutoDAO();
     private int excluido;
     
     /**
@@ -30,7 +31,7 @@ public class ExcluirProduto extends javax.swing.JDialog {
 
     public ExcluirProduto(javax.swing.JDialog parent, boolean modal, Produto prod) {
         super(parent, modal);
-       
+        this.prod = prod;
         initComponents();
           setLocationRelativeTo(null);
             showsCampos();
@@ -408,7 +409,7 @@ public class ExcluirProduto extends javax.swing.JDialog {
         if (JOptionPane.YES_OPTION == opcao) {
             excluido = 1;
             
-            //excluir aqui
+            proDAO.excluirProduto(prod.getCodigoBarras());
 
             JOptionPane.showMessageDialog(rootPane, "Produto excluído com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();

@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 
 public class ProdutoDAO {
 
+    PreparedStatement ps;
     private Connection con;
     private Statement stm;
 
@@ -57,12 +58,12 @@ public class ProdutoDAO {
         }
     }
 
-    public void alterarNoBanco(Produto produto) {
+    public void alterarProduto(Produto produto) {
             
         String sql;
         PreparedStatement ps;
 
-        sql = "UPDATE produto SET nome = ?, preco = ?, estoque = ?, tipo_de_uva = ?, pais_de_origem = ?, tipo_de_vinho = ? WHERE codigo_de_barras = ?";
+        sql = "UPDATE produto SET nome = ?, preco = ?, estoque = ?, codigo_de_barras = ?, tipo_de_uva = ?, pais_de_origem = ?, tipo_de_vinho = ? WHERE codigo_de_barras = ?";
         
             
             try {
@@ -70,25 +71,35 @@ public class ProdutoDAO {
             ps.setString(1, produto.getNome());            
             ps.setDouble(2, produto.getPreco());
             ps.setInt(3, produto.getEstoque());
-            ps.setString(4, produto.getTipoUva());
-            ps.setString(5, produto.getPaisOrigem());
-            ps.setString(6, produto.getTipoVinho());
-            ps.setString(7, produto.getCodigoBarras());
+            ps.setString(4, produto.getCodigoBarras());        
+            ps.setString(5, produto.getTipoUva());
+            ps.setString(6, produto.getPaisOrigem());
+            ps.setString(7, produto.getTipoVinho());
+            ps.setString(8, produto.getCodigoBarras());
+            JOptionPane.showMessageDialog(null, "SQL = "+ps);
             ps.execute();
             ps.close();
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro333", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro"+e.getMessage());
         }
 }
         
     public ArrayList relatorioProduto() {
         ArrayList<Produto> produtos;
+        String sql;
         ResultSet rs;
+         produtos = new ArrayList<>();
+        
+        sql = "SELECT * FROM produto";        
+        
 
         try {
-            produtos = new ArrayList<>();
-            rs = stm.executeQuery("SELECT * FROM produto");
+           
+            
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
             while (rs.next()) {
                 produtos.add(new Produto(rs.getString("nome"), rs.getDouble("preco"), rs.getInt("estoque"), rs.getString("codigo_de_barras"), rs.getString("tipo_de_uva"), rs.getString("pais_de_origem"), rs.getString("tipo_de_vinho")));
             }

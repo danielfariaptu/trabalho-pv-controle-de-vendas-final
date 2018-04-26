@@ -149,18 +149,14 @@
                               <Component id="fundo14" alignment="0" pref="0" max="32767" attributes="0"/>
                               <Component id="fundo15" alignment="0" min="-2" pref="567" max="-2" attributes="0"/>
                               <Component id="Painel4" alignment="0" max="32767" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="fundo13" alignment="0" pref="0" max="32767" attributes="0"/>
-                                  <Component id="Painel8" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="Painel6" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="fundo9" alignment="0" min="-2" pref="575" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="fundo13" alignment="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="Painel8" alignment="0" max="32767" attributes="0"/>
+                              <Component id="Painel6" alignment="0" max="32767" attributes="0"/>
+                              <Component id="fundo9" alignment="0" min="-2" pref="575" max="-2" attributes="0"/>
                               <Component id="Painel9" alignment="0" max="32767" attributes="0"/>
                               <Component id="Painel10" alignment="0" max="32767" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="Painel12" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="fundo16" alignment="0" min="-2" pref="575" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="Painel12" alignment="0" max="32767" attributes="0"/>
+                              <Component id="fundo16" alignment="0" min="-2" pref="575" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       </Group>
@@ -191,7 +187,7 @@
                           <Component id="fundo14" min="-2" pref="14" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="Painel10" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="fundo15" min="-2" pref="14" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="Painel12" min="-2" max="-2" attributes="0"/>
