@@ -16,7 +16,7 @@ import javax.swing.table.TableModel;
 
 public class RelatorioProduto extends javax.swing.JDialog {
 
-    private String[] colunas = {"Codigo", "Nome", "Preço", "Estoque"};
+    private String[] colunas = {"Código ", "Nome", "Preço", "Estoque","Tipo de Uva","Tipo de Vinho","País de Origem"};
     
     private ArrayList<Produto> produtos = new ArrayList<>();
     ArrayList<Object> dados = new ArrayList<>();
@@ -27,11 +27,10 @@ public class RelatorioProduto extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
-        labelEnd.setVisible(false);
+        label.setVisible(false);
         field_codProduto.setVisible(false);
 
-        RadioCliCod.setSelected(true);
-        desbloqueiaCliCod();
+        desbloqueiaProduto();
     }
 
     public RelatorioProduto(javax.swing.JFrame parent, boolean modal, ArrayList<Produto> produtos,int tipo) {
@@ -42,8 +41,7 @@ public class RelatorioProduto extends javax.swing.JDialog {
 
         setLocationRelativeTo(null);
         tbShowDados();
-        RadioCliCod.setSelected(true);
-        desbloqueiaCliCod();
+        desbloqueiaProduto();
     }
 
     @SuppressWarnings("unchecked")
@@ -52,14 +50,11 @@ public class RelatorioProduto extends javax.swing.JDialog {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         CadastroProduto = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        RadioEndCod = new javax.swing.JRadioButton();
-        RadioCliCod = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tmEnderecos = new javax.swing.JTable();
+        tmProduto = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         field_codProduto = new javax.swing.JTextField();
-        labelEnd = new javax.swing.JLabel();
+        label = new javax.swing.JLabel();
         closeIcon = new javax.swing.JLabel();
         MostrarCodProd = new javax.swing.JButton();
 
@@ -76,40 +71,7 @@ public class RelatorioProduto extends javax.swing.JDialog {
         });
         CadastroProduto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 51));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Selecione tipo de busca: ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.setToolTipText("");
-
-        RadioEndCod.setBackground(new java.awt.Color(0, 0, 51));
-        buttonGroup1.add(RadioEndCod);
-        RadioEndCod.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        RadioEndCod.setForeground(new java.awt.Color(255, 255, 255));
-        RadioEndCod.setText("Por Código de Endereço");
-        RadioEndCod.setFocusPainted(false);
-        RadioEndCod.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RadioEndCodActionPerformed(evt);
-            }
-        });
-        jPanel1.add(RadioEndCod);
-
-        RadioCliCod.setBackground(new java.awt.Color(0, 0, 51));
-        buttonGroup1.add(RadioCliCod);
-        RadioCliCod.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        RadioCliCod.setForeground(new java.awt.Color(255, 255, 255));
-        RadioCliCod.setText("Por Código de Cliente");
-        RadioCliCod.setFocusPainted(false);
-        RadioCliCod.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RadioCliCodActionPerformed(evt);
-            }
-        });
-        jPanel1.add(RadioCliCod);
-
-        CadastroProduto.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 440, 70));
-
-        jScrollPane1.setViewportView(tmEnderecos);
+        jScrollPane1.setViewportView(tmProduto);
 
         CadastroProduto.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 710, 290));
 
@@ -120,12 +82,12 @@ public class RelatorioProduto extends javax.swing.JDialog {
         CadastroProduto.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 350, 43));
         CadastroProduto.add(field_codProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 300, 29));
 
-        labelEnd.setDisplayedMnemonic('n');
-        labelEnd.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        labelEnd.setForeground(new java.awt.Color(255, 255, 255));
-        labelEnd.setLabelFor(labelEnd);
-        labelEnd.setText("DIGITE O CÓDIGO DO PRODUTO");
-        CadastroProduto.add(labelEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
+        label.setDisplayedMnemonic('n');
+        label.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        label.setForeground(new java.awt.Color(255, 255, 255));
+        label.setLabelFor(label);
+        label.setText("DIGITE O CÓDIGO DO PRODUTO");
+        CadastroProduto.add(label, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
 
         closeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-close-window-40.png"))); // NOI18N
         closeIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -164,7 +126,7 @@ public class RelatorioProduto extends javax.swing.JDialog {
 
     private void MostrarCodProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarCodProdActionPerformed
         if ((field_codProduto.getText().isEmpty())) {
-            JOptionPane.showMessageDialog(this, "Por favor informe o código do endereço!");
+            JOptionPane.showMessageDialog(this, "Por favor informe o código do produto!");
             field_codProduto.requestFocus();
         } else {
             Iterator i = produtos.iterator();
@@ -200,18 +162,6 @@ public class RelatorioProduto extends javax.swing.JDialog {
 
     }//GEN-LAST:event_MostrarCodProdActionPerformed
 
-    private void RadioCliCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioCliCodActionPerformed
-        resetaCampos();
-    }//GEN-LAST:event_RadioCliCodActionPerformed
-
-    private void RadioEndCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioEndCodActionPerformed
-        resetaCampos();
-        labelEnd.setVisible(true);
-        field_codProduto.setVisible(true);
-        MostrarCodProd.setVisible(true);
-
-    }//GEN-LAST:event_RadioEndCodActionPerformed
-
     public void tbShowDados() {
         ArrayList<Produto> prod = produtos;
         dados.clear();
@@ -220,24 +170,21 @@ public class RelatorioProduto extends javax.swing.JDialog {
                 p.getCodigoBarras(),
                 p.getNome(),
                 p.getPreco(),
-                p.getEstoque()});
+                p.getEstoque(),
+                p.getTipoUva(),
+                p.getTipoVinho(),
+                p.getPaisOrigem()});
             NewTableModel dadosEndereco = new NewTableModel(dados, colunas);
-            tmEnderecos.setModel(dadosEndereco);
+            tmProduto.setModel(dadosEndereco);
             repaint();
             validate();
         }
     }
 
-    private void resetaCampos() {
-
-        MostrarCodProd.setVisible(false);
-    }
-
-    private void desbloqueiaCliCod() {
-    }
-
-    private void desbloqueiaEndCod() {
-        labelEnd.setVisible(true);
+  
+    
+    private void desbloqueiaProduto() {
+        label.setVisible(true);
         field_codProduto.setVisible(true);
         MostrarCodProd.setVisible(true);
     }
@@ -287,15 +234,12 @@ public class RelatorioProduto extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CadastroProduto;
     private javax.swing.JButton MostrarCodProd;
-    private javax.swing.JRadioButton RadioCliCod;
-    private javax.swing.JRadioButton RadioEndCod;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel closeIcon;
     private javax.swing.JTextField field_codProduto;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel labelEnd;
-    private javax.swing.JTable tmEnderecos;
+    private javax.swing.JLabel label;
+    private javax.swing.JTable tmProduto;
     // End of variables declaration//GEN-END:variables
 }

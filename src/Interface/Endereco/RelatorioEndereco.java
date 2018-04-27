@@ -22,31 +22,27 @@ public class RelatorioEndereco extends javax.swing.JDialog {
     private int tipo;
     private Cliente cliente;
     private Endereco end;
-    ArrayList<Object> dados = new ArrayList<>();
+    private int codCli;
+    
 
     GerenciaEndereco ge;
 
     public RelatorioEndereco(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-
-        labelEnd.setVisible(false);
-        field_codEndereco.setVisible(false);
-
-        RadioCliCod.setSelected(true);
-        desbloqueiaCliCod();
+ 
     }
 
-    public RelatorioEndereco(javax.swing.JDialog parent, boolean modal, Cliente cliente, int tipo) {
+    public RelatorioEndereco(javax.swing.JDialog parent, boolean modal, Cliente cliente, int tipo, int codCli) {
         super(parent, modal);
         initComponents();
         this.cliente = cliente;
         this.tipo = tipo;
-
+        this.codCli = codCli;
         setLocationRelativeTo(null);
         tbShowDados();
-        RadioCliCod.setSelected(true);
-        desbloqueiaCliCod();
+     
+       
     }
 
     @SuppressWarnings("unchecked")
@@ -55,16 +51,13 @@ public class RelatorioEndereco extends javax.swing.JDialog {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         CadastroProduto = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        RadioEndCod = new javax.swing.JRadioButton();
-        RadioCliCod = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tmEnderecos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         field_codEndereco = new javax.swing.JTextField();
         labelEnd = new javax.swing.JLabel();
         closeIcon = new javax.swing.JLabel();
-        MostrarCodEnd = new javax.swing.JButton();
+        MostrarCodCliente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setUndecorated(true);
@@ -79,39 +72,26 @@ public class RelatorioEndereco extends javax.swing.JDialog {
         });
         CadastroProduto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 51));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Selecione tipo de busca: ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.setToolTipText("");
+        tmEnderecos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Código", "Logradouro", "Número", "Bairro", "CEP"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
 
-        RadioEndCod.setBackground(new java.awt.Color(0, 0, 51));
-        buttonGroup1.add(RadioEndCod);
-        RadioEndCod.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        RadioEndCod.setForeground(new java.awt.Color(255, 255, 255));
-        RadioEndCod.setText("Por Código de Endereço");
-        RadioEndCod.setFocusPainted(false);
-        RadioEndCod.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RadioEndCodActionPerformed(evt);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-        jPanel1.add(RadioEndCod);
-
-        RadioCliCod.setBackground(new java.awt.Color(0, 0, 51));
-        buttonGroup1.add(RadioCliCod);
-        RadioCliCod.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        RadioCliCod.setForeground(new java.awt.Color(255, 255, 255));
-        RadioCliCod.setText("Por Código de Cliente");
-        RadioCliCod.setFocusPainted(false);
-        RadioCliCod.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RadioCliCodActionPerformed(evt);
-            }
-        });
-        jPanel1.add(RadioCliCod);
-
-        CadastroProduto.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 440, 70));
-
         jScrollPane1.setViewportView(tmEnderecos);
 
         CadastroProduto.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 710, 290));
@@ -139,16 +119,16 @@ public class RelatorioEndereco extends javax.swing.JDialog {
         });
         CadastroProduto.add(closeIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, -1, -1));
 
-        MostrarCodEnd.setBackground(new java.awt.Color(255, 255, 255));
-        MostrarCodEnd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-mostrar-propriedade.-26.png"))); // NOI18N
-        MostrarCodEnd.setText("MOSTRAR");
-        MostrarCodEnd.setFocusPainted(false);
-        MostrarCodEnd.addActionListener(new java.awt.event.ActionListener() {
+        MostrarCodCliente.setBackground(new java.awt.Color(255, 255, 255));
+        MostrarCodCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-mostrar-propriedade.-26.png"))); // NOI18N
+        MostrarCodCliente.setText("MOSTRAR");
+        MostrarCodCliente.setFocusPainted(false);
+        MostrarCodCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MostrarCodEndActionPerformed(evt);
+                MostrarCodClienteActionPerformed(evt);
             }
         });
-        CadastroProduto.add(MostrarCodEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 130, 30));
+        CadastroProduto.add(MostrarCodCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 130, 30));
 
         getContentPane().add(CadastroProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 530));
 
@@ -165,7 +145,7 @@ public class RelatorioEndereco extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_closeIconMouseClicked
 
-    private void MostrarCodEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarCodEndActionPerformed
+    private void MostrarCodClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarCodClienteActionPerformed
         if ((field_codEndereco.getText().isEmpty())) {
             JOptionPane.showMessageDialog(this, "Por favor informe o código do endereço!");
             field_codEndereco.requestFocus();
@@ -178,12 +158,19 @@ public class RelatorioEndereco extends javax.swing.JDialog {
                     if (tipo == 2) {
                         AlterarEndereco alterar = new AlterarEndereco(this, true, endereco);
                         alterar.setVisible(true);
+                        dispose();
+                        
+                        
                     } else if (tipo == 3) {
-                           ConsultarEndereco consultar = new  ConsultarEndereco(this, true, endereco);
+                           ConsultarEndereco consultar = new  ConsultarEndereco(this, true, endereco,codCli);
                            consultar.setVisible(true);
+                           dispose();
+                           
+                           
                     } else {
-                        ExcluirEndereco excluir = new ExcluirEndereco(this, true, Integer.parseInt(field_codEndereco.getText()),endereco);
+                        ExcluirEndereco excluir = new ExcluirEndereco(this, true, Integer.parseInt(field_codEndereco.getText()),endereco,codCli);
                         excluir.setVisible(true);
+                        dispose();
                     }
                 }else{
                     cont++;
@@ -197,23 +184,13 @@ public class RelatorioEndereco extends javax.swing.JDialog {
         }
 
 
-    }//GEN-LAST:event_MostrarCodEndActionPerformed
-
-    private void RadioCliCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioCliCodActionPerformed
-        resetaCampos();
-    }//GEN-LAST:event_RadioCliCodActionPerformed
-
-    private void RadioEndCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioEndCodActionPerformed
-        resetaCampos();
-        labelEnd.setVisible(true);
-        field_codEndereco.setVisible(true);
-        MostrarCodEnd.setVisible(true);
-
-    }//GEN-LAST:event_RadioEndCodActionPerformed
+    }//GEN-LAST:event_MostrarCodClienteActionPerformed
 
     public void tbShowDados() {
-        ArrayList<Endereco> end = cliente.getEnderecos();
+        ArrayList<Object> dados = new ArrayList<>();
         dados.clear();
+        ArrayList<Endereco> end = cliente.getEnderecos();
+       
         for (Endereco e : end) {
             dados.add(new Object[]{
                 e.getCodigo(),
@@ -228,20 +205,7 @@ public class RelatorioEndereco extends javax.swing.JDialog {
         }
     }
 
-    private void resetaCampos() {
-
-        MostrarCodEnd.setVisible(false);
-    }
-
-    private void desbloqueiaCliCod() {
-    }
-
-    private void desbloqueiaEndCod() {
-        labelEnd.setVisible(true);
-        field_codEndereco.setVisible(true);
-        MostrarCodEnd.setVisible(true);
-    }
-
+   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -286,14 +250,11 @@ public class RelatorioEndereco extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CadastroProduto;
-    private javax.swing.JButton MostrarCodEnd;
-    private javax.swing.JRadioButton RadioCliCod;
-    private javax.swing.JRadioButton RadioEndCod;
+    private javax.swing.JButton MostrarCodCliente;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel closeIcon;
     private javax.swing.JTextField field_codEndereco;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelEnd;
     private javax.swing.JTable tmEnderecos;

@@ -19,6 +19,7 @@ public class ConsultarEndereco extends javax.swing.JDialog {
     private PessoaFisica pf;
     private PessoaDAO pDAO = new PessoaDAO();
     private Cliente cliente;
+    private int fk_cliente;
     private int excluido;
     private int tipoCliente;
     private Endereco end;
@@ -33,11 +34,12 @@ public class ConsultarEndereco extends javax.swing.JDialog {
        
     }
 
-    public ConsultarEndereco(javax.swing.JDialog parent, boolean modal, Endereco end) {
+    public ConsultarEndereco(javax.swing.JDialog parent, boolean modal, Endereco end, int fk_cliente) {
         super(parent, modal);
         this.tipoCliente = tipoCliente;
         this.cliente = cliente;
         this.end = end;
+        this.fk_cliente = fk_cliente;
         initComponents();
           setLocationRelativeTo(null);
             showsCampos();
@@ -544,6 +546,8 @@ public class ConsultarEndereco extends javax.swing.JDialog {
     
      public void showsCampos(){
         
+        codigoCliente.setText(String.valueOf(fk_cliente));
+        codigoEnd.setText(String.valueOf(end.getCodigo()));
         logradouro.setText(end.getLogradouro());
         numero.setText(String.valueOf(end.getNumero()));
         complemento.setText(end.getComplemento());

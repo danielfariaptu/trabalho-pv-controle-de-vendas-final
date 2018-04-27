@@ -22,6 +22,7 @@ public class ExcluirEndereco extends javax.swing.JDialog {
     private int excluido;
     private int tipoCliente;
     private Endereco end;
+    private int cliCod;
     private ArrayList<Endereco> enderecos = new ArrayList<>();
     
     /**
@@ -33,10 +34,11 @@ public class ExcluirEndereco extends javax.swing.JDialog {
        
     }
 
-    public ExcluirEndereco(javax.swing.JDialog parent, boolean modal, int id, Endereco endereco) {
+    public ExcluirEndereco(javax.swing.JDialog parent, boolean modal, int id, Endereco endereco, int cliCod) {
         super(parent, modal);
         this.id = id;
         this.end = endereco;
+        this.cliCod = cliCod;
         initComponents();
           setLocationRelativeTo(null);
             showsCampos();
@@ -562,8 +564,8 @@ public class ExcluirEndereco extends javax.swing.JDialog {
     
     }
      private void showsCampos(){
-       // codigoCliente.setText("");
-       // codigoEnd.setText("");
+       codigoCliente.setText(String.valueOf(cliCod));
+       codigoEnd.setText(String.valueOf(end.getCodigo()));
         logradouro.setText(end.getLogradouro());
         numero.setText(String.valueOf(end.getNumero()));
         complemento.setText(end.getComplemento());

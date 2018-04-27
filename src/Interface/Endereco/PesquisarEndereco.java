@@ -70,7 +70,7 @@ public class PesquisarEndereco extends javax.swing.JDialog {
         lbIDProd.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lbIDProd.setForeground(new java.awt.Color(255, 255, 255));
         lbIDProd.setLabelFor(lbIDProd);
-        lbIDProd.setText("DIGITE O CÓDIGO DO ENDEREÇO");
+        lbIDProd.setText("DIGITE O CÓDIGO DO CLIENTE");
         CadastroProduto.add(lbIDProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, -1, -1));
 
         btnBuscar.setBackground(new java.awt.Color(255, 255, 255));
@@ -105,6 +105,7 @@ public class PesquisarEndereco extends javax.swing.JDialog {
             int tipo;
             int cont = 0;
             while (i.hasNext()) {
+               
                 Cliente cliente = (Cliente) i.next();
                 if (cliente instanceof PessoaFisica) {
                     tipo = 2;
@@ -112,19 +113,23 @@ public class PesquisarEndereco extends javax.swing.JDialog {
                     tipo = 1;
                     field_idCliente.requestFocus();
                 }
+                 int codCli = cliente.getCodigo();
                 if (cliente.getCodigo() == Integer.parseInt(field_idCliente.getText())) {
                     if (x == 1) {
                         AdicionarEndereco adicionar = new AdicionarEndereco(this, true, cliente.getCodigo() );        
                         adicionar.setVisible(true);
                     } else if (x == 2) {
-                        RelatorioEndereco alterar = new RelatorioEndereco(this, true, cliente,2);
+                        RelatorioEndereco alterar = new RelatorioEndereco(this, true, cliente,2,codCli);
                         alterar.setVisible(true);
+                        dispose();
+                        
                     } else if (x == 3){
-                        RelatorioEndereco mostrar = new RelatorioEndereco(this, true, cliente,3);
+                        RelatorioEndereco mostrar = new RelatorioEndereco(this, true, cliente,3,codCli);
                         mostrar.setVisible(true);
                     }else{
-                        RelatorioEndereco excluir = new RelatorioEndereco(this, true, cliente,4);
+                        RelatorioEndereco excluir = new RelatorioEndereco(this, true, cliente,4,codCli);
                         excluir.setVisible(true);
+                        dispose();
                     }
                 } else {
                     cont++;

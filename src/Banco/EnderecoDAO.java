@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import org.postgresql.core.ConnectionFactory;
 
 public class EnderecoDAO {
 
@@ -69,7 +70,7 @@ public class EnderecoDAO {
 
     public ArrayList<Endereco> relatorioEndereco() {
 
-       final List<Endereco> end = new ArrayList<Endereco>();
+       List<Endereco> end = new ArrayList<Endereco>();
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -90,13 +91,15 @@ public class EnderecoDAO {
 
                 end.add(endereco);
                 
+               
             }
             return (ArrayList<Endereco>) end;
         } catch (SQLException ex) {
             return null;
-        }
-
+        } 
     }
+    
+   
         public boolean deletarEndereco(int id) {
         String sql;
         PreparedStatement ps;
@@ -138,8 +141,7 @@ public class EnderecoDAO {
                 ps.setInt(7, endereco.getTipoEndereco());
                 ps.setString(8, endereco.getCep());
                 ps.setInt(9, endereco.getCodigo());
-            ps.execute();
-            ps.close();
+           
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Erro333", JOptionPane.ERROR_MESSAGE);
