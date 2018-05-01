@@ -1,14 +1,12 @@
-package Interface.Produto;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-import Interface.*;
+package Interface.Compra;
+import Interface.Produto.*;
 import Banco.*;
 import Model.*;
-import Controle.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -16,27 +14,27 @@ import javax.swing.JOptionPane;
  *
  * @author danie
  */
-public class ConsultarProduto extends javax.swing.JDialog {
+public class ExcluirProdutoCarrinho extends javax.swing.JDialog {
 
-    private PessoaJuridica pj;
-    private PessoaFisica pf;
-    private ProdutoDAO prodDAO = new ProdutoDAO();
+    
     private Produto prod;
-    private Cliente cliente;
+    private ProdutoDAO proDAO = new ProdutoDAO();
     private int excluido;
-    private int tipoCliente;
+    private int codigoP;
     
     /**
      * Creates new form NewJDialog
      */
-    public ConsultarProduto(javax.swing.JDialog parent, boolean modal) {
+    public ExcluirProdutoCarrinho(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();   
+       
     }
 
-    public ConsultarProduto(javax.swing.JDialog parent, boolean modal, Produto prod) {
+    public ExcluirProdutoCarrinho(javax.swing.JDialog parent, boolean modal, Produto prod) {
         super(parent, modal);
         this.prod = prod;
+        this.codigoP = codigoP;
         initComponents();
           setLocationRelativeTo(null);
             showsCampos();
@@ -55,7 +53,7 @@ public class ConsultarProduto extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         closeIcon = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jBtn_Fechar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TableProduto = new javax.swing.JPanel();
         fundo7 = new javax.swing.JLabel();
@@ -65,7 +63,7 @@ public class ConsultarProduto extends javax.swing.JDialog {
         fundo9 = new javax.swing.JLabel();
         Painel6 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        codigoDeBarras = new javax.swing.JLabel();
+        codigoProduto = new javax.swing.JLabel();
         Painel7 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         preco = new javax.swing.JLabel();
@@ -102,21 +100,21 @@ public class ConsultarProduto extends javax.swing.JDialog {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("CONSULTAR PRODUTO");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, 300, -1));
+        jLabel1.setText("REMOVER DO CARRINHO");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, 310, -1));
 
-        jBtn_Fechar.setBackground(new java.awt.Color(255, 255, 255));
-        jBtn_Fechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Arrow Back.png"))); // NOI18N
-        jBtn_Fechar.setMnemonic('S');
-        jBtn_Fechar.setText("Voltar");
-        jBtn_Fechar.setToolTipText("Salva os registros");
-        jBtn_Fechar.setFocusPainted(false);
-        jBtn_Fechar.addActionListener(new java.awt.event.ActionListener() {
+        btnExcluir.setBackground(new java.awt.Color(255, 255, 255));
+        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-lixo-32.png"))); // NOI18N
+        btnExcluir.setMnemonic('S');
+        btnExcluir.setText("REMOVER");
+        btnExcluir.setToolTipText("Salva os registros");
+        btnExcluir.setFocusPainted(false);
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtn_FecharActionPerformed(evt);
+                btnExcluirActionPerformed(evt);
             }
         });
-        jPanel1.add(jBtn_Fechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 460, 120, 40));
+        jPanel1.add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 470, 120, 40));
 
         TableProduto.setBackground(new java.awt.Color(255, 255, 255));
         TableProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -156,8 +154,8 @@ public class ConsultarProduto extends javax.swing.JDialog {
         jLabel8.setForeground(new java.awt.Color(0, 0, 102));
         jLabel8.setText("CÓDIGO DE BARRAS:");
 
-        codigoDeBarras.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        codigoDeBarras.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        codigoProduto.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        codigoProduto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout Painel6Layout = new javax.swing.GroupLayout(Painel6);
         Painel6.setLayout(Painel6Layout);
@@ -167,15 +165,15 @@ public class ConsultarProduto extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(codigoDeBarras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(codigoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         Painel6Layout.setVerticalGroup(
             Painel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Painel6Layout.createSequentialGroup()
                 .addGap(4, 4, 4)
                 .addGroup(Painel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(codigoDeBarras, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(codigoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -305,7 +303,7 @@ public class ConsultarProduto extends javax.swing.JDialog {
                     .addComponent(Painel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Painel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(fundo16, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         TableProdutoLayout.setVerticalGroup(
             TableProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -339,7 +337,7 @@ public class ConsultarProduto extends javax.swing.JDialog {
 
         jScrollPane1.setViewportView(TableProduto);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 620, 330));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 620, 360));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -349,33 +347,53 @@ public class ConsultarProduto extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBtn_FecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_FecharActionPerformed
-      this.dispose();
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+      
+        excluirProd();
+        this.dispose();
 
         
-    }//GEN-LAST:event_jBtn_FecharActionPerformed
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void closeIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeIconMouseClicked
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_closeIconMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
+   
     
-     public void showsCampos(){
+    private void excluirProd(){
+        
+
+        int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja Realmente remover o Produto do carrinho? ");
+
+        if (JOptionPane.YES_OPTION == opcao) {
+            excluido = 1;
+            
+            proDAO.excluirProduto(prod.getCodigoBarras());
+
+            JOptionPane.showMessageDialog(rootPane, "Produto removido com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        }
+        else if (JOptionPane.NO_OPTION == opcao) {
+            JOptionPane.showMessageDialog(rootPane, "Produto não removido!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        }
+
+    
+    }
+     private void showsCampos(){
+        codigoProduto.setText(prod.getCodigoBarras());
         nome.setText(prod.getNome());
         tipoUva.setText(prod.getTipoUva());
         preco.setText(String.valueOf(prod.getPreco()));
         paisDeOrigem.setText(prod.getPaisOrigem());
-        codigoDeBarras.setText(prod.getCodigoBarras());
         tipoDeVinho.setText(prod.getTipoVinho());
     }
 
@@ -384,7 +402,7 @@ public class ConsultarProduto extends javax.swing.JDialog {
       
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ConsultarProduto dialog = new ConsultarProduto(new javax.swing.JDialog(), true);
+                ExcluirProdutoCarrinho dialog = new ExcluirProdutoCarrinho(new javax.swing.JDialog(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -407,16 +425,16 @@ public class ConsultarProduto extends javax.swing.JDialog {
     private javax.swing.JPanel Painel8;
     private javax.swing.JPanel Painel9;
     private javax.swing.JPanel TableProduto;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel closeIcon;
-    private javax.swing.JLabel codigoDeBarras;
+    private javax.swing.JLabel codigoProduto;
     private javax.swing.JLabel fundo11;
     private javax.swing.JLabel fundo13;
     private javax.swing.JLabel fundo14;
     private javax.swing.JLabel fundo16;
     private javax.swing.JLabel fundo7;
     private javax.swing.JLabel fundo9;
-    private javax.swing.JButton jBtn_Fechar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

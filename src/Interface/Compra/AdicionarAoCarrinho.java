@@ -1,5 +1,6 @@
-package Interface.Produto;
+package Interface.Compra;
 
+import Interface.Produto.*;
 import Interface.Endereco.*;
 import Model.NewTableModel;
 import Interface.*;
@@ -7,6 +8,8 @@ import Model.*;
 import Banco.*;
 import Controle.*;
 import Interface.Endereco.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import java.util.ArrayList;
 
@@ -14,26 +17,26 @@ import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 
-public class RelatorioProduto extends javax.swing.JDialog {
+public class AdicionarAoCarrinho extends javax.swing.JDialog {
 
-    private String[] colunas = {"Código", "Nome", "Preço", "Estoque","Tipo de Uva","Tipo de Vinho","País de Origem"};
+    private String[] colunas = {"Código ", "Nome", "Preço", "Estoque","Tipo de Uva","Tipo de Vinho","País de Origem"};
     
     private ArrayList<Produto> produtos = new ArrayList<>();
     ArrayList<Object> dados = new ArrayList<>();
     private int tipo;
+    private Compra compra;
     
 
-    public RelatorioProduto(java.awt.Frame parent, boolean modal) {
+    public AdicionarAoCarrinho(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
         label.setVisible(false);
         field_codProduto.setVisible(false);
 
-        desbloqueiaProduto();
     }
 
-    public RelatorioProduto(javax.swing.JFrame parent, boolean modal, ArrayList<Produto> produtos,int tipo) {
+    public AdicionarAoCarrinho(javax.swing.JFrame parent, boolean modal, ArrayList<Produto> produtos,int tipo) {
         super(parent, modal);
         initComponents();
         this.tipo = tipo;
@@ -41,7 +44,6 @@ public class RelatorioProduto extends javax.swing.JDialog {
 
         setLocationRelativeTo(null);
         tbShowDados();
-        desbloqueiaProduto();
     }
 
     @SuppressWarnings("unchecked")
@@ -56,7 +58,7 @@ public class RelatorioProduto extends javax.swing.JDialog {
         field_codProduto = new javax.swing.JTextField();
         label = new javax.swing.JLabel();
         closeIcon = new javax.swing.JLabel();
-        MostrarCodProd = new javax.swing.JButton();
+        AdicionarCarrinho = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setUndecorated(true);
@@ -78,7 +80,7 @@ public class RelatorioProduto extends javax.swing.JDialog {
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("BUSCA DE PRODUTO");
+        jLabel1.setText("ADICIONAR AO CARRINHO");
         CadastroProduto.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 350, 43));
         CadastroProduto.add(field_codProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 300, 29));
 
@@ -98,16 +100,16 @@ public class RelatorioProduto extends javax.swing.JDialog {
         });
         CadastroProduto.add(closeIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, -1, -1));
 
-        MostrarCodProd.setBackground(new java.awt.Color(255, 255, 255));
-        MostrarCodProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-mostrar-propriedade.-26.png"))); // NOI18N
-        MostrarCodProd.setText("MOSTRAR");
-        MostrarCodProd.setFocusPainted(false);
-        MostrarCodProd.addActionListener(new java.awt.event.ActionListener() {
+        AdicionarCarrinho.setBackground(new java.awt.Color(255, 255, 255));
+        AdicionarCarrinho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-adicionar-32.png"))); // NOI18N
+        AdicionarCarrinho.setText("ADICIONAR");
+        AdicionarCarrinho.setFocusPainted(false);
+        AdicionarCarrinho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MostrarCodProdActionPerformed(evt);
+                AdicionarCarrinhoActionPerformed(evt);
             }
         });
-        CadastroProduto.add(MostrarCodProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 130, 30));
+        CadastroProduto.add(AdicionarCarrinho, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 130, 30));
 
         getContentPane().add(CadastroProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 530));
 
@@ -124,45 +126,23 @@ public class RelatorioProduto extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_closeIconMouseClicked
 
-    private void MostrarCodProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarCodProdActionPerformed
+    private void AdicionarCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdicionarCarrinhoActionPerformed
         if ((field_codProduto.getText().isEmpty())) {
             JOptionPane.showMessageDialog(this, "Por favor informe o código do produto!");
             field_codProduto.requestFocus();
         } else {
-            Iterator i = produtos.iterator();
-            int cont = 0;
-            while (i.hasNext()) {
-                Produto produto = (Produto) i.next();
-                if (field_codProduto.getText().equals(produto.getCodigoBarras())){
-                    if (tipo == 2) {
-                        
-                        AlterarProduto alterar = new AlterarProduto(this, true, produto);
-                        alterar.setVisible(true);
-                        
-                    } else if (tipo == 3) {
-                           ConsultarProduto consultar = new  ConsultarProduto(this, true, produto);
-                           consultar.setVisible(true);
-                    } else {
-                        
-                        ExcluirProduto excluir = new ExcluirProduto(this, true, produto);
-                        excluir.setVisible(true);
-                        
-                    }
-                }else{
-                    cont++;
-                }
-                if(cont == produtos.size()){
-                    JOptionPane.showMessageDialog(rootPane, "Codigo não encontrado!");
-                }
-
-            }
+            
+            // tratar adicionar ao carrinho
+            JOptionPane.showMessageDialog(rootPane, "Produto adicionado ao carrinho com sucesso!");
 
         }
 
 
-    }//GEN-LAST:event_MostrarCodProdActionPerformed
+    }//GEN-LAST:event_AdicionarCarrinhoActionPerformed
 
     public void tbShowDados() {
+        
+        // tratar listar no table model.
         ArrayList<Produto> prod = produtos;
         dados.clear();
         for (Produto p : prod) {
@@ -183,11 +163,6 @@ public class RelatorioProduto extends javax.swing.JDialog {
 
   
     
-    private void desbloqueiaProduto() {
-        label.setVisible(true);
-        field_codProduto.setVisible(true);
-        MostrarCodProd.setVisible(true);
-    }
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -219,7 +194,7 @@ public class RelatorioProduto extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                RelatorioProduto dialog = new RelatorioProduto(new javax.swing.JFrame(), true);
+                AdicionarAoCarrinho dialog = new AdicionarAoCarrinho(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -232,8 +207,8 @@ public class RelatorioProduto extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AdicionarCarrinho;
     private javax.swing.JPanel CadastroProduto;
-    private javax.swing.JButton MostrarCodProd;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel closeIcon;
     private javax.swing.JTextField field_codProduto;

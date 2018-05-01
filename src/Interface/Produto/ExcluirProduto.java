@@ -60,7 +60,7 @@ public class ExcluirProduto extends javax.swing.JDialog {
         fundo9 = new javax.swing.JLabel();
         Painel6 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        codigoProduto = new javax.swing.JLabel();
+        codigoDeBarras = new javax.swing.JLabel();
         Painel7 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         preco = new javax.swing.JLabel();
@@ -73,10 +73,6 @@ public class ExcluirProduto extends javax.swing.JDialog {
         Painel9 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         paisDeOrigem = new javax.swing.JLabel();
-        fundo15 = new javax.swing.JLabel();
-        Painel10 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        codigoDeBarras = new javax.swing.JLabel();
         fundo16 = new javax.swing.JLabel();
         Painel12 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
@@ -155,8 +151,8 @@ public class ExcluirProduto extends javax.swing.JDialog {
         jLabel8.setForeground(new java.awt.Color(0, 0, 102));
         jLabel8.setText("CÓDIGO DO PRODUTO:");
 
-        codigoProduto.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        codigoProduto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        codigoDeBarras.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        codigoDeBarras.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout Painel6Layout = new javax.swing.GroupLayout(Painel6);
         Painel6.setLayout(Painel6Layout);
@@ -166,15 +162,15 @@ public class ExcluirProduto extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(codigoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(codigoDeBarras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         Painel6Layout.setVerticalGroup(
             Painel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Painel6Layout.createSequentialGroup()
                 .addGap(4, 4, 4)
                 .addGroup(Painel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(codigoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(codigoDeBarras, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -259,32 +255,6 @@ public class ExcluirProduto extends javax.swing.JDialog {
             .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
         );
 
-        fundo15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/fundoRelatorio.png"))); // NOI18N
-
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel12.setText("CÓDIGO DE BARRAS:");
-
-        codigoDeBarras.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        codigoDeBarras.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-
-        javax.swing.GroupLayout Painel10Layout = new javax.swing.GroupLayout(Painel10);
-        Painel10.setLayout(Painel10Layout);
-        Painel10Layout.setHorizontalGroup(
-            Painel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Painel10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel12)
-                .addGap(18, 18, 18)
-                .addComponent(codigoDeBarras, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
-        Painel10Layout.setVerticalGroup(
-            Painel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(codigoDeBarras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-        );
-
         fundo16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/fundoRelatorio.png"))); // NOI18N
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
@@ -322,14 +292,12 @@ public class ExcluirProduto extends javax.swing.JDialog {
                     .addComponent(fundo7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(Painel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(fundo14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(fundo15, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Painel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(fundo13, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(Painel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Painel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(fundo9, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Painel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Painel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Painel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(fundo16, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10))
@@ -357,10 +325,6 @@ public class ExcluirProduto extends javax.swing.JDialog {
                 .addComponent(Painel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(fundo14, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Painel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fundo15, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Painel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -452,7 +416,6 @@ public class ExcluirProduto extends javax.swing.JDialog {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Painel10;
     private javax.swing.JPanel Painel12;
     private javax.swing.JPanel Painel4;
     private javax.swing.JPanel Painel6;
@@ -464,18 +427,15 @@ public class ExcluirProduto extends javax.swing.JDialog {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel closeIcon;
     private javax.swing.JLabel codigoDeBarras;
-    private javax.swing.JLabel codigoProduto;
     private javax.swing.JLabel fundo11;
     private javax.swing.JLabel fundo13;
     private javax.swing.JLabel fundo14;
-    private javax.swing.JLabel fundo15;
     private javax.swing.JLabel fundo16;
     private javax.swing.JLabel fundo7;
     private javax.swing.JLabel fundo9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;

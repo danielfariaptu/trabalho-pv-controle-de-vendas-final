@@ -147,14 +147,12 @@
                               <Component id="fundo7" alignment="0" pref="0" max="32767" attributes="0"/>
                               <Component id="Painel7" alignment="0" max="32767" attributes="0"/>
                               <Component id="fundo14" alignment="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="fundo15" alignment="0" min="-2" pref="567" max="-2" attributes="0"/>
                               <Component id="Painel4" alignment="0" max="32767" attributes="0"/>
                               <Component id="fundo13" alignment="0" pref="0" max="32767" attributes="0"/>
                               <Component id="Painel8" alignment="0" max="32767" attributes="0"/>
                               <Component id="Painel6" alignment="0" max="32767" attributes="0"/>
                               <Component id="fundo9" alignment="0" min="-2" pref="575" max="-2" attributes="0"/>
                               <Component id="Painel9" alignment="0" max="32767" attributes="0"/>
-                              <Component id="Painel10" alignment="0" max="32767" attributes="0"/>
                               <Component id="Painel12" alignment="0" max="32767" attributes="0"/>
                               <Component id="fundo16" alignment="0" min="-2" pref="575" max="-2" attributes="0"/>
                           </Group>
@@ -185,11 +183,7 @@
                           <Component id="Painel9" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="fundo14" min="-2" pref="14" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="Painel10" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="fundo15" min="-2" pref="14" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Component id="Painel12" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="fundo16" min="-2" pref="9" max="-2" attributes="0"/>
@@ -274,8 +268,8 @@
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Component id="jLabel8" min="-2" pref="167" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="codigoProduto" min="-2" pref="145" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="codigoDeBarras" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -284,7 +278,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="codigoProduto" alignment="0" min="-2" pref="23" max="-2" attributes="0"/>
+                                  <Component id="codigoDeBarras" alignment="0" min="-2" pref="23" max="-2" attributes="0"/>
                                   <Component id="jLabel8" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -304,7 +298,7 @@
                         <Property name="text" type="java.lang.String" value="C&#xd3;DIGO DO PRODUTO:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="codigoProduto">
+                    <Component class="javax.swing.JLabel" name="codigoDeBarras">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Segoe UI" size="14" style="3"/>
@@ -458,56 +452,6 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="paisDeOrigem">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Segoe UI" size="14" style="3"/>
-                        </Property>
-                        <Property name="horizontalAlignment" type="int" value="2"/>
-                      </Properties>
-                    </Component>
-                  </SubComponents>
-                </Container>
-                <Component class="javax.swing.JLabel" name="fundo15">
-                  <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/icons/fundoRelatorio.png"/>
-                    </Property>
-                  </Properties>
-                </Component>
-                <Container class="javax.swing.JPanel" name="Painel10">
-
-                  <Layout>
-                    <DimensionLayout dim="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="codigoDeBarras" min="-2" pref="388" max="-2" attributes="0"/>
-                              <EmptySpace pref="19" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                    </DimensionLayout>
-                    <DimensionLayout dim="1">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="codigoDeBarras" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLabel12" alignment="0" pref="30" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
-                  </Layout>
-                  <SubComponents>
-                    <Component class="javax.swing.JLabel" name="jLabel12">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Segoe UI" size="14" style="3"/>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="66" green="0" red="0" type="rgb"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="C&#xd3;DIGO DE BARRAS:"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="codigoDeBarras">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Segoe UI" size="14" style="3"/>
