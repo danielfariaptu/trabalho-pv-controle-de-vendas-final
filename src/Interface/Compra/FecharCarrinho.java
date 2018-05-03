@@ -106,7 +106,7 @@ public class FecharCarrinho extends javax.swing.JDialog {
 
         FinalizarCompra.setBackground(new java.awt.Color(255, 255, 255));
         FinalizarCompra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-ok-32.png"))); // NOI18N
-        FinalizarCompra.setText("FINALIZAR COMPRA");
+        FinalizarCompra.setText("FINALIZAR PEDIDO");
         FinalizarCompra.setFocusPainted(false);
         FinalizarCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

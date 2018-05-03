@@ -130,7 +130,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/icons/icons8-ok-32.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="FINALIZAR COMPRA"/>
+            <Property name="text" type="java.lang.String" value="FINALIZAR PEDIDO"/>
             <Property name="focusPainted" type="boolean" value="false"/>
           </Properties>
           <Events>

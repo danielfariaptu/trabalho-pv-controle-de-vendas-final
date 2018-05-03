@@ -59,6 +59,7 @@ public class AdicionarAoCarrinho extends javax.swing.JDialog {
         label = new javax.swing.JLabel();
         closeIcon = new javax.swing.JLabel();
         AdicionarCarrinho = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setUndecorated(true);
@@ -82,14 +83,14 @@ public class AdicionarAoCarrinho extends javax.swing.JDialog {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("ADICIONAR AO CARRINHO");
         CadastroProduto.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 350, 43));
-        CadastroProduto.add(field_codProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 300, 29));
+        CadastroProduto.add(field_codProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 300, 29));
 
         label.setDisplayedMnemonic('n');
         label.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         label.setForeground(new java.awt.Color(255, 255, 255));
         label.setLabelFor(label);
         label.setText("DIGITE O CÓDIGO DO PRODUTO");
-        CadastroProduto.add(label, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
+        CadastroProduto.add(label, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, -1));
 
         closeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-close-window-40.png"))); // NOI18N
         closeIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -109,7 +110,12 @@ public class AdicionarAoCarrinho extends javax.swing.JDialog {
                 AdicionarCarrinhoActionPerformed(evt);
             }
         });
-        CadastroProduto.add(AdicionarCarrinho, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 130, 30));
+        CadastroProduto.add(AdicionarCarrinho, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, 130, 30));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Lista de Produtos:");
+        CadastroProduto.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
 
         getContentPane().add(CadastroProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 530));
 
@@ -213,6 +219,7 @@ public class AdicionarAoCarrinho extends javax.swing.JDialog {
     private javax.swing.JLabel closeIcon;
     private javax.swing.JTextField field_codProduto;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label;
     private javax.swing.JTable tmProduto;

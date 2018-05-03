@@ -184,12 +184,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botaoIncluirCompra = new javax.swing.JPanel();
         jLabel44 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
-        botaoAlterarCompra = new javax.swing.JPanel();
-        jLabel46 = new javax.swing.JLabel();
-        jLabel47 = new javax.swing.JLabel();
-        botaoRemoverCompra = new javax.swing.JPanel();
-        jLabel48 = new javax.swing.JLabel();
-        jLabel49 = new javax.swing.JLabel();
         botaoMostrarCompra = new javax.swing.JPanel();
         jLabel50 = new javax.swing.JLabel();
         jLabel51 = new javax.swing.JLabel();
@@ -1305,75 +1299,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jLabel44.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel44.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel44.setText("Incluir");
-        botaoIncluirCompra.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 12, 48, 50));
+        jLabel44.setText("Adicionar ao Carrinho");
+        botaoIncluirCompra.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 12, 150, 50));
 
-        jLabel45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/incluir.png"))); // NOI18N
+        jLabel45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-adicionar-o-carrinho-de-compras-filled-50.png"))); // NOI18N
         botaoIncluirCompra.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 12, -1, -1));
 
-        PainelCompra.add(botaoIncluirCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 150, 70));
-
-        botaoAlterarCompra.setBackground(new java.awt.Color(80, 77, 90));
-        botaoAlterarCompra.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
-        botaoAlterarCompra.setForeground(new java.awt.Color(255, 255, 255));
-        botaoAlterarCompra.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        botaoAlterarCompra.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botaoAlterarCompraMouseClicked(evt);
-            }
-        });
-        botaoAlterarCompra.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel46.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel46.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel46.setText("Alterar");
-        botaoAlterarCompra.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 12, 48, 50));
-
-        jLabel47.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/editar2.png"))); // NOI18N
-        botaoAlterarCompra.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 12, -1, -1));
-
-        PainelCompra.add(botaoAlterarCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, 150, 70));
-
-        botaoRemoverCompra.setBackground(new java.awt.Color(80, 77, 90));
-        botaoRemoverCompra.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
-        botaoRemoverCompra.setForeground(new java.awt.Color(255, 255, 255));
-        botaoRemoverCompra.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        botaoRemoverCompra.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botaoRemoverCompraMouseClicked(evt);
-            }
-        });
-
-        jLabel48.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel48.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel48.setText("Remover");
-
-        jLabel49.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/remove.png"))); // NOI18N
-
-        javax.swing.GroupLayout botaoRemoverCompraLayout = new javax.swing.GroupLayout(botaoRemoverCompra);
-        botaoRemoverCompra.setLayout(botaoRemoverCompraLayout);
-        botaoRemoverCompraLayout.setHorizontalGroup(
-            botaoRemoverCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, botaoRemoverCompraLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jLabel49)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel48, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        botaoRemoverCompraLayout.setVerticalGroup(
-            botaoRemoverCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, botaoRemoverCompraLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(botaoRemoverCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel48, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, botaoRemoverCompraLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel49)))
-                .addGap(21, 21, 21))
-        );
-
-        PainelCompra.add(botaoRemoverCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, -1, 70));
+        PainelCompra.add(botaoIncluirCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 240, 70));
 
         botaoMostrarCompra.setBackground(new java.awt.Color(80, 77, 90));
         botaoMostrarCompra.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
@@ -1387,9 +1319,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jLabel50.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel50.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel50.setText("Mostrar");
+        jLabel50.setText("Finalizar Pedido");
 
-        jLabel51.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/mostrar.png"))); // NOI18N
+        jLabel51.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-finalizar-pedido-filled-50.png"))); // NOI18N
 
         javax.swing.GroupLayout botaoMostrarCompraLayout = new javax.swing.GroupLayout(botaoMostrarCompra);
         botaoMostrarCompra.setLayout(botaoMostrarCompraLayout);
@@ -1399,7 +1331,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel51)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel50, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                .addComponent(jLabel50, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         botaoMostrarCompraLayout.setVerticalGroup(
@@ -1414,7 +1346,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addGap(21, 21, 21))
         );
 
-        PainelCompra.add(botaoMostrarCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 320, -1, 70));
+        PainelCompra.add(botaoMostrarCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 190, 250, 70));
 
         getContentPane().add(PainelCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 800, 530));
 
@@ -1680,14 +1612,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoIncluirCompraMouseClicked
 
-    private void botaoAlterarCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoAlterarCompraMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoAlterarCompraMouseClicked
-
-    private void botaoRemoverCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoRemoverCompraMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoRemoverCompraMouseClicked
-
     private void botaoMostrarCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoMostrarCompraMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoMostrarCompraMouseClicked
@@ -1832,7 +1756,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel PainelProduto;
     private javax.swing.JPanel ProdTitle;
     private javax.swing.JPanel botaoAlterarCli;
-    private javax.swing.JPanel botaoAlterarCompra;
     private javax.swing.JPanel botaoAlterarE;
     private javax.swing.JPanel botaoAlterarFatura;
     private javax.swing.JPanel botaoAlterarPag;
@@ -1858,7 +1781,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel botaoPainelPagamento;
     private javax.swing.JPanel botaoPainelProduto;
     private javax.swing.JPanel botaoRemoverCli;
-    private javax.swing.JPanel botaoRemoverCompra;
     private javax.swing.JPanel botaoRemoverE;
     private javax.swing.JPanel botaoRemoverFatura;
     private javax.swing.JPanel botaoRemoverPag;
@@ -1898,10 +1820,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
-    private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel48;
-    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
