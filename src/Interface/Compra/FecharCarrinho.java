@@ -23,7 +23,6 @@ public class FecharCarrinho extends javax.swing.JDialog {
 
     private ArrayList<Produto> produtos = new ArrayList<>();
     ArrayList<Object> dados = new ArrayList<>();
-    private int tipo;
     private Compra compra;
 
     public FecharCarrinho(java.awt.Frame parent, boolean modal) {
@@ -35,10 +34,9 @@ public class FecharCarrinho extends javax.swing.JDialog {
 
     }
 
-    public FecharCarrinho(javax.swing.JFrame parent, boolean modal, ArrayList<Produto> produtos, int tipo) {
+    public FecharCarrinho(javax.swing.JFrame parent, boolean modal, ArrayList<Produto> produtos) {
         super(parent, modal);
         initComponents();
-        this.tipo = tipo;
         this.produtos = produtos;
 
         setLocationRelativeTo(null);
@@ -246,9 +244,7 @@ public class FecharCarrinho extends javax.swing.JDialog {
 
     public void tbShowDados() {
 
-        //Listar carrinho aqui
-        compra.setData(LocalDate.now());
-        LocalDate hoje = compra.getData();
+        LocalDate hoje = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String hojeFormatado = hoje.format(formatter);
 

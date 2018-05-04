@@ -204,8 +204,6 @@ public class AlterarProduto extends javax.swing.JDialog {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
 
-        mostrar();
-
         if (!tfNome.getText().isEmpty()) {
             if (!tfPreco.getText().isEmpty()) {
                 if (!tfCodigoBarras.getText().isEmpty()) {

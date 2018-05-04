@@ -25,22 +25,19 @@ public class ProdutoDAO {
     }
 
     public void inserirNoBanco(Produto produto) {
-        PreparedStatement ps;
-        int id = chave();
         String sql;
         
-        sql =  "INSERT INTO produto(produto_id, nome, preco,estoque ,codigo_de_barras, tipo_de_uva, pais_de_origem, tipo_de_vinho) VALUES (?,?,?,?,?,?,?,?)";
+        sql =  "INSERT INTO produto(nome, preco,estoque ,codigo_de_barras, tipo_de_uva, pais_de_origem, tipo_de_vinho) VALUES (?,?,?,?,?,?,?)";
 
         try {
             ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
-            ps.setString(2, produto.getNome());
-            ps.setDouble(3, produto.getPreco());
-            ps.setInt(4, produto.getEstoque());
-            ps.setString(5, produto.getCodigoBarras());
-            ps.setString(6, produto.getTipoUva());
-            ps.setString(7, produto.getPaisOrigem());
-            ps.setString(8, produto.getTipoVinho());
+            ps.setString(1, produto.getNome());
+            ps.setDouble(2, produto.getPreco());
+            ps.setInt(3, produto.getEstoque());
+            ps.setString(4, produto.getCodigoBarras());
+            ps.setString(5, produto.getTipoUva());
+            ps.setString(6, produto.getPaisOrigem());
+            ps.setString(7, produto.getTipoVinho());
             ps.execute();
             ps.close();
 
@@ -75,8 +72,7 @@ public class ProdutoDAO {
             ps.setString(5, produto.getTipoUva());
             ps.setString(6, produto.getPaisOrigem());
             ps.setString(7, produto.getTipoVinho());
-            ps.setString(8, produto.getCodigoBarras());
-            JOptionPane.showMessageDialog(null, "SQL = "+ps);
+            ps.setString(8, produto.getCodigoBarras());;
             ps.execute();
             ps.close();
 
@@ -123,27 +119,5 @@ public class ProdutoDAO {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Erro ao excluir produto", JOptionPane.ERROR_MESSAGE);
         }      
-    }
-        private int chave() {
-        String sql;
-        PreparedStatement ps;
-        ResultSet rs;
-        int proximoCodigo = -1;
-
-        sql = "select max(produto_id) from produto";
-
-        try {
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-
-            if (rs.next()) {
-                proximoCodigo = rs.getInt(1);
-            }
-            ps.close();
-            return proximoCodigo+1;
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro de Referencia", JOptionPane.ERROR_MESSAGE);
-        }
-        return 0;
     }
 }

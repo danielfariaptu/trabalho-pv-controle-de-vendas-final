@@ -20,19 +20,4 @@ public class GerenciaCompra {
         gp = new GerenciaProduto();
     }
     
-//    public boolean cadastrarCompra(Produto produto, double total, LocalDate data) {
-//        Compra com = new Compra(produto, total, data);
-//        String result = compraBD.inserirNoBanco(com);
-//        return result.equals("sucesso");
-//    }
-//    
-    public boolean alterarCompra(Compra com) {
-        String result = compraBD.alterarNoBanco(com);
-        return result.equals("sucesso");
-    }
-    
-    public boolean excluirCompra(String produto) {
-        String result = compraBD.excluirDoBanco(produto);
-        return result.equals("sucesso");
-    }
 }

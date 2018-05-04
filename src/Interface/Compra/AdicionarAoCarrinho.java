@@ -36,10 +36,9 @@ public class AdicionarAoCarrinho extends javax.swing.JDialog {
 
     }
 
-    public AdicionarAoCarrinho(javax.swing.JFrame parent, boolean modal, ArrayList<Produto> produtos,int tipo) {
+    public AdicionarAoCarrinho(javax.swing.JFrame parent, boolean modal, ArrayList<Produto> produtos) {
         super(parent, modal);
         initComponents();
-        this.tipo = tipo;
         this.produtos = produtos;
 
         setLocationRelativeTo(null);
