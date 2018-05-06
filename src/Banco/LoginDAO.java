@@ -90,10 +90,6 @@ public class LoginDAO {
 
                     if (resultSet.next()) {
 
-                        //String name = resultSet.getString("nome");
-
-                        //JOptionPane.showMessageDialog(null, "Usuario logado com sucesso \n Nome: " + name);
-
                         return (true);
                        
 
@@ -105,14 +101,17 @@ public class LoginDAO {
                 return (false);
 
             }
+            
             resultSet.close();
             statement.close();
             conn.close();
+           
 
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Algo de errado aconteceu:\n " + erro.toString());
            
         }
+        
         return(false);
     }
 
