@@ -21,7 +21,7 @@ public class FecharCarrinho extends javax.swing.JDialog {
 
     private String[] colunas = {"Código ", "Nome", "Preço", "Estoque", "Tipo de Uva", "Tipo de Vinho", "País de Origem"};
 
-    private ArrayList<Produto> produtos = new ArrayList<>();
+    private ArrayList<Produto> carrinho;
     ArrayList<Object> dados = new ArrayList<>();
     private Compra compra;
 
@@ -34,10 +34,10 @@ public class FecharCarrinho extends javax.swing.JDialog {
 
     }
 
-    public FecharCarrinho(javax.swing.JFrame parent, boolean modal, ArrayList<Produto> produtos) {
+    public FecharCarrinho(javax.swing.JFrame parent, boolean modal, ArrayList<Produto> carrinho) {
         super(parent, modal);
         initComponents();
-        this.produtos = produtos;
+        this.carrinho = carrinho;
 
         setLocationRelativeTo(null);
         tbShowDados();
@@ -210,7 +210,7 @@ public class FecharCarrinho extends javax.swing.JDialog {
             field_codProduto.requestFocus();
         } else {
 
-            Iterator i = produtos.iterator();
+            Iterator i = carrinho.iterator();
             int cont = 0;
             while (i.hasNext()) {
                 Produto produto = (Produto) i.next();
@@ -220,12 +220,12 @@ public class FecharCarrinho extends javax.swing.JDialog {
 
                     if (JOptionPane.YES_OPTION == opcao) {
 
-                        //tratar remover do carrinho. Tela(ExcluirProdutoCarrinho)
-                        //ExcluirProdutoCarrinho excluir = new ExcluirProdutoCarrinho(this, true, produto);
-                        //excluir.setVisible(true);
+                        i.remove();
+                        cont--;
                         
                         JOptionPane.showMessageDialog(rootPane, "Produto removido do carrinho!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
                         tbShowDados();
+                        break;
                     } else if (JOptionPane.NO_OPTION == opcao) {
                         JOptionPane.showMessageDialog(rootPane, "Produto não removido!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
 
@@ -233,7 +233,7 @@ public class FecharCarrinho extends javax.swing.JDialog {
                 } else {
                     cont++;
                 }
-                if (cont == produtos.size()) {
+                if (cont == carrinho.size()) {
                     JOptionPane.showMessageDialog(rootPane, "Codigo não encontrado!");
                 }
 
@@ -244,15 +244,15 @@ public class FecharCarrinho extends javax.swing.JDialog {
 
     public void tbShowDados() {
 
-        LocalDate hoje = LocalDate.now();
+        /*LocalDate hoje = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String hojeFormatado = hoje.format(formatter);
 
         dataLocal.setText(hojeFormatado);
 
-        total.setText(String.valueOf(compra.getTotal()));
+        total.setText(String.valueOf(compra.getTotal()));*/
 
-        ArrayList<Produto> prod = produtos;
+        ArrayList<Produto> prod = carrinho;
         dados.clear();
         for (Produto p : prod) {
             dados.add(new Object[]{

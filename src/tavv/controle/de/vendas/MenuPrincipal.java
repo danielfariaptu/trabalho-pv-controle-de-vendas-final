@@ -28,6 +28,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
      
      private PessoaDAO pdao = new PessoaDAO(); 
      private ProdutoDAO proDAO = new ProdutoDAO();
+     private ArrayList<Produto> carrinho = new ArrayList<Produto>();
      
      GerenciaProduto gp = new GerenciaProduto();
      
@@ -1611,14 +1612,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoMostrarEMouseClicked
 
     private void botaoIncluirCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoIncluirCompraMouseClicked
-        AdicionarAoCarrinho adicionar = new AdicionarAoCarrinho(this, true, proDAO.relatorioProduto());
+        AdicionarAoCarrinho adicionar = new AdicionarAoCarrinho(this, true, proDAO.relatorioProduto(),carrinho);
         overlay.setVisible(true);
 	adicionar.setVisible(true);
         overlay.setVisible(false);
     }//GEN-LAST:event_botaoIncluirCompraMouseClicked
 
     private void botaoMostrarCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoMostrarCompraMouseClicked
-        FecharCarrinho fechar = new FecharCarrinho(this, true, proDAO.relatorioProduto());
+        FecharCarrinho fechar = new FecharCarrinho(this, true, carrinho);
         overlay.setVisible(true);
 	fechar.setVisible(true);
         overlay.setVisible(false);

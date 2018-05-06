@@ -25,7 +25,7 @@ public class AdicionarAoCarrinho extends javax.swing.JDialog {
     ArrayList<Object> dados = new ArrayList<>();
     private int tipo;
     private Compra compra;
-    
+    private ArrayList<Produto> carrinho;
 
     public AdicionarAoCarrinho(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -36,10 +36,11 @@ public class AdicionarAoCarrinho extends javax.swing.JDialog {
 
     }
 
-    public AdicionarAoCarrinho(javax.swing.JFrame parent, boolean modal, ArrayList<Produto> produtos) {
+    public AdicionarAoCarrinho(javax.swing.JFrame parent, boolean modal, ArrayList<Produto> produtos, ArrayList<Produto> carrinho) {
         super(parent, modal);
         initComponents();
         this.produtos = produtos;
+        this.carrinho = carrinho;
 
         setLocationRelativeTo(null);
         tbShowDados();
@@ -135,14 +136,23 @@ public class AdicionarAoCarrinho extends javax.swing.JDialog {
         if ((field_codProduto.getText().isEmpty())) {
             JOptionPane.showMessageDialog(this, "Por favor informe o código do produto!");
             field_codProduto.requestFocus();
-        } else {
-            
-            // tratar adicionar ao carrinho
-            JOptionPane.showMessageDialog(rootPane, "Produto adicionado ao carrinho com sucesso!");
+        } else {            
+                Iterator i = produtos.iterator();
+            int cont = 0;
+            while (i.hasNext()) {
+                Produto produto = (Produto) i.next();
+                if (field_codProduto.getText().equals(produto.getCodigoBarras())) {
+                    carrinho.add(produto);
+                    JOptionPane.showMessageDialog(rootPane, "Produto adicionado ao carrinho com sucesso!");
+                }else{
+                    cont++;
+                }
+                if(cont == produtos.size()){
+                    JOptionPane.showMessageDialog(rootPane, "Codigo não encontrado!");
+                }
 
+            }    
         }
-
-
     }//GEN-LAST:event_AdicionarCarrinhoActionPerformed
 
     public void tbShowDados() {
