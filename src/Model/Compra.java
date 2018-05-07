@@ -23,6 +23,10 @@ private LocalDate data;
         this.total = total;
         this.data = data;
     }
+    
+    public Compra(){
+    
+    }
 
     public ArrayList<Produto> getProdutos() {
         return produtos;

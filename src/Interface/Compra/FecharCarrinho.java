@@ -22,8 +22,16 @@ public class FecharCarrinho extends javax.swing.JDialog {
     private String[] colunas = {"Código ", "Nome", "Preço", "Estoque", "Tipo de Uva", "Tipo de Vinho", "País de Origem"};
 
     private ArrayList<Produto> carrinho;
-    ArrayList<Object> dados = new ArrayList<>();
-    private Compra compra;
+    private ArrayList<Object> dados = new ArrayList<>();
+    
+    
+    private Compra compra = new Compra();
+    private GerenciaCompra gc = new GerenciaCompra();
+    
+    //DATA
+    private LocalDate hoje = LocalDate.now();
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private String hojeFormatado = hoje.format(formatter);
 
     public FecharCarrinho(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -38,7 +46,6 @@ public class FecharCarrinho extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.carrinho = carrinho;
-
         setLocationRelativeTo(null);
         tbShowDados();
     }
@@ -190,17 +197,23 @@ public class FecharCarrinho extends javax.swing.JDialog {
         int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja Realmente Finalizar a compra?");
 
         if (JOptionPane.YES_OPTION == opcao) {
-
-            JOptionPane.showMessageDialog(rootPane, "Compra realizada com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
-
-            //tratar finalizar compra
-            this.dispose();
+            compra.setProdutos(carrinho);
+            compra.setTotal(gc.getTotal(carrinho));
+            compra.setData(hoje);
+            
+            RelatorioCliente relatorioCliente = new RelatorioCliente(this, true);
+            relatorioCliente.setVisible(true);
+            int id = relatorioCliente.getId();
+            if(id > -1){
+                gc.finalizarCompra(compra, id);
+                JOptionPane.showMessageDialog(rootPane, "Compra realizada com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+                carrinho.clear();
+                this.dispose(); 
+            }            
         } else if (JOptionPane.NO_OPTION == opcao) {
             JOptionPane.showMessageDialog(rootPane, "Compra não realizada!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         }
-
-
     }//GEN-LAST:event_FinalizarCompraActionPerformed
 
     private void RemoverCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoverCarrinhoActionPerformed
@@ -243,16 +256,11 @@ public class FecharCarrinho extends javax.swing.JDialog {
     }//GEN-LAST:event_RemoverCarrinhoActionPerformed
 
     public void tbShowDados() {
-
-        /*LocalDate hoje = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String hojeFormatado = hoje.format(formatter);
-
+        
+        total.setText(String.valueOf(gc.getTotal(carrinho)));
         dataLocal.setText(hojeFormatado);
-
-        total.setText(String.valueOf(compra.getTotal()));*/
-
         ArrayList<Produto> prod = carrinho;
+        
         dados.clear();
         for (Produto p : prod) {
             dados.add(new Object[]{
@@ -267,6 +275,7 @@ public class FecharCarrinho extends javax.swing.JDialog {
             tmCompra.setModel(dadosEndereco);
             repaint();
             validate();
+            
         }
     }
 
