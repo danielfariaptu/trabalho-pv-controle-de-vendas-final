@@ -241,20 +241,14 @@ public class PessoaDAO {
 
                 ArrayList<Endereco> enderecos = endDAO.buscarEnderecos(id);  
                 
-                if(rs.getString("cpf")!=null) {
-                    System.out.println("Nome: "+rs.getString("nome"));
+                if(rs.getString("cpf")!=null) {                    
                     PessoaFisica cliente = new PessoaFisica(rs.getString("cpf"), rs.getString("nome"), enderecos, rs.getDouble("limite_de_credito"));
-                    System.out.println("Cpf: "+cliente.getCpf());
                     cliente.setEnderecos(enderecos);
-                    System.out.println("End: "+enderecos.size());
                     cliente.setCodigo(id);
                     clientes.add(cliente);
                 } else {
-                    System.out.println("Nome: "+rs.getString("nome"));
-                    PessoaJuridica cliente = new PessoaJuridica(rs.getString("nomefantasia"), rs.getString("cnpj"), rs.getString("nome"), enderecos, rs.getDouble("limite_de_credito"));
-                    System.out.println("Cpf: "+cliente.getCnpj());
+                    PessoaJuridica cliente = new PessoaJuridica(rs.getString("nomefantasia"), rs.getString("cnpj"), rs.getString("nome"), enderecos, rs.getDouble("limite_de_credito"));                    
                     cliente.setEnderecos(enderecos);
-                    System.out.println("End: "+enderecos.size());
                     cliente.setCodigo(id);
                     clientes.add(cliente);
                 }

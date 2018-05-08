@@ -1,6 +1,5 @@
 package Interface.Compra;
 
-import Interface.Produto.*;
 import Interface.Endereco.*;
 import Model.NewTableModel;
 import Interface.*;
@@ -8,8 +7,6 @@ import Model.*;
 import Banco.*;
 import Controle.*;
 import Interface.Endereco.*;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import java.util.ArrayList;
 
@@ -17,35 +14,27 @@ import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 
-public class VincularCliente extends javax.swing.JDialog {
+public class RelatorioCliente extends javax.swing.JDialog {
 
-    private String[] colunasFisica = {"Código ", "Nome", "Limite de crédito", "CPF", "País de Origem"};
-    private String[] colunasJuridica = {"Código ", "Nome", "Limite de crédito", "Nome Fantasia", "CNPJ", "País de Origem"};
+    private String[] colunas = {"Codigo", "Nome", "Limite de Credito"};
 
-    private ArrayList<Compra> compra = new ArrayList<>();
-    private PessoaFisica pF;
-    private PessoaJuridica pJ;
-    private ArrayList<Cliente> clientes = new ArrayList<>();
-    ArrayList<Object> dados = new ArrayList<>();
+    private PessoaDAO pDAO = new PessoaDAO();
+    private ArrayList<Cliente> clientes;
+    private int id = -1;
+   
 
-    private int tipo;
-
-    public VincularCliente(java.awt.Frame parent, boolean modal) {
+    public RelatorioCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-
-        label.setVisible(false);
-        field_idCliente.setVisible(false);
-
+ 
     }
 
-    public VincularCliente(javax.swing.JFrame parent, boolean modal, ArrayList<Cliente> clientes) {
+    public RelatorioCliente(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
+        this.clientes = pDAO.buscarCliente();
         initComponents();
-        this.clientes = clientes;
-
         setLocationRelativeTo(null);
-        tbShowDados();
+        tbShowDados();   
     }
 
     @SuppressWarnings("unchecked")
@@ -55,13 +44,12 @@ public class VincularCliente extends javax.swing.JDialog {
         buttonGroup1 = new javax.swing.ButtonGroup();
         CadastroProduto = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tmCliente = new javax.swing.JTable();
+        tmEnderecos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        field_idCliente = new javax.swing.JTextField();
-        label = new javax.swing.JLabel();
+        field_codEndereco = new javax.swing.JTextField();
+        labelEnd = new javax.swing.JLabel();
         closeIcon = new javax.swing.JLabel();
-        Vincular = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        MostrarCodCliente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setUndecorated(true);
@@ -76,23 +64,43 @@ public class VincularCliente extends javax.swing.JDialog {
         });
         CadastroProduto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jScrollPane1.setViewportView(tmCliente);
+        tmEnderecos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Código", "Logradouro", "Número", "Bairro", "CEP"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tmEnderecos);
 
         CadastroProduto.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 710, 290));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("VINCULAR COMPRA AO CLIENTE");
-        CadastroProduto.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 420, 43));
-        CadastroProduto.add(field_idCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 300, 29));
+        jLabel1.setText("BUSCA DE CLIENTE");
+        CadastroProduto.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 350, 43));
+        CadastroProduto.add(field_codEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 300, 29));
 
-        label.setDisplayedMnemonic('n');
-        label.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        label.setForeground(new java.awt.Color(255, 255, 255));
-        label.setLabelFor(label);
-        label.setText("DIGITE O CÓDIGO DO CLIENTE");
-        CadastroProduto.add(label, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, -1));
+        labelEnd.setDisplayedMnemonic('n');
+        labelEnd.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        labelEnd.setForeground(new java.awt.Color(255, 255, 255));
+        labelEnd.setLabelFor(labelEnd);
+        labelEnd.setText("DIGITE O CÓDIGO DO CLIENTE");
+        CadastroProduto.add(labelEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
 
         closeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-close-window-40.png"))); // NOI18N
         closeIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -103,21 +111,16 @@ public class VincularCliente extends javax.swing.JDialog {
         });
         CadastroProduto.add(closeIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, -1, -1));
 
-        Vincular.setBackground(new java.awt.Color(255, 255, 255));
-        Vincular.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-adicionar-32.png"))); // NOI18N
-        Vincular.setText("Vincular");
-        Vincular.setFocusPainted(false);
-        Vincular.addActionListener(new java.awt.event.ActionListener() {
+        MostrarCodCliente.setBackground(new java.awt.Color(255, 255, 255));
+        MostrarCodCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-mostrar-propriedade.-26.png"))); // NOI18N
+        MostrarCodCliente.setText("FINALIZAR");
+        MostrarCodCliente.setFocusPainted(false);
+        MostrarCodCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VincularActionPerformed(evt);
+                MostrarCodClienteActionPerformed(evt);
             }
         });
-        CadastroProduto.add(Vincular, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, 130, 30));
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Lista de Clientes:");
-        CadastroProduto.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
+        CadastroProduto.add(MostrarCodCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 130, 30));
 
         getContentPane().add(CadastroProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 530));
 
@@ -134,67 +137,51 @@ public class VincularCliente extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_closeIconMouseClicked
 
-    private void VincularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VincularActionPerformed
-        if ((field_idCliente.getText().isEmpty())) {
-            JOptionPane.showMessageDialog(this, "Por favor informe o código do Cliente!");
-            field_idCliente.requestFocus();
+    private void MostrarCodClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarCodClienteActionPerformed
+        if ((field_codEndereco.getText().isEmpty())) {
+            JOptionPane.showMessageDialog(this, "Por favor informe o código do cliente!");
+            field_codEndereco.requestFocus();
         } else {
-
-            JOptionPane.showMessageDialog(rootPane, "Cliente vinculado a compra com sucesso!");
-
-        }
-
-
-    }//GEN-LAST:event_VincularActionPerformed
-
-    public void tbShowDados() {
-
-       /*tratar listar no table model.
-        ArrayList<Cliente> cli = clientes;
-        Iterator i = clientes.iterator();
-
-        while (i.hasNext()) {
-            Cliente cliente = (Cliente) i.next();
-            if (cliente instanceof PessoaFisica) {
-
-                dados.clear();
-                for (Cliente c : cli) {
-                    dados.add(new Object[]{
-                        c.getCodigo(),
-                        pF.getNome(),
-                        pF.getCpf(),
-                        pF.getLimiteCredito(),});
-
-                    NewTableModel dadosPessoa = new NewTableModel(dados, colunasFisica);
-                    tmCliente.setModel(dadosPessoa);
-                    repaint();
-                    validate();
+            Iterator i = clientes.iterator();
+            int cont = 0;
+            while (i.hasNext()) {
+                Cliente cliente = (Cliente) i.next();
+                if (Integer.parseInt(field_codEndereco.getText()) == cliente.getCodigo()) {
+                    this.id = cliente.getCodigo();
+                    this.dispose();
+                }else{
+                    cont++;
                 }
-
-            } else {
-
-                dados.clear();
-                for (Cliente c : cli) {
-                    dados.add(new Object[]{
-                        c.getCodigo(),
-                        pJ.getCnpj(),
-                        pJ.getNome(),
-                        pJ.getNomeFantasia(),
-                        pJ.getLimiteCredito()});
-
-                    NewTableModel dadosPessoa = new NewTableModel(dados, colunasJuridica);
-                    tmCliente.setModel(dadosPessoa);
-                    repaint();
-                    validate();
-
+                if(cont == clientes.size()){
+                    JOptionPane.showMessageDialog(rootPane, "Codigo não encontrado!");
                 }
-
             }
-        
+
         }
-        */
+    }//GEN-LAST:event_MostrarCodClienteActionPerformed
+    
+    public int getId(){ 
+        return this.id;        
+    }
+    
+    public void tbShowDados() {
+        ArrayList<Object> dados = new ArrayList<>();
+        dados.clear();
+       
+        for (Cliente cliente : clientes) {
+            dados.add(new Object[]{
+                cliente.getCodigo(),                
+                cliente.getNome(),
+                cliente.getLimiteCredito()
+            });
+            NewTableModel dadosEndereco = new NewTableModel(dados, colunas);
+            tmEnderecos.setModel(dadosEndereco);
+            repaint();
+            validate();
+        }
     }
 
+   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -225,7 +212,7 @@ public class VincularCliente extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                VincularCliente dialog = new VincularCliente(new javax.swing.JFrame(), true);
+                RelatorioCliente dialog = new RelatorioCliente(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -239,14 +226,13 @@ public class VincularCliente extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CadastroProduto;
-    private javax.swing.JButton Vincular;
+    private javax.swing.JButton MostrarCodCliente;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel closeIcon;
-    private javax.swing.JTextField field_idCliente;
+    private javax.swing.JTextField field_codEndereco;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel label;
-    private javax.swing.JTable tmCliente;
+    private javax.swing.JLabel labelEnd;
+    private javax.swing.JTable tmEnderecos;
     // End of variables declaration//GEN-END:variables
 }
