@@ -19,15 +19,15 @@ import javax.swing.table.TableModel;
 
 public class RelatorioCliente extends javax.swing.JDialog {
 
-    private String[] colunasFisica = {"Código ", "Nome", "Limite de crédito", "CPF", "País de Origem"};
-    private String[] colunasJuridica = {"Código ", "Nome", "Limite de crédito", "Nome Fantasia", "CNPJ", "País de Origem"};
+    private String[] colunas= {"Código ", "Nome", "Limite de crédito","Nome Fantasia" ,"CNPJ","CPF"};
 
-    private ArrayList<Compra> compra = new ArrayList<>();
+    
     private PessoaFisica pF;
     private PessoaJuridica pJ;
     private ArrayList<Cliente> clientes = new ArrayList<>();
     ArrayList<Object> dados = new ArrayList<>();
-
+    int x;
+    
     private int tipo;
 
     public RelatorioCliente(java.awt.Frame parent, boolean modal) {
@@ -39,11 +39,11 @@ public class RelatorioCliente extends javax.swing.JDialog {
 
     }
 
-    public RelatorioCliente(javax.swing.JFrame parent, boolean modal, ArrayList<Cliente> clientes) {
+    public RelatorioCliente(javax.swing.JFrame parent, boolean modal, int x, ArrayList<Cliente> clientes) {
         super(parent, modal);
         initComponents();
         this.clientes = clientes;
-
+        this.x = x;
         setLocationRelativeTo(null);
         tbShowDados();
     }
@@ -104,8 +104,8 @@ public class RelatorioCliente extends javax.swing.JDialog {
         CadastroProduto.add(closeIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, -1, -1));
 
         Vincular.setBackground(new java.awt.Color(255, 255, 255));
-        Vincular.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-adicionar-32.png"))); // NOI18N
-        Vincular.setText("Vincular");
+        Vincular.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-mostrar-propriedade.-26.png"))); // NOI18N
+        Vincular.setText("Mostrar");
         Vincular.setFocusPainted(false);
         Vincular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,49 +140,92 @@ public class RelatorioCliente extends javax.swing.JDialog {
             field_idCliente.requestFocus();
         } else {
 
-            JOptionPane.showMessageDialog(rootPane, "Cliente vinculado a compra com sucesso!");
+        if (!field_idCliente.getText().isEmpty()) {
+            Iterator i = clientes.iterator();
+            int tipo;
+            int cont = 0;
+            while (i.hasNext()) {
+                Cliente cliente = (Cliente) i.next();
+                if (cliente instanceof PessoaFisica) {
+                    tipo = 2;
+                } else {
+                    tipo = 1;
+                    field_idCliente.requestFocus();
+                }
+                if (cliente.getCodigo() == Integer.parseInt(field_idCliente.getText())) {
+                    if (x == 1) {
+                        ConsultarCliente consultar = new ConsultarCliente(this, true, tipo, cliente);
+                        consultar.setVisible(true);
+                        this.dispose();
+                    } else if (x == 2) {
+                        AlterarCliente alterar = new AlterarCliente(this, true, tipo, cliente);
+                        alterar.setVisible(true);
+                        this.dispose();
+                    } else {
+                        ExcluirCliente excluir = new ExcluirCliente(this, true, tipo, cliente);
+                        excluir.setVisible(true);
+                        this.dispose();
+                    }
+                } else {
+                    cont++;
+                }
+            }
+            if (cont == clientes.size()) {
+                JOptionPane.showMessageDialog(rootPane, "Codigo não encontrado!");
+                field_idCliente.requestFocus();
+            }
 
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Digite o Código do Cliente!");
+            field_idCliente.requestFocus();
         }
 
-
+ }
     }//GEN-LAST:event_VincularActionPerformed
 
     public void tbShowDados() {
 
-       /*tratar listar no table model.
+       
         ArrayList<Cliente> cli = clientes;
         Iterator i = clientes.iterator();
 
         while (i.hasNext()) {
             Cliente cliente = (Cliente) i.next();
             if (cliente instanceof PessoaFisica) {
-
+                PessoaFisica pF = (PessoaFisica) i.next();
+                
                 dados.clear();
                 for (Cliente c : cli) {
+                    
+   
                     dados.add(new Object[]{
                         c.getCodigo(),
                         pF.getNome(),
-                        pF.getCpf(),
-                        pF.getLimiteCredito(),});
+                        pF.getLimiteCredito(), 
+                        null,
+                        null,
+                        pF.getCpf()});
 
-                    NewTableModel dadosPessoa = new NewTableModel(dados, colunasFisica);
+                    NewTableModel dadosPessoa = new NewTableModel(dados, colunas);
                     tmCliente.setModel(dadosPessoa);
                     repaint();
                     validate();
                 }
 
             } else {
-
+                 PessoaJuridica pJ = (PessoaJuridica) i.next();
                 dados.clear();
+                 //private String[] colunas= {"Código ", "Nome", "Limite de crédito","Nome Fantasia" ,"CNPJ","CPF"};
                 for (Cliente c : cli) {
                     dados.add(new Object[]{
                         c.getCodigo(),
-                        pJ.getCnpj(),
                         pJ.getNome(),
+                        pJ.getLimiteCredito(),
                         pJ.getNomeFantasia(),
-                        pJ.getLimiteCredito()});
+                        pJ.getCnpj(),
+                        null});
 
-                    NewTableModel dadosPessoa = new NewTableModel(dados, colunasJuridica);
+                    NewTableModel dadosPessoa = new NewTableModel(dados, colunas);
                     tmCliente.setModel(dadosPessoa);
                     repaint();
                     validate();
@@ -192,7 +235,7 @@ public class RelatorioCliente extends javax.swing.JDialog {
             }
         
         }
-        */
+        
     }
 
     public static void main(String args[]) {

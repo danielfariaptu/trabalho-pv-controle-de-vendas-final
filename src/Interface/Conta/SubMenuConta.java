@@ -1,28 +1,35 @@
 
-package Interface.Cliente;
+package Interface.Conta;
+import Interface.Cliente.*;
 import Banco.PessoaDAO;
 import Model.Cliente;
+import Model.Compra;
+import Model.Conta;
 import Model.PessoaFisica;
 import Model.PessoaJuridica;
+import java.util.ArrayList;
 
 
-public class ConsultarCliente extends javax.swing.JDialog {
+public class SubMenuConta extends javax.swing.JDialog {
 
     private PessoaJuridica pj;
     private PessoaFisica pf;
     private PessoaDAO pDAO = new PessoaDAO();
     private Cliente cliente;
+    private Compra compra;
     private int excluido;
     private int tipoCliente;
+    
+    private ArrayList<Conta> conta = new ArrayList<>();
 
 
-    public ConsultarCliente(javax.swing.JDialog parent, boolean modal) {
+    public SubMenuConta(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();       
        
     }
 
-    public ConsultarCliente(javax.swing.JDialog parent, boolean modal, int tipoCliente, Cliente cliente) {
+    public SubMenuConta(javax.swing.JDialog parent, boolean modal, int tipoCliente, Cliente cliente) {
         super(parent, modal);
         this.tipoCliente = tipoCliente;
         this.cliente = cliente;
@@ -57,8 +64,10 @@ public class ConsultarCliente extends javax.swing.JDialog {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
+        botaoPagamento = new javax.swing.JPanel();
+        jLabel44 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
         TablePessoaJuridica = new javax.swing.JPanel();
-        fundo6 = new javax.swing.JLabel();
         fundo7 = new javax.swing.JLabel();
         Painel4 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -73,16 +82,22 @@ public class ConsultarCliente extends javax.swing.JDialog {
         idJuridica = new javax.swing.JLabel();
         fundo10 = new javax.swing.JLabel();
         Painel7 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
         limiteCreditoJuridica = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         fundo11 = new javax.swing.JLabel();
-        fundo12 = new javax.swing.JLabel();
+        Painel10 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        TotalConta = new javax.swing.JLabel();
+        Painel9 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        dataVenc = new javax.swing.JLabel();
         Painel8 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         nomeFantasia = new javax.swing.JLabel();
         fundo13 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        fundo14 = new javax.swing.JLabel();
         TablePessoaFisica = new javax.swing.JPanel();
-        fundo = new javax.swing.JLabel();
         fundo1 = new javax.swing.JLabel();
         Painel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -99,9 +114,24 @@ public class ConsultarCliente extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         LimiteDeCredito = new javax.swing.JLabel();
         fundo5 = new javax.swing.JLabel();
+        fundo12 = new javax.swing.JLabel();
+        Painel16 = new javax.swing.JPanel();
+        jLabel19 = new javax.swing.JLabel();
+        dataVenc6 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        Painel17 = new javax.swing.JPanel();
+        jLabel21 = new javax.swing.JLabel();
+        TotalConta1 = new javax.swing.JLabel();
+        fundo15 = new javax.swing.JLabel();
         closeIcon = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jBtn_Fechar = new javax.swing.JButton();
+        jBtn_Fechar1 = new javax.swing.JButton();
+        botaoFatura = new javax.swing.JPanel();
+        jLabel46 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        botaoCompras = new javax.swing.JPanel();
+        jLabel48 = new javax.swing.JLabel();
+        jLabel49 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -111,9 +141,28 @@ public class ConsultarCliente extends javax.swing.JDialog {
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        TablePessoaJuridica.setBackground(new java.awt.Color(255, 255, 255));
+        botaoPagamento.setBackground(new java.awt.Color(80, 77, 90));
+        botaoPagamento.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
+        botaoPagamento.setForeground(new java.awt.Color(255, 255, 255));
+        botaoPagamento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoPagamento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botaoPagamentoMouseClicked(evt);
+            }
+        });
+        botaoPagamento.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        fundo6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/fundoRelatorio.png"))); // NOI18N
+        jLabel44.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel44.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel44.setText("Pagamento");
+        botaoPagamento.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 12, 90, 50));
+
+        jLabel45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-bank-50.png"))); // NOI18N
+        botaoPagamento.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 12, -1, -1));
+
+        jPanel1.add(botaoPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 490, 160, 70));
+
+        TablePessoaJuridica.setBackground(new java.awt.Color(255, 255, 255));
 
         fundo7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/fundoRelatorio.png"))); // NOI18N
 
@@ -190,18 +239,21 @@ public class ConsultarCliente extends javax.swing.JDialog {
         );
         Painel6Layout.setVerticalGroup(
             Painel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(idJuridica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(Painel6Layout.createSequentialGroup()
+                .addGroup(Painel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addComponent(idJuridica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         fundo10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/fundoRelatorio.png"))); // NOI18N
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel9.setText("LIMITE DE CRÉDITO:");
-
         limiteCreditoJuridica.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         limiteCreditoJuridica.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel12.setText("LIMITE DE CRÉDITO:");
 
         javax.swing.GroupLayout Painel7Layout = new javax.swing.GroupLayout(Painel7);
         Painel7.setLayout(Painel7Layout);
@@ -209,7 +261,7 @@ public class ConsultarCliente extends javax.swing.JDialog {
             Painel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Painel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel9)
+                .addComponent(jLabel12)
                 .addGap(18, 18, 18)
                 .addComponent(limiteCreditoJuridica, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
                 .addContainerGap())
@@ -217,14 +269,66 @@ public class ConsultarCliente extends javax.swing.JDialog {
         Painel7Layout.setVerticalGroup(
             Painel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Painel7Layout.createSequentialGroup()
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(limiteCreditoJuridica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(Painel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(limiteCreditoJuridica, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
+                .addGap(0, 2, Short.MAX_VALUE))
         );
 
         fundo11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/fundoRelatorio.png"))); // NOI18N
 
-        fundo12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/fundoRelatorio.png"))); // NOI18N
+        Painel10.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 102), 1, true));
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel13.setText("TOTAL:");
+
+        TotalConta.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+
+        javax.swing.GroupLayout Painel10Layout = new javax.swing.GroupLayout(Painel10);
+        Painel10.setLayout(Painel10Layout);
+        Painel10Layout.setHorizontalGroup(
+            Painel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Painel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TotalConta, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        Painel10Layout.setVerticalGroup(
+            Painel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(TotalConta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        Painel9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 102), 1, true));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel11.setText("DATA DE VENCIMENTO:");
+
+        dataVenc.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+
+        javax.swing.GroupLayout Painel9Layout = new javax.swing.GroupLayout(Painel9);
+        Painel9.setLayout(Painel9Layout);
+        Painel9Layout.setHorizontalGroup(
+            Painel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Painel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(dataVenc, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(120, 120, 120))
+        );
+        Painel9Layout.setVerticalGroup(
+            Painel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Painel9Layout.createSequentialGroup()
+                .addGroup(Painel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addComponent(dataVenc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 102));
@@ -241,8 +345,8 @@ public class ConsultarCliente extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nomeFantasia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(6, 6, 6))
+                .addComponent(nomeFantasia, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         Painel8Layout.setVerticalGroup(
             Painel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,6 +356,12 @@ public class ConsultarCliente extends javax.swing.JDialog {
 
         fundo13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/fundoRelatorio.png"))); // NOI18N
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel9.setText("DADOS DA CONTA:");
+
+        fundo14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/fundoRelatorio.png"))); // NOI18N
+
         javax.swing.GroupLayout TablePessoaJuridicaLayout = new javax.swing.GroupLayout(TablePessoaJuridica);
         TablePessoaJuridica.setLayout(TablePessoaJuridicaLayout);
         TablePessoaJuridicaLayout.setHorizontalGroup(
@@ -260,22 +370,11 @@ public class ConsultarCliente extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(TablePessoaJuridicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(TablePessoaJuridicaLayout.createSequentialGroup()
-                        .addGroup(TablePessoaJuridicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(TablePessoaJuridicaLayout.createSequentialGroup()
-                                .addComponent(fundo9, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(TablePessoaJuridicaLayout.createSequentialGroup()
-                                .addComponent(Painel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(731, 731, 731)))
-                        .addComponent(fundo12))
+                        .addComponent(fundo9, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(TablePessoaJuridicaLayout.createSequentialGroup()
                         .addGroup(TablePessoaJuridicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(TablePessoaJuridicaLayout.createSequentialGroup()
-                                .addComponent(Painel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(45, 45, 45)
-                                .addComponent(fundo8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(fundo6, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Painel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Painel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(fundo7, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(TablePessoaJuridicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -283,51 +382,64 @@ public class ConsultarCliente extends javax.swing.JDialog {
                                 .addComponent(fundo10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(Painel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(fundo11, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fundo13))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addGroup(TablePessoaJuridicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(Painel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(fundo13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(fundo8)
+                            .addComponent(Painel9, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(TablePessoaJuridicaLayout.createSequentialGroup()
+                .addGroup(TablePessoaJuridicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(TablePessoaJuridicaLayout.createSequentialGroup()
+                        .addGap(243, 243, 243)
+                        .addComponent(jLabel9))
+                    .addGroup(TablePessoaJuridicaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(fundo14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(TablePessoaJuridicaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Painel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         TablePessoaJuridicaLayout.setVerticalGroup(
             TablePessoaJuridicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TablePessoaJuridicaLayout.createSequentialGroup()
-                .addGroup(TablePessoaJuridicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(TablePessoaJuridicaLayout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addGroup(TablePessoaJuridicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fundo6, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fundo8, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(54, 54, 54))
-                    .addGroup(TablePessoaJuridicaLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(Painel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(5, 5, 5)
-                        .addComponent(fundo10, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Painel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(fundo9, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(TablePessoaJuridicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fundo12, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Painel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
+                .addComponent(Painel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(fundo10, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Painel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(fundo9, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Painel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(fundo13, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addComponent(Painel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fundo7, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(Painel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(fundo7, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Painel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(fundo11, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fundo8, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Painel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fundo14, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Painel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.add(TablePessoaJuridica, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 630, 370));
 
         TablePessoaFisica.setBackground(new java.awt.Color(255, 255, 255));
-
-        fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/fundoRelatorio.png"))); // NOI18N
 
         fundo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/fundoRelatorio.png"))); // NOI18N
 
@@ -434,45 +546,107 @@ public class ConsultarCliente extends javax.swing.JDialog {
 
         fundo5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/fundoRelatorio.png"))); // NOI18N
 
+        fundo12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/fundoRelatorio.png"))); // NOI18N
+
+        Painel16.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 102), 1, true));
+
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel19.setText("DATA DE VENCIMENTO:");
+
+        dataVenc6.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+
+        javax.swing.GroupLayout Painel16Layout = new javax.swing.GroupLayout(Painel16);
+        Painel16.setLayout(Painel16Layout);
+        Painel16Layout.setHorizontalGroup(
+            Painel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Painel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(dataVenc6, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(120, 120, 120))
+        );
+        Painel16Layout.setVerticalGroup(
+            Painel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Painel16Layout.createSequentialGroup()
+                .addGroup(Painel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addComponent(dataVenc6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jLabel20.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel20.setText("DADOS DA CONTA:");
+
+        Painel17.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 102), 1, true));
+
+        jLabel21.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel21.setText("TOTAL:");
+
+        TotalConta1.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+
+        javax.swing.GroupLayout Painel17Layout = new javax.swing.GroupLayout(Painel17);
+        Painel17.setLayout(Painel17Layout);
+        Painel17Layout.setHorizontalGroup(
+            Painel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Painel17Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
+                .addComponent(TotalConta1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(86, Short.MAX_VALUE))
+        );
+        Painel17Layout.setVerticalGroup(
+            Painel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(TotalConta1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        fundo15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/fundoRelatorio.png"))); // NOI18N
+
         javax.swing.GroupLayout TablePessoaFisicaLayout = new javax.swing.GroupLayout(TablePessoaFisica);
         TablePessoaFisica.setLayout(TablePessoaFisicaLayout);
         TablePessoaFisicaLayout.setHorizontalGroup(
             TablePessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TablePessoaFisicaLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(TablePessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(TablePessoaFisicaLayout.createSequentialGroup()
-                        .addGroup(TablePessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Painel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, TablePessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(Painel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                .addComponent(fundo3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(674, 674, 674)
-                        .addComponent(fundo, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(fundo1, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fundo5, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Painel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(TablePessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(Painel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(fundo4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addGroup(TablePessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(TablePessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(Painel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, TablePessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(Painel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addComponent(fundo3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(fundo1, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fundo5, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Painel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(TablePessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(Painel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(fundo4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(Painel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Painel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fundo15)
+                            .addComponent(fundo12)))
+                    .addGroup(TablePessoaFisicaLayout.createSequentialGroup()
+                        .addGap(244, 244, 244)
+                        .addComponent(jLabel20)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         TablePessoaFisicaLayout.setVerticalGroup(
             TablePessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TablePessoaFisicaLayout.createSequentialGroup()
-                .addGroup(TablePessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(TablePessoaFisicaLayout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(fundo, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(TablePessoaFisicaLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(Painel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(5, 5, 5)
-                        .addComponent(fundo4, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)
-                        .addComponent(Painel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(5, 5, 5)
-                        .addComponent(fundo3, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addComponent(Painel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(fundo4, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addComponent(Painel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(fundo3, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Painel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -481,7 +655,17 @@ public class ConsultarCliente extends javax.swing.JDialog {
                 .addComponent(Painel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(fundo5, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fundo12, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(Painel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fundo15, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Painel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         jPanel1.add(TablePessoaFisica, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 630, 350));
@@ -497,21 +681,63 @@ public class ConsultarCliente extends javax.swing.JDialog {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("CONSULTA DE CLIENTE");
+        jLabel1.setText("DADOS CLIENTE/CONTA");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, 300, -1));
 
-        jBtn_Fechar.setBackground(new java.awt.Color(255, 255, 255));
-        jBtn_Fechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Arrow Back.png"))); // NOI18N
-        jBtn_Fechar.setMnemonic('S');
-        jBtn_Fechar.setText("Voltar");
-        jBtn_Fechar.setToolTipText("Salva os registros");
-        jBtn_Fechar.setFocusPainted(false);
-        jBtn_Fechar.addActionListener(new java.awt.event.ActionListener() {
+        jBtn_Fechar1.setBackground(new java.awt.Color(255, 255, 255));
+        jBtn_Fechar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Arrow Back.png"))); // NOI18N
+        jBtn_Fechar1.setMnemonic('S');
+        jBtn_Fechar1.setText("Voltar");
+        jBtn_Fechar1.setToolTipText("Salva os registros");
+        jBtn_Fechar1.setFocusPainted(false);
+        jBtn_Fechar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtn_FecharActionPerformed(evt);
+                jBtn_Fechar1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jBtn_Fechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 460, 120, 40));
+        jPanel1.add(jBtn_Fechar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 620, 120, 40));
+
+        botaoFatura.setBackground(new java.awt.Color(80, 77, 90));
+        botaoFatura.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
+        botaoFatura.setForeground(new java.awt.Color(255, 255, 255));
+        botaoFatura.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoFatura.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botaoFaturaMouseClicked(evt);
+            }
+        });
+        botaoFatura.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel46.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel46.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel46.setText("Fatura");
+        botaoFatura.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 12, 60, 50));
+
+        jLabel47.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-fatura-50.png"))); // NOI18N
+        botaoFatura.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 12, -1, -1));
+
+        jPanel1.add(botaoFatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 490, 150, 70));
+
+        botaoCompras.setBackground(new java.awt.Color(80, 77, 90));
+        botaoCompras.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
+        botaoCompras.setForeground(new java.awt.Color(255, 255, 255));
+        botaoCompras.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoCompras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botaoComprasMouseClicked(evt);
+            }
+        });
+        botaoCompras.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel48.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel48.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel48.setText("Compras");
+        botaoCompras.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 12, 70, 50));
+
+        jLabel49.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-finalizar-pedido-filled-50.png"))); // NOI18N
+        botaoCompras.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 12, -1, -1));
+
+        jPanel1.add(botaoCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 490, 160, 70));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -521,22 +747,34 @@ public class ConsultarCliente extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBtn_FecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_FecharActionPerformed
-      this.dispose();
-
-        
-    }//GEN-LAST:event_jBtn_FecharActionPerformed
-
     private void closeIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeIconMouseClicked
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_closeIconMouseClicked
+
+    private void jBtn_Fechar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_Fechar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtn_Fechar1ActionPerformed
+
+    private void botaoPagamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPagamentoMouseClicked
+     TelaPagamento pag = new TelaPagamento(this, true, cliente);
+       
+        pag.setVisible(true);
+    }//GEN-LAST:event_botaoPagamentoMouseClicked
+
+    private void botaoFaturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoFaturaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoFaturaMouseClicked
+
+    private void botaoComprasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoComprasMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoComprasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -555,14 +793,16 @@ public class ConsultarCliente extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SubMenuConta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SubMenuConta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SubMenuConta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConsultarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SubMenuConta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
      
@@ -571,7 +811,7 @@ public class ConsultarCliente extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ConsultarCliente dialog = new ConsultarCliente(new javax.swing.JDialog(), true);
+                SubMenuConta dialog = new SubMenuConta(new javax.swing.JDialog(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -610,6 +850,14 @@ public class ConsultarCliente extends javax.swing.JDialog {
     private javax.swing.JLabel LimiteDeCredito;
     private javax.swing.JPanel Painel;
     private javax.swing.JPanel Painel1;
+    private javax.swing.JPanel Painel10;
+    private javax.swing.JPanel Painel11;
+    private javax.swing.JPanel Painel12;
+    private javax.swing.JPanel Painel13;
+    private javax.swing.JPanel Painel14;
+    private javax.swing.JPanel Painel15;
+    private javax.swing.JPanel Painel16;
+    private javax.swing.JPanel Painel17;
     private javax.swing.JPanel Painel2;
     private javax.swing.JPanel Painel3;
     private javax.swing.JPanel Painel4;
@@ -617,33 +865,63 @@ public class ConsultarCliente extends javax.swing.JDialog {
     private javax.swing.JPanel Painel6;
     private javax.swing.JPanel Painel7;
     private javax.swing.JPanel Painel8;
+    private javax.swing.JPanel Painel9;
     private javax.swing.JPanel TablePessoaFisica;
     private javax.swing.JPanel TablePessoaJuridica;
+    private javax.swing.JLabel TotalConta;
+    private javax.swing.JLabel TotalConta1;
+    private javax.swing.JPanel botaoCompras;
+    private javax.swing.JPanel botaoFatura;
+    private javax.swing.JPanel botaoPagamento;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel closeIcon;
     private javax.swing.JLabel cnpj;
     private javax.swing.JLabel cpf;
-    private javax.swing.JLabel fundo;
+    private javax.swing.JLabel dataVenc;
+    private javax.swing.JLabel dataVenc1;
+    private javax.swing.JLabel dataVenc2;
+    private javax.swing.JLabel dataVenc3;
+    private javax.swing.JLabel dataVenc4;
+    private javax.swing.JLabel dataVenc5;
+    private javax.swing.JLabel dataVenc6;
     private javax.swing.JLabel fundo1;
     private javax.swing.JLabel fundo10;
     private javax.swing.JLabel fundo11;
     private javax.swing.JLabel fundo12;
     private javax.swing.JLabel fundo13;
+    private javax.swing.JLabel fundo14;
+    private javax.swing.JLabel fundo15;
     private javax.swing.JLabel fundo3;
     private javax.swing.JLabel fundo4;
     private javax.swing.JLabel fundo5;
-    private javax.swing.JLabel fundo6;
     private javax.swing.JLabel fundo7;
     private javax.swing.JLabel fundo8;
     private javax.swing.JLabel fundo9;
     private javax.swing.JLabel id;
     private javax.swing.JLabel idJuridica;
-    private javax.swing.JButton jBtn_Fechar;
+    private javax.swing.JButton jBtn_Fechar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

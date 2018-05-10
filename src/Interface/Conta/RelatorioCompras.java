@@ -1,5 +1,6 @@
-package Interface.Compra;
+package Interface.Conta;
 
+import Interface.Compra.*;
 import Interface.Endereco.*;
 import Model.NewTableModel;
 import Interface.*;
@@ -14,27 +15,27 @@ import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 
-public class RelatorioCliente extends javax.swing.JDialog {
+public class RelatorioCompras extends javax.swing.JDialog {
 
-    private String[] colunas = {"Codigo", "CPF","Nome", "Limite de Credito"};
+    private String[] colunas = {"Código da Compra", "Quantidade de Produtos", "Data de Compra", "Total da Compra"};
 
-    private PessoaDAO pDAO = new PessoaDAO();
+    private CompraDAO compraDAO = new CompraDAO();
+    private ArrayList<Compra> compras;
     private ArrayList<Cliente> clientes;
     private int id = -1;
-   
 
-    public RelatorioCliente(java.awt.Frame parent, boolean modal) {
+    public RelatorioCompras(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
- 
+
     }
 
-    public RelatorioCliente(javax.swing.JDialog parent, boolean modal) {
+    public RelatorioCompras(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
-        this.clientes = pDAO.buscarCliente();
+
         initComponents();
         setLocationRelativeTo(null);
-        tbShowDados();   
+        tbShowDados();
     }
 
     @SuppressWarnings("unchecked")
@@ -44,9 +45,9 @@ public class RelatorioCliente extends javax.swing.JDialog {
         buttonGroup1 = new javax.swing.ButtonGroup();
         CadastroProduto = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tmEnderecos = new javax.swing.JTable();
+        tmCompra = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        field_codEndereco = new javax.swing.JTextField();
+        field_codCliente = new javax.swing.JTextField();
         labelEnd = new javax.swing.JLabel();
         closeIcon = new javax.swing.JLabel();
         MostrarCodCliente = new javax.swing.JButton();
@@ -64,42 +65,42 @@ public class RelatorioCliente extends javax.swing.JDialog {
         });
         CadastroProduto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tmEnderecos.setModel(new javax.swing.table.DefaultTableModel(
+        tmCompra.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Código", "Logradouro", "Número", "Bairro", "CEP"
+                "Codigo Da Compra", "Quantidade de Produtos", "Data de Compra", "Total da Compra"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                true, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tmEnderecos);
+        jScrollPane1.setViewportView(tmCompra);
 
         CadastroProduto.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 710, 290));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("BUSCA DE CLIENTE");
+        jLabel1.setText("Relatório de Compras");
         CadastroProduto.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 350, 43));
-        CadastroProduto.add(field_codEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 300, 29));
+        CadastroProduto.add(field_codCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 300, 29));
 
         labelEnd.setDisplayedMnemonic('n');
         labelEnd.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         labelEnd.setForeground(new java.awt.Color(255, 255, 255));
         labelEnd.setLabelFor(labelEnd);
-        labelEnd.setText("DIGITE O CÓDIGO DO CLIENTE");
+        labelEnd.setText("DIGITE O CÓDIGO DA COMPRA");
         CadastroProduto.add(labelEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
 
         closeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-close-window-40.png"))); // NOI18N
@@ -113,14 +114,14 @@ public class RelatorioCliente extends javax.swing.JDialog {
 
         MostrarCodCliente.setBackground(new java.awt.Color(255, 255, 255));
         MostrarCodCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-mostrar-propriedade.-26.png"))); // NOI18N
-        MostrarCodCliente.setText("FINALIZAR");
+        MostrarCodCliente.setText("Mostrar ");
         MostrarCodCliente.setFocusPainted(false);
         MostrarCodCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MostrarCodClienteActionPerformed(evt);
             }
         });
-        CadastroProduto.add(MostrarCodCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 130, 30));
+        CadastroProduto.add(MostrarCodCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 120, 30));
 
         getContentPane().add(CadastroProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 530));
 
@@ -138,50 +139,51 @@ public class RelatorioCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_closeIconMouseClicked
 
     private void MostrarCodClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarCodClienteActionPerformed
-        if ((field_codEndereco.getText().isEmpty())) {
-            JOptionPane.showMessageDialog(this, "Por favor informe o código do cliente!");
-            field_codEndereco.requestFocus();
+        if ((field_codCliente.getText().isEmpty())) {
+            JOptionPane.showMessageDialog(this, "Por favor informe o código da compra!");
+            field_codCliente.requestFocus();
         } else {
             Iterator i = clientes.iterator();
             int cont = 0;
             while (i.hasNext()) {
-                Cliente cliente = (Cliente) i.next();
-                if (Integer.parseInt(field_codEndereco.getText()) == cliente.getCodigo()) {
-                    this.id = cliente.getCodigo();
-                    this.dispose();
-                }else{
+                Compra compra = (Compra) i.next();
+                if (Integer.parseInt(field_codCliente.getText()) == 0 /*compra.getCodigo()*/) {
+                    /*this.id =  compra.getCodigo();*/
+                 //   ConsultarCompra consultar = new ConsultarCompra(this, true, compra, cliente);
+                  //  consultar.setVisible(true);
+                } else {
                     cont++;
                 }
-                if(cont == clientes.size()){
+                if (cont == clientes.size()) {
                     JOptionPane.showMessageDialog(rootPane, "Codigo não encontrado!");
                 }
             }
 
         }
     }//GEN-LAST:event_MostrarCodClienteActionPerformed
-    
-    public int getId(){ 
-        return this.id;        
+
+    public int getId() {
+        return this.id;
     }
-    
+
     public void tbShowDados() {
         ArrayList<Object> dados = new ArrayList<>();
         dados.clear();
-       
-        for (Cliente cliente : clientes) {
+
+        for (Compra compra : compras) {
             dados.add(new Object[]{
-                cliente.getCodigo(),                
-                cliente.getNome(),
-                cliente.getLimiteCredito()
+                /*compra.getCodigo(),*/
+                /*compra.getQtdProdutos(),*/
+                compra.getData(),
+                compra.getTotal()
             });
-            NewTableModel dadosEndereco = new NewTableModel(dados, colunas);
-            tmEnderecos.setModel(dadosEndereco);
+            NewTableModel dadosCompra = new NewTableModel(dados, colunas);
+            tmCompra.setModel(dadosCompra);
             repaint();
             validate();
         }
     }
 
-   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -212,7 +214,7 @@ public class RelatorioCliente extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                RelatorioCliente dialog = new RelatorioCliente(new javax.swing.JFrame(), true);
+                RelatorioCompras dialog = new RelatorioCompras(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -229,10 +231,10 @@ public class RelatorioCliente extends javax.swing.JDialog {
     private javax.swing.JButton MostrarCodCliente;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel closeIcon;
-    private javax.swing.JTextField field_codEndereco;
+    private javax.swing.JTextField field_codCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelEnd;
-    private javax.swing.JTable tmEnderecos;
+    private javax.swing.JTable tmCompra;
     // End of variables declaration//GEN-END:variables
 }

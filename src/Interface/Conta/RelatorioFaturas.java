@@ -1,5 +1,6 @@
-package Interface.Compra;
+package Interface.Conta;
 
+import Interface.Compra.*;
 import Interface.Endereco.*;
 import Model.NewTableModel;
 import Interface.*;
@@ -14,27 +15,26 @@ import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 
-public class RelatorioCliente extends javax.swing.JDialog {
+public class RelatorioFaturas extends javax.swing.JDialog {
 
-    private String[] colunas = {"Codigo", "CPF","Nome", "Limite de Credito"};
+    private String[] colunas = {"Código da Fatura", "Data de Quitação", "Juros", "Quantidade de Parcelas"};
 
-    private PessoaDAO pDAO = new PessoaDAO();
+    private ArrayList<Fatura> faturas;
     private ArrayList<Cliente> clientes;
     private int id = -1;
-   
 
-    public RelatorioCliente(java.awt.Frame parent, boolean modal) {
+    public RelatorioFaturas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
- 
+
     }
 
-    public RelatorioCliente(javax.swing.JDialog parent, boolean modal) {
+    public RelatorioFaturas(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
-        this.clientes = pDAO.buscarCliente();
+
         initComponents();
         setLocationRelativeTo(null);
-        tbShowDados();   
+        tbShowDados();
     }
 
     @SuppressWarnings("unchecked")
@@ -42,65 +42,65 @@ public class RelatorioCliente extends javax.swing.JDialog {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        CadastroProduto = new javax.swing.JPanel();
+        RelatFatura = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tmEnderecos = new javax.swing.JTable();
+        tmFatura = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        field_codEndereco = new javax.swing.JTextField();
-        labelEnd = new javax.swing.JLabel();
+        field_codFatura = new javax.swing.JTextField();
+        label1 = new javax.swing.JLabel();
         closeIcon = new javax.swing.JLabel();
-        MostrarCodCliente = new javax.swing.JButton();
+        Mostrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        CadastroProduto.setBackground(new java.awt.Color(0, 0, 51));
-        CadastroProduto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        CadastroProduto.addComponentListener(new java.awt.event.ComponentAdapter() {
+        RelatFatura.setBackground(new java.awt.Color(0, 0, 51));
+        RelatFatura.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        RelatFatura.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
-                CadastroProdutoComponentShown(evt);
+                RelatFaturaComponentShown(evt);
             }
         });
-        CadastroProduto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        RelatFatura.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tmEnderecos.setModel(new javax.swing.table.DefaultTableModel(
+        tmFatura.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Código", "Logradouro", "Número", "Bairro", "CEP"
+                "Codigo Da Fatura", "Data de Quitação", "Juros", "Quantidade de Parcelas"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                true, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tmEnderecos);
+        jScrollPane1.setViewportView(tmFatura);
 
-        CadastroProduto.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 710, 290));
+        RelatFatura.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 710, 290));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("BUSCA DE CLIENTE");
-        CadastroProduto.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 350, 43));
-        CadastroProduto.add(field_codEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 300, 29));
+        jLabel1.setText("Relatório de Faturas");
+        RelatFatura.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 350, 43));
+        RelatFatura.add(field_codFatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 300, 29));
 
-        labelEnd.setDisplayedMnemonic('n');
-        labelEnd.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        labelEnd.setForeground(new java.awt.Color(255, 255, 255));
-        labelEnd.setLabelFor(labelEnd);
-        labelEnd.setText("DIGITE O CÓDIGO DO CLIENTE");
-        CadastroProduto.add(labelEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
+        label1.setDisplayedMnemonic('n');
+        label1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        label1.setForeground(new java.awt.Color(255, 255, 255));
+        label1.setLabelFor(label1);
+        label1.setText("DIGITE O CÓDIGO DA FATURA");
+        RelatFatura.add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
 
         closeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-close-window-40.png"))); // NOI18N
         closeIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -109,79 +109,81 @@ public class RelatorioCliente extends javax.swing.JDialog {
                 closeIconMouseClicked(evt);
             }
         });
-        CadastroProduto.add(closeIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, -1, -1));
+        RelatFatura.add(closeIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, -1, -1));
 
-        MostrarCodCliente.setBackground(new java.awt.Color(255, 255, 255));
-        MostrarCodCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-mostrar-propriedade.-26.png"))); // NOI18N
-        MostrarCodCliente.setText("FINALIZAR");
-        MostrarCodCliente.setFocusPainted(false);
-        MostrarCodCliente.addActionListener(new java.awt.event.ActionListener() {
+        Mostrar.setBackground(new java.awt.Color(255, 255, 255));
+        Mostrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-mostrar-propriedade.-26.png"))); // NOI18N
+        Mostrar.setText("Mostrar ");
+        Mostrar.setFocusPainted(false);
+        Mostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MostrarCodClienteActionPerformed(evt);
+                MostrarActionPerformed(evt);
             }
         });
-        CadastroProduto.add(MostrarCodCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 130, 30));
+        RelatFatura.add(Mostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 120, 30));
 
-        getContentPane().add(CadastroProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 530));
+        getContentPane().add(RelatFatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 530));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CadastroProdutoComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_CadastroProdutoComponentShown
+    private void RelatFaturaComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_RelatFaturaComponentShown
 
-    }//GEN-LAST:event_CadastroProdutoComponentShown
+    }//GEN-LAST:event_RelatFaturaComponentShown
 
     private void closeIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeIconMouseClicked
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_closeIconMouseClicked
 
-    private void MostrarCodClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarCodClienteActionPerformed
-        if ((field_codEndereco.getText().isEmpty())) {
-            JOptionPane.showMessageDialog(this, "Por favor informe o código do cliente!");
-            field_codEndereco.requestFocus();
+    private void MostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarActionPerformed
+        if ((field_codFatura.getText().isEmpty())) {
+            JOptionPane.showMessageDialog(this, "Por favor informe o código da compra!");
+            field_codFatura.requestFocus();
         } else {
-            Iterator i = clientes.iterator();
+            Iterator i = faturas.iterator();
             int cont = 0;
             while (i.hasNext()) {
-                Cliente cliente = (Cliente) i.next();
-                if (Integer.parseInt(field_codEndereco.getText()) == cliente.getCodigo()) {
-                    this.id = cliente.getCodigo();
-                    this.dispose();
-                }else{
+                Fatura fatura = (Fatura) i.next();
+                if (Integer.parseInt(field_codFatura.getText()) == 0 /*compra.getCodigo()*/) {
+                    /*this.id =  compra.getCodigo();*/
+                 // ConsultarCompra consultar = new ConsultarCompra(this, true, compra, cliente);
+                  //  consultar.setVisible(true);
+                } else {
                     cont++;
                 }
-                if(cont == clientes.size()){
+                if (cont == clientes.size()) {
                     JOptionPane.showMessageDialog(rootPane, "Codigo não encontrado!");
                 }
             }
 
         }
-    }//GEN-LAST:event_MostrarCodClienteActionPerformed
-    
-    public int getId(){ 
-        return this.id;        
+    }//GEN-LAST:event_MostrarActionPerformed
+
+    public int getId() {
+        return this.id;
     }
-    
+
     public void tbShowDados() {
         ArrayList<Object> dados = new ArrayList<>();
         dados.clear();
-       
-        for (Cliente cliente : clientes) {
+
+        for (Fatura fatura : faturas) {
             dados.add(new Object[]{
-                cliente.getCodigo(),                
-                cliente.getNome(),
-                cliente.getLimiteCredito()
+                              
+               // fatura.getCodigo(),
+                fatura.getDataQuitacao(),
+                fatura.getJuros(),
+                fatura.getQuantParcelas()
             });
-            NewTableModel dadosEndereco = new NewTableModel(dados, colunas);
-            tmEnderecos.setModel(dadosEndereco);
+            NewTableModel dadosFatura = new NewTableModel(dados, colunas);
+            tmFatura.setModel(dadosFatura);
             repaint();
             validate();
         }
     }
 
-   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -212,7 +214,7 @@ public class RelatorioCliente extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                RelatorioCliente dialog = new RelatorioCliente(new javax.swing.JFrame(), true);
+                RelatorioFaturas dialog = new RelatorioFaturas(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -225,14 +227,14 @@ public class RelatorioCliente extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel CadastroProduto;
-    private javax.swing.JButton MostrarCodCliente;
+    private javax.swing.JButton Mostrar;
+    private javax.swing.JPanel RelatFatura;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel closeIcon;
-    private javax.swing.JTextField field_codEndereco;
+    private javax.swing.JTextField field_codFatura;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel labelEnd;
-    private javax.swing.JTable tmEnderecos;
+    private javax.swing.JLabel label1;
+    private javax.swing.JTable tmFatura;
     // End of variables declaration//GEN-END:variables
 }

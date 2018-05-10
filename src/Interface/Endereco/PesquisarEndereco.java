@@ -30,6 +30,7 @@ public class PesquisarEndereco extends javax.swing.JDialog {
     public PesquisarEndereco(java.awt.Frame parent, boolean modal, int x, ArrayList<Cliente> clientes) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
         this.x = x;
         this.clientes = clientes;
         setLocationRelativeTo(null);
