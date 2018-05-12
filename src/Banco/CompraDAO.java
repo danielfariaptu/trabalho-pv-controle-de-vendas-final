@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -24,6 +25,8 @@ public class CompraDAO {
     private Connection con;
     private Statement stm;
     private ResultSet rs;
+    private ProdutoDAO produtoDAO = new ProdutoDAO();
+    
     LocalDateTime agora = LocalDateTime.now();
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -178,4 +181,46 @@ public class CompraDAO {
         }
         return 0;
     }
+        public ArrayList<Compra> buscarCompras(int id) {
+            
+        ArrayList<Compra> compras = new ArrayList<Compra>();        
+        double total;
+        
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT * FROM compra WHERE fk_conta_id = ?";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total = 0;
+                Compra compra = new Compra();
+                
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                LocalDate date = LocalDate.parse(rs.getString("data") ,formatter);   
+                
+                compra.setData(date);
+                compra.setId(rs.getInt("compra_id"));                
+                compra.setProdutos(produtoDAO.relatorioProdutoCompra(compra.getId()));
+                
+                Iterator i = compra.getProdutos().iterator();
+                while(i.hasNext()){
+                    Produto produto = (Produto) i.next();
+                    total += produto.getPreco();
+                }
+                compra.setTotal(total);
+                compras.add(compra);
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "// Erro buscarCompras", JOptionPane.ERROR_MESSAGE);
+        }
+        return compras;
+    }    
 }

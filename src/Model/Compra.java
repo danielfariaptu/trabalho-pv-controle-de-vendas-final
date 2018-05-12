@@ -16,6 +16,7 @@ public class Compra {
 
 private ArrayList<Produto> produtos;
 private double total;
+private int id;
 private LocalDate data;
 
     public Compra(ArrayList<Produto> produtos, double total, LocalDate data) {
@@ -28,6 +29,15 @@ private LocalDate data;
     
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    
     public ArrayList<Produto> getProdutos() {
         return produtos;
     }

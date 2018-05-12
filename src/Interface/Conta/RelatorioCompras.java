@@ -21,7 +21,7 @@ public class RelatorioCompras extends javax.swing.JDialog {
 
     private CompraDAO compraDAO = new CompraDAO();
     private ArrayList<Compra> compras;
-    private ArrayList<Cliente> clientes;
+    private Cliente cliente;
     private int id = -1;
 
     public RelatorioCompras(java.awt.Frame parent, boolean modal) {
@@ -30,9 +30,10 @@ public class RelatorioCompras extends javax.swing.JDialog {
 
     }
 
-    public RelatorioCompras(javax.swing.JDialog parent, boolean modal) {
+    public RelatorioCompras(javax.swing.JDialog parent, boolean modal, Cliente cliente, ArrayList<Compra> compras) {
         super(parent, modal);
-
+        this.compras = compras;
+        this.cliente = cliente;
         initComponents();
         setLocationRelativeTo(null);
         tbShowDados();
@@ -143,22 +144,21 @@ public class RelatorioCompras extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Por favor informe o código da compra!");
             field_codCliente.requestFocus();
         } else {
-            Iterator i = clientes.iterator();
+            Iterator i = compras.iterator();
             int cont = 0;
             while (i.hasNext()) {
                 Compra compra = (Compra) i.next();
-                if (Integer.parseInt(field_codCliente.getText()) == 0 /*compra.getCodigo()*/) {
-                    /*this.id =  compra.getCodigo();*/
-                 //   ConsultarCompra consultar = new ConsultarCompra(this, true, compra, cliente);
-                  //  consultar.setVisible(true);
+                if (Integer.parseInt(field_codCliente.getText()) == compra.getId()) {
+                    this.id =  compra.getId();
+                    ConsultarCompra consultar = new ConsultarCompra(this, true, compra, cliente);
+                    consultar.setVisible(true);
                 } else {
                     cont++;
                 }
-                if (cont == clientes.size()) {
+                if (cont == compras.size()) {
                     JOptionPane.showMessageDialog(rootPane, "Codigo não encontrado!");
                 }
             }
-
         }
     }//GEN-LAST:event_MostrarCodClienteActionPerformed
 
@@ -172,8 +172,8 @@ public class RelatorioCompras extends javax.swing.JDialog {
 
         for (Compra compra : compras) {
             dados.add(new Object[]{
-                /*compra.getCodigo(),*/
-                /*compra.getQtdProdutos(),*/
+                compra.getId(),
+                compra.getProdutos().size(),
                 compra.getData(),
                 compra.getTotal()
             });

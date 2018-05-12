@@ -9,6 +9,7 @@ import Controle.GerenciaProduto;
 import Interface.Cliente.*;
 import Interface.Compra.AdicionarAoCarrinho;
 import Interface.Compra.FecharCarrinho;
+import Interface.Conta.RelatorioClienteConta;
 import Interface.Endereco.PesquisarEndereco;
 import Interface.Produto.*;
 import Interface.Endereco.RelatorioEndereco;
@@ -20,6 +21,7 @@ import java.awt.Toolkit;
 import java.net.URL;
 import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 
 public class MenuPrincipal extends javax.swing.JFrame {
@@ -1377,7 +1379,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         resetaMenu();
         zeraCount();
         b6 = 1;
-        PainelPagamento.setVisible(true);
+        ArrayList<Cliente> clientes = pdao.buscarCliente();
+        RelatorioClienteConta tela = new RelatorioClienteConta(this, true, clientes);
+        tela.setVisible(true);
     }//GEN-LAST:event_botaoContaMouseClicked
 
     private void botaoContaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoContaMouseEntered

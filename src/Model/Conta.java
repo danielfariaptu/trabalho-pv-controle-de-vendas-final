@@ -16,6 +16,7 @@ public class Conta {
     
     private ArrayList<Compra> compras;
     private LocalDate dataVencimento;
+    private int id;
     private double total;
     private Cliente cliente;
 
@@ -25,7 +26,18 @@ public class Conta {
         this.total = total;
         this.cliente = cliente;
     }
+    public Conta(){
+        
+    }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    } 
+    
     public ArrayList<Compra> getCompras() {
         return compras;
     }

@@ -497,10 +497,10 @@ public class ConsultarCompra extends javax.swing.JDialog {
 
         codigoCliente.setText(Integer.toString(cliente.getCodigo()));
         nomeCliente.setText(cliente.getNome());
-        limiteCreditoCliente.setText(Double.toString(cliente.getLimiteCredito()));
+        limiteCreditoCliente.setText(String.valueOf(cliente.getLimiteCredito()));
 
-        //codigoCompra.setText(compra.getCodigo);
-        //qtdProdutos.setText(Integer.toString(cliente.qtdProdutos()));
+        codigoCompra.setText(String.valueOf(compra.getId()));
+        qtdProdutos.setText(Integer.toString(compra.getProdutos().size()));
         dataCompra.setText(String.valueOf(compra.getData()));
         totalCompra.setText(Double.toString(compra.getTotal()));
     }

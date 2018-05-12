@@ -18,19 +18,18 @@ import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 
-public class RelatorioCliente extends javax.swing.JDialog {
+public class RelatorioClienteConta extends javax.swing.JDialog {
 
     private String[] colunas = {"Código ", "Nome", "Limite de crédito", "Nome Fantasia", "CNPJ", "CPF"};
 
     private PessoaFisica pF;
     private PessoaJuridica pJ;
-    private ArrayList<Cliente> clientes = new ArrayList<>();
+    private ArrayList<Cliente> clientes = new ArrayList<Cliente>();
     ArrayList<Object> dados = new ArrayList<>();
-    int x;
 
     private int tipo;
 
-    public RelatorioCliente(java.awt.Frame parent, boolean modal) {
+    public RelatorioClienteConta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
@@ -39,11 +38,10 @@ public class RelatorioCliente extends javax.swing.JDialog {
 
     }
 
-    public RelatorioCliente(javax.swing.JFrame parent, boolean modal, ArrayList<Cliente> clientes) {
+    public RelatorioClienteConta(javax.swing.JFrame parent, boolean modal, ArrayList<Cliente> clientes) {
         super(parent, modal);
         initComponents();
         this.clientes = clientes;
-        this.x = x;
         setLocationRelativeTo(null);
         tbShowDados();
     }
@@ -176,54 +174,42 @@ public class RelatorioCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_PuxarDadosActionPerformed
 
     public void tbShowDados() {
-
-        ArrayList<Cliente> cli = clientes;
+        dados.clear();
         Iterator i = clientes.iterator();
 
         while (i.hasNext()) {
             Cliente cliente = (Cliente) i.next();
             if (cliente instanceof PessoaFisica) {
-                PessoaFisica pF = (PessoaFisica) i.next();
+                PessoaFisica pF = (PessoaFisica) cliente;
+                dados.add(new Object[]{
+                    pF.getCodigo(),
+                    pF.getNome(),
+                    pF.getLimiteCredito(),
+                    null,
+                    null,
+                    pF.getCpf()});
 
-                dados.clear();
-                for (Cliente c : cli) {
-
-                    dados.add(new Object[]{
-                        c.getCodigo(),
-                        pF.getNome(),
-                        pF.getLimiteCredito(),
-                        null,
-                        null,
-                        pF.getCpf()});
-
-                    NewTableModel dadosPessoa = new NewTableModel(dados, colunas);
-                    tmCliente.setModel(dadosPessoa);
-                    repaint();
-                    validate();
-                }
+                NewTableModel dadosPessoa = new NewTableModel(dados, colunas);
+                tmCliente.setModel(dadosPessoa);
+                repaint();
+                validate();
 
             } else {
-                PessoaJuridica pJ = (PessoaJuridica) i.next();
-                dados.clear();
+                PessoaJuridica pJ = (PessoaJuridica) cliente;
                 //ordem : private String[] colunas= {"Código ", "Nome", "Limite de crédito","Nome Fantasia" ,"CNPJ","CPF"};
-                for (Cliente c : cli) {
-                    dados.add(new Object[]{
-                        c.getCodigo(),
-                        pJ.getNome(),
-                        pJ.getLimiteCredito(),
-                        pJ.getNomeFantasia(),
-                        pJ.getCnpj(),
-                        null});
+                dados.add(new Object[]{
+                    pJ.getCodigo(),
+                    pJ.getNome(),
+                    pJ.getLimiteCredito(),
+                    pJ.getNomeFantasia(),
+                    pJ.getCnpj(),
+                    null});
 
-                    NewTableModel dadosPessoa = new NewTableModel(dados, colunas);
-                    tmCliente.setModel(dadosPessoa);
-                    repaint();
-                    validate();
-
-                }
-
+                NewTableModel dadosPessoa = new NewTableModel(dados, colunas);
+                tmCliente.setModel(dadosPessoa);
+                repaint();
+                validate();
             }
-
         }
 
     }
@@ -258,7 +244,7 @@ public class RelatorioCliente extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                RelatorioCliente dialog = new RelatorioCliente(new javax.swing.JFrame(), true);
+                RelatorioClienteConta dialog = new RelatorioClienteConta(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

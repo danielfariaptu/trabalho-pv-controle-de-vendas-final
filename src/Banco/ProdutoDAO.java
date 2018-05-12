@@ -120,4 +120,27 @@ public class ProdutoDAO {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Erro ao excluir produto", JOptionPane.ERROR_MESSAGE);
         }      
     }
+        public ArrayList relatorioProdutoCompra(int idCompra) {
+        ArrayList<Produto> produtos;
+        String sql;
+        ResultSet rs;
+        produtos = new ArrayList<>();
+        
+        sql = "select * from produto as p join produto_compra as c on p.codigo_de_barras = c.codigo_de_barras and c.compra_id = ?";  
+
+        try {           
+            
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idCompra);
+            rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                produtos.add(new Produto(rs.getString("nome"), rs.getDouble("preco"), rs.getInt("estoque"), rs.getString("codigo_de_barras"), rs.getString("tipo_de_uva"), rs.getString("pais_de_origem"), rs.getString("tipo_de_vinho")));
+            }
+            return produtos;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "// Erro relatorioProdutoCompra", JOptionPane.ERROR_MESSAGE);
+        }
+        return produtos;
+    }
 }
