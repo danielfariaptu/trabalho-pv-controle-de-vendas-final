@@ -3,6 +3,7 @@ package Interface.Conta;
 import Banco.ContaDAO;
 import Interface.Cliente.*;
 import Banco.PessoaDAO;
+import Controle.GerenciaConta;
 import Model.Cliente;
 import Model.Compra;
 import Model.Conta;
@@ -10,6 +11,7 @@ import Model.PessoaFisica;
 import Model.PessoaJuridica;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 
 public class SubMenuConta extends javax.swing.JDialog {
@@ -17,6 +19,7 @@ public class SubMenuConta extends javax.swing.JDialog {
     private PessoaJuridica pj;
     private PessoaFisica pf;
     private ContaDAO contaDAO = new ContaDAO();
+    private GerenciaConta gerenciaConta = new GerenciaConta();
     private Conta conta;
     private PessoaDAO pDAO = new PessoaDAO();
     private Cliente cliente;
@@ -786,9 +789,13 @@ public class SubMenuConta extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtn_Fechar1ActionPerformed
 
     private void botaoPagamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPagamentoMouseClicked
-     TelaPagamento pag = new TelaPagamento(this, true, cliente);
-       
-        pag.setVisible(true);
+     
+        if(gerenciaConta.comprasStatus(conta.getCompras()) > 0){
+            TelaPagamento pag = new TelaPagamento(this, true, conta);
+            pag.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "Não há compras pendentes");
+        }
     }//GEN-LAST:event_botaoPagamentoMouseClicked
 
     private void botaoFaturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoFaturaMouseClicked

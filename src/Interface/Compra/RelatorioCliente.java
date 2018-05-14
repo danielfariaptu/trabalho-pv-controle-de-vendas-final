@@ -16,10 +16,11 @@ import javax.swing.table.TableModel;
 
 public class RelatorioCliente extends javax.swing.JDialog {
 
-    private String[] colunas = {"Codigo", "CPF","Nome", "Limite de Credito"};
+    private String[] colunas = {"Codigo", "Nome", "Limite de Credito"};
 
     private PessoaDAO pDAO = new PessoaDAO();
     private ArrayList<Cliente> clientes;
+    private Cliente cliente;
     private int id = -1;
    
 
@@ -147,7 +148,7 @@ public class RelatorioCliente extends javax.swing.JDialog {
             while (i.hasNext()) {
                 Cliente cliente = (Cliente) i.next();
                 if (Integer.parseInt(field_codEndereco.getText()) == cliente.getCodigo()) {
-                    this.id = cliente.getCodigo();
+                    this.cliente = cliente;
                     this.dispose();
                 }else{
                     cont++;
@@ -160,8 +161,8 @@ public class RelatorioCliente extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MostrarCodClienteActionPerformed
     
-    public int getId(){ 
-        return this.id;        
+    public Cliente getId(){ 
+        return this.cliente;        
     }
     
     public void tbShowDados() {
@@ -173,6 +174,7 @@ public class RelatorioCliente extends javax.swing.JDialog {
                 cliente.getCodigo(),                
                 cliente.getNome(),
                 cliente.getLimiteCredito()
+                
             });
             NewTableModel dadosEndereco = new NewTableModel(dados, colunas);
             tmEnderecos.setModel(dadosEndereco);

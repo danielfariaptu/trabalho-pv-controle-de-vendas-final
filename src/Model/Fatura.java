@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class Fatura {
     
     private Conta conta;
+    private int id;
     private LocalDate dataQuitacao;
     private double juros;
     private int quantParcelas;
@@ -28,6 +29,14 @@ public class Fatura {
         this.parcelas = parcelas;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public Conta getConta() {
         return conta;
     }

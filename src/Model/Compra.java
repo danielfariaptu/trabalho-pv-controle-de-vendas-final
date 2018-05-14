@@ -18,6 +18,7 @@ private ArrayList<Produto> produtos;
 private double total;
 private int id;
 private LocalDate data;
+private int status;
 
     public Compra(ArrayList<Produto> produtos, double total, LocalDate data) {
         this.produtos = produtos;
@@ -29,6 +30,14 @@ private LocalDate data;
     
     }
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }   
+    
     public int getId() {
         return id;
     }

@@ -45,12 +45,13 @@ public class CompraDAO {
             id_conta = criarConta(compra.getTotal(), id_cliente);
         }
          try {
-            sql = "insert into compra(compra_id, data, fk_conta_id) values(?, ?, ?)";  
+            sql = "insert into compra(compra_id, data, fk_conta_id, status) values(?, ?, ?, ?)";  
              
             ps = con.prepareStatement(sql);
             ps.setInt(1, id_compra);
             ps.setString(2, data);    
             ps.setInt(3, id_conta);
+            ps.setInt(4, 0);
             ps.execute();            
             ps.close();
         } catch (SQLException e) {
@@ -183,7 +184,8 @@ public class CompraDAO {
     }
         public ArrayList<Compra> buscarCompras(int id) {
             
-        ArrayList<Compra> compras = new ArrayList<Compra>();        
+        ArrayList<Compra> compras = new ArrayList<Compra>(); 
+        JOptionPane.showMessageDialog(null, "Size: "+compras.size());
         double total;
         
         PreparedStatement ps = null;
@@ -205,6 +207,7 @@ public class CompraDAO {
                 LocalDate date = LocalDate.parse(rs.getString("data") ,formatter);   
                 
                 compra.setData(date);
+                compra.setStatus(rs.getInt("status"));
                 compra.setId(rs.getInt("compra_id"));                
                 compra.setProdutos(produtoDAO.relatorioProdutoCompra(compra.getId()));
                 

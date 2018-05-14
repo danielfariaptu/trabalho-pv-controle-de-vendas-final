@@ -555,47 +555,45 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="fundo14" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="Painel10" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="fundo9" min="-2" pref="655" max="-2" attributes="0"/>
-                          <Component id="Painel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="Painel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="fundo7" alignment="0" min="-2" pref="630" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="Painel6" max="32767" attributes="0"/>
-                              <Component id="fundo10" alignment="1" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="Painel7" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="fundo11" alignment="0" min="-2" pref="609" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="Painel8" alignment="0" max="32767" attributes="0"/>
-                              <Component id="fundo13" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="Painel9" alignment="0" min="-2" pref="600" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                                  <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="totalConta" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="fundo14" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="Painel10" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="fundo8" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="fundo9" min="-2" pref="655" max="-2" attributes="0"/>
+                                  <Component id="Painel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Painel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="fundo7" alignment="0" min="-2" pref="630" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="Painel6" max="32767" attributes="0"/>
+                                      <Component id="fundo10" alignment="1" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="Painel7" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="fundo11" alignment="0" min="-2" pref="609" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="Painel8" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="fundo13" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="Painel9" alignment="0" min="-2" pref="600" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="totalConta" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Component id="fundo8" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">

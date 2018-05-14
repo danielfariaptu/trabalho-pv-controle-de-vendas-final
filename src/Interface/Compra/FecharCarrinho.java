@@ -203,12 +203,26 @@ public class FecharCarrinho extends javax.swing.JDialog {
             
             RelatorioCliente relatorioCliente = new RelatorioCliente(this, true);
             relatorioCliente.setVisible(true);
-            int id = relatorioCliente.getId();
-            if(id > -1){
-                gc.finalizarCompra(compra, id);
-                JOptionPane.showMessageDialog(rootPane, "Compra realizada com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
-                carrinho.clear();
-                this.dispose(); 
+            Cliente cliente = relatorioCliente.getId();
+            if(cliente.getCodigo() > -1){
+                if(cliente.getLimiteCredito() >= compra.getTotal()){
+                     /*double total = 0;
+                     Iterator i = gc.getConta(cliente.getCodigo()).getCompras().iterator();
+                     if(i.hasNext()){
+                         total = gc.getTotalComprasAbertas(gc.getConta(cliente.getCodigo()).getCompras());
+                     }                   
+                     total += compra.getTotal();*/
+                    //if(cliente.getLimiteCredito() >= total){
+                        gc.finalizarCompra(compra, cliente.getCodigo());
+                        JOptionPane.showMessageDialog(rootPane, "Compra realizada com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+                        carrinho.clear();
+                        this.dispose();/*
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Compras em aberto mais nova compra superam limite de crédito do Cliente!");
+                    }*/
+                }else{
+                    JOptionPane.showMessageDialog(null, "Compra supera o limite de credito do Cliente!");
+                }                    
             }            
         } else if (JOptionPane.NO_OPTION == opcao) {
             JOptionPane.showMessageDialog(rootPane, "Compra não realizada!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);

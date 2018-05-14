@@ -24,6 +24,9 @@ public class Pagamento {
         this.tipo = tipo;
         this.juros = juros;
     }
+    public Pagamento(){
+        
+    }
 
     public LocalDate getData() {
         return data;

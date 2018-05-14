@@ -2,29 +2,34 @@
 package Interface.Conta;
 import Interface.Cliente.*;
 import Banco.PessoaDAO;
+import Controle.GerenciaCompra;
+import Controle.GerenciaConta;
 import Interface.Pagamento.Pagamento;
+import Model.CalculaJuros;
 import Model.Cliente;
 import Model.Compra;
 import Model.Conta;
 import Model.NewTableModel;
 import Model.PessoaFisica;
 import Model.PessoaJuridica;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 
 public class TelaPagamento extends javax.swing.JDialog {
 
-    private PessoaJuridica pj;
-    private PessoaFisica pf;
-    private PessoaDAO pDAO = new PessoaDAO();
+    private GerenciaCompra gerenciaCompra = new GerenciaCompra();
+    private GerenciaConta gerenciaFatura = new GerenciaConta();
     private Cliente cliente;
-    private int excluido;
-    private int tipoCliente;
+    private Conta conta;
+    private double juros;
     
     private ArrayList<Compra> compras = new ArrayList<>();
     private ArrayList<Object> dados = new ArrayList<>();
     private ArrayList<Pagamento> pag = new ArrayList<>();
+    private CalculaJuros calculaJuros = new CalculaJuros();
     
      private String[] colunas = {"Total da Compra", "Quantidade de Produtos", "Data de Compra"};
 
@@ -34,10 +39,10 @@ public class TelaPagamento extends javax.swing.JDialog {
        
     }
 
-    public TelaPagamento(javax.swing.JDialog parent, boolean modal, Cliente cliente) {
+    public TelaPagamento(javax.swing.JDialog parent, boolean modal, Conta conta) {
         super(parent, modal);
-        this.tipoCliente = tipoCliente;
-        this.cliente = cliente;
+        this.compras = conta.getCompras();
+        this.cliente = conta.getCliente();
         initComponents();
           setLocationRelativeTo(null);
          
@@ -199,6 +204,11 @@ public class TelaPagamento extends javax.swing.JDialog {
 
         comboParcelas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         comboParcelas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
+        comboParcelas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboParcelasActionPerformed(evt);
+            }
+        });
         jPanel1.add(comboParcelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 390, 70, 40));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -256,19 +266,11 @@ public class TelaPagamento extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSimularDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimularDataActionPerformed
-         int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja Realmente Pagar a Fatura?");
-
-        if (JOptionPane.YES_OPTION == opcao) {
-           
-            /* Inserir o backend de pagamento.*/
-            
-            
-            JOptionPane.showMessageDialog(rootPane, "Fatura paga com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
-            this.dispose();
-        }
-        if (JOptionPane.NO_OPTION == opcao) {
-            JOptionPane.showMessageDialog(rootPane, "A Fatura não foi paga!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
-            this.dispose();
+        calculaJuros();
+        if(!DataPagamento.getText().equals("  /  /    ")){
+           calculaJuros();
+        }else{
+            JOptionPane.showMessageDialog(null, "Por favor informe uma data!");
         }
     }//GEN-LAST:event_btnSimularDataActionPerformed
 
@@ -278,8 +280,22 @@ public class TelaPagamento extends javax.swing.JDialog {
     }//GEN-LAST:event_closeIconMouseClicked
 
     private void btnFinalizarFatura1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarFatura1ActionPerformed
-        // TODO add your handling code here:
+        int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja Realmente Pagar a Fatura?");
+
+        if (JOptionPane.YES_OPTION == opcao) {
+            gerenciaFatura.montarFatura(conta, juros, Integer.parseInt(comboParcelas.getItemAt(comboParcelas.getSelectedIndex())), gerenciaCompra.getTotalCompras(compras));
+            JOptionPane.showMessageDialog(rootPane, "Fatura paga com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        }
+        if (JOptionPane.NO_OPTION == opcao) {
+            JOptionPane.showMessageDialog(rootPane, "A Fatura não foi paga!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        }
     }//GEN-LAST:event_btnFinalizarFatura1ActionPerformed
+
+    private void comboParcelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboParcelasActionPerformed
+        calculaJuros();
+    }//GEN-LAST:event_comboParcelasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -332,15 +348,26 @@ public class TelaPagamento extends javax.swing.JDialog {
         });
     }
 
-  
+  public void calculaJuros(){
+      juros = 0;
+      if(!DataPagamento.getText().equals("  /  /    ")){
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate dataSimulada = LocalDate.parse(DataPagamento.getText() ,formatter);  
+            juros = calculaJuros.calculaJurosPorAtraso(gerenciaCompra.getTotalCompras(compras), dataSimulada);
+        }
+        int parcelas = Integer.parseInt(comboParcelas.getItemAt(comboParcelas.getSelectedIndex()));        
+        juros += calculaJuros.calculaJurosPorParcelamento(gerenciaCompra.getTotalCompras(compras) , parcelas);
+        jurosPorAtraso.setText(String.valueOf(juros));
+  }
   public void tbShowDados() {
-       ArrayList<Compra> cmp = compras;
+        jurosPorAtraso.setText("0.0");
+        valorTotal.setText(String.valueOf(gerenciaCompra.getTotalCompras(compras)));
         dados.clear();
-        for (Compra c : cmp) {
+        for (Compra compra : compras) {
             dados.add(new Object[]{
-            c.getTotal(),
-            // c.getQtdDeProdutos
-            c.getData()});
+            compra.getTotal(),
+            compras.size(),
+            compra.getData()});
             NewTableModel dadosCompra = new NewTableModel(dados, colunas);
             tmCompras.setModel(dadosCompra);
             repaint();
