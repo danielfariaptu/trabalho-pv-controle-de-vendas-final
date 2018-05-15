@@ -45,6 +45,16 @@ public class GerenciaCompra {
         }
         return total;
     }
+    public double getTotalComprasFatura(ArrayList<Compra> compras){
+        Iterator i = compras.iterator();
+        double total = 0;
+        
+        while(i.hasNext()){
+            Compra compra = (Compra) i.next();
+            total += getTotal(compra.getProdutos());
+        }
+        return total;
+    }
     
      public double getTotalComprasAbertas(ArrayList<Compra> compras){
         Iterator i = compras.iterator();

@@ -13,6 +13,7 @@ import java.time.LocalDate;
  */
 public class Pagamento {
  
+    private int id;
     private LocalDate data;
     private double valor;
     private int status;
@@ -28,6 +29,15 @@ public class Pagamento {
     public Pagamento(){
         
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public int getStatus() {
         return status;
     }

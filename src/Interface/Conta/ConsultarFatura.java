@@ -2,20 +2,26 @@ package Interface.Conta;
 
 import Interface.Cliente.*;
 import Banco.PessoaDAO;
+import Controle.GerenciaCompra;
+import Controle.GerenciaConta;
 import Model.Cliente;
 import Model.Compra;
 import Model.Fatura;
+import Model.Pagamento;
 import Model.PessoaFisica;
 import Model.PessoaJuridica;
 import java.time.LocalDate;
+import java.util.Iterator;
 import javax.swing.JOptionPane;
 
 public class ConsultarFatura extends javax.swing.JDialog {
 
     private PessoaDAO pDAO = new PessoaDAO();
+    private GerenciaCompra gerenciaCompra = new GerenciaCompra();
+    private GerenciaConta gerenciaConta = new GerenciaConta();
     private Fatura fatura;
+    private int parcelaPendente;
     private int parcelasPagas;
-    
 
     public ConsultarFatura(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
@@ -23,7 +29,7 @@ public class ConsultarFatura extends javax.swing.JDialog {
 
     }
 
-    public ConsultarFatura(javax.swing.JDialog parent, boolean modal, Fatura fatura, int parcelasPagas) {
+    public ConsultarFatura(javax.swing.JDialog parent, boolean modal, Fatura fatura) {
         super(parent, modal);
 
         this.fatura = fatura;
@@ -367,10 +373,8 @@ public class ConsultarFatura extends javax.swing.JDialog {
         int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja Pagar a parcela?");
 
         if (JOptionPane.YES_OPTION == opcao) {
-            
-            
-           /* backend aqui*/
 
+            gerenciaConta.pagarParcela(parcelaPendente, fatura);
             JOptionPane.showMessageDialog(rootPane, "Parcela paga com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         }
@@ -436,18 +440,32 @@ public class ConsultarFatura extends javax.swing.JDialog {
     }
 
     private void ShowsCampos() {
-
-       
-        
-       // codigoFatura.setText(Integer.toString(fatura.Codigo()));
-       dataQuitacao.setText(String.valueOf(fatura.getDataQuitacao()));
-       Juros.setText(Double.toString(fatura.getJuros()));
-       qtdParcelas.setText(Integer.toString(fatura.getQuantParcelas()));
-      parcelPag.setText(Integer.toString(parcelasPagas));
-        if (parcelasPagas == fatura.getQuantParcelas()){
-        btnPagar.setVisible(false);
-        faturaPaga.setVisible(true);
+        int parcelasPg = 0;
+        Iterator i = fatura.getParcelas().iterator();
+        while(i.hasNext()){
+            Pagamento pagamento = (Pagamento) i.next();
+            if(pagamento.getStatus() > 0){
+                parcelasPg++;
+            }else{
+                parcelaPendente = pagamento.getId();
+            }
         }
+        codigoFatura.setText(Integer.toString(fatura.getId()));
+
+        if (fatura.getDataQuitacao() != null) {
+            dataQuitacao.setText(String.valueOf(fatura.getDataQuitacao()));
+        } else {
+            dataQuitacao.setText("Em aberto");
+        }
+
+        Juros.setText(Double.toString(fatura.getJuros()));
+        qtdParcelas.setText(Integer.toString(fatura.getQuantParcelas()));
+        parcelPag.setText(String.valueOf(parcelasPg));
+        if (parcelasPg == fatura.getQuantParcelas()) {
+            btnPagar.setVisible(false);
+            faturaPaga.setVisible(true);
+        }
+        totalFatura.setText(String.valueOf(gerenciaCompra.getTotalCompras(fatura.getConta().getCompras())));
     }
 
 

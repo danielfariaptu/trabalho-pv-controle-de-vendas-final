@@ -147,18 +147,17 @@ public class RelatorioFaturas extends javax.swing.JDialog {
             int cont = 0;
             while (i.hasNext()) {
                 Fatura fatura = (Fatura) i.next();
-                if (Integer.parseInt(field_codFatura.getText()) == 0 /*compra.getCodigo()*/) {
-                    /*this.id =  compra.getCodigo();*/
-                 // ConsultarCompra consultar = new ConsultarCompra(this, true, compra, cliente);
-                  //  consultar.setVisible(true);
+                if (Integer.parseInt(field_codFatura.getText()) == fatura.getId()) {                    
+                    ConsultarFatura consultar = new ConsultarFatura(this, true, fatura);
+                    consultar.setVisible(true);
+                    this.dispose();
                 } else {
                     cont++;
                 }
-                if (cont == clientes.size()) {
+                if (cont == faturas.size()) {
                     JOptionPane.showMessageDialog(rootPane, "Codigo não encontrado!");
                 }
             }
-
         }
     }//GEN-LAST:event_MostrarActionPerformed
 

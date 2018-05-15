@@ -63,7 +63,16 @@ public class GerenciaConta {
     }
     
     public ArrayList<Fatura> buscarFaturas(Conta conta){
-        return faturaDAO.buscarFaturas(conta);
+        ArrayList<Fatura> faturas = faturaDAO.buscarFaturas(conta);
+        Iterator i = faturas.iterator();
+        while(i.hasNext()){
+            Fatura fatura = (Fatura) i.next();
+            fatura.setConta(conta);
+        }
+        return faturas;
+    }
+    public void pagarParcela(int idParcela, Fatura fatura){
+        faturaDAO.pagarParcela(idParcela, fatura);
     }
     
 }
