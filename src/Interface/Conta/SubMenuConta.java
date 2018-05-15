@@ -1,6 +1,7 @@
 
 package Interface.Conta;
 import Banco.ContaDAO;
+import Banco.FaturaDAO;
 import Interface.Cliente.*;
 import Banco.PessoaDAO;
 import Controle.GerenciaConta;
@@ -789,9 +790,12 @@ public class SubMenuConta extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtn_Fechar1ActionPerformed
 
     private void botaoPagamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPagamentoMouseClicked
-     
-        if(gerenciaConta.comprasStatus(conta.getCompras()) > 0){
-            TelaPagamento pag = new TelaPagamento(this, true, conta);
+        conta = contaDAO.buscarConta(cliente.getCodigo());
+        conta.setCliente(cliente);
+        
+        if(gerenciaConta.comprasStatus(conta.getCompras()).size() > 0){
+            conta.setCompras(gerenciaConta.comprasStatus(conta.getCompras()));
+            TelaPagamento pag = new TelaPagamento(this, true, conta);            
             pag.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(null, "Não há compras pendentes");
@@ -799,10 +803,14 @@ public class SubMenuConta extends javax.swing.JDialog {
     }//GEN-LAST:event_botaoPagamentoMouseClicked
 
     private void botaoFaturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoFaturaMouseClicked
-        // TODO add your handling code here:
+        RelatorioFaturas faturas = new RelatorioFaturas(this, true, gerenciaConta.buscarFaturas(conta));
+        faturas.setVisible(true);
     }//GEN-LAST:event_botaoFaturaMouseClicked
 
     private void botaoComprasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoComprasMouseClicked
+        conta = contaDAO.buscarConta(cliente.getCodigo());
+        conta.setCliente(cliente);
+        
         RelatorioCompras compras = new RelatorioCompras(this, true, conta.getCliente(), conta.getCompras());
         compras.setVisible(true);
     }//GEN-LAST:event_botaoComprasMouseClicked

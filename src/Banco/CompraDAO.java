@@ -185,7 +185,6 @@ public class CompraDAO {
         public ArrayList<Compra> buscarCompras(int id) {
             
         ArrayList<Compra> compras = new ArrayList<Compra>(); 
-        JOptionPane.showMessageDialog(null, "Size: "+compras.size());
         double total;
         
         PreparedStatement ps = null;

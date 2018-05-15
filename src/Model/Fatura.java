@@ -28,7 +28,9 @@ public class Fatura {
         this.quantParcelas = quantParcelas;
         this.parcelas = parcelas;
     }
-
+    public Fatura(){
+        
+    }
     public int getId() {
         return id;
     }

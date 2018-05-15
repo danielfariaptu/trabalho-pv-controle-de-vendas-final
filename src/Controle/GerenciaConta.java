@@ -27,7 +27,7 @@ public class GerenciaConta {
     
     public void montarFatura(Conta conta, double juros, int parcelas, double valor){
         Fatura fatura = new Fatura(conta, null, juros, parcelas, parcelar(parcelas, juros, valor));
-        faturaDAO.criarFatura(fatura, parcelas);
+        faturaDAO.criarFatura(fatura, conta.getId());
     }
     
     public ArrayList<Pagamento> parcelar(int parcelas, double juros, double valor){
@@ -48,19 +48,22 @@ public class GerenciaConta {
         return pagamentos;
     }
     
-    public int comprasStatus(ArrayList<Compra> compras){
+    public ArrayList<Compra> comprasStatus(ArrayList<Compra> compras){
+        ArrayList<Compra> comprasNew = new ArrayList<Compra>();
         Iterator i = compras.iterator();
         int retorno = 0;
         
         while(i.hasNext()){
             Compra compra = (Compra) i.next();
-            if(compra.getStatus() != 0){
-                i.remove();
-            }else{
-                retorno ++;
+            if(compra.getStatus() == 0){
+               comprasNew.add(compra);
             }
         }
-        return retorno;
+        return comprasNew;
+    }
+    
+    public ArrayList<Fatura> buscarFaturas(Conta conta){
+        return faturaDAO.buscarFaturas(conta);
     }
     
 }

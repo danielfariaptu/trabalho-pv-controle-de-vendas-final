@@ -99,6 +99,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botaoInicio = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
+        PainelInicio = new javax.swing.JPanel();
+        InicioTitle = new javax.swing.JPanel();
+        labelCliente1 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         PainelCompra = new javax.swing.JPanel();
         CompraTitle = new javax.swing.JPanel();
         labelCliente2 = new javax.swing.JLabel();
@@ -183,10 +187,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botaoMostrarFatura = new javax.swing.JPanel();
         jLabel58 = new javax.swing.JLabel();
         jLabel59 = new javax.swing.JLabel();
-        PainelInicio = new javax.swing.JPanel();
-        InicioTitle = new javax.swing.JPanel();
-        labelCliente1 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         overlay = new javax.swing.JPanel();
         BotaoAlterar = new javax.swing.JLabel();
 
@@ -525,6 +525,24 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Navegation.add(botaoInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 240, 60));
 
         getContentPane().add(Navegation, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 960));
+
+        PainelInicio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        InicioTitle.setBackground(new java.awt.Color(80, 77, 90));
+        InicioTitle.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelCliente1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        labelCliente1.setForeground(new java.awt.Color(255, 255, 255));
+        labelCliente1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelCliente1.setText("INÍCIO");
+        InicioTitle.add(labelCliente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(323, 11, 137, 38));
+
+        PainelInicio.add(InicioTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 810, 80));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Logomarca.png"))); // NOI18N
+        PainelInicio.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 640, 410));
+
+        getContentPane().add(PainelInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 800, 530));
 
         PainelCompra.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1301,24 +1319,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         getContentPane().add(PainelFatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 800, 530));
 
-        PainelInicio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        InicioTitle.setBackground(new java.awt.Color(80, 77, 90));
-        InicioTitle.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        labelCliente1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        labelCliente1.setForeground(new java.awt.Color(255, 255, 255));
-        labelCliente1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelCliente1.setText("INÍCIO");
-        InicioTitle.add(labelCliente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(323, 11, 137, 38));
-
-        PainelInicio.add(InicioTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 810, 80));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Logomarca.png"))); // NOI18N
-        PainelInicio.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 640, 410));
-
-        getContentPane().add(PainelInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 800, 530));
-
         overlay.setBackground(new java.awt.Color(0, 0, 51));
         overlay.setPreferredSize(new java.awt.Dimension(1280, 800));
         overlay.setRequestFocusEnabled(false);
@@ -1553,38 +1553,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         overlay.setVisible(false);
     }//GEN-LAST:event_botaoMostrarCompraMouseClicked
 
-    private void botaoIncluirFaturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoIncluirFaturaMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoIncluirFaturaMouseClicked
-
-    private void botaoAlterarFaturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoAlterarFaturaMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoAlterarFaturaMouseClicked
-
-    private void botaoRemoverFaturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoRemoverFaturaMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoRemoverFaturaMouseClicked
-
-    private void botaoMostrarFaturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoMostrarFaturaMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoMostrarFaturaMouseClicked
-
-    private void botaoIncluirPagMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoIncluirPagMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoIncluirPagMouseClicked
-
-    private void botaoAlterarPagMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoAlterarPagMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoAlterarPagMouseClicked
-
-    private void botaoRemoverPagMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoRemoverPagMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoRemoverPagMouseClicked
-
-    private void botaoMostrarPagMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoMostrarPagMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoMostrarPagMouseClicked
-
     private void botaoIncluirProdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoIncluirProdMouseClicked
         CadastroProduto dialog = new CadastroProduto(this, true,gp);
         overlay.setVisible(true);
@@ -1612,6 +1580,38 @@ public class MenuPrincipal extends javax.swing.JFrame {
 	relatorio.setVisible(true);
         overlay.setVisible(false);
     }//GEN-LAST:event_botaoMostrarProdMouseClicked
+
+    private void botaoMostrarFaturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoMostrarFaturaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoMostrarFaturaMouseClicked
+
+    private void botaoRemoverFaturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoRemoverFaturaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoRemoverFaturaMouseClicked
+
+    private void botaoAlterarFaturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoAlterarFaturaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoAlterarFaturaMouseClicked
+
+    private void botaoIncluirFaturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoIncluirFaturaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoIncluirFaturaMouseClicked
+
+    private void botaoMostrarPagMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoMostrarPagMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoMostrarPagMouseClicked
+
+    private void botaoRemoverPagMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoRemoverPagMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoRemoverPagMouseClicked
+
+    private void botaoAlterarPagMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoAlterarPagMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoAlterarPagMouseClicked
+
+    private void botaoIncluirPagMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoIncluirPagMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoIncluirPagMouseClicked
 
     
      public void resetaMenu(){

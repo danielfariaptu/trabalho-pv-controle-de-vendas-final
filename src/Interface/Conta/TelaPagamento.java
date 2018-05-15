@@ -15,6 +15,7 @@ import Model.PessoaJuridica;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.JOptionPane;
 
 
@@ -43,6 +44,7 @@ public class TelaPagamento extends javax.swing.JDialog {
         super(parent, modal);
         this.compras = conta.getCompras();
         this.cliente = conta.getCliente();
+        this.conta = conta;
         initComponents();
           setLocationRelativeTo(null);
          
@@ -285,6 +287,13 @@ public class TelaPagamento extends javax.swing.JDialog {
         if (JOptionPane.YES_OPTION == opcao) {
             gerenciaFatura.montarFatura(conta, juros, Integer.parseInt(comboParcelas.getItemAt(comboParcelas.getSelectedIndex())), gerenciaCompra.getTotalCompras(compras));
             JOptionPane.showMessageDialog(rootPane, "Fatura paga com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            Iterator i = conta.getCompras().iterator();
+            while(i.hasNext()){
+                Compra compra = (Compra) i.next();
+                if(compra.getStatus() == 0){
+                    compra.setStatus(1);
+                }
+            }
             this.dispose();
         }
         if (JOptionPane.NO_OPTION == opcao) {

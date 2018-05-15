@@ -15,6 +15,7 @@ public class Pagamento {
  
     private LocalDate data;
     private double valor;
+    private int status;
     private int tipo;
     private double juros;
 
@@ -27,7 +28,15 @@ public class Pagamento {
     public Pagamento(){
         
     }
+    public int getStatus() {
+        return status;
+    }
 
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    
     public LocalDate getData() {
         return data;
     }

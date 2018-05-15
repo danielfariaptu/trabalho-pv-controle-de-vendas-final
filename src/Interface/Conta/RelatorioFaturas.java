@@ -8,6 +8,7 @@ import Model.*;
 import Banco.*;
 import Controle.*;
 import Interface.Endereco.*;
+import java.time.format.DateTimeFormatter;
 
 import java.util.ArrayList;
 
@@ -29,9 +30,9 @@ public class RelatorioFaturas extends javax.swing.JDialog {
 
     }
 
-    public RelatorioFaturas(javax.swing.JDialog parent, boolean modal) {
+    public RelatorioFaturas(javax.swing.JDialog parent, boolean modal, ArrayList<Fatura> faturas) {
         super(parent, modal);
-
+        this.faturas = faturas;
         initComponents();
         setLocationRelativeTo(null);
         tbShowDados();
@@ -170,10 +171,17 @@ public class RelatorioFaturas extends javax.swing.JDialog {
         dados.clear();
 
         for (Fatura fatura : faturas) {
+            String data; 
+            if(fatura.getDataQuitacao() != null){
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                data = fatura.getDataQuitacao().format(formatter);  
+            }else{
+                data = "Em aberto";
+            }
             dados.add(new Object[]{
                               
-               // fatura.getCodigo(),
-                fatura.getDataQuitacao(),
+                fatura.getId(),
+                data,
                 fatura.getJuros(),
                 fatura.getQuantParcelas()
             });
