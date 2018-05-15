@@ -76,6 +76,16 @@ public class SubMenuConta extends javax.swing.JDialog {
         botaoPagamento = new javax.swing.JPanel();
         jLabel44 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
+        closeIcon = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jBtn_Fechar1 = new javax.swing.JButton();
+        botaoFatura = new javax.swing.JPanel();
+        jLabel46 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        botaoCompras = new javax.swing.JPanel();
+        jLabel48 = new javax.swing.JLabel();
+        jLabel49 = new javax.swing.JLabel();
+        scrolFisica = new javax.swing.JScrollPane();
         TablePessoaFisica = new javax.swing.JPanel();
         fundo1 = new javax.swing.JLabel();
         Painel1 = new javax.swing.JPanel();
@@ -102,6 +112,7 @@ public class SubMenuConta extends javax.swing.JDialog {
         jLabel21 = new javax.swing.JLabel();
         totalConta1 = new javax.swing.JLabel();
         fundo15 = new javax.swing.JLabel();
+        scrolJuridica = new javax.swing.JScrollPane();
         TablePessoaJuridica = new javax.swing.JPanel();
         fundo7 = new javax.swing.JLabel();
         Painel4 = new javax.swing.JPanel();
@@ -134,15 +145,6 @@ public class SubMenuConta extends javax.swing.JDialog {
         fundo14 = new javax.swing.JLabel();
         totalConta = new javax.swing.JLabel();
         limiteCreditoJuridica2 = new javax.swing.JLabel();
-        closeIcon = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jBtn_Fechar1 = new javax.swing.JButton();
-        botaoFatura = new javax.swing.JPanel();
-        jLabel46 = new javax.swing.JLabel();
-        jLabel47 = new javax.swing.JLabel();
-        botaoCompras = new javax.swing.JPanel();
-        jLabel48 = new javax.swing.JLabel();
-        jLabel49 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -172,6 +174,75 @@ public class SubMenuConta extends javax.swing.JDialog {
         botaoPagamento.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 12, -1, -1));
 
         jPanel1.add(botaoPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 490, 160, 70));
+
+        closeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-close-window-40.png"))); // NOI18N
+        closeIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        closeIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                closeIconMouseClicked(evt);
+            }
+        });
+        jPanel1.add(closeIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 10, 40, -1));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("DADOS CLIENTE/CONTA");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, 300, -1));
+
+        jBtn_Fechar1.setBackground(new java.awt.Color(255, 255, 255));
+        jBtn_Fechar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Arrow Back.png"))); // NOI18N
+        jBtn_Fechar1.setMnemonic('S');
+        jBtn_Fechar1.setText("Voltar");
+        jBtn_Fechar1.setToolTipText("Salva os registros");
+        jBtn_Fechar1.setFocusPainted(false);
+        jBtn_Fechar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtn_Fechar1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jBtn_Fechar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 620, 120, 40));
+
+        botaoFatura.setBackground(new java.awt.Color(80, 77, 90));
+        botaoFatura.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
+        botaoFatura.setForeground(new java.awt.Color(255, 255, 255));
+        botaoFatura.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoFatura.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botaoFaturaMouseClicked(evt);
+            }
+        });
+        botaoFatura.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel46.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel46.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel46.setText("Fatura");
+        botaoFatura.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 12, 60, 50));
+
+        jLabel47.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-fatura-50.png"))); // NOI18N
+        botaoFatura.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 12, -1, -1));
+
+        jPanel1.add(botaoFatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 490, 150, 70));
+
+        botaoCompras.setBackground(new java.awt.Color(80, 77, 90));
+        botaoCompras.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
+        botaoCompras.setForeground(new java.awt.Color(255, 255, 255));
+        botaoCompras.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoCompras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botaoComprasMouseClicked(evt);
+            }
+        });
+        botaoCompras.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel48.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel48.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel48.setText("Compras");
+        botaoCompras.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 12, 70, 50));
+
+        jLabel49.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-finalizar-pedido-filled-50.png"))); // NOI18N
+        botaoCompras.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 12, -1, -1));
+
+        jPanel1.add(botaoCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 490, 160, 70));
 
         TablePessoaFisica.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -346,28 +417,26 @@ public class SubMenuConta extends javax.swing.JDialog {
         TablePessoaFisicaLayout.setHorizontalGroup(
             TablePessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TablePessoaFisicaLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(TablePessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(TablePessoaFisicaLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(TablePessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Painel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(TablePessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(Painel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                .addComponent(fundo3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(fundo1, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fundo5, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Painel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(TablePessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(Painel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(fundo4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(Painel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Painel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fundo15)
-                            .addComponent(fundo12)))
-                    .addGroup(TablePessoaFisicaLayout.createSequentialGroup()
-                        .addGap(244, 244, 244)
-                        .addComponent(jLabel20)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(Painel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(TablePessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(Painel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(fundo3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(TablePessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(Painel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(fundo4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Painel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Painel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fundo15)
+                    .addComponent(fundo12)
+                    .addGroup(TablePessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(fundo1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(fundo5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Painel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(TablePessoaFisicaLayout.createSequentialGroup()
+                .addGap(244, 244, 244)
+                .addComponent(jLabel20))
         );
         TablePessoaFisicaLayout.setVerticalGroup(
             TablePessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -401,7 +470,9 @@ public class SubMenuConta extends javax.swing.JDialog {
                 .addGap(0, 0, 0))
         );
 
-        jPanel1.add(TablePessoaFisica, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 630, 350));
+        scrolFisica.setViewportView(TablePessoaFisica);
+
+        jPanel1.add(scrolFisica, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 640, 370));
 
         TablePessoaJuridica.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -422,7 +493,7 @@ public class SubMenuConta extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cnpj, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
+                .addComponent(cnpj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         Painel4Layout.setVerticalGroup(
@@ -614,42 +685,41 @@ public class SubMenuConta extends javax.swing.JDialog {
         TablePessoaJuridicaLayout.setHorizontalGroup(
             TablePessoaJuridicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TablePessoaJuridicaLayout.createSequentialGroup()
-                .addGroup(TablePessoaJuridicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(TablePessoaJuridicaLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(fundo14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(TablePessoaJuridicaLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(Painel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(TablePessoaJuridicaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(TablePessoaJuridicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fundo9, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Painel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Painel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fundo7, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(TablePessoaJuridicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(Painel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(fundo10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(Painel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fundo11, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(TablePessoaJuridicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(Painel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(fundo13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(Painel9, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(TablePessoaJuridicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(TablePessoaJuridicaLayout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addComponent(jLabel9)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(totalConta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(fundo8, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(TablePessoaJuridicaLayout.createSequentialGroup()
+                        .addGroup(TablePessoaJuridicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(fundo14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Painel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(TablePessoaJuridicaLayout.createSequentialGroup()
+                        .addGroup(TablePessoaJuridicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Painel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(TablePessoaJuridicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(Painel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(fundo10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(Painel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fundo11, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Painel9, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(TablePessoaJuridicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(TablePessoaJuridicaLayout.createSequentialGroup()
+                                    .addGap(10, 10, 10)
+                                    .addComponent(jLabel9)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(totalConta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(fundo8, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addGroup(TablePessoaJuridicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(fundo9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Painel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(fundo13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(TablePessoaJuridicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(fundo7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Painel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(TablePessoaJuridicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(TablePessoaJuridicaLayout.createSequentialGroup()
                     .addGap(122, 122, 122)
-                    .addComponent(limiteCreditoJuridica2, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
+                    .addComponent(limiteCreditoJuridica2, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
                     .addGap(123, 123, 123)))
         );
         TablePessoaJuridicaLayout.setVerticalGroup(
@@ -695,82 +765,15 @@ public class SubMenuConta extends javax.swing.JDialog {
                     .addGap(220, 220, 220)))
         );
 
-        jPanel1.add(TablePessoaJuridica, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 630, 370));
+        scrolJuridica.setViewportView(TablePessoaJuridica);
 
-        closeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-close-window-40.png"))); // NOI18N
-        closeIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        closeIcon.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                closeIconMouseClicked(evt);
-            }
-        });
-        jPanel1.add(closeIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 10, 40, -1));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("DADOS CLIENTE/CONTA");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, 300, -1));
-
-        jBtn_Fechar1.setBackground(new java.awt.Color(255, 255, 255));
-        jBtn_Fechar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Arrow Back.png"))); // NOI18N
-        jBtn_Fechar1.setMnemonic('S');
-        jBtn_Fechar1.setText("Voltar");
-        jBtn_Fechar1.setToolTipText("Salva os registros");
-        jBtn_Fechar1.setFocusPainted(false);
-        jBtn_Fechar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtn_Fechar1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jBtn_Fechar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 620, 120, 40));
-
-        botaoFatura.setBackground(new java.awt.Color(80, 77, 90));
-        botaoFatura.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
-        botaoFatura.setForeground(new java.awt.Color(255, 255, 255));
-        botaoFatura.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botaoFatura.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botaoFaturaMouseClicked(evt);
-            }
-        });
-        botaoFatura.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel46.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel46.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel46.setText("Fatura");
-        botaoFatura.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 12, 60, 50));
-
-        jLabel47.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-fatura-50.png"))); // NOI18N
-        botaoFatura.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 12, -1, -1));
-
-        jPanel1.add(botaoFatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 490, 150, 70));
-
-        botaoCompras.setBackground(new java.awt.Color(80, 77, 90));
-        botaoCompras.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
-        botaoCompras.setForeground(new java.awt.Color(255, 255, 255));
-        botaoCompras.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botaoCompras.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botaoComprasMouseClicked(evt);
-            }
-        });
-        botaoCompras.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel48.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel48.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel48.setText("Compras");
-        botaoCompras.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 12, 70, 50));
-
-        jLabel49.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-finalizar-pedido-filled-50.png"))); // NOI18N
-        botaoCompras.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 12, -1, -1));
-
-        jPanel1.add(botaoCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 490, 160, 70));
+        jPanel1.add(scrolJuridica, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 640, 370));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 785, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 763, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -864,6 +867,7 @@ public class SubMenuConta extends javax.swing.JDialog {
 
     private void ShowsCampoFisica() {
         TablePessoaFisica.setVisible(true);
+        scrolJuridica.setVisible(false);
         PessoaFisica pf = (PessoaFisica) cliente;
         id.setText(Integer.toString(pf.getCodigo()));
         nome.setText(pf.getNome());
@@ -878,6 +882,7 @@ public class SubMenuConta extends javax.swing.JDialog {
 
     private void ShowsCampoJuridica() {
         TablePessoaJuridica.setVisible(true);
+        scrolFisica.setVisible(false);
         PessoaJuridica pj = (PessoaJuridica) cliente;
         
         idJuridica.setText(Integer.toString(pj.getCodigo()));
@@ -960,6 +965,8 @@ public class SubMenuConta extends javax.swing.JDialog {
     private javax.swing.JLabel nome;
     private javax.swing.JLabel nomeFantasia;
     private javax.swing.JLabel nomeJuridica;
+    private javax.swing.JScrollPane scrolFisica;
+    private javax.swing.JScrollPane scrolJuridica;
     private javax.swing.JLabel totalConta;
     private javax.swing.JLabel totalConta1;
     // End of variables declaration//GEN-END:variables

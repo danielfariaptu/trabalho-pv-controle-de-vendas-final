@@ -14,9 +14,9 @@ ArrayList<Produto> prod = new ArrayList<Produto>();
         
     }
 
-    public void cadastrarProduto(String nome, double preco, int estoque, String codigoBarras, String tipoUva, String paisOrigem, String tipoVinho) {
+    public void cadastrarProduto(String nome, double preco, String codigoBarras, String tipoUva, String paisOrigem, String tipoVinho) {
 
-        Produto pro = new Produto(nome, preco,estoque ,codigoBarras, tipoUva, paisOrigem, tipoVinho);
+        Produto pro = new Produto(nome, preco,codigoBarras, tipoUva, paisOrigem, tipoVinho);
         produtoBD.inserirNoBanco(pro);
 
     }

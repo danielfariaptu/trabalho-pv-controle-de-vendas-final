@@ -19,7 +19,7 @@ public class Produto {
     private String tipoVinho;
     private int estoque;
 
-    public Produto(String nome, double preco, int estoque, String codigoBarras, String tipoUva, String paisOrigem, String tipoVinho) {
+    public Produto(String nome, double preco, String codigoBarras, String tipoUva, String paisOrigem, String tipoVinho) {
         this.nome = nome;
         this.preco = preco;
         this.codigoBarras = codigoBarras;

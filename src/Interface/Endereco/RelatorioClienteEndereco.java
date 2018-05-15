@@ -1,5 +1,9 @@
-package Interface.Produto;
+package Interface.Endereco;
 
+import Interface.Cliente.*;
+import Interface.Conta.*;
+import Interface.Cliente.*;
+import Interface.Produto.*;
 import Interface.Endereco.*;
 import Model.NewTableModel;
 import Interface.*;
@@ -7,6 +11,8 @@ import Model.*;
 import Banco.*;
 import Controle.*;
 import Interface.Endereco.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import java.util.ArrayList;
 
@@ -14,34 +20,34 @@ import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 
-public class RelatorioProduto extends javax.swing.JDialog {
+public class RelatorioClienteEndereco extends javax.swing.JDialog {
 
-    private String[] colunas = {"Código", "Nome", "Preço", "Estoque","Tipo de Uva","Tipo de Vinho","País de Origem"};
-    
-    private ArrayList<Produto> produtos = new ArrayList<>();
+    private String[] colunas = {"Código ", "Nome", "Limite de crédito", "Nome Fantasia", "CNPJ", "CPF"};
+    private int x;
+    private PessoaFisica pF;
+    private PessoaJuridica pJ;
+    private ArrayList<Cliente> clientes = new ArrayList<Cliente>();
     ArrayList<Object> dados = new ArrayList<>();
-    private int tipo;
-    
 
-    public RelatorioProduto(java.awt.Frame parent, boolean modal) {
+    private int tipo;
+
+    public RelatorioClienteEndereco(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
         label.setVisible(false);
-        field_codProduto.setVisible(false);
+        field_idCliente.setVisible(false);
 
-        desbloqueiaProduto();
     }
 
-    public RelatorioProduto(javax.swing.JFrame parent, boolean modal, ArrayList<Produto> produtos,int tipo) {
+    public RelatorioClienteEndereco(javax.swing.JFrame parent, boolean modal, int x ,ArrayList<Cliente> clientes) {
         super(parent, modal);
         initComponents();
-        this.tipo = tipo;
-        this.produtos = produtos;
-
+        
+        this.x = x;
+        this.clientes = clientes;
         setLocationRelativeTo(null);
         tbShowDados();
-        desbloqueiaProduto();
     }
 
     @SuppressWarnings("unchecked")
@@ -51,12 +57,13 @@ public class RelatorioProduto extends javax.swing.JDialog {
         buttonGroup1 = new javax.swing.ButtonGroup();
         CadastroProduto = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tmProduto = new javax.swing.JTable();
+        tmCliente = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        field_codProduto = new javax.swing.JTextField();
+        field_idCliente = new javax.swing.JTextField();
         label = new javax.swing.JLabel();
         closeIcon = new javax.swing.JLabel();
-        MostrarCodProd = new javax.swing.JButton();
+        PuxarDados = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setUndecorated(true);
@@ -71,23 +78,23 @@ public class RelatorioProduto extends javax.swing.JDialog {
         });
         CadastroProduto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jScrollPane1.setViewportView(tmProduto);
+        jScrollPane1.setViewportView(tmCliente);
 
         CadastroProduto.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 710, 290));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("BUSCA DE PRODUTO");
-        CadastroProduto.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 350, 43));
-        CadastroProduto.add(field_codProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 300, 29));
+        jLabel1.setText("BUSCAR CLIENTE");
+        CadastroProduto.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 420, 43));
+        CadastroProduto.add(field_idCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 300, 29));
 
         label.setDisplayedMnemonic('n');
         label.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         label.setForeground(new java.awt.Color(255, 255, 255));
         label.setLabelFor(label);
-        label.setText("DIGITE O CÓDIGO DO PRODUTO");
-        CadastroProduto.add(label, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
+        label.setText("DIGITE O CÓDIGO DO CLIENTE");
+        CadastroProduto.add(label, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, -1));
 
         closeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-close-window-40.png"))); // NOI18N
         closeIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -98,16 +105,21 @@ public class RelatorioProduto extends javax.swing.JDialog {
         });
         CadastroProduto.add(closeIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, -1, -1));
 
-        MostrarCodProd.setBackground(new java.awt.Color(255, 255, 255));
-        MostrarCodProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-mostrar-propriedade.-26.png"))); // NOI18N
-        MostrarCodProd.setText("MOSTRAR");
-        MostrarCodProd.setFocusPainted(false);
-        MostrarCodProd.addActionListener(new java.awt.event.ActionListener() {
+        PuxarDados.setBackground(new java.awt.Color(255, 255, 255));
+        PuxarDados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-mostrar-propriedade.-26.png"))); // NOI18N
+        PuxarDados.setText("Puxar dados");
+        PuxarDados.setFocusPainted(false);
+        PuxarDados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MostrarCodProdActionPerformed(evt);
+                PuxarDadosActionPerformed(evt);
             }
         });
-        CadastroProduto.add(MostrarCodProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 130, 30));
+        CadastroProduto.add(PuxarDados, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, 170, 30));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Lista de Clientes:");
+        CadastroProduto.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
 
         getContentPane().add(CadastroProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 530));
 
@@ -124,72 +136,93 @@ public class RelatorioProduto extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_closeIconMouseClicked
 
-    private void MostrarCodProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarCodProdActionPerformed
-        if ((field_codProduto.getText().isEmpty())) {
-            JOptionPane.showMessageDialog(this, "Por favor informe o código do produto!");
-            field_codProduto.requestFocus();
-        } else {
-            Iterator i = produtos.iterator();
+    private void PuxarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PuxarDadosActionPerformed
+        if (!field_idCliente.getText().isEmpty()) {
+            Iterator i = clientes.iterator();
+            int tipo;
             int cont = 0;
             while (i.hasNext()) {
-                Produto produto = (Produto) i.next();
-                if (field_codProduto.getText().equals(produto.getCodigoBarras())){
-                    if (tipo == 2) {
-                        
-                        AlterarProduto alterar = new AlterarProduto(this, true, produto);
+               
+                Cliente cliente = (Cliente) i.next();
+                if (cliente instanceof PessoaFisica) {
+                    tipo = 2;
+                } else {
+                    tipo = 1;
+                    field_idCliente.requestFocus();
+                }
+                 int codCli = cliente.getCodigo();
+                if (cliente.getCodigo() == Integer.parseInt(field_idCliente.getText())) {
+                    if (x == 1) {
+                        AdicionarEndereco adicionar = new AdicionarEndereco(this, true, cliente.getCodigo() );        
+                        adicionar.setVisible(true);
+                        dispose();
+                    } else if (x == 2) {
+                        RelatorioEndereco alterar = new RelatorioEndereco(this, true, cliente,2,codCli);
                         alterar.setVisible(true);
-                        this.dispose();
+                        dispose();
                         
-                    } else if (tipo == 3) {
-                           ConsultarProduto consultar = new  ConsultarProduto(this, true, produto);
-                           consultar.setVisible(true);
-                           this.dispose();
-                    } else {
-                        
-                        ExcluirProduto excluir = new ExcluirProduto(this, true, produto);
+                    } else if (x == 3){
+                        RelatorioEndereco mostrar = new RelatorioEndereco(this, true, cliente,3,codCli);
+                        mostrar.setVisible(true);
+                    }else{
+                        RelatorioEndereco excluir = new RelatorioEndereco(this, true, cliente,4,codCli);
                         excluir.setVisible(true);
-                        this.dispose();
-                        
+                        dispose();
                     }
-                }else{
+                } else {
                     cont++;
                 }
-                if(cont == produtos.size()){
-                    JOptionPane.showMessageDialog(rootPane, "Codigo não encontrado!");
-                }
-
+            }
+            if (cont == clientes.size()) {
+                JOptionPane.showMessageDialog(rootPane, "Codigo não encontrado!");
+                field_idCliente.requestFocus();
             }
 
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Digite o Código do Cliente!");
+            field_idCliente.requestFocus();
         }
-
-
-    }//GEN-LAST:event_MostrarCodProdActionPerformed
+    }//GEN-LAST:event_PuxarDadosActionPerformed
 
     public void tbShowDados() {
-        ArrayList<Produto> prod = produtos;
         dados.clear();
-        for (Produto p : prod) {
-            dados.add(new Object[]{
-                p.getCodigoBarras(),
-                p.getNome(),
-                p.getPreco(),
-                p.getEstoque(),
-                p.getTipoUva(),
-                p.getTipoVinho(),
-                p.getPaisOrigem()});
-            NewTableModel dadosEndereco = new NewTableModel(dados, colunas);
-            tmProduto.setModel(dadosEndereco);
-            repaint();
-            validate();
-        }
-    }
+        Iterator i = clientes.iterator();
 
-  
-    
-    private void desbloqueiaProduto() {
-        label.setVisible(true);
-        field_codProduto.setVisible(true);
-        MostrarCodProd.setVisible(true);
+        while (i.hasNext()) {
+            Cliente cliente = (Cliente) i.next();
+            if (cliente instanceof PessoaFisica) {
+                PessoaFisica pF = (PessoaFisica) cliente;
+                dados.add(new Object[]{
+                    pF.getCodigo(),
+                    pF.getNome(),
+                    pF.getLimiteCredito(),
+                    null,
+                    null,
+                    pF.getCpf()});
+
+                NewTableModel dadosPessoa = new NewTableModel(dados, colunas);
+                tmCliente.setModel(dadosPessoa);
+                repaint();
+                validate();
+
+            } else {
+                PessoaJuridica pJ = (PessoaJuridica) cliente;
+                //ordem : private String[] colunas= {"Código ", "Nome", "Limite de crédito","Nome Fantasia" ,"CNPJ","CPF"};
+                dados.add(new Object[]{
+                    pJ.getCodigo(),
+                    pJ.getNome(),
+                    pJ.getLimiteCredito(),
+                    pJ.getNomeFantasia(),
+                    pJ.getCnpj(),
+                    null});
+
+                NewTableModel dadosPessoa = new NewTableModel(dados, colunas);
+                tmCliente.setModel(dadosPessoa);
+                repaint();
+                validate();
+            }
+        }
+
     }
 
     public static void main(String args[]) {
@@ -222,7 +255,7 @@ public class RelatorioProduto extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                RelatorioProduto dialog = new RelatorioProduto(new javax.swing.JFrame(), true);
+                RelatorioClienteEndereco dialog = new RelatorioClienteEndereco(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -236,13 +269,14 @@ public class RelatorioProduto extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CadastroProduto;
-    private javax.swing.JButton MostrarCodProd;
+    private javax.swing.JButton PuxarDados;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel closeIcon;
-    private javax.swing.JTextField field_codProduto;
+    private javax.swing.JTextField field_idCliente;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label;
-    private javax.swing.JTable tmProduto;
+    private javax.swing.JTable tmCliente;
     // End of variables declaration//GEN-END:variables
 }

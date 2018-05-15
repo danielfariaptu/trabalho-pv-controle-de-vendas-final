@@ -107,7 +107,6 @@ public class LoginDAO {
             }
             resultSet.close();
             statement.close();
-            conn.close();
 
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Algo de errado aconteceu:\n " + erro.toString());

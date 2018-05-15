@@ -49,12 +49,6 @@ public class AdicionarCliente extends javax.swing.JDialog {
         jRb_Pfisica.setSelected(true);
         desbloqueiaCampoFisica();
 
-        try {
-            javax.swing.text.MaskFormatter format_textField3 = new javax.swing.text.MaskFormatter("#####-###");
-            jTF_cep = new javax.swing.JFormattedTextField(format_textField3);
-        } catch (Exception e) {
-        }
-
     }
 
     /**
@@ -101,7 +95,7 @@ public class AdicionarCliente extends javax.swing.JDialog {
         jCBoxUf = new javax.swing.JComboBox<>();
         jCBoxTipoEndereco = new javax.swing.JComboBox<>();
         jBtn_Limpar = new javax.swing.JButton();
-        jTF_cep = new javax.swing.JFormattedTextField();
+        field_CEP = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -276,11 +270,11 @@ public class AdicionarCliente extends javax.swing.JDialog {
         jPanel1.add(jBtn_Limpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 630, 120, 40));
 
         try {
-            jTF_cep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+            field_CEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jPanel1.add(jTF_cep, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 480, 190, 30));
+        jPanel1.add(field_CEP, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 480, 190, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -408,11 +402,12 @@ public class AdicionarCliente extends javax.swing.JDialog {
                         if (!jTF_numero.getText().isEmpty()) {
                             if (!jTF_Bairro.getText().isEmpty()) {
                                 if (!jTF_Municipio.getText().isEmpty()) {
-                                    if (!jTF_cep.getText().isEmpty()) {
+                                    if (!field_CEP.getText().isEmpty()) {
                                         if (!jCBoxUf.getItemAt(jCBoxUf.getSelectedIndex()).equals("- Selecione -")) {
                                             if (!jCBoxTipoEndereco.getItemAt(jCBoxTipoEndereco.getSelectedIndex()).equals("- Selecione -")) {
                                                 enderecos.add(capturarEndereco());
                                                 pf = new PessoaFisica(jTF_cpf.getText().trim(), jTf_Nome.getText().trim(), enderecos, Double.valueOf(jTF_LimiteCredito.getText().trim()));
+                                               
                                                 int id = pDAO.inserirPessoaFisica(pf);
                                                 if (id >= 0) {
                                                     limparCampos();
@@ -442,7 +437,7 @@ public class AdicionarCliente extends javax.swing.JDialog {
                                         }
                                     } else {
                                         JOptionPane.showMessageDialog(rootPane, "Campo CEP é obrigatório");
-                                        jTF_cep.requestFocus();
+                                        field_CEP.requestFocus();
                                     }
                                 } else {
                                     JOptionPane.showMessageDialog(rootPane, "Campo Municipio é obrigatório");
@@ -484,13 +479,13 @@ public class AdicionarCliente extends javax.swing.JDialog {
                             if (!jTF_numero.getText().isEmpty()) {
                                 if (!jTF_Bairro.getText().isEmpty()) {
                                     if (!jTF_Municipio.getText().isEmpty()) {
-                                        if (!jTF_cep.getText().isEmpty()) {
+                                        if (!field_CEP.getText().isEmpty()) {
                                             if (!jCBoxUf.getItemAt(jCBoxUf.getSelectedIndex()).equals("- Selecione -")) {
                                                 if (!jCBoxTipoEndereco.getItemAt(jCBoxTipoEndereco.getSelectedIndex()).equals("- Selecione -")) {
 
                                                     enderecos.add(capturarEndereco());
                                                     pj = new PessoaJuridica(jTF_NomeFantasia.getText().trim(), jTF_cnpj.getText().trim(), jTf_Nome.getText().trim(), enderecos, Double.parseDouble(jTF_LimiteCredito.getText().trim()));
-
+                                                      
                                                     int id = pDAO.inserirPessoaJuridica(pj);
                                                     if (id >= 0) {
                                                         limparCampos();
@@ -521,7 +516,7 @@ public class AdicionarCliente extends javax.swing.JDialog {
                                             }
                                         } else {
                                             JOptionPane.showMessageDialog(rootPane, "Campo CEP é obrigatório!");
-                                            jTF_cep.requestFocus();
+                                            field_CEP.requestFocus();
                                         }
                                     } else {
                                         JOptionPane.showMessageDialog(rootPane, "Campo Municipio é obrigatório!");
@@ -561,7 +556,6 @@ public class AdicionarCliente extends javax.swing.JDialog {
     private void desbloqueiaCampoFisica() {
         jTF_cpf.setVisible(true);
         labelCPF.setVisible(true);
-
         jTF_cnpj.setVisible(false);
         LabelCNPJ.setVisible(false);
         jTF_NomeFantasia.setVisible(false);
@@ -590,7 +584,7 @@ public class AdicionarCliente extends javax.swing.JDialog {
         jTF_Municipio.setText("");
         jTF_NomeFantasia.setText("");
         jCBoxTipoEndereco.setSelectedIndex(0);
-        jTF_cep.setText("");
+        field_CEP.setText("");
         jTF_cnpj.setText("");
         jTF_cpf.setText("");
         jTF_numero.setText("");
@@ -604,7 +598,7 @@ public class AdicionarCliente extends javax.swing.JDialog {
         end.setBairro(jTF_Bairro.getText());
         end.setMunicipio(jTF_Municipio.getText());
         end.setComplemento(jTF_Complemento.getText());
-        end.setCep(jTF_cep.getText());
+        end.setCep(field_CEP.getText());
         end.setEstado(jCBoxUf.getItemAt(jCBoxUf.getSelectedIndex()));
         if (jCBoxTipoEndereco.getItemAt(jCBoxTipoEndereco.getSelectedIndex()).equals("Residencial")) {
             end.setTipoEndereco(1);
@@ -627,6 +621,7 @@ public class AdicionarCliente extends javax.swing.JDialog {
     private javax.swing.JLabel LabelnomeFantasia;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel closeIcon;
+    private javax.swing.JFormattedTextField field_CEP;
     private javax.swing.JButton jBtn_Limpar;
     private javax.swing.JButton jBtn_Salvar;
     private javax.swing.JComboBox<String> jCBoxTipoEndereco;
@@ -653,7 +648,6 @@ public class AdicionarCliente extends javax.swing.JDialog {
     private javax.swing.JTextField jTF_Logradouro;
     private javax.swing.JTextField jTF_Municipio;
     private javax.swing.JTextField jTF_NomeFantasia;
-    private javax.swing.JFormattedTextField jTF_cep;
     private javax.swing.JFormattedTextField jTF_cnpj;
     private javax.swing.JFormattedTextField jTF_cpf;
     private javax.swing.JTextField jTF_numero;

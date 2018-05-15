@@ -45,8 +45,6 @@ public class CadastroProduto extends javax.swing.JDialog {
         btnLimpar = new javax.swing.JButton();
         closeIcon = new javax.swing.JLabel();
         JCBoxVinho = new javax.swing.JComboBox<>();
-        tfEstoque = new javax.swing.JTextField();
-        lbCodigoBarras1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setUndecorated(true);
@@ -186,14 +184,6 @@ public class CadastroProduto extends javax.swing.JDialog {
             }
         });
         CadastroProduto.add(JCBoxVinho, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, 300, 30));
-        CadastroProduto.add(tfEstoque, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 300, 29));
-
-        lbCodigoBarras1.setDisplayedMnemonic('c');
-        lbCodigoBarras1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        lbCodigoBarras1.setForeground(new java.awt.Color(255, 255, 255));
-        lbCodigoBarras1.setLabelFor(tfCodigoBarras);
-        lbCodigoBarras1.setText("Estoque*:");
-        CadastroProduto.add(lbCodigoBarras1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, -1, -1));
 
         getContentPane().add(CadastroProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 490));
 
@@ -208,18 +198,16 @@ public class CadastroProduto extends javax.swing.JDialog {
                     if (!JCBoxUva.getItemAt(JCBoxUva.getSelectedIndex()).equals("- Selecione -")) {
                         if (!tfPaisOrigem.getText().isEmpty()) {
                             if (!JCBoxVinho.getItemAt(JCBoxVinho.getSelectedIndex()).equals("- Selecione -")) {
-                                if (!tfEstoque.getText().isEmpty()) {
+                                
                                     if (JOptionPane.showConfirmDialog(rootPane, "Deseja realmente cadastrar este produto? ", "Comfirma salvar?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-                                        gp.cadastrarProduto(tfNome.getText().trim(), Integer.valueOf(tfPreco.getText().trim()), Integer.valueOf(tfEstoque.getText().trim()), tfCodigoBarras.getText().trim(), JCBoxUva.getItemAt(JCBoxUva.getSelectedIndex()), tfPaisOrigem.getText().trim(), JCBoxVinho.getItemAt(JCBoxUva.getSelectedIndex()));
+                                        gp.cadastrarProduto(tfNome.getText().trim(), Integer.valueOf(tfPreco.getText().trim()), tfCodigoBarras.getText().trim(), JCBoxUva.getItemAt(JCBoxUva.getSelectedIndex()), tfPaisOrigem.getText().trim(), JCBoxVinho.getItemAt(JCBoxUva.getSelectedIndex()));
 
-                                        JOptionPane.showMessageDialog(rootPane, "Produto cadastrado.");
+                                        JOptionPane.showMessageDialog(rootPane, "Produto cadastrado com sucesso!");
+                                        this.dispose();
                                     } else {
                                         tfNome.requestFocus();
                                     }
-                                } else {
-                                    JOptionPane.showMessageDialog(rootPane, "Campo Estoque obrigatório!");
-                                    tfEstoque.requestFocus();
-                                }
+                                
                             } else {
                                 JOptionPane.showMessageDialog(rootPane, "Campo Tipo de Vinho obrigatório!");
                                 tfPreco.requestFocus();
@@ -354,14 +342,12 @@ public class CadastroProduto extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lbAviso;
     private javax.swing.JLabel lbCodigoBarras;
-    private javax.swing.JLabel lbCodigoBarras1;
     private javax.swing.JLabel lbNome;
     private javax.swing.JLabel lbPaisOrigem;
     private javax.swing.JLabel lbPreco;
     private javax.swing.JLabel lbTipoUva;
     private javax.swing.JLabel lbTipoVinho;
     private javax.swing.JTextField tfCodigoBarras;
-    private javax.swing.JTextField tfEstoque;
     private javax.swing.JTextField tfNome;
     private javax.swing.JTextField tfPaisOrigem;
     private javax.swing.JTextField tfPreco;

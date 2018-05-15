@@ -139,7 +139,7 @@ public class AlterarEndereco extends javax.swing.JDialog {
 
         btnConfirmar.setBackground(new java.awt.Color(255, 255, 255));
         btnConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-ok-32.png"))); // NOI18N
-        btnConfirmar.setText("Cadastrar");
+        btnConfirmar.setText("Alterar");
         btnConfirmar.setFocusPainted(false);
         btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -110,7 +110,7 @@ public class RelatorioClienteConta extends javax.swing.JDialog {
                 PuxarDadosActionPerformed(evt);
             }
         });
-        CadastroProduto.add(PuxarDados, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, 170, 30));
+        CadastroProduto.add(PuxarDados, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, 210, 30));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));

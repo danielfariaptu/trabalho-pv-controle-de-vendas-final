@@ -290,9 +290,9 @@ public class ConsultarFatura extends javax.swing.JDialog {
                 .addComponent(fundo12, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Painel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(21, 21, 21)
                 .addComponent(Painel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 52, Short.MAX_VALUE))
+                .addGap(0, 58, Short.MAX_VALUE))
         );
 
         jPanel1.add(painelConsultarFatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 630, 370));
@@ -327,6 +327,7 @@ public class ConsultarFatura extends javax.swing.JDialog {
 
         totalFatura.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         totalFatura.setForeground(new java.awt.Color(153, 0, 51));
+        totalFatura.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

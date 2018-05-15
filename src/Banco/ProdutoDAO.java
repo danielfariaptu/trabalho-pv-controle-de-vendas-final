@@ -97,7 +97,7 @@ public class ProdutoDAO {
             rs = ps.executeQuery();
             
             while (rs.next()) {
-                produtos.add(new Produto(rs.getString("nome"), rs.getDouble("preco"), rs.getInt("estoque"), rs.getString("codigo_de_barras"), rs.getString("tipo_de_uva"), rs.getString("pais_de_origem"), rs.getString("tipo_de_vinho")));
+                produtos.add(new Produto(rs.getString("nome"), rs.getDouble("preco"), rs.getString("codigo_de_barras"), rs.getString("tipo_de_uva"), rs.getString("pais_de_origem"), rs.getString("tipo_de_vinho")));
             }
             return produtos;
         } catch (SQLException ex) {
@@ -135,7 +135,7 @@ public class ProdutoDAO {
             rs = ps.executeQuery();
             
             while (rs.next()) {
-                produtos.add(new Produto(rs.getString("nome"), rs.getDouble("preco"), rs.getInt("estoque"), rs.getString("codigo_de_barras"), rs.getString("tipo_de_uva"), rs.getString("pais_de_origem"), rs.getString("tipo_de_vinho")));
+                produtos.add(new Produto(rs.getString("nome"), rs.getDouble("preco"), rs.getString("codigo_de_barras"), rs.getString("tipo_de_uva"), rs.getString("pais_de_origem"), rs.getString("tipo_de_vinho")));
             }
             return produtos;
         } catch (SQLException e) {

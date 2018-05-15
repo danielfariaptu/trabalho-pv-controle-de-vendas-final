@@ -33,7 +33,6 @@ public class PesquisarEndereco extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         this.x = x;
         this.clientes = clientes;
-        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")

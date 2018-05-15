@@ -1,5 +1,7 @@
 package Interface.Cliente;
 
+import Interface.Conta.*;
+import Interface.Cliente.*;
 import Interface.Produto.*;
 import Interface.Endereco.*;
 import Model.NewTableModel;
@@ -19,15 +21,13 @@ import javax.swing.table.TableModel;
 
 public class RelatorioCliente extends javax.swing.JDialog {
 
-    private String[] colunas= {"Código ", "Nome", "Limite de crédito","Nome Fantasia" ,"CNPJ","CPF"};
-
-    
+    private String[] colunas = {"Código ", "Nome", "Limite de crédito", "Nome Fantasia", "CNPJ", "CPF"};
+    private int x;
     private PessoaFisica pF;
     private PessoaJuridica pJ;
-    private ArrayList<Cliente> clientes = new ArrayList<>();
+    private ArrayList<Cliente> clientes = new ArrayList<Cliente>();
     ArrayList<Object> dados = new ArrayList<>();
-    int x;
-    
+
     private int tipo;
 
     public RelatorioCliente(java.awt.Frame parent, boolean modal) {
@@ -39,11 +39,12 @@ public class RelatorioCliente extends javax.swing.JDialog {
 
     }
 
-    public RelatorioCliente(javax.swing.JFrame parent, boolean modal, int x, ArrayList<Cliente> clientes) {
+    public RelatorioCliente(javax.swing.JFrame parent, boolean modal, int x ,ArrayList<Cliente> clientes) {
         super(parent, modal);
         initComponents();
-        this.clientes = clientes;
+        
         this.x = x;
+        this.clientes = clientes;
         setLocationRelativeTo(null);
         tbShowDados();
     }
@@ -60,7 +61,7 @@ public class RelatorioCliente extends javax.swing.JDialog {
         field_idCliente = new javax.swing.JTextField();
         label = new javax.swing.JLabel();
         closeIcon = new javax.swing.JLabel();
-        Vincular = new javax.swing.JButton();
+        PuxarDados = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -83,8 +84,8 @@ public class RelatorioCliente extends javax.swing.JDialog {
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("RELATÓRIO DE CLIENTE");
-        CadastroProduto.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 420, 43));
+        jLabel1.setText("BUSCAR CLIENTE");
+        CadastroProduto.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 420, 43));
         CadastroProduto.add(field_idCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 300, 29));
 
         label.setDisplayedMnemonic('n');
@@ -103,16 +104,16 @@ public class RelatorioCliente extends javax.swing.JDialog {
         });
         CadastroProduto.add(closeIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, -1, -1));
 
-        Vincular.setBackground(new java.awt.Color(255, 255, 255));
-        Vincular.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-mostrar-propriedade.-26.png"))); // NOI18N
-        Vincular.setText("Mostrar");
-        Vincular.setFocusPainted(false);
-        Vincular.addActionListener(new java.awt.event.ActionListener() {
+        PuxarDados.setBackground(new java.awt.Color(255, 255, 255));
+        PuxarDados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-mostrar-propriedade.-26.png"))); // NOI18N
+        PuxarDados.setText("Puxar dados");
+        PuxarDados.setFocusPainted(false);
+        PuxarDados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VincularActionPerformed(evt);
+                PuxarDadosActionPerformed(evt);
             }
         });
-        CadastroProduto.add(Vincular, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, 130, 30));
+        CadastroProduto.add(PuxarDados, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, 210, 30));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -134,7 +135,7 @@ public class RelatorioCliente extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_closeIconMouseClicked
 
-    private void VincularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VincularActionPerformed
+    private void PuxarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PuxarDadosActionPerformed
         if ((field_idCliente.getText().isEmpty())) {
             JOptionPane.showMessageDialog(this, "Por favor informe o código do Cliente!");
             field_idCliente.requestFocus();
@@ -181,61 +182,47 @@ public class RelatorioCliente extends javax.swing.JDialog {
         }
 
  }
-    }//GEN-LAST:event_VincularActionPerformed
+    }//GEN-LAST:event_PuxarDadosActionPerformed
 
     public void tbShowDados() {
-
-       
-        ArrayList<Cliente> cli = clientes;
+        dados.clear();
         Iterator i = clientes.iterator();
 
         while (i.hasNext()) {
             Cliente cliente = (Cliente) i.next();
             if (cliente instanceof PessoaFisica) {
-                PessoaFisica pF = (PessoaFisica) i.next();
-                
-                dados.clear();
-                for (Cliente c : cli) {
-                    
-   
-                    dados.add(new Object[]{
-                        c.getCodigo(),
-                        pF.getNome(),
-                        pF.getLimiteCredito(), 
-                        null,
-                        null,
-                        pF.getCpf()});
+                PessoaFisica pF = (PessoaFisica) cliente;
+                dados.add(new Object[]{
+                    pF.getCodigo(),
+                    pF.getNome(),
+                    pF.getLimiteCredito(),
+                    null,
+                    null,
+                    pF.getCpf()});
 
-                    NewTableModel dadosPessoa = new NewTableModel(dados, colunas);
-                    tmCliente.setModel(dadosPessoa);
-                    repaint();
-                    validate();
-                }
+                NewTableModel dadosPessoa = new NewTableModel(dados, colunas);
+                tmCliente.setModel(dadosPessoa);
+                repaint();
+                validate();
 
             } else {
-                 PessoaJuridica pJ = (PessoaJuridica) i.next();
-                dados.clear();
-                 //private String[] colunas= {"Código ", "Nome", "Limite de crédito","Nome Fantasia" ,"CNPJ","CPF"};
-                for (Cliente c : cli) {
-                    dados.add(new Object[]{
-                        c.getCodigo(),
-                        pJ.getNome(),
-                        pJ.getLimiteCredito(),
-                        pJ.getNomeFantasia(),
-                        pJ.getCnpj(),
-                        null});
+                PessoaJuridica pJ = (PessoaJuridica) cliente;
+                //ordem : private String[] colunas= {"Código ", "Nome", "Limite de crédito","Nome Fantasia" ,"CNPJ","CPF"};
+                dados.add(new Object[]{
+                    pJ.getCodigo(),
+                    pJ.getNome(),
+                    pJ.getLimiteCredito(),
+                    pJ.getNomeFantasia(),
+                    pJ.getCnpj(),
+                    null});
 
-                    NewTableModel dadosPessoa = new NewTableModel(dados, colunas);
-                    tmCliente.setModel(dadosPessoa);
-                    repaint();
-                    validate();
-
-                }
-
+                NewTableModel dadosPessoa = new NewTableModel(dados, colunas);
+                tmCliente.setModel(dadosPessoa);
+                repaint();
+                validate();
             }
-        
         }
-        
+
     }
 
     public static void main(String args[]) {
@@ -282,7 +269,7 @@ public class RelatorioCliente extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CadastroProduto;
-    private javax.swing.JButton Vincular;
+    private javax.swing.JButton PuxarDados;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel closeIcon;
     private javax.swing.JTextField field_idCliente;

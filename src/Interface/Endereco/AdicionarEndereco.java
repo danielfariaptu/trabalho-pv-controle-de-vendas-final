@@ -78,7 +78,7 @@ public class AdicionarEndereco extends javax.swing.JDialog {
 
         lbAviso.setForeground(new java.awt.Color(255, 255, 255));
         lbAviso.setText("Os campos marcados com * são obrigatórios.");
-        CadastroProduto.add(lbAviso, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, -1, -1));
+        CadastroProduto.add(lbAviso, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, 250, 30));
 
         field_Logradouro.setNextFocusableComponent(field_Complemento);
         CadastroProduto.add(field_Logradouro, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 300, 29));

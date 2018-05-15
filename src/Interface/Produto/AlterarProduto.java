@@ -44,14 +44,12 @@ public class AlterarProduto extends javax.swing.JDialog {
         lbTipoUva = new javax.swing.JLabel();
         lbPreco = new javax.swing.JLabel();
         lbPaisOrigem = new javax.swing.JLabel();
-        lbCodigoBarras = new javax.swing.JLabel();
         lbTipoVinho = new javax.swing.JLabel();
         btnFechar = new javax.swing.JButton();
         btnConfirmar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         closeIcon = new javax.swing.JLabel();
         JCBoxVinho = new javax.swing.JComboBox<>();
-        tfEstoque = new javax.swing.JTextField();
         lbCodigoBarras1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -120,13 +118,6 @@ public class AlterarProduto extends javax.swing.JDialog {
         lbPaisOrigem.setText("PAÍS DE ORIGEM*:");
         CadastroProduto.add(lbPaisOrigem, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 130, -1, -1));
 
-        lbCodigoBarras.setDisplayedMnemonic('c');
-        lbCodigoBarras.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        lbCodigoBarras.setForeground(new java.awt.Color(255, 255, 255));
-        lbCodigoBarras.setLabelFor(tfCodigoBarras);
-        lbCodigoBarras.setText("ESTOQUE*:");
-        CadastroProduto.add(lbCodigoBarras, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, -1, -1));
-
         lbTipoVinho.setDisplayedMnemonic('I');
         lbTipoVinho.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lbTipoVinho.setForeground(new java.awt.Color(255, 255, 255));
@@ -187,7 +178,6 @@ public class AlterarProduto extends javax.swing.JDialog {
             }
         });
         CadastroProduto.add(JCBoxVinho, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, 300, 30));
-        CadastroProduto.add(tfEstoque, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 300, 29));
 
         lbCodigoBarras1.setDisplayedMnemonic('c');
         lbCodigoBarras1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -217,7 +207,6 @@ public class AlterarProduto extends javax.swing.JDialog {
                                     
                                     produto.setNome(tfNome.getText());
                                     produto.setPreco(Double.parseDouble(tfPreco.getText()));
-                                    produto.setEstoque(Integer.parseInt(tfEstoque.getText()));
                                     produto.setTipoUva(JCBoxUva.getItemAt(JCBoxUva.getSelectedIndex()));
                                     produto.setPaisOrigem(tfPaisOrigem.getText());
                                     produto.setTipoVinho(JCBoxVinho.getItemAt(JCBoxVinho.getSelectedIndex()));
@@ -367,7 +356,6 @@ public class AlterarProduto extends javax.swing.JDialog {
     private javax.swing.JLabel closeIcon;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lbAviso;
-    private javax.swing.JLabel lbCodigoBarras;
     private javax.swing.JLabel lbCodigoBarras1;
     private javax.swing.JLabel lbNome;
     private javax.swing.JLabel lbPaisOrigem;
@@ -375,7 +363,6 @@ public class AlterarProduto extends javax.swing.JDialog {
     private javax.swing.JLabel lbTipoUva;
     private javax.swing.JLabel lbTipoVinho;
     private javax.swing.JTextField tfCodigoBarras;
-    private javax.swing.JTextField tfEstoque;
     private javax.swing.JTextField tfNome;
     private javax.swing.JTextField tfPaisOrigem;
     private javax.swing.JTextField tfPreco;
