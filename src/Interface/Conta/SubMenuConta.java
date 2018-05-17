@@ -78,7 +78,7 @@ public class SubMenuConta extends javax.swing.JDialog {
         jLabel45 = new javax.swing.JLabel();
         closeIcon = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jBtn_Fechar1 = new javax.swing.JButton();
+        voltar = new javax.swing.JButton();
         botaoFatura = new javax.swing.JPanel();
         jLabel46 = new javax.swing.JLabel();
         jLabel47 = new javax.swing.JLabel();
@@ -189,18 +189,19 @@ public class SubMenuConta extends javax.swing.JDialog {
         jLabel1.setText("DADOS CLIENTE/CONTA");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, 300, -1));
 
-        jBtn_Fechar1.setBackground(new java.awt.Color(255, 255, 255));
-        jBtn_Fechar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Arrow Back.png"))); // NOI18N
-        jBtn_Fechar1.setMnemonic('S');
-        jBtn_Fechar1.setText("Voltar");
-        jBtn_Fechar1.setToolTipText("Salva os registros");
-        jBtn_Fechar1.setFocusPainted(false);
-        jBtn_Fechar1.addActionListener(new java.awt.event.ActionListener() {
+        voltar.setBackground(new java.awt.Color(255, 255, 255));
+        voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Arrow Back.png"))); // NOI18N
+        voltar.setMnemonic('S');
+        voltar.setText("Voltar");
+        voltar.setToolTipText("Salva os registros");
+        voltar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        voltar.setFocusPainted(false);
+        voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtn_Fechar1ActionPerformed(evt);
+                voltarActionPerformed(evt);
             }
         });
-        jPanel1.add(jBtn_Fechar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 620, 120, 40));
+        jPanel1.add(voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 620, 120, 40));
 
         botaoFatura.setBackground(new java.awt.Color(80, 77, 90));
         botaoFatura.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
@@ -788,9 +789,9 @@ public class SubMenuConta extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_closeIconMouseClicked
 
-    private void jBtn_Fechar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_Fechar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBtn_Fechar1ActionPerformed
+    private void voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_voltarActionPerformed
 
     private void botaoPagamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPagamentoMouseClicked
         conta = contaDAO.buscarConta(cliente.getCodigo());
@@ -936,7 +937,6 @@ public class SubMenuConta extends javax.swing.JDialog {
     private javax.swing.JLabel fundo9;
     private javax.swing.JLabel id;
     private javax.swing.JLabel idJuridica;
-    private javax.swing.JButton jBtn_Fechar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -969,5 +969,6 @@ public class SubMenuConta extends javax.swing.JDialog {
     private javax.swing.JScrollPane scrolJuridica;
     private javax.swing.JLabel totalConta;
     private javax.swing.JLabel totalConta1;
+    private javax.swing.JButton voltar;
     // End of variables declaration//GEN-END:variables
 }

@@ -317,6 +317,7 @@ public class ConsultarFatura extends javax.swing.JDialog {
         btnPagar.setMnemonic('S');
         btnPagar.setText("Pagar Proxima Parcela");
         btnPagar.setToolTipText("Salva os registros");
+        btnPagar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPagar.setFocusPainted(false);
         btnPagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

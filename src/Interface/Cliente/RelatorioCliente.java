@@ -77,6 +77,27 @@ public class RelatorioCliente extends javax.swing.JDialog {
         });
         CadastroProduto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        tmCliente.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Código", "Nome", "Limite de Crédito", "Nome Fantasia", "CNPJ", "CPF"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tmCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tmClienteMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tmCliente);
 
         CadastroProduto.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 710, 290));
@@ -107,6 +128,7 @@ public class RelatorioCliente extends javax.swing.JDialog {
         PuxarDados.setBackground(new java.awt.Color(255, 255, 255));
         PuxarDados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-mostrar-propriedade.-26.png"))); // NOI18N
         PuxarDados.setText("Puxar dados");
+        PuxarDados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         PuxarDados.setFocusPainted(false);
         PuxarDados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -184,6 +206,14 @@ public class RelatorioCliente extends javax.swing.JDialog {
  }
     }//GEN-LAST:event_PuxarDadosActionPerformed
 
+    private void tmClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tmClienteMouseClicked
+        NewTableModel model = (NewTableModel)tmCliente.getModel();
+        int selectedRowIndex = tmCliente.getSelectedRow();
+        field_idCliente.setText(model.getValueAt(selectedRowIndex, 0).toString());
+        
+    }//GEN-LAST:event_tmClienteMouseClicked
+
+    
     public void tbShowDados() {
         dados.clear();
         Iterator i = clientes.iterator();

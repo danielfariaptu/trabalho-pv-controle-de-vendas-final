@@ -104,6 +104,7 @@ public class AdicionarAoCarrinho extends javax.swing.JDialog {
         AdicionarCarrinho.setBackground(new java.awt.Color(255, 255, 255));
         AdicionarCarrinho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-adicionar-32.png"))); // NOI18N
         AdicionarCarrinho.setText("ADICIONAR");
+        AdicionarCarrinho.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         AdicionarCarrinho.setFocusPainted(false);
         AdicionarCarrinho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

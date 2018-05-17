@@ -75,6 +75,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        overlay = new javax.swing.JPanel();
         Navegation = new javax.swing.JPanel();
         botaoPainelLogOut = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
@@ -155,12 +156,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botaoMostrarCli = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
-        overlay = new javax.swing.JPanel();
         BotaoAlterar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Principal - TAVV ");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        overlay.setBackground(new java.awt.Color(0, 0, 51));
+        overlay.setPreferredSize(new java.awt.Dimension(1280, 800));
+        overlay.setRequestFocusEnabled(false);
+        overlay.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(overlay, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, -1, 810));
 
         Navegation.setPreferredSize(new java.awt.Dimension(62, 500));
         Navegation.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -168,7 +174,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botaoPainelLogOut.setBackground(new java.awt.Color(80, 77, 90));
         botaoPainelLogOut.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(45, 42, 57), 1, true));
         botaoPainelLogOut.setForeground(new java.awt.Color(255, 255, 255));
-        botaoPainelLogOut.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoPainelLogOut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoPainelLogOut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botaoPainelLogOutMouseClicked(evt);
@@ -214,7 +220,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botaoPainelProduto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(45, 42, 57), 1, true));
         botaoPainelProduto.setForeground(new java.awt.Color(255, 255, 255));
         botaoPainelProduto.setToolTipText("");
-        botaoPainelProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoPainelProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoPainelProduto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botaoPainelProdutoMouseClicked(evt);
@@ -259,7 +265,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botaoConta.setBackground(new java.awt.Color(80, 77, 90));
         botaoConta.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(45, 42, 57), 1, true));
         botaoConta.setForeground(new java.awt.Color(255, 255, 255));
-        botaoConta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoConta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoConta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botaoContaMouseClicked(evt);
@@ -307,7 +313,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botaoPainelCompra.setBackground(new java.awt.Color(80, 77, 90));
         botaoPainelCompra.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(45, 42, 57), 1, true));
         botaoPainelCompra.setForeground(new java.awt.Color(255, 255, 255));
-        botaoPainelCompra.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoPainelCompra.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoPainelCompra.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botaoPainelCompraMouseClicked(evt);
@@ -354,7 +360,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botaoPainelEndereco.setBackground(new java.awt.Color(80, 77, 90));
         botaoPainelEndereco.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(45, 42, 57), 1, true));
         botaoPainelEndereco.setForeground(new java.awt.Color(255, 255, 255));
-        botaoPainelEndereco.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoPainelEndereco.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoPainelEndereco.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botaoPainelEnderecoMouseClicked(evt);
@@ -401,7 +407,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botaoPainelCliente.setBackground(new java.awt.Color(80, 77, 90));
         botaoPainelCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(45, 42, 57), 1, true));
         botaoPainelCliente.setForeground(new java.awt.Color(255, 255, 255));
-        botaoPainelCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoPainelCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoPainelCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botaoPainelClienteMouseClicked(evt);
@@ -448,7 +454,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botaoInicio.setBackground(new java.awt.Color(80, 77, 90));
         botaoInicio.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(45, 42, 57), 1, true));
         botaoInicio.setForeground(new java.awt.Color(255, 255, 255));
-        botaoInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botaoInicioMouseClicked(evt);
@@ -528,7 +534,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botaoIncluirCompra.setBackground(new java.awt.Color(80, 77, 90));
         botaoIncluirCompra.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
         botaoIncluirCompra.setForeground(new java.awt.Color(255, 255, 255));
-        botaoIncluirCompra.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoIncluirCompra.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoIncluirCompra.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botaoIncluirCompraMouseClicked(evt);
@@ -549,7 +555,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botaoMostrarCompra.setBackground(new java.awt.Color(80, 77, 90));
         botaoMostrarCompra.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
         botaoMostrarCompra.setForeground(new java.awt.Color(255, 255, 255));
-        botaoMostrarCompra.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoMostrarCompra.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoMostrarCompra.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botaoMostrarCompraMouseClicked(evt);
@@ -605,7 +611,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botaoIncluirProd.setBackground(new java.awt.Color(80, 77, 90));
         botaoIncluirProd.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
         botaoIncluirProd.setForeground(new java.awt.Color(255, 255, 255));
-        botaoIncluirProd.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoIncluirProd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoIncluirProd.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botaoIncluirProdMouseClicked(evt);
@@ -626,7 +632,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botaoAlterarProd.setBackground(new java.awt.Color(80, 77, 90));
         botaoAlterarProd.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
         botaoAlterarProd.setForeground(new java.awt.Color(255, 255, 255));
-        botaoAlterarProd.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoAlterarProd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoAlterarProd.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botaoAlterarProdMouseClicked(evt);
@@ -647,7 +653,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botaoRemoverProd.setBackground(new java.awt.Color(80, 77, 90));
         botaoRemoverProd.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
         botaoRemoverProd.setForeground(new java.awt.Color(255, 255, 255));
-        botaoRemoverProd.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoRemoverProd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoRemoverProd.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botaoRemoverProdMouseClicked(evt);
@@ -688,7 +694,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botaoMostrarProd.setBackground(new java.awt.Color(80, 77, 90));
         botaoMostrarProd.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
         botaoMostrarProd.setForeground(new java.awt.Color(255, 255, 255));
-        botaoMostrarProd.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoMostrarProd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoMostrarProd.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botaoMostrarProdMouseClicked(evt);
@@ -745,7 +751,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botaoIncluirE.setBackground(new java.awt.Color(80, 77, 90));
         botaoIncluirE.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
         botaoIncluirE.setForeground(new java.awt.Color(255, 255, 255));
-        botaoIncluirE.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoIncluirE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoIncluirE.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botaoIncluirEMouseClicked(evt);
@@ -766,7 +772,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botaoAlterarE.setBackground(new java.awt.Color(80, 77, 90));
         botaoAlterarE.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
         botaoAlterarE.setForeground(new java.awt.Color(255, 255, 255));
-        botaoAlterarE.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoAlterarE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoAlterarE.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botaoAlterarEMouseClicked(evt);
@@ -787,7 +793,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botaoRemoverE.setBackground(new java.awt.Color(80, 77, 90));
         botaoRemoverE.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
         botaoRemoverE.setForeground(new java.awt.Color(255, 255, 255));
-        botaoRemoverE.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoRemoverE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoRemoverE.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botaoRemoverEMouseClicked(evt);
@@ -829,7 +835,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botaoMostrarE.setBackground(new java.awt.Color(80, 77, 90));
         botaoMostrarE.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
         botaoMostrarE.setForeground(new java.awt.Color(255, 255, 255));
-        botaoMostrarE.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoMostrarE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoMostrarE.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botaoMostrarEMouseClicked(evt);
@@ -885,7 +891,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botaoIncluirCli.setBackground(new java.awt.Color(80, 77, 90));
         botaoIncluirCli.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
         botaoIncluirCli.setForeground(new java.awt.Color(255, 255, 255));
-        botaoIncluirCli.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoIncluirCli.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoIncluirCli.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botaoIncluirCliMouseClicked(evt);
@@ -906,7 +912,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botaoAlterarCli.setBackground(new java.awt.Color(80, 77, 90));
         botaoAlterarCli.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
         botaoAlterarCli.setForeground(new java.awt.Color(255, 255, 255));
-        botaoAlterarCli.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoAlterarCli.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoAlterarCli.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botaoAlterarCliMouseClicked(evt);
@@ -927,7 +933,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botaoRemoverCli.setBackground(new java.awt.Color(80, 77, 90));
         botaoRemoverCli.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
         botaoRemoverCli.setForeground(new java.awt.Color(255, 255, 255));
-        botaoRemoverCli.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoRemoverCli.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoRemoverCli.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botaoRemoverCliMouseClicked(evt);
@@ -968,7 +974,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botaoMostrarCli.setBackground(new java.awt.Color(80, 77, 90));
         botaoMostrarCli.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 16, 63), 1, true));
         botaoMostrarCli.setForeground(new java.awt.Color(255, 255, 255));
-        botaoMostrarCli.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoMostrarCli.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoMostrarCli.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botaoMostrarCliMouseClicked(evt);
@@ -1007,12 +1013,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         PainelCliente.add(botaoMostrarCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 320, -1, 70));
 
         getContentPane().add(PainelCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 800, 530));
-
-        overlay.setBackground(new java.awt.Color(0, 0, 51));
-        overlay.setPreferredSize(new java.awt.Dimension(1280, 800));
-        overlay.setRequestFocusEnabled(false);
-        overlay.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(overlay, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, -1, 810));
 
         BotaoAlterar.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         BotaoAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/liquor-store-back.jpg"))); // NOI18N

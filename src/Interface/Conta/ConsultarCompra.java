@@ -108,6 +108,7 @@ public class ConsultarCompra extends javax.swing.JDialog {
         jBtn_Fechar.setMnemonic('S');
         jBtn_Fechar.setText("Voltar");
         jBtn_Fechar.setToolTipText("Salva os registros");
+        jBtn_Fechar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBtn_Fechar.setFocusPainted(false);
         jBtn_Fechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

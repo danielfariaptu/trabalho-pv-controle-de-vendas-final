@@ -112,6 +112,7 @@ public class FecharCarrinho extends javax.swing.JDialog {
         FinalizarCompra.setBackground(new java.awt.Color(255, 255, 255));
         FinalizarCompra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-ok-32.png"))); // NOI18N
         FinalizarCompra.setText("FINALIZAR PEDIDO");
+        FinalizarCompra.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         FinalizarCompra.setFocusPainted(false);
         FinalizarCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,6 +167,7 @@ public class FecharCarrinho extends javax.swing.JDialog {
         RemoverCarrinho.setBackground(new java.awt.Color(255, 255, 255));
         RemoverCarrinho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-cancelar-32.png"))); // NOI18N
         RemoverCarrinho.setText("REMOVER");
+        RemoverCarrinho.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         RemoverCarrinho.setFocusPainted(false);
         RemoverCarrinho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

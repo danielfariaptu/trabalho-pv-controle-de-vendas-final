@@ -86,6 +86,11 @@ public class RelatorioCompras extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        tmCompra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tmCompraMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tmCompra);
 
         CadastroProduto.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 710, 290));
@@ -116,6 +121,7 @@ public class RelatorioCompras extends javax.swing.JDialog {
         MostrarCodCliente.setBackground(new java.awt.Color(255, 255, 255));
         MostrarCodCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-mostrar-propriedade.-26.png"))); // NOI18N
         MostrarCodCliente.setText("Mostrar ");
+        MostrarCodCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MostrarCodCliente.setFocusPainted(false);
         MostrarCodCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,7 +155,7 @@ public class RelatorioCompras extends javax.swing.JDialog {
             while (i.hasNext()) {
                 Compra compra = (Compra) i.next();
                 if (Integer.parseInt(field_codCliente.getText()) == compra.getId()) {
-                    this.id =  compra.getId();
+                    this.id = compra.getId();
                     ConsultarCompra consultar = new ConsultarCompra(this, true, compra, cliente);
                     consultar.setVisible(true);
                 } else {
@@ -161,6 +167,13 @@ public class RelatorioCompras extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_MostrarCodClienteActionPerformed
+
+    private void tmCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tmCompraMouseClicked
+        NewTableModel model = (NewTableModel) tmCompra.getModel();
+        int selectedRowIndex = tmCompra.getSelectedRow();
+        field_codCliente.setText(model.getValueAt(selectedRowIndex, 0).toString());
+
+    }//GEN-LAST:event_tmCompraMouseClicked
 
     public int getId() {
         return this.id;

@@ -85,6 +85,11 @@ public class RelatorioFaturas extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        tmFatura.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tmFaturaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tmFatura);
 
         RelatFatura.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 710, 290));
@@ -115,6 +120,7 @@ public class RelatorioFaturas extends javax.swing.JDialog {
         Mostrar.setBackground(new java.awt.Color(255, 255, 255));
         Mostrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-mostrar-propriedade.-26.png"))); // NOI18N
         Mostrar.setText("Mostrar ");
+        Mostrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Mostrar.setFocusPainted(false);
         Mostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,6 +166,13 @@ public class RelatorioFaturas extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_MostrarActionPerformed
+
+    private void tmFaturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tmFaturaMouseClicked
+           NewTableModel model = (NewTableModel)tmFatura.getModel();
+        int selectedRowIndex = tmFatura.getSelectedRow();
+        field_codFatura.setText(model.getValueAt(selectedRowIndex, 0).toString());
+        
+    }//GEN-LAST:event_tmFaturaMouseClicked
 
     public int getId() {
         return this.id;

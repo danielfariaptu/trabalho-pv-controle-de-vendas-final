@@ -58,6 +58,7 @@ public class RelatorioEndereco extends javax.swing.JDialog {
         labelEnd = new javax.swing.JLabel();
         closeIcon = new javax.swing.JLabel();
         MostrarCodCliente = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setUndecorated(true);
@@ -92,6 +93,11 @@ public class RelatorioEndereco extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        tmEnderecos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tmEnderecosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tmEnderecos);
 
         CadastroProduto.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 710, 290));
@@ -101,14 +107,14 @@ public class RelatorioEndereco extends javax.swing.JDialog {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("BUSCA DE ENDEREÇOS");
         CadastroProduto.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 350, 43));
-        CadastroProduto.add(field_codEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 300, 29));
+        CadastroProduto.add(field_codEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 300, 29));
 
         labelEnd.setDisplayedMnemonic('n');
         labelEnd.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         labelEnd.setForeground(new java.awt.Color(255, 255, 255));
         labelEnd.setLabelFor(labelEnd);
         labelEnd.setText("DIGITE O CÓDIGO DO ENDEREÇO");
-        CadastroProduto.add(labelEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
+        CadastroProduto.add(labelEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, -1));
 
         closeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-close-window-40.png"))); // NOI18N
         closeIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -122,13 +128,19 @@ public class RelatorioEndereco extends javax.swing.JDialog {
         MostrarCodCliente.setBackground(new java.awt.Color(255, 255, 255));
         MostrarCodCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-mostrar-propriedade.-26.png"))); // NOI18N
         MostrarCodCliente.setText("MOSTRAR");
+        MostrarCodCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MostrarCodCliente.setFocusPainted(false);
         MostrarCodCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MostrarCodClienteActionPerformed(evt);
             }
         });
-        CadastroProduto.add(MostrarCodCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 130, 30));
+        CadastroProduto.add(MostrarCodCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, 130, 30));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Lista de Endereços:");
+        CadastroProduto.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
 
         getContentPane().add(CadastroProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 530));
 
@@ -185,6 +197,13 @@ public class RelatorioEndereco extends javax.swing.JDialog {
 
 
     }//GEN-LAST:event_MostrarCodClienteActionPerformed
+
+    private void tmEnderecosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tmEnderecosMouseClicked
+          NewTableModel model = (NewTableModel)tmEnderecos.getModel();
+        int selectedRowIndex = tmEnderecos.getSelectedRow();
+        field_codEndereco.setText(model.getValueAt(selectedRowIndex, 0).toString());
+        
+    }//GEN-LAST:event_tmEnderecosMouseClicked
 
     public void tbShowDados() {
         ArrayList<Object> dados = new ArrayList<>();
@@ -255,6 +274,7 @@ public class RelatorioEndereco extends javax.swing.JDialog {
     private javax.swing.JLabel closeIcon;
     private javax.swing.JTextField field_codEndereco;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelEnd;
     private javax.swing.JTable tmEnderecos;

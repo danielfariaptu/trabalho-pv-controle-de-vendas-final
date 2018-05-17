@@ -513,6 +513,7 @@ public class ExcluirCliente extends javax.swing.JDialog {
         jBtn_Excluir.setMnemonic('S');
         jBtn_Excluir.setText("Excluir");
         jBtn_Excluir.setToolTipText("Salva os registros");
+        jBtn_Excluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBtn_Excluir.setFocusPainted(false);
         jBtn_Excluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

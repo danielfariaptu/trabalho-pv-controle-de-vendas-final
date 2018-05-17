@@ -237,6 +237,7 @@ public class AdicionarCliente extends javax.swing.JDialog {
         jBtn_Salvar.setMnemonic('S');
         jBtn_Salvar.setText("Salvar");
         jBtn_Salvar.setToolTipText("Salva os registros");
+        jBtn_Salvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBtn_Salvar.setFocusPainted(false);
         jBtn_Salvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -261,6 +262,7 @@ public class AdicionarCliente extends javax.swing.JDialog {
         jBtn_Limpar.setMnemonic('L');
         jBtn_Limpar.setText("Limpar");
         jBtn_Limpar.setToolTipText("Salva os registros");
+        jBtn_Limpar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBtn_Limpar.setFocusPainted(false);
         jBtn_Limpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

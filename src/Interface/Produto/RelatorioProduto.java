@@ -57,6 +57,7 @@ public class RelatorioProduto extends javax.swing.JDialog {
         label = new javax.swing.JLabel();
         closeIcon = new javax.swing.JLabel();
         MostrarCodProd = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setUndecorated(true);
@@ -71,6 +72,11 @@ public class RelatorioProduto extends javax.swing.JDialog {
         });
         CadastroProduto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        tmProduto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tmProdutoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tmProduto);
 
         CadastroProduto.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 710, 290));
@@ -80,14 +86,14 @@ public class RelatorioProduto extends javax.swing.JDialog {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("BUSCA DE PRODUTO");
         CadastroProduto.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 350, 43));
-        CadastroProduto.add(field_codProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 300, 29));
+        CadastroProduto.add(field_codProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 300, 29));
 
         label.setDisplayedMnemonic('n');
         label.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         label.setForeground(new java.awt.Color(255, 255, 255));
         label.setLabelFor(label);
         label.setText("DIGITE O CÓDIGO DO PRODUTO");
-        CadastroProduto.add(label, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
+        CadastroProduto.add(label, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
 
         closeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-close-window-40.png"))); // NOI18N
         closeIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -101,13 +107,19 @@ public class RelatorioProduto extends javax.swing.JDialog {
         MostrarCodProd.setBackground(new java.awt.Color(255, 255, 255));
         MostrarCodProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-mostrar-propriedade.-26.png"))); // NOI18N
         MostrarCodProd.setText("MOSTRAR");
+        MostrarCodProd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MostrarCodProd.setFocusPainted(false);
         MostrarCodProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MostrarCodProdActionPerformed(evt);
             }
         });
-        CadastroProduto.add(MostrarCodProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 130, 30));
+        CadastroProduto.add(MostrarCodProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 130, 130, 30));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Lista de Produtos:");
+        CadastroProduto.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
 
         getContentPane().add(CadastroProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 530));
 
@@ -164,6 +176,13 @@ public class RelatorioProduto extends javax.swing.JDialog {
 
 
     }//GEN-LAST:event_MostrarCodProdActionPerformed
+
+    private void tmProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tmProdutoMouseClicked
+        NewTableModel model = (NewTableModel)tmProduto.getModel();
+        int selectedRowIndex = tmProduto.getSelectedRow();
+        field_codProduto.setText(model.getValueAt(selectedRowIndex, 0).toString());
+        
+    }//GEN-LAST:event_tmProdutoMouseClicked
 
     public void tbShowDados() {
         ArrayList<Produto> prod = produtos;
@@ -241,6 +260,7 @@ public class RelatorioProduto extends javax.swing.JDialog {
     private javax.swing.JLabel closeIcon;
     private javax.swing.JTextField field_codProduto;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label;
     private javax.swing.JTable tmProduto;

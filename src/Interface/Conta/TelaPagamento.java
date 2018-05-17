@@ -1,23 +1,26 @@
-
 package Interface.Conta;
+
 import Interface.Cliente.*;
 import Banco.PessoaDAO;
 import Controle.GerenciaCompra;
 import Controle.GerenciaConta;
-import Interface.Pagamento.Pagamento;
+
 import Model.CalculaJuros;
 import Model.Cliente;
 import Model.Compra;
 import Model.Conta;
 import Model.NewTableModel;
+import Model.Pagamento;
 import Model.PessoaFisica;
 import Model.PessoaJuridica;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
-
 
 public class TelaPagamento extends javax.swing.JDialog {
 
@@ -26,18 +29,18 @@ public class TelaPagamento extends javax.swing.JDialog {
     private Cliente cliente;
     private Conta conta;
     private double juros;
-    
+
     private ArrayList<Compra> compras = new ArrayList<>();
     private ArrayList<Object> dados = new ArrayList<>();
     private ArrayList<Pagamento> pag = new ArrayList<>();
     private CalculaJuros calculaJuros = new CalculaJuros();
-    
-     private String[] colunas = {"Total da Compra", "Quantidade de Produtos", "Data de Compra"};
+
+    private String[] colunas = {"Total da Compra", "Quantidade de Produtos", "Data de Compra"};
 
     public TelaPagamento(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
-        initComponents();       
-       
+        initComponents();
+
     }
 
     public TelaPagamento(javax.swing.JDialog parent, boolean modal, Conta conta) {
@@ -46,9 +49,9 @@ public class TelaPagamento extends javax.swing.JDialog {
         this.cliente = conta.getCliente();
         this.conta = conta;
         initComponents();
-          setLocationRelativeTo(null);
-         
-            tbShowDados();
+        setLocationRelativeTo(null);
+
+        tbShowDados();
 
     }
 
@@ -84,6 +87,7 @@ public class TelaPagamento extends javax.swing.JDialog {
         jLabel11 = new javax.swing.JLabel();
         DataPagamento = new javax.swing.JFormattedTextField();
         btnFinalizarFatura1 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -146,6 +150,7 @@ public class TelaPagamento extends javax.swing.JDialog {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 710, 130));
 
         jurosPorAtraso.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jurosPorAtraso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -226,10 +231,10 @@ public class TelaPagamento extends javax.swing.JDialog {
         valorTotal1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jPanel1.add(valorTotal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 40, 160, 40));
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Valor Total");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, 100, 40));
+        jLabel11.setText("Obs: O Juro de parcelamento é de 7%.");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 520, 410, 70));
 
         try {
             DataPagamento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -245,6 +250,7 @@ public class TelaPagamento extends javax.swing.JDialog {
         btnFinalizarFatura1.setMnemonic('S');
         btnFinalizarFatura1.setText("Finalizar Fatura");
         btnFinalizarFatura1.setToolTipText("Salva os registros");
+        btnFinalizarFatura1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnFinalizarFatura1.setFocusPainted(false);
         btnFinalizarFatura1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -253,15 +259,20 @@ public class TelaPagamento extends javax.swing.JDialog {
         });
         jPanel1.add(btnFinalizarFatura1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 470, 210, 70));
 
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Valor Total");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, 100, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 937, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -269,9 +280,37 @@ public class TelaPagamento extends javax.swing.JDialog {
 
     private void btnSimularDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimularDataActionPerformed
         calculaJuros();
-        if(!DataPagamento.getText().equals("  /  /    ")){
-           calculaJuros();
-        }else{
+        /* if (!DataPagamento.getText().equals("  /  /    ")) {
+            calculaJuros();
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor informe uma data!");
+        }*/
+
+        Calendar cal = new GregorianCalendar();
+        LocalDate dataAgora = LocalDate.now();
+
+        
+        if (!DataPagamento.getText().equals("  /  /    ")) {
+
+            LocalDate dataSimulada = LocalDate.parse(DataPagamento.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+            Calendar dataAtual = Calendar.getInstance();
+            dataAtual.set(Calendar.DAY_OF_MONTH, dataAgora.getDayOfMonth());
+            dataAtual.set(Calendar.MONTH, dataAgora.getMonth().getValue());
+            dataAtual.set(Calendar.YEAR, dataAgora.getYear());
+
+            Calendar dataSimu = Calendar.getInstance();
+            dataSimu.set(Calendar.DAY_OF_MONTH, dataSimulada.getDayOfMonth());
+            dataSimu.set(Calendar.MONTH, dataSimulada.getMonth().getValue());
+            dataSimu.set(Calendar.YEAR, dataSimulada.getYear());
+
+            if (dataSimu.before(dataAtual)) {
+                JOptionPane.showMessageDialog(null, "A data digitada é inválida para simulação!!\n" + "Dia: " + dataSimulada.getDayOfMonth() + "Mês: " + dataSimulada.getMonth().getValue() + "Ano: " + dataSimulada.getYear()); //C
+            } else {
+                calculaJuros();
+            }
+
+        } else {
             JOptionPane.showMessageDialog(null, "Por favor informe uma data!");
         }
     }//GEN-LAST:event_btnSimularDataActionPerformed
@@ -288,9 +327,9 @@ public class TelaPagamento extends javax.swing.JDialog {
             gerenciaFatura.montarFatura(conta, juros, Integer.parseInt(comboParcelas.getItemAt(comboParcelas.getSelectedIndex())), gerenciaCompra.getTotalCompras(compras));
             JOptionPane.showMessageDialog(rootPane, "Fatura paga com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
             Iterator i = conta.getCompras().iterator();
-            while(i.hasNext()){
+            while (i.hasNext()) {
                 Compra compra = (Compra) i.next();
-                if(compra.getStatus() == 0){
+                if (compra.getStatus() == 0) {
                     compra.setStatus(1);
                 }
             }
@@ -339,8 +378,6 @@ public class TelaPagamento extends javax.swing.JDialog {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-     
-       
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -357,26 +394,27 @@ public class TelaPagamento extends javax.swing.JDialog {
         });
     }
 
-  public void calculaJuros(){
-      juros = 0;
-      if(!DataPagamento.getText().equals("  /  /    ")){
+    public void calculaJuros() {
+        juros = 0;
+        if (!DataPagamento.getText().equals("  /  /    ")) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate dataSimulada = LocalDate.parse(DataPagamento.getText() ,formatter);  
+            LocalDate dataSimulada = LocalDate.parse(DataPagamento.getText(), formatter);
             juros = calculaJuros.calculaJurosPorAtraso(gerenciaCompra.getTotalCompras(compras), dataSimulada);
         }
-        int parcelas = Integer.parseInt(comboParcelas.getItemAt(comboParcelas.getSelectedIndex()));        
-        juros += calculaJuros.calculaJurosPorParcelamento(gerenciaCompra.getTotalCompras(compras) , parcelas);
+        int parcelas = Integer.parseInt(comboParcelas.getItemAt(comboParcelas.getSelectedIndex()));
+        juros += calculaJuros.calculaJurosPorParcelamento(gerenciaCompra.getTotalCompras(compras), parcelas);
         jurosPorAtraso.setText(String.valueOf(juros));
-  }
-  public void tbShowDados() {
+    }
+
+    public void tbShowDados() {
         jurosPorAtraso.setText("0.0");
         valorTotal.setText(String.valueOf(gerenciaCompra.getTotalCompras(compras)));
         dados.clear();
         for (Compra compra : compras) {
             dados.add(new Object[]{
-            compra.getTotal(),
-            compras.size(),
-            compra.getData()});
+                compra.getTotal(),
+                compras.size(),
+                compra.getData()});
             NewTableModel dadosCompra = new NewTableModel(dados, colunas);
             tmCompras.setModel(dadosCompra);
             repaint();
@@ -395,6 +433,7 @@ public class TelaPagamento extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;

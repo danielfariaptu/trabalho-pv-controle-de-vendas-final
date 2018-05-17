@@ -108,6 +108,7 @@ public class ExcluirProdutoCarrinho extends javax.swing.JDialog {
         btnExcluir.setMnemonic('S');
         btnExcluir.setText("REMOVER");
         btnExcluir.setToolTipText("Salva os registros");
+        btnExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnExcluir.setFocusPainted(false);
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
