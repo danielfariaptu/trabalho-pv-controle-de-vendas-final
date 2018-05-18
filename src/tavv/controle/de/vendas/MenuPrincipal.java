@@ -1331,7 +1331,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         zeraCount();
         b8 = 1;
         
-        RelatorioClientesJasper tela = new RelatorioClientesJasper(new javax.swing.JDialog(), true);
+        RelatorioClientesJasper tela = new RelatorioClientesJasper(new javax.swing.JDialog(), false);
         tela.setVisible(true);
     }//GEN-LAST:event_botaoPainelRelatoriosMouseClicked
 

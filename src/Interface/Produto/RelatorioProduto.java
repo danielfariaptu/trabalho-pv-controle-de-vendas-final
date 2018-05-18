@@ -26,7 +26,7 @@ public class RelatorioProduto extends javax.swing.JDialog {
     public RelatorioProduto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-
+        this.setModal(false);
         label.setVisible(false);
         field_codProduto.setVisible(false);
 
@@ -38,7 +38,7 @@ public class RelatorioProduto extends javax.swing.JDialog {
         initComponents();
         this.tipo = tipo;
         this.produtos = produtos;
-
+        this.setModal(false);
         setLocationRelativeTo(null);
         tbShowDados();
         desbloqueiaProduto();

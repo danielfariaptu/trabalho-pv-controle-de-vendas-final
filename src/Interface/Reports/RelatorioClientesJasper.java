@@ -8,8 +8,15 @@ import Model.PessoaFisica;
 import Model.PessoaJuridica;
 import Model.*;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 import org.postgresql.core.ConnectionFactory;
 
 public class RelatorioClientesJasper extends javax.swing.JDialog {
@@ -99,14 +106,8 @@ public class RelatorioClientesJasper extends javax.swing.JDialog {
        // GerarRelatorio rel = new GerarRelatorio();
 
         if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("Cliente (Pessoa Física)")) {
-            /*try {
-                rel.listagem("/trabalho-pv-controle-de-vendas-final/src/MyReports/reportClientes.jasper", arg);
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(rootPane, "Erro ao gerar listagem!" + e);
-            }*/
-            AbstractJasperReports.createReport("D:\\docs daniel\\GitHub\\trabalho-pv-controle-de-vendas-final\\src\\MyReports\\reportClientes.jasper");
-
-            AbstractJasperReports.showViewer();
+           
+            runReportClienteFisica();
             this.setVisible(false);
 
         } else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("Cliente (Pessoa Jurídica)")) {
@@ -180,6 +181,22 @@ public class RelatorioClientesJasper extends javax.swing.JDialog {
                 dialog.setVisible(true);
             }
         });
+    }
+    
+       private void runReportClienteFisica() {
+        try {
+
+            Connection conn = Conexao.getConexao();
+
+            HashMap param = new HashMap();
+            JasperPrint jasperPrint = JasperFillManager.fillReport("reportClientes.jasper", param, conn);
+            JasperViewer.viewReport(jasperPrint, false);
+
+            // to directly popup save file
+            // JasperPrintManager.printReport(jasperPrint, false);
+        } catch (JRException ex) {
+            System.out.println("Error:\n" + ex.getLocalizedMessage());
+        }
     }
 
 

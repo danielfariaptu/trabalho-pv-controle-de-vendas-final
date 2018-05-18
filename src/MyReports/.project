@@ -20,4 +20,11 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>net.sf.jasperreports.nature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>report01.jasper</name>
+			<type>1</type>
+			<location>D:/Desktop/jasperexample-master/jasperexample-master/report01.jasper</location>
+		</link>
+	</linkedResources>
 </projectDescription>
