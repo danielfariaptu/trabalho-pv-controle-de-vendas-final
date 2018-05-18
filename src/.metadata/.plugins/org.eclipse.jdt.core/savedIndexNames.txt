@@ -1,1 +1,0 @@
-INDEX VERSION 1.130+D:\docs daniel\GitHub\trabalho-pv-controle-de-vendas-final\src\.metadata\.plugins\org.eclipse.jdt.core

@@ -8,7 +8,7 @@
 	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
 	<style name="Detail" fontName="Arial" fontSize="12"/>
 	<queryString language="SQL">
-		<![CDATA[select * from cliente]]>
+		<![CDATA[select * from cliente where cpf is not null]]>
 	</queryString>
 	<field name="cliente_id" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="cliente_id"/>
