@@ -74,6 +74,11 @@ public class AdicionarAoCarrinho extends javax.swing.JDialog {
         });
         CadastroProduto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        tmProduto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tmProdutoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tmProduto);
 
         CadastroProduto.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 710, 290));
@@ -155,6 +160,13 @@ public class AdicionarAoCarrinho extends javax.swing.JDialog {
             }    
         }
     }//GEN-LAST:event_AdicionarCarrinhoActionPerformed
+
+    private void tmProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tmProdutoMouseClicked
+         NewTableModel model = (NewTableModel)tmProduto.getModel();
+        int selectedRowIndex = tmProduto.getSelectedRow();
+        field_codProduto.setText(model.getValueAt(selectedRowIndex, 0).toString());
+        
+    }//GEN-LAST:event_tmProdutoMouseClicked
 
     public void tbShowDados() {
         

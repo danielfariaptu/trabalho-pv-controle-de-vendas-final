@@ -90,6 +90,11 @@ public class FecharCarrinho extends javax.swing.JDialog {
         jLabel2.setText("Itens no Carrinho: ");
         CadastroProduto.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
 
+        tmCompra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tmCompraMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tmCompra);
 
         CadastroProduto.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 710, 290));
@@ -270,6 +275,13 @@ public class FecharCarrinho extends javax.swing.JDialog {
 
         }
     }//GEN-LAST:event_RemoverCarrinhoActionPerformed
+
+    private void tmCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tmCompraMouseClicked
+           NewTableModel model = (NewTableModel)tmCompra.getModel();
+        int selectedRowIndex = tmCompra.getSelectedRow();
+        field_codProduto.setText(model.getValueAt(selectedRowIndex, 0).toString());
+        
+    }//GEN-LAST:event_tmCompraMouseClicked
 
     public void tbShowDados() {
         
