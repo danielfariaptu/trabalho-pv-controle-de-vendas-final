@@ -2,13 +2,13 @@
 <!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportClientes" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="e9bb1a27-f975-4aa4-98f9-75524c5daafa">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="tavv"/>
 	<style name="Title" fontName="Arial" fontSize="26" isBold="true"/>
 	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
 	<style name="Detail" fontName="Arial" fontSize="12"/>
 	<queryString language="SQL">
-		<![CDATA[select * from cliente where cpf  is not null]]>
+		<![CDATA[select * from cliente]]>
 	</queryString>
 	<field name="cliente_id" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="cliente_id"/>
@@ -63,11 +63,18 @@
 	<title>
 		<band height="152" splitType="Stretch">
 			<staticText>
-				<reportElement style="Title" x="85" y="19" width="439" height="115" forecolor="#000033" uuid="524767a9-e7e5-4041-9b08-5a7210b38e22"/>
+				<reportElement style="Title" x="0" y="0" width="555" height="115" uuid="524767a9-e7e5-4041-9b08-5a7210b38e22"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Segoe UI" size="36" isBold="false"/>
+					<font size="54" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Relatório Pessoa Física]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="234" y="115" width="321" height="37" uuid="bd605e96-6228-492c-9dd6-f33258081a5a"/>
+				<textElement textAlignment="Right">
+					<font size="26"/>
+				</textElement>
+				<text><![CDATA[Pessoas Físicas]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -79,7 +86,7 @@
 			<frame>
 				<reportElement mode="Opaque" x="97" y="5" width="458" height="20" backcolor="#666666" uuid="eb0fefed-b830-492b-a0c9-ec23411537a7"/>
 				<staticText>
-					<reportElement style="Column header" x="0" y="0" width="114" height="15" backcolor="#FFFFFF" uuid="a41d6ba3-944c-46fa-8330-a8deea72d032">
+					<reportElement style="Column header" x="0" y="0" width="114" height="15" uuid="a41d6ba3-944c-46fa-8330-a8deea72d032">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8a4cc537-37c4-4746-9ee8-97e84e13ef0d"/>
 					</reportElement>
 					<text><![CDATA[cliente_id]]></text>

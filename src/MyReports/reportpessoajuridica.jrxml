@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Coffee_1" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ced95029-b569-4027-895c-af2843a4e088">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="tavv"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true"/>
+	<style name="SubTitle" forecolor="#201852" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#F9F9F9"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[select * from cliente c where c.cnpj is not  null]]>
+	</queryString>
+	<field name="cliente_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="cliente_id"/>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+	</field>
+	<field name="nomefantasia" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nomefantasia"/>
+	</field>
+	<field name="limite_de_credito" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="limite_de_credito"/>
+	</field>
+	<field name="cnpj" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cnpj"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="100" height="100" uuid="ddc15723-2728-421f-b95e-2df9faf64ce1"/>
+				<imageExpression><![CDATA["logo.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="150" y="40" width="320" height="62" uuid="1a652692-054a-40f3-ade5-68d8da36626d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Relatório de Pessoa Jurídica]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="10" width="380" height="30" uuid="46ca85d1-6a95-4e55-a704-98f072d86585"/>
+				<textElement>
+					<font fontName="Segoe UI" size="16"/>
+				</textElement>
+				<text><![CDATA[Tabajara Atacado e Varejo de Vinhos (TAVV)]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="1a61a836-d137-48b1-ad67-6ff64600bf93"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="111" height="15" forecolor="#000033" uuid="c0427a4b-39d7-41a2-ae3f-f262e141e1c9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b5ed7a2a-3a30-49e5-bc5d-d74e5b0b2246"/>
+				</reportElement>
+				<text><![CDATA[Código do Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="111" y="0" width="111" height="15" forecolor="#000033" uuid="60692356-6edb-42e3-9c0a-259b4f0c9b37">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7dfb9fef-ed49-4fe9-a474-c0c4fdb97382"/>
+				</reportElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="222" y="0" width="111" height="15" forecolor="#000033" uuid="44e4c4ab-799f-4c13-a81d-dc36ba136e39">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="25da4932-8de7-4dae-b271-790461d029fe"/>
+				</reportElement>
+				<text><![CDATA[Nome Fantasia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="333" y="0" width="111" height="15" forecolor="#000033" uuid="e74609ee-88b9-4075-adc9-f20d510dc0ac">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d82ec77e-b727-4248-a42e-03a8c122b4c7"/>
+				</reportElement>
+				<text><![CDATA[Limite de Crédito]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="444" y="0" width="111" height="15" forecolor="#000033" uuid="863de860-595f-43d2-9589-ff24abe2a9f3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3944460a-67b0-4d8b-a58d-f621ba6ec10d"/>
+				</reportElement>
+				<text><![CDATA[CNPJ]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="15" uuid="a98495d8-3c8d-4fa0-81f5-30c3efc2f766"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="0" y="0" width="111" height="15" uuid="5e24fbee-8734-4cc2-9bb8-aca5185473fb">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b5ed7a2a-3a30-49e5-bc5d-d74e5b0b2246"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{cliente_id}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="111" y="0" width="111" height="15" uuid="a0418c35-6c11-4381-b34c-db60ed46b0d4">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7dfb9fef-ed49-4fe9-a474-c0c4fdb97382"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="222" y="0" width="111" height="15" uuid="26d68b66-5351-49f3-95ef-46a957ff7aa3">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="25da4932-8de7-4dae-b271-790461d029fe"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{nomefantasia}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="333" y="0" width="111" height="15" uuid="2244ebff-2f0e-4d61-a724-df5b59f7cd51">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d82ec77e-b727-4248-a42e-03a8c122b4c7"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{limite_de_credito}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="444" y="0" width="111" height="15" uuid="d47893ac-76e9-4013-a718-0127832fb956">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3944460a-67b0-4d8b-a58d-f621ba6ec10d"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{cnpj}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="fa45a887-615a-4d84-a2d7-8a2219671b3c"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="597" height="24" forecolor="#201852" backcolor="rgba(202, 218, 250, 0.33333334)" uuid="183682bc-d976-4756-83e0-6625a3f98ed1"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="533" y="0" width="40" height="20" forecolor="#000033" uuid="0193f9b3-1559-491a-8580-b6988863b6a1"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="453" y="0" width="80" height="20" forecolor="#000033" uuid="d00b105e-494b-418b-8ac9-8b1b4824f4f0"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#000033" uuid="0616f3fe-0354-456f-8911-ec30ec51a5ae"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

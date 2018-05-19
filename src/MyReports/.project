@@ -26,5 +26,20 @@
 			<type>1</type>
 			<location>D:/Desktop/jasperexample-master/jasperexample-master/report01.jasper</location>
 		</link>
+		<link>
+			<name>reportClientes_1.jasper</name>
+			<type>1</type>
+			<location>D:/docs daniel/GitHub/trabalho-pv-controle-de-vendas-final/reportClientes.jasper</location>
+		</link>
+		<link>
+			<name>reportfaturas.jasper</name>
+			<type>1</type>
+			<location>D:/docs daniel/GitHub/trabalho-pv-controle-de-vendas-final/src/MyReports/reportfaturas.jasper</location>
+		</link>
+		<link>
+			<name>reportfaturas.jrxml</name>
+			<type>1</type>
+			<location>D:/docs daniel/GitHub/trabalho-pv-controle-de-vendas-final/src/MyReports/reportfaturas.jrxml</location>
+		</link>
 	</linkedResources>
 </projectDescription>

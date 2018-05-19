@@ -1,32 +1,18 @@
 package Interface.Reports;
 
-import Banco.Conexao;
-import Interface.Cliente.*;
-import Banco.PessoaDAO;
-import Model.Cliente;
-import Model.PessoaFisica;
-import Model.PessoaJuridica;
-import Model.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.HashMap;
-import javax.swing.JOptionPane;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.view.JasperViewer;
-import org.postgresql.core.ConnectionFactory;
+
+import Banco.RelatoriosDAO;
+
 
 public class RelatorioClientesJasper extends javax.swing.JDialog {
 
+    private RelatoriosDAO relatDAO = new RelatoriosDAO();
     
     public RelatorioClientesJasper(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
                 initComponents();
         setLocationRelativeTo(null);
-       
+      
 
     }
 
@@ -103,26 +89,40 @@ public class RelatorioClientesJasper extends javax.swing.JDialog {
 
     private void btn_GerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_GerarActionPerformed
        
-       // GerarRelatorio rel = new GerarRelatorio();
 
-        if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("Cliente (Pessoa Física)")) {
+
+      if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("Cliente (Pessoa Física)")) {
+       
            
-            runReportClienteFisica();
-            this.setVisible(false);
-
+            relatDAO.runReportClienteFisica();
+            
         } else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("Cliente (Pessoa Jurídica)")) {
-
+            
+            relatDAO.runReportClienteJuridica();
+            
         } else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("Compra")) {
+        
+            relatDAO.runReportClienteFisica();
 
         } else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("Conta")) {
+            
+            relatDAO.runReportConta();
 
         } else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("Endereco")) {
+            
+            relatDAO.runReportEndereco();
 
         } else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("Fatura")) {
+          
+            relatDAO.runReportFatura();
 
         } else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("Pagamento")) {
+           
+            relatDAO.runReportPagamento();
 
         } else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("Produto")) {
+            
+            relatDAO.runReportProduto();
 
         }
 
@@ -183,21 +183,7 @@ public class RelatorioClientesJasper extends javax.swing.JDialog {
         });
     }
     
-       private void runReportClienteFisica() {
-        try {
-
-            Connection conn = Conexao.getConexao();
-
-            HashMap param = new HashMap();
-            JasperPrint jasperPrint = JasperFillManager.fillReport("reportClientes.jasper", param, conn);
-            JasperViewer.viewReport(jasperPrint, false);
-
-            // to directly popup save file
-            // JasperPrintManager.printReport(jasperPrint, false);
-        } catch (JRException ex) {
-            System.out.println("Error:\n" + ex.getLocalizedMessage());
-        }
-    }
+      
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

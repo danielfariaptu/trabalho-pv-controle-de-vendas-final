@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Coffee_1" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ced95029-b569-4027-895c-af2843a4e088">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="tavv"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true"/>
+	<style name="SubTitle" forecolor="#201852" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#F9F9F9"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[select  * from produto]]>
+	</queryString>
+	<field name="codigo_de_barras" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="codigo_de_barras"/>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+	</field>
+	<field name="preco" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="preco"/>
+	</field>
+	<field name="tipo_de_uva" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="tipo_de_uva"/>
+	</field>
+	<field name="pais_de_origem" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="pais_de_origem"/>
+	</field>
+	<field name="tipo_de_vinho" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="tipo_de_vinho"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="100" height="100" uuid="ddc15723-2728-421f-b95e-2df9faf64ce1"/>
+				<imageExpression><![CDATA["logo.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="150" y="40" width="320" height="62" uuid="1a652692-054a-40f3-ade5-68d8da36626d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Relatório de Produtos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="10" width="380" height="30" uuid="46ca85d1-6a95-4e55-a704-98f072d86585"/>
+				<textElement>
+					<font fontName="Segoe UI" size="16"/>
+				</textElement>
+				<text><![CDATA[Tabajara Atacado e Varejo de Vinhos (TAVV)]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="1a61a836-d137-48b1-ad67-6ff64600bf93"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="92" height="15" forecolor="#000033" uuid="8c471920-cc7f-4913-84f4-bf4e13394ade">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2b44e961-5588-4e3b-8e0c-79e127bda353"/>
+				</reportElement>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Código de Barras]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="92" y="0" width="92" height="15" forecolor="#000033" uuid="636ee1c0-4412-429e-924e-ee572598b150">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9b674bce-f608-4ca6-9778-98bd9a8efdf6"/>
+				</reportElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="184" y="0" width="92" height="15" forecolor="#000033" uuid="031aad90-1f0f-47b8-907e-360ec2be9bc8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4963cdf9-7758-411b-8ab0-4098008092ee"/>
+				</reportElement>
+				<text><![CDATA[Preço]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="276" y="0" width="92" height="15" forecolor="#000033" uuid="d9073b29-f97c-477d-b8a1-6072d29fd1db">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b8c0a73d-f445-42af-9aea-9f19b84b3d7e"/>
+				</reportElement>
+				<text><![CDATA[Tipo De Uva]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="368" y="0" width="92" height="15" forecolor="#000033" uuid="083841cd-e4d9-462e-8c51-32fe1a6702cf">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9cd296ba-d214-41fe-ac64-9c8db0f746f2"/>
+				</reportElement>
+				<text><![CDATA[País de Origem]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="460" y="0" width="92" height="15" forecolor="#000033" uuid="cd4480a4-543d-40af-8a52-d630970594d5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0573eed5-8bae-4881-b6bc-66250fa18973"/>
+				</reportElement>
+				<text><![CDATA[Tipo de Vinho]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="15" uuid="a98495d8-3c8d-4fa0-81f5-30c3efc2f766"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="0" y="0" width="92" height="15" uuid="78dabdf6-2421-44a1-97d4-90c7e3b3bb9e">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2b44e961-5588-4e3b-8e0c-79e127bda353"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{codigo_de_barras}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="92" y="0" width="92" height="15" uuid="0c894295-7b4f-4bd0-9439-7cebcb485f9a">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9b674bce-f608-4ca6-9778-98bd9a8efdf6"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="184" y="0" width="92" height="15" uuid="1382dd37-7d75-4438-8049-cb89f3a6d14b">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4963cdf9-7758-411b-8ab0-4098008092ee"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{preco}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="276" y="0" width="92" height="15" uuid="6c7d5ff8-7029-4bf3-90d3-27d1b55b3818">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b8c0a73d-f445-42af-9aea-9f19b84b3d7e"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{tipo_de_uva}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="368" y="0" width="92" height="15" uuid="22b78960-ab0d-4e7d-87eb-74a9af90409e">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9cd296ba-d214-41fe-ac64-9c8db0f746f2"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{pais_de_origem}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="460" y="0" width="92" height="15" uuid="d27bbc0a-0c42-4b62-bc4e-7701dc497931">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0573eed5-8bae-4881-b6bc-66250fa18973"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{tipo_de_vinho}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="597" height="24" forecolor="#201852" backcolor="rgba(202, 218, 250, 0.33333334)" uuid="183682bc-d976-4756-83e0-6625a3f98ed1"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="533" y="0" width="40" height="20" forecolor="#000033" uuid="0193f9b3-1559-491a-8580-b6988863b6a1"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="453" y="0" width="80" height="20" forecolor="#000033" uuid="d00b105e-494b-418b-8ac9-8b1b4824f4f0"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#000033" uuid="0616f3fe-0354-456f-8911-ec30ec51a5ae"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

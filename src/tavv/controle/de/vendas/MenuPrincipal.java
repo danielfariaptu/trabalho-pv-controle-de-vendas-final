@@ -1,10 +1,9 @@
-
-
 package tavv.controle.de.vendas;
 
 import Interface.Login.Login;
 import Banco.PessoaDAO;
 import Banco.ProdutoDAO;
+import Banco.RelatoriosDAO;
 import Controle.GerenciaProduto;
 import Interface.Cliente.*;
 import Interface.Compra.AdicionarAoCarrinho;
@@ -25,52 +24,56 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-
 public class MenuPrincipal extends javax.swing.JFrame {
 
-     private int b1,b2,b3,b4,b5,b6,b7,b8;
-     
-     private PessoaDAO pdao = new PessoaDAO(); 
-     private ProdutoDAO proDAO = new ProdutoDAO();
-     private ArrayList<Produto> carrinho = new ArrayList<Produto>();
-     
-     GerenciaProduto gp = new GerenciaProduto();
-     
+    private int b1, b2, b3, b4, b5, b6, b7, b8;
+
+    private PessoaDAO pdao = new PessoaDAO();
+    private ProdutoDAO proDAO = new ProdutoDAO();
+    private ArrayList<Produto> carrinho = new ArrayList<Produto>();
+
+    GerenciaProduto gp = new GerenciaProduto();
+
     public MenuPrincipal() {
-       
+
         initComponents();
-        
+
         URL caminhoIcone = getClass().getResource("/icons/icone.png");
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(caminhoIcone);
-        this.setIconImage(iconeTitulo);     
-               
-        
+        this.setIconImage(iconeTitulo);
+
         setResizable(false);
         setLocationRelativeTo(null);
         setSize(1280, 800);
         overlay.setVisible(false);
-        overlay.setBackground(new Color(51,34,94,80));
-        
-        Navegation.setBackground(new Color(0,0,51,111));
-        
-        PainelCliente.setVisible(false);
-        PainelCliente.setBackground(new Color(0,0,51,111));
-        
-        PainelEndereco.setVisible(false);
-        PainelEndereco.setBackground(new Color(0,0,51,111));
-        
-        PainelCompra.setVisible(false);
-        PainelCompra.setBackground(new Color(0,0,51,111));
-        
-        PainelProduto.setVisible(false);
-        PainelProduto.setBackground(new Color(0,0,51,111));
-        
-        PainelInicio.setVisible(true);
-        PainelInicio.setBackground(new Color(0,0,51,111));
-        
-    }
+        overlay.setBackground(new Color(51, 34, 94, 80));
 
-   
+        Navegation.setBackground(new Color(0, 0, 51, 111));
+
+        PainelCliente.setVisible(false);
+        PainelCliente.setBackground(new Color(0, 0, 51, 111));
+
+        PainelEndereco.setVisible(false);
+        PainelEndereco.setBackground(new Color(0, 0, 51, 111));
+
+        PainelCompra.setVisible(false);
+        PainelCompra.setBackground(new Color(0, 0, 51, 111));
+
+        PainelProduto.setVisible(false);
+        PainelProduto.setBackground(new Color(0, 0, 51, 111));
+
+        PainelInicio.setVisible(true);
+        PainelInicio.setBackground(new Color(0, 0, 51, 111));
+        
+      
+        botaoInicio.setBackground(new Color(30, 28, 46));
+       
+        PainelInicio.setVisible(true);
+
+        PainelRelatoriosJasper.setVisible(false);
+        PainelRelatoriosJasper.setBackground(new Color(0, 0, 51));
+
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -160,6 +163,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botaoMostrarCli = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
+        PainelRelatoriosJasper = new javax.swing.JPanel();
+        InicioTitle1 = new javax.swing.JPanel();
+        labelCliente3 = new javax.swing.JLabel();
+        btn_Gerar = new javax.swing.JButton();
+        comboBox = new javax.swing.JComboBox<>();
         BotaoAlterar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -206,7 +214,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel12)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
         botaoPainelLogOutLayout.setVerticalGroup(
             botaoPainelLogOutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,7 +260,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel15)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
         botaoPainelProdutoLayout.setVerticalGroup(
             botaoPainelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,7 +305,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel17)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
         botaoContaLayout.setVerticalGroup(
             botaoContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -345,7 +353,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel22)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel21)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         botaoPainelCompraLayout.setVerticalGroup(
             botaoPainelCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -439,7 +447,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel26)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel25)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
         botaoPainelClienteLayout.setVerticalGroup(
             botaoPainelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1066,6 +1074,38 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         getContentPane().add(PainelCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 800, 530));
 
+        PainelRelatoriosJasper.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        InicioTitle1.setBackground(new java.awt.Color(80, 77, 90));
+        InicioTitle1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelCliente3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        labelCliente3.setForeground(new java.awt.Color(255, 255, 255));
+        labelCliente3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelCliente3.setText("RELATÓRIOS (JASPERSOFT)");
+        InicioTitle1.add(labelCliente3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 270, 38));
+
+        PainelRelatoriosJasper.add(InicioTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 810, 80));
+
+        btn_Gerar.setBackground(new java.awt.Color(255, 255, 255));
+        btn_Gerar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-crie-um-novo-40.png"))); // NOI18N
+        btn_Gerar.setMnemonic('c');
+        btn_Gerar.setText("Gerar");
+        btn_Gerar.setToolTipText("Salva os registros");
+        btn_Gerar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_Gerar.setFocusPainted(false);
+        btn_Gerar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_GerarActionPerformed(evt);
+            }
+        });
+        PainelRelatoriosJasper.add(btn_Gerar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 280, 150, 70));
+
+        comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente (Pessoa Física)", "Cliente (Pessoa Jurídica)", "Compra", "Conta", "Endereco", "Fatura", "Pagamento", "Produto" }));
+        PainelRelatoriosJasper.add(comboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 360, 40));
+
+        getContentPane().add(PainelRelatoriosJasper, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 800, 530));
+
         BotaoAlterar.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         BotaoAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/liquor-store-back.jpg"))); // NOI18N
         BotaoAlterar.setLabelFor(BotaoAlterar);
@@ -1075,27 +1115,27 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoPainelLogOutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPainelLogOutMouseEntered
-        
+
         botaoPainelLogOut.setBackground(new Color(125, 116, 134));
-        
+
     }//GEN-LAST:event_botaoPainelLogOutMouseEntered
 
     private void botaoPainelLogOutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPainelLogOutMouseExited
-        
-        botaoPainelLogOut.setBackground(new Color(80,77,90));
-       
+
+        botaoPainelLogOut.setBackground(new Color(80, 77, 90));
+
     }//GEN-LAST:event_botaoPainelLogOutMouseExited
 
     private void botaoPainelLogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPainelLogOutMouseClicked
-         Login lg = new Login ();
-         lg.setSize(640, 516);
-	 lg.setVisible(true);
-         this.dispose();
+        Login lg = new Login();
+        lg.setSize(640, 516);
+        lg.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_botaoPainelLogOutMouseClicked
 
     private void botaoPainelProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPainelProdutoMouseClicked
         refazCor();
-        botaoPainelProduto.setBackground(new Color(30, 28,46));
+        botaoPainelProduto.setBackground(new Color(30, 28, 46));
         resetaMenu();
         zeraCount();
         b7 = 1;
@@ -1103,43 +1143,52 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoPainelProdutoMouseClicked
 
     private void botaoPainelProdutoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPainelProdutoMouseEntered
-       if (b7 != 1){
-           botaoPainelProduto.setBackground(new Color(125, 116, 134));
-       }
+        if (b7 != 1) {
+            botaoPainelProduto.setBackground(new Color(125, 116, 134));
+        }
     }//GEN-LAST:event_botaoPainelProdutoMouseEntered
 
     private void botaoPainelProdutoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPainelProdutoMouseExited
-        if(b7 !=1 ){
-            botaoPainelProduto.setBackground(new Color(80,77,90));
+        if (b7 != 1) {
+            botaoPainelProduto.setBackground(new Color(80, 77, 90));
         }
     }//GEN-LAST:event_botaoPainelProdutoMouseExited
 
     private void botaoContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoContaMouseClicked
-         refazCor();
-        botaoConta.setBackground(new Color(30, 28,46));
+        refazCor();
+        botaoConta.setBackground(new Color(30, 28, 46));
         resetaMenu();
         zeraCount();
         b6 = 1;
+
         ArrayList<Cliente> clientes = pdao.buscarCliente();
         RelatorioClienteConta tela = new RelatorioClienteConta(this, true, clientes);
+        overlay.setVisible(true);
         tela.setVisible(true);
+        overlay.setVisible(false);
+        refazCor();
+        botaoInicio.setBackground(new Color(30, 28, 46));
+        zeraCount();
+        PainelInicio.setVisible(true);
+
+
     }//GEN-LAST:event_botaoContaMouseClicked
 
     private void botaoContaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoContaMouseEntered
-        if(b6 !=1){
-        botaoConta.setBackground(new Color(125, 116, 134));
+        if (b6 != 1) {
+            botaoConta.setBackground(new Color(125, 116, 134));
         }
     }//GEN-LAST:event_botaoContaMouseEntered
 
     private void botaoContaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoContaMouseExited
-        if(b6 != 1){
-        botaoConta.setBackground(new Color(80,77,90));
+        if (b6 != 1) {
+            botaoConta.setBackground(new Color(80, 77, 90));
         }
     }//GEN-LAST:event_botaoContaMouseExited
 
     private void botaoPainelCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPainelCompraMouseClicked
-         refazCor();
-        botaoPainelCompra.setBackground(new Color(30, 28,46));
+        refazCor();
+        botaoPainelCompra.setBackground(new Color(30, 28, 46));
         resetaMenu();
         zeraCount();
         b4 = 1;
@@ -1147,20 +1196,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoPainelCompraMouseClicked
 
     private void botaoPainelCompraMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPainelCompraMouseEntered
-       if(b4 != 1){
-           botaoPainelCompra.setBackground(new Color(125, 116, 134));
-       }
+        if (b4 != 1) {
+            botaoPainelCompra.setBackground(new Color(125, 116, 134));
+        }
     }//GEN-LAST:event_botaoPainelCompraMouseEntered
 
     private void botaoPainelCompraMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPainelCompraMouseExited
-       if(b4 != 1){
-        botaoPainelCompra.setBackground(new Color(80,77,90));
-    }
+        if (b4 != 1) {
+            botaoPainelCompra.setBackground(new Color(80, 77, 90));
+        }
     }//GEN-LAST:event_botaoPainelCompraMouseExited
 
     private void botaoPainelEnderecoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPainelEnderecoMouseClicked
         refazCor();
-        botaoPainelEndereco.setBackground(new Color(30, 28,46));
+        botaoPainelEndereco.setBackground(new Color(30, 28, 46));
         resetaMenu();
         zeraCount();
         b3 = 1;
@@ -1168,21 +1217,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoPainelEnderecoMouseClicked
 
     private void botaoPainelEnderecoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPainelEnderecoMouseEntered
-       if(b3 != 1){
-           botaoPainelEndereco.setBackground(new Color(125, 116, 134));
-       }
+        if (b3 != 1) {
+            botaoPainelEndereco.setBackground(new Color(125, 116, 134));
+        }
     }//GEN-LAST:event_botaoPainelEnderecoMouseEntered
 
     private void botaoPainelEnderecoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPainelEnderecoMouseExited
-       if(b3 != 1){
-           botaoPainelEndereco.setBackground(new Color(80,77,90));
-       }
+        if (b3 != 1) {
+            botaoPainelEndereco.setBackground(new Color(80, 77, 90));
+        }
     }//GEN-LAST:event_botaoPainelEnderecoMouseExited
 
     private void botaoPainelClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPainelClienteMouseClicked
-       
+
         refazCor();
-        botaoPainelCliente.setBackground(new Color(30, 28,46));
+        botaoPainelCliente.setBackground(new Color(30, 28, 46));
         resetaMenu();
         zeraCount();
         b2 = 1;
@@ -1190,71 +1239,72 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoPainelClienteMouseClicked
 
     private void botaoPainelClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPainelClienteMouseEntered
-       if(b2 != 1){
-           botaoPainelCliente.setBackground(new Color(125, 116, 134));
-       }
+        if (b2 != 1) {
+            botaoPainelCliente.setBackground(new Color(125, 116, 134));
+        }
     }//GEN-LAST:event_botaoPainelClienteMouseEntered
 
     private void botaoPainelClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPainelClienteMouseExited
-       if(b2 != 1){
-           botaoPainelCliente.setBackground(new Color(80,77,90));
-       }
+        if (b2 != 1) {
+            botaoPainelCliente.setBackground(new Color(80, 77, 90));
+        }
     }//GEN-LAST:event_botaoPainelClienteMouseExited
 
     private void botaoInicioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoInicioMouseExited
-        if(b1 != 1){
-            botaoInicio.setBackground(new Color(80,77,90));
+        if (b1 != 1) {
+            botaoInicio.setBackground(new Color(80, 77, 90));
         }
     }//GEN-LAST:event_botaoInicioMouseExited
 
     private void botaoInicioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoInicioMouseEntered
-        if(b1 != 1){
+        if (b1 != 1) {
             botaoInicio.setBackground(new Color(125, 116, 134));
         }
     }//GEN-LAST:event_botaoInicioMouseEntered
 
     private void botaoInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoInicioMouseClicked
-        
+
         refazCor();
-        botaoInicio.setBackground(new Color(30, 28,46));
+        botaoInicio.setBackground(new Color(30, 28, 46));
         resetaMenu();
         zeraCount();
         b1 = 1;
+
         PainelInicio.setVisible(true);
     }//GEN-LAST:event_botaoInicioMouseClicked
 
     private void botaoMostrarCliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoMostrarCliMouseClicked
         ArrayList<Cliente> clientes = pdao.buscarCliente();
-        RelatorioCliente pesquisa = new RelatorioCliente(this,true,1,clientes);
+        RelatorioCliente pesquisa = new RelatorioCliente(this, true, 1, clientes);
         pesquisa.setVisible(true);
     }//GEN-LAST:event_botaoMostrarCliMouseClicked
 
     private void botaoRemoverCliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoRemoverCliMouseClicked
         ArrayList<Cliente> clientes = pdao.buscarCliente();
-        RelatorioCliente pesquisa = new RelatorioCliente(this,true,3, clientes);
+        RelatorioCliente pesquisa = new RelatorioCliente(this, true, 3, clientes);
         pesquisa.setVisible(true);
     }//GEN-LAST:event_botaoRemoverCliMouseClicked
 
     private void botaoIncluirCliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoIncluirCliMouseClicked
         AdicionarCliente dialog = new AdicionarCliente(new javax.swing.JDialog(), true);
         overlay.setVisible(true);
-	dialog.setVisible(true);
+        dialog.setVisible(true);
         overlay.setVisible(false);
     }//GEN-LAST:event_botaoIncluirCliMouseClicked
 
     private void botaoAlterarCliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoAlterarCliMouseClicked
         ArrayList<Cliente> clientes = pdao.buscarCliente();
-        RelatorioCliente pesquisa = new RelatorioCliente(this,true,2,clientes);
+        RelatorioCliente pesquisa = new RelatorioCliente(this, true, 2, clientes);
         pesquisa.setVisible(true);
-        
-        
+
+
     }//GEN-LAST:event_botaoAlterarCliMouseClicked
 
     private void botaoIncluirEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoIncluirEMouseClicked
         ArrayList<Cliente> clientes = pdao.buscarCliente();
         RelatorioClienteEndereco pesquisar = new RelatorioClienteEndereco(this, true, 1, clientes);
         overlay.setVisible(true);
-	pesquisar.setVisible(true);
+        pesquisar.setVisible(true);
         overlay.setVisible(false);
     }//GEN-LAST:event_botaoIncluirEMouseClicked
 
@@ -1262,7 +1312,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         ArrayList<Cliente> clientes = pdao.buscarCliente();
         RelatorioClienteEndereco pesquisar = new RelatorioClienteEndereco(this, true, 2, clientes);
         overlay.setVisible(true);
-	pesquisar.setVisible(true);
+        pesquisar.setVisible(true);
         overlay.setVisible(false);
     }//GEN-LAST:event_botaoAlterarEMouseClicked
 
@@ -1270,7 +1320,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         ArrayList<Cliente> clientes = pdao.buscarCliente();
         RelatorioClienteEndereco pesquisar = new RelatorioClienteEndereco(this, true, 4, clientes);
         overlay.setVisible(true);
-	pesquisar.setVisible(true);
+        pesquisar.setVisible(true);
         overlay.setVisible(false);
     }//GEN-LAST:event_botaoRemoverEMouseClicked
 
@@ -1278,100 +1328,118 @@ public class MenuPrincipal extends javax.swing.JFrame {
         ArrayList<Cliente> clientes = pdao.buscarCliente();
         RelatorioClienteEndereco pesquisar = new RelatorioClienteEndereco(this, true, 3, clientes);
         overlay.setVisible(true);
-	pesquisar.setVisible(true);
+        pesquisar.setVisible(true);
         overlay.setVisible(false);
     }//GEN-LAST:event_botaoMostrarEMouseClicked
 
     private void botaoIncluirCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoIncluirCompraMouseClicked
-        AdicionarAoCarrinho adicionar = new AdicionarAoCarrinho(this, true, proDAO.relatorioProduto(),carrinho);
+        AdicionarAoCarrinho adicionar = new AdicionarAoCarrinho(this, true, proDAO.relatorioProduto(), carrinho);
         overlay.setVisible(true);
-	adicionar.setVisible(true);
+        adicionar.setVisible(true);
         overlay.setVisible(false);
     }//GEN-LAST:event_botaoIncluirCompraMouseClicked
 
     private void botaoMostrarCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoMostrarCompraMouseClicked
         FecharCarrinho fechar = new FecharCarrinho(this, true, carrinho);
         overlay.setVisible(true);
-	fechar.setVisible(true);
+        fechar.setVisible(true);
         overlay.setVisible(false);
     }//GEN-LAST:event_botaoMostrarCompraMouseClicked
 
     private void botaoIncluirProdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoIncluirProdMouseClicked
-        CadastroProduto dialog = new CadastroProduto(this, true,gp);
+        CadastroProduto dialog = new CadastroProduto(this, true, gp);
         overlay.setVisible(true);
-	dialog.setVisible(true);
+        dialog.setVisible(true);
         overlay.setVisible(false);
     }//GEN-LAST:event_botaoIncluirProdMouseClicked
 
     private void botaoAlterarProdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoAlterarProdMouseClicked
         RelatorioProduto relatorio = new RelatorioProduto(this, true, proDAO.relatorioProduto(), 2);
         overlay.setVisible(true);
-	relatorio.setVisible(true);
+        relatorio.setVisible(true);
         overlay.setVisible(false);
     }//GEN-LAST:event_botaoAlterarProdMouseClicked
 
     private void botaoRemoverProdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoRemoverProdMouseClicked
         RelatorioProduto relatorio = new RelatorioProduto(this, true, proDAO.relatorioProduto(), 4);
         overlay.setVisible(true);
-	relatorio.setVisible(true);
+        relatorio.setVisible(true);
         overlay.setVisible(false);
     }//GEN-LAST:event_botaoRemoverProdMouseClicked
 
     private void botaoMostrarProdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoMostrarProdMouseClicked
         RelatorioProduto relatorio = new RelatorioProduto(this, true, proDAO.relatorioProduto(), 3);
         overlay.setVisible(true);
-	relatorio.setVisible(true);
+        relatorio.setVisible(true);
         overlay.setVisible(false);
     }//GEN-LAST:event_botaoMostrarProdMouseClicked
 
     private void botaoPainelRelatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPainelRelatoriosMouseClicked
-       refazCor();
-        botaoPainelRelatorios.setBackground(new Color(30, 28,46));
+
+        refazCor();
+        botaoPainelRelatorios.setBackground(new Color(30, 28, 46));
         resetaMenu();
         zeraCount();
         b8 = 1;
-        
-        RelatorioClientesJasper tela = new RelatorioClientesJasper(new javax.swing.JDialog(), false);
-        tela.setVisible(true);
+
+        RelatorioClientesJasper relatorio = new RelatorioClientesJasper(new javax.swing.JDialog(), true);
+        overlay.setVisible(true);
+        relatorio.setVisible(true);
+        overlay.setVisible(false);
+        refazCor();
+        botaoInicio.setBackground(new Color(30, 28, 46));
+        zeraCount();
+        PainelInicio.setVisible(true);
+
+
     }//GEN-LAST:event_botaoPainelRelatoriosMouseClicked
 
     private void botaoPainelRelatoriosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPainelRelatoriosMouseEntered
-        if(b1 != 1){
+        if (b8 != 1) {
             botaoPainelRelatorios.setBackground(new Color(125, 116, 134));
         }
     }//GEN-LAST:event_botaoPainelRelatoriosMouseEntered
 
     private void botaoPainelRelatoriosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPainelRelatoriosMouseExited
-          if(b8 !=1 ){
-            botaoPainelRelatorios.setBackground(new Color(80,77,90));
+        if (b8 != 1) {
+            botaoPainelRelatorios.setBackground(new Color(80, 77, 90));
         }
     }//GEN-LAST:event_botaoPainelRelatoriosMouseExited
 
-    
-     public void resetaMenu(){
+    private void btn_GerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_GerarActionPerformed
+
+    }//GEN-LAST:event_btn_GerarActionPerformed
+
+    public void resetaMenu() {
         PainelCliente.setVisible(false);
         PainelEndereco.setVisible(false);
         PainelCompra.setVisible(false);
         PainelProduto.setVisible(false);
+        PainelRelatoriosJasper.setVisible(false);
         PainelInicio.setVisible(false);
+        comboBox.setVisible(false);
+        btn_Gerar.setVisible(false);
     }
-    public void refazCor(){        
-        botaoInicio.setBackground(new Color(80,77,90));
-        botaoPainelCliente.setBackground(new Color(80,77,90));
-        botaoPainelEndereco.setBackground(new Color(80,77,90));
-        botaoPainelCompra.setBackground(new Color(80,77,90));
-        botaoConta.setBackground(new Color(80,77,90));
-        botaoPainelProduto.setBackground(new Color(80,77,90));
+
+    public void refazCor() {
+        botaoInicio.setBackground(new Color(80, 77, 90));
+        botaoPainelCliente.setBackground(new Color(80, 77, 90));
+        botaoPainelEndereco.setBackground(new Color(80, 77, 90));
+        botaoPainelCompra.setBackground(new Color(80, 77, 90));
+        botaoConta.setBackground(new Color(80, 77, 90));
+        botaoPainelProduto.setBackground(new Color(80, 77, 90));
+        botaoPainelRelatorios.setBackground(new Color(80, 77, 90));
     }
-    public void zeraCount(){
-        b1=0;
-        b2=0;
-        b3=0;
-        b4=0;
-        b5=0;
-        b6=0;
-        b7=0;
-        b8=0;
+
+    public void zeraCount() {
+        b1 = 0;
+        b2 = 0;
+        b3 = 0;
+        b4 = 0;
+        b5 = 0;
+        b6 = 0;
+        b7 = 0;
+        b8 = 0;
     }
 
     public static void main(String args[]) {
@@ -1402,7 +1470,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MenuPrincipal().setVisible(true);
-                
+
             }
         });
     }
@@ -1413,12 +1481,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel CompraTitle;
     private javax.swing.JPanel EndTitle;
     private javax.swing.JPanel InicioTitle;
+    private javax.swing.JPanel InicioTitle1;
     private javax.swing.JPanel Navegation;
     private javax.swing.JPanel PainelCliente;
     private javax.swing.JPanel PainelCompra;
     private javax.swing.JPanel PainelEndereco;
     private javax.swing.JPanel PainelInicio;
     private javax.swing.JPanel PainelProduto;
+    private javax.swing.JPanel PainelRelatoriosJasper;
     private javax.swing.JPanel ProdTitle;
     private javax.swing.JPanel botaoAlterarCli;
     private javax.swing.JPanel botaoAlterarE;
@@ -1442,6 +1512,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel botaoRemoverCli;
     private javax.swing.JPanel botaoRemoverE;
     private javax.swing.JPanel botaoRemoverProd;
+    private javax.swing.JButton btn_Gerar;
+    private javax.swing.JComboBox<String> comboBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -1490,6 +1562,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel labelCliente;
     private javax.swing.JLabel labelCliente1;
     private javax.swing.JLabel labelCliente2;
+    private javax.swing.JLabel labelCliente3;
     private javax.swing.JLabel labelEnd;
     private javax.swing.JLabel labelPag;
     private javax.swing.JPanel overlay;
