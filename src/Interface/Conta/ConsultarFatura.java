@@ -467,7 +467,7 @@ public class ConsultarFatura extends javax.swing.JDialog {
             btnPagar.setVisible(false);
             faturaPaga.setVisible(true);
         }
-        totalFatura.setText(String.valueOf(gerenciaCompra.getTotalCompras(fatura.getConta().getCompras())));
+        totalFatura.setText(String.valueOf(fatura.getTotal()));
     }
 
 

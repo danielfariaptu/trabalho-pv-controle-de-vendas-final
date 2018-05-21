@@ -14,6 +14,7 @@ import java.util.ArrayList;
  */
 public class Fatura {
     
+    private double total;
     private Conta conta;
     private int id;
     private LocalDate dataQuitacao;
@@ -31,6 +32,15 @@ public class Fatura {
     public Fatura(){
         
     }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+    
     public int getId() {
         return id;
     }

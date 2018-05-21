@@ -27,6 +27,7 @@ public class FaturaDAO {
     private Integer cont = 1;
     private Connection con;
     private CompraDAO compraDAO = new CompraDAO();
+    private ContaDAO contaDAO = new ContaDAO();
     
     LocalDateTime agora = LocalDateTime.now();
 
@@ -40,7 +41,7 @@ public class FaturaDAO {
 
     public void criarFatura(Fatura fatura, int idConta) {
 
-        String sql = "INSERT INTO public.fatura(fatura_id, quantidade_parcelas, juros, conta_id) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO public.fatura(fatura_id, quantidade_parcelas, juros, conta_id, total) VALUES (?, ?, ?, ?, ?)";
         int idFatura = chave();
         try {
             ps = con.prepareStatement(sql);
@@ -48,15 +49,17 @@ public class FaturaDAO {
             ps.setInt(2, fatura.getQuantParcelas());
             ps.setDouble(3, fatura.getJuros());
             ps.setInt(4, idConta);
+            ps.setDouble(5, fatura.getTotal());
             ps.execute();
             ps.close();
 
             criarParcelas(fatura.getParcelas(), idFatura);
             atualizarStatusCompras(idConta);
+            contaDAO.dataVencimento(idConta, fatura.getConta().getDataVencimento());
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro criarFatura: " + e.getMessage());
-        }
+        }        
     }
 
     public void criarParcelas(ArrayList<Pagamento> parcelas, int idFatura) {
@@ -164,6 +167,7 @@ public class FaturaDAO {
                     fatura.setDataQuitacao(date);
                 }                
                 
+                fatura.setTotal(rs.getDouble("total"));
                 fatura.setConta(conta);                
                 fatura.setJuros(rs.getDouble("juros"));
                 fatura.setQuantParcelas(rs.getInt("quantidade_parcelas"));

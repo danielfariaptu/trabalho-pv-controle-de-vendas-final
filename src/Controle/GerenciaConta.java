@@ -27,6 +27,7 @@ public class GerenciaConta {
     
     public void montarFatura(Conta conta, double juros, int parcelas, double valor){
         Fatura fatura = new Fatura(conta, null, juros, parcelas, parcelar(parcelas, juros, valor));
+        fatura.setTotal(valor);
         faturaDAO.criarFatura(fatura, conta.getId());
     }
     
@@ -73,6 +74,19 @@ public class GerenciaConta {
     }
     public void pagarParcela(int idParcela, Fatura fatura){
         faturaDAO.pagarParcela(idParcela, fatura);
+    }
+    
+    public Double totalComprasStatus(ArrayList<Compra> compras){
+        double total = 0;
+        Iterator i = compras.iterator();
+        
+        while(i.hasNext()){
+            Compra compra = (Compra) i.next();
+            if(compra.getStatus() == 0){
+               total += compra.getTotal();
+            }
+        }
+        return total;
     }
     
 }

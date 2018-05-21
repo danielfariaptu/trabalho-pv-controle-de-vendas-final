@@ -4,6 +4,7 @@ import Banco.ContaDAO;
 import Banco.FaturaDAO;
 import Interface.Cliente.*;
 import Banco.PessoaDAO;
+import Controle.GerenciaCompra;
 import Controle.GerenciaConta;
 import Model.Cliente;
 import Model.Compra;
@@ -50,6 +51,11 @@ public class SubMenuConta extends javax.swing.JDialog {
         TablePessoaFisica.setVisible(false);
       
         
+        tipo();
+
+    }
+    
+    public void tipo(){
         if (tipoCliente == 1) {
             ShowsCampoJuridica();
            
@@ -59,7 +65,6 @@ public class SubMenuConta extends javax.swing.JDialog {
             
 
         }
-
     }
 
     /**
@@ -801,6 +806,7 @@ public class SubMenuConta extends javax.swing.JDialog {
             conta.setCompras(gerenciaConta.comprasStatus(conta.getCompras()));
             TelaPagamento pag = new TelaPagamento(this, true, conta);            
             pag.setVisible(true);
+            tipo();
         }else{
             JOptionPane.showMessageDialog(null, "Não há compras pendentes");
         }
@@ -817,6 +823,7 @@ public class SubMenuConta extends javax.swing.JDialog {
         
         RelatorioCompras compras = new RelatorioCompras(this, true, conta.getCliente(), conta.getCompras());
         compras.setVisible(true);
+        
     }//GEN-LAST:event_botaoComprasMouseClicked
 
     /**
@@ -867,6 +874,7 @@ public class SubMenuConta extends javax.swing.JDialog {
     }
 
     private void ShowsCampoFisica() {
+        conta = contaDAO.buscarConta(cliente.getCodigo());
         TablePessoaFisica.setVisible(true);
         scrolJuridica.setVisible(false);
         PessoaFisica pf = (PessoaFisica) cliente;
@@ -879,13 +887,19 @@ public class SubMenuConta extends javax.swing.JDialog {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String data = conta.getDataVencimento().format(formatter);
         dataVenc6.setText(data);
+        totalConta1.setText(gerenciaConta.totalComprasStatus(conta.getCompras()).toString());
     }
 
     private void ShowsCampoJuridica() {
+        conta = contaDAO.buscarConta(cliente.getCodigo());
         TablePessoaJuridica.setVisible(true);
         scrolFisica.setVisible(false);
         PessoaJuridica pj = (PessoaJuridica) cliente;
         
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String data = conta.getDataVencimento().format(formatter);
+        dataVenc.setText(data);
+        TotalConta.setText(gerenciaConta.totalComprasStatus(conta.getCompras()).toString());
         idJuridica.setText(Integer.toString(pj.getCodigo()));
         nomeJuridica.setText(pj.getNome());
         nomeFantasia.setText(pj.getNomeFantasia());

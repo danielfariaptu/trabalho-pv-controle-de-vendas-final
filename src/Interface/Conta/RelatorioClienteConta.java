@@ -24,6 +24,7 @@ public class RelatorioClienteConta extends javax.swing.JDialog {
 
     private PessoaFisica pF;
     private PessoaJuridica pJ;
+    private ContaDAO  contaDAO = new ContaDAO();
     private ArrayList<Cliente> clientes = new ArrayList<Cliente>();
     ArrayList<Object> dados = new ArrayList<>();
 
@@ -158,8 +159,13 @@ public class RelatorioClienteConta extends javax.swing.JDialog {
                     }
 
                     if (cliente.getCodigo() == Integer.parseInt(field_idCliente.getText())) {
-                        SubMenuConta conta = new SubMenuConta(this, true, tipo, cliente);
-                        conta.setVisible(true);
+                        int teste = contaDAO.buscarConta(cliente.getCodigo()).getId();
+                        if (teste != -1) {
+                            SubMenuConta conta = new SubMenuConta(this, true, tipo, cliente);
+                            conta.setVisible(true);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Esse cliente ainda não possui conta a mesma será criada após a primeira compra!");
+                        }                        
                         this.dispose();
 
                     } else {
@@ -180,10 +186,10 @@ public class RelatorioClienteConta extends javax.swing.JDialog {
     }//GEN-LAST:event_PuxarDadosActionPerformed
 
     private void tmClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tmClienteMouseClicked
-             NewTableModel model = (NewTableModel)tmCliente.getModel();
+        NewTableModel model = (NewTableModel) tmCliente.getModel();
         int selectedRowIndex = tmCliente.getSelectedRow();
         field_idCliente.setText(model.getValueAt(selectedRowIndex, 0).toString());
-        
+
     }//GEN-LAST:event_tmClienteMouseClicked
 
     public void tbShowDados() {

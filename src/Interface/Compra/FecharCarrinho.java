@@ -277,14 +277,13 @@ public class FecharCarrinho extends javax.swing.JDialog {
     }//GEN-LAST:event_RemoverCarrinhoActionPerformed
 
     private void tmCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tmCompraMouseClicked
-           NewTableModel model = (NewTableModel)tmCompra.getModel();
+        /*NewTableModel model = (NewTableModel)tmCompra.getModel();
         int selectedRowIndex = tmCompra.getSelectedRow();
-        field_codProduto.setText(model.getValueAt(selectedRowIndex, 0).toString());
+        field_codProduto.setText(model.getValueAt(selectedRowIndex, 0).toString());*/
         
     }//GEN-LAST:event_tmCompraMouseClicked
 
     public void tbShowDados() {
-        
         total.setText(String.valueOf(gc.getTotal(carrinho)));
         dataLocal.setText(hojeFormatado);
         ArrayList<Produto> prod = carrinho;
@@ -301,10 +300,9 @@ public class FecharCarrinho extends javax.swing.JDialog {
                 p.getPaisOrigem()});
             NewTableModel dadosEndereco = new NewTableModel(dados, colunas);
             tmCompra.setModel(dadosEndereco);
-            repaint();
-            validate();
-            
         }
+        repaint();
+        validate();
     }
 
     public static void main(String args[]) {

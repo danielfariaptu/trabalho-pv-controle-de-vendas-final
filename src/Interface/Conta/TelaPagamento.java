@@ -52,7 +52,6 @@ public class TelaPagamento extends javax.swing.JDialog {
         setLocationRelativeTo(null);
 
         tbShowDados();
-
     }
 
     /**
