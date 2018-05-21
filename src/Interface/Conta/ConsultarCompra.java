@@ -1,12 +1,8 @@
 package Interface.Conta;
 
-import Interface.Cliente.*;
 import Banco.PessoaDAO;
 import Model.Cliente;
 import Model.Compra;
-import Model.PessoaFisica;
-import Model.PessoaJuridica;
-import java.time.LocalDate;
 
 public class ConsultarCompra extends javax.swing.JDialog {
 

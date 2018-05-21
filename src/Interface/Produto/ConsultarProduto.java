@@ -1,16 +1,12 @@
 package Interface.Produto;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-import Interface.*;
 import Banco.*;
 import Model.*;
-import Controle.*;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,21 +21,21 @@ public class ConsultarProduto extends javax.swing.JDialog {
     private Cliente cliente;
     private int excluido;
     private int tipoCliente;
-    
+
     /**
      * Creates new form NewJDialog
      */
     public ConsultarProduto(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
-        initComponents();   
+        initComponents();
     }
 
     public ConsultarProduto(javax.swing.JDialog parent, boolean modal, Produto prod) {
         super(parent, modal);
         this.prod = prod;
         initComponents();
-          setLocationRelativeTo(null);
-            showsCampos();
+        setLocationRelativeTo(null);
+        showsCampos();
     }
 
     /**
@@ -357,9 +353,9 @@ public class ConsultarProduto extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtn_FecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_FecharActionPerformed
-      this.dispose();
+        this.dispose();
 
-        
+
     }//GEN-LAST:event_jBtn_FecharActionPerformed
 
     private void closeIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeIconMouseClicked
@@ -370,8 +366,7 @@ public class ConsultarProduto extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-    
-     public void showsCampos(){
+    public void showsCampos() {
         nome.setText(prod.getNome());
         tipoUva.setText(prod.getTipoUva());
         preco.setText(String.valueOf(prod.getPreco()));
@@ -380,9 +375,8 @@ public class ConsultarProduto extends javax.swing.JDialog {
         tipoDeVinho.setText(prod.getTipoVinho());
     }
 
-     
     public static void main(String args[]) {
-      
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 ConsultarProduto dialog = new ConsultarProduto(new javax.swing.JDialog(), true);
@@ -395,10 +389,8 @@ public class ConsultarProduto extends javax.swing.JDialog {
                 dialog.setVisible(true);
             }
         });
-}
+    }
 
-    
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Painel12;

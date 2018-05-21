@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 package Interface.Endereco;
+
 import Banco.*;
 import Model.*;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,14 +24,14 @@ public class ConsultarEndereco extends javax.swing.JDialog {
     private int tipoCliente;
     private Endereco end;
     private ArrayList<Endereco> enderecos = new ArrayList<>();
-    
+
     /**
      * Creates new form NewJDialog
      */
     public ConsultarEndereco(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
-        initComponents();       
-       
+        initComponents();
+
     }
 
     public ConsultarEndereco(javax.swing.JDialog parent, boolean modal, Endereco end, int fk_cliente) {
@@ -41,8 +41,8 @@ public class ConsultarEndereco extends javax.swing.JDialog {
         this.end = end;
         this.fk_cliente = fk_cliente;
         initComponents();
-          setLocationRelativeTo(null);
-            showsCampos();
+        setLocationRelativeTo(null);
+        showsCampos();
     }
 
     /**
@@ -531,9 +531,9 @@ public class ConsultarEndereco extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtn_FecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_FecharActionPerformed
-      this.dispose();
+        this.dispose();
 
-        
+
     }//GEN-LAST:event_jBtn_FecharActionPerformed
 
     private void closeIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeIconMouseClicked
@@ -544,9 +544,8 @@ public class ConsultarEndereco extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-    
-     public void showsCampos(){
-        
+    public void showsCampos() {
+
         codigoCliente.setText(String.valueOf(fk_cliente));
         codigoEnd.setText(String.valueOf(end.getCodigo()));
         logradouro.setText(end.getLogradouro());
@@ -559,9 +558,8 @@ public class ConsultarEndereco extends javax.swing.JDialog {
         estado.setText(end.getEstado());
     }
 
-     
     public static void main(String args[]) {
-      
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 ConsultarEndereco dialog = new ConsultarEndereco(new javax.swing.JDialog(), true);
@@ -574,10 +572,8 @@ public class ConsultarEndereco extends javax.swing.JDialog {
                 dialog.setVisible(true);
             }
         });
-}
+    }
 
-    
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Painel10;

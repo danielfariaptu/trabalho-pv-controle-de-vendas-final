@@ -143,6 +143,24 @@ public class RelatoriosDAO {
             System.out.println("Error:\n" + ex.getLocalizedMessage());
         }
     }
+    
+      public void runReportCompra() {
+       try {
+
+            JDialog viewer = new JDialog(new javax.swing.JFrame(), "Visualização do Relatório de Compras", true);
+            viewer.setSize(900, 600);
+            viewer.setLocationRelativeTo(null);
+            HashMap param = new HashMap();
+            JasperPrint jasperPrint = JasperFillManager.fillReport("src/reportcompra.jasper", param, conn);
+            //JasperViewer.viewReport(jasperPrint, false);
+            JasperViewer jrViewer = new JasperViewer(jasperPrint, true);
+            viewer.getContentPane().add(jrViewer.getContentPane());
+            viewer.setVisible(true);
+
+        } catch (JRException ex) {
+            System.out.println("Error:\n" + ex.getLocalizedMessage());
+        }
+    }
          
 
 }

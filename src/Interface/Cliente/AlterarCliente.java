@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Interface.Cliente;
 
 import Banco.PessoaDAO;
@@ -22,12 +17,9 @@ public class AlterarCliente extends javax.swing.JDialog {
     private Cliente cliente;
     int tipoPessoa;
 
-    /**
-     * Creates new form NewJDialog
-     */
     public AlterarCliente(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
-
+        
         initComponents();
 
     }
@@ -77,11 +69,11 @@ public class AlterarCliente extends javax.swing.JDialog {
         LabelCNPJ = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jTF_LimiteCredito = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
         jBtn_Salvar = new javax.swing.JButton();
         jBtn_Limpar = new javax.swing.JButton();
         jTF_cnpj = new javax.swing.JFormattedTextField();
         jTF_cpf = new javax.swing.JFormattedTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -125,13 +117,9 @@ public class AlterarCliente extends javax.swing.JDialog {
         jPanel1.add(LabelCNPJ, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Limite de Credito*:");
+        jLabel6.setText("Limite de Crédito*:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 140, -1));
         jPanel1.add(jTF_LimiteCredito, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 320, 30));
-
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("Campos marcados com \"*\" são obrigatórios");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 460, 230, 40));
 
         jBtn_Salvar.setBackground(new java.awt.Color(255, 255, 255));
         jBtn_Salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-ok-32.png"))); // NOI18N
@@ -174,6 +162,11 @@ public class AlterarCliente extends javax.swing.JDialog {
             ex.printStackTrace();
         }
         jPanel1.add(jTF_cpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 320, 30));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Obs: Campos marcados com * são Obrigatórios!");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 440, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -270,7 +263,7 @@ public class AlterarCliente extends javax.swing.JDialog {
         PessoaFisica pf = (PessoaFisica) cliente;
 
         if (!jTf_Nome.getText().isEmpty()) {
-            if (!jTF_cpf.getText().isEmpty()) {
+            if (!jTF_cpf.getText().equals("   .   .   -  ")) {
                 if (!jTF_LimiteCredito.getText().isEmpty()) {
 
                     int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja Realmente alterar o Cliente informado?");
@@ -311,7 +304,7 @@ public class AlterarCliente extends javax.swing.JDialog {
 
         if (!jTf_Nome.getText().isEmpty()) {
             if (!jTF_NomeFantasia.getText().isEmpty()) {
-                if (!jTF_cnpj.getText().isEmpty()) {
+                if (!jTF_cnpj.getText().equals("  .   .   /    -  ")) {
                     if (!jTF_LimiteCredito.getText().isEmpty()) {
 
                         int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja Realmente alterar o Cliente informado?");
@@ -405,8 +398,8 @@ public class AlterarCliente extends javax.swing.JDialog {
     private javax.swing.JButton jBtn_Limpar;
     private javax.swing.JButton jBtn_Salvar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTF_LimiteCredito;

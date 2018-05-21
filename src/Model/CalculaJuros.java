@@ -16,11 +16,14 @@ public class CalculaJuros {
         
     }
     
-    public double calculaJurosPorAtraso(double valor, LocalDate dataVencimento){
-        long diferencaEmDias = ChronoUnit.DAYS.between(hoje, dataVencimento);
+    public double calculaJurosPorAtraso(double valor, LocalDate dataVencimento, LocalDate dataPagamento){
+        long diferencaEmDias = ChronoUnit.DAYS.between(dataVencimento, dataPagamento);
         if(diferencaEmDias >= 1){
             juros = diferencaEmDias * 0.23333333333333334;
             juros = valor * (juros/100);
+        }
+        else { 
+            return 0;
         }
         return juros;
     }

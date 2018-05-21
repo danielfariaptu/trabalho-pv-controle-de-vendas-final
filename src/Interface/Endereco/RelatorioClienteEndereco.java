@@ -1,24 +1,10 @@
 package Interface.Endereco;
 
-import Interface.Cliente.*;
-import Interface.Conta.*;
-import Interface.Cliente.*;
-import Interface.Produto.*;
-import Interface.Endereco.*;
 import Model.NewTableModel;
-import Interface.*;
 import Model.*;
-import Banco.*;
-import Controle.*;
-import Interface.Endereco.*;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 import java.util.ArrayList;
-
 import java.util.Iterator;
 import javax.swing.JOptionPane;
-import javax.swing.table.TableModel;
 
 public class RelatorioClienteEndereco extends javax.swing.JDialog {
 
@@ -40,10 +26,10 @@ public class RelatorioClienteEndereco extends javax.swing.JDialog {
 
     }
 
-    public RelatorioClienteEndereco(javax.swing.JFrame parent, boolean modal, int x ,ArrayList<Cliente> clientes) {
+    public RelatorioClienteEndereco(javax.swing.JFrame parent, boolean modal, int x, ArrayList<Cliente> clientes) {
         super(parent, modal);
         initComponents();
-        
+
         this.x = x;
         this.clientes = clientes;
         setLocationRelativeTo(null);
@@ -148,7 +134,7 @@ public class RelatorioClienteEndereco extends javax.swing.JDialog {
             int tipo;
             int cont = 0;
             while (i.hasNext()) {
-               
+
                 Cliente cliente = (Cliente) i.next();
                 if (cliente instanceof PessoaFisica) {
                     tipo = 2;
@@ -156,22 +142,22 @@ public class RelatorioClienteEndereco extends javax.swing.JDialog {
                     tipo = 1;
                     field_idCliente.requestFocus();
                 }
-                 int codCli = cliente.getCodigo();
+                int codCli = cliente.getCodigo();
                 if (cliente.getCodigo() == Integer.parseInt(field_idCliente.getText())) {
                     if (x == 1) {
-                        AdicionarEndereco adicionar = new AdicionarEndereco(this, true, cliente.getCodigo() );        
+                        AdicionarEndereco adicionar = new AdicionarEndereco(this, true, cliente.getCodigo());
                         adicionar.setVisible(true);
                         dispose();
                     } else if (x == 2) {
-                        RelatorioEndereco alterar = new RelatorioEndereco(this, true, cliente,2,codCli);
+                        RelatorioEndereco alterar = new RelatorioEndereco(this, true, cliente, 2, codCli);
                         alterar.setVisible(true);
                         dispose();
-                        
-                    } else if (x == 3){
-                        RelatorioEndereco mostrar = new RelatorioEndereco(this, true, cliente,3,codCli);
+
+                    } else if (x == 3) {
+                        RelatorioEndereco mostrar = new RelatorioEndereco(this, true, cliente, 3, codCli);
                         mostrar.setVisible(true);
-                    }else{
-                        RelatorioEndereco excluir = new RelatorioEndereco(this, true, cliente,4,codCli);
+                    } else {
+                        RelatorioEndereco excluir = new RelatorioEndereco(this, true, cliente, 4, codCli);
                         excluir.setVisible(true);
                         dispose();
                     }
@@ -180,7 +166,7 @@ public class RelatorioClienteEndereco extends javax.swing.JDialog {
                 }
             }
             if (cont == clientes.size()) {
-                JOptionPane.showMessageDialog(rootPane, "Codigo não encontrado!");
+                JOptionPane.showMessageDialog(rootPane, "Código não encontrado!");
                 field_idCliente.requestFocus();
             }
 
@@ -191,10 +177,10 @@ public class RelatorioClienteEndereco extends javax.swing.JDialog {
     }//GEN-LAST:event_PuxarDadosActionPerformed
 
     private void tmClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tmClienteMouseClicked
-          NewTableModel model = (NewTableModel)tmCliente.getModel();
+        NewTableModel model = (NewTableModel) tmCliente.getModel();
         int selectedRowIndex = tmCliente.getSelectedRow();
         field_idCliente.setText(model.getValueAt(selectedRowIndex, 0).toString());
-        
+
     }//GEN-LAST:event_tmClienteMouseClicked
 
     public void tbShowDados() {
@@ -220,7 +206,7 @@ public class RelatorioClienteEndereco extends javax.swing.JDialog {
 
             } else {
                 PessoaJuridica pJ = (PessoaJuridica) cliente;
-                //ordem : private String[] colunas= {"Código ", "Nome", "Limite de crédito","Nome Fantasia" ,"CNPJ","CPF"};
+
                 dados.add(new Object[]{
                     pJ.getCodigo(),
                     pJ.getNome(),

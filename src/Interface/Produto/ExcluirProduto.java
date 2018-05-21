@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 package Interface.Produto;
+
 import Banco.*;
 import Model.*;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,26 +15,25 @@ import javax.swing.JOptionPane;
  */
 public class ExcluirProduto extends javax.swing.JDialog {
 
-    
     private Produto prod;
     private ProdutoDAO proDAO = new ProdutoDAO();
     private int excluido;
-    
+
     /**
      * Creates new form NewJDialog
      */
     public ExcluirProduto(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
-        initComponents();   
-       
+        initComponents();
+
     }
 
     public ExcluirProduto(javax.swing.JDialog parent, boolean modal, Produto prod) {
         super(parent, modal);
         this.prod = prod;
         initComponents();
-          setLocationRelativeTo(null);
-            showsCampos();
+        setLocationRelativeTo(null);
+        showsCampos();
     }
 
     /**
@@ -352,11 +351,11 @@ public class ExcluirProduto extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-      
+
         excluirProd();
         this.dispose();
 
-        
+
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void closeIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeIconMouseClicked
@@ -364,30 +363,26 @@ public class ExcluirProduto extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_closeIconMouseClicked
 
-   
-    
-    private void excluirProd(){
-        
+    private void excluirProd() {
 
         int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja Realmente excluir o Produto informado?");
 
         if (JOptionPane.YES_OPTION == opcao) {
             excluido = 1;
-            
+
             proDAO.excluirProduto(prod.getCodigoBarras());
 
             JOptionPane.showMessageDialog(rootPane, "Produto excluído com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
-        }
-        else if (JOptionPane.NO_OPTION == opcao) {
+        } else if (JOptionPane.NO_OPTION == opcao) {
             JOptionPane.showMessageDialog(rootPane, "Produto não excluído!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         }
 
-    
     }
-     private void showsCampos(){
-       // codigoProduto(prod.getCodigo());
+
+    private void showsCampos() {
+        // codigoProduto(prod.getCodigo());
         nome.setText(prod.getNome());
         tipoUva.setText(prod.getTipoUva());
         preco.setText(String.valueOf(prod.getPreco()));
@@ -396,9 +391,8 @@ public class ExcluirProduto extends javax.swing.JDialog {
         tipoDeVinho.setText(prod.getTipoVinho());
     }
 
-     
     public static void main(String args[]) {
-      
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 ExcluirProduto dialog = new ExcluirProduto(new javax.swing.JDialog(), true);
@@ -411,10 +405,8 @@ public class ExcluirProduto extends javax.swing.JDialog {
                 dialog.setVisible(true);
             }
         });
-}
+    }
 
-    
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Painel12;

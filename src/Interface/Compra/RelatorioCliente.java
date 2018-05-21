@@ -1,23 +1,18 @@
 package Interface.Compra;
 
-import Interface.Endereco.*;
 import Model.NewTableModel;
-import Interface.*;
 import Model.*;
 import Banco.*;
-import Controle.*;
-import Interface.Endereco.*;
 
 import java.util.ArrayList;
 
 import java.util.Iterator;
 import javax.swing.JOptionPane;
-import javax.swing.table.TableModel;
 
 public class RelatorioCliente extends javax.swing.JDialog {
 
-     private String[] colunas = {"Código ", "Nome", "Limite de crédito", "Nome Fantasia", "CNPJ", "CPF"};
-  
+    private String[] colunas = {"Código ", "Nome", "Limite de crédito", "Nome Fantasia", "CNPJ", "CPF"};
+
     ArrayList<Object> dados = new ArrayList<>();
     private PessoaDAO pDAO = new PessoaDAO();
     private PessoaFisica pF;
@@ -25,12 +20,11 @@ public class RelatorioCliente extends javax.swing.JDialog {
     private ArrayList<Cliente> clientes;
     private Cliente cliente;
     private int id = -1;
-   
 
     public RelatorioCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
- 
+
     }
 
     public RelatorioCliente(javax.swing.JDialog parent, boolean modal) {
@@ -38,7 +32,7 @@ public class RelatorioCliente extends javax.swing.JDialog {
         this.clientes = pDAO.buscarCliente();
         initComponents();
         setLocationRelativeTo(null);
-        tbShowDados();   
+        tbShowDados();
     }
 
     @SuppressWarnings("unchecked")
@@ -157,10 +151,10 @@ public class RelatorioCliente extends javax.swing.JDialog {
                 if (Integer.parseInt(field_idCliente.getText()) == cliente.getCodigo()) {
                     this.cliente = cliente;
                     this.dispose();
-                }else{
+                } else {
                     cont++;
                 }
-                if(cont == clientes.size()){
+                if (cont == clientes.size()) {
                     JOptionPane.showMessageDialog(rootPane, "Codigo não encontrado!");
                 }
             }
@@ -169,17 +163,17 @@ public class RelatorioCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_MostrarCodClienteActionPerformed
 
     private void tmClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tmClienteMouseClicked
-          NewTableModel model = (NewTableModel)tmCliente.getModel();
+        NewTableModel model = (NewTableModel) tmCliente.getModel();
         int selectedRowIndex = tmCliente.getSelectedRow();
         field_idCliente.setText(model.getValueAt(selectedRowIndex, 0).toString());
-        
+
     }//GEN-LAST:event_tmClienteMouseClicked
-    
-    public Cliente getId(){ 
-        return this.cliente;        
+
+    public Cliente getId() {
+        return this.cliente;
     }
-    
-     public void tbShowDados() {
+
+    public void tbShowDados() {
         dados.clear();
         Iterator i = clientes.iterator();
 
@@ -202,7 +196,7 @@ public class RelatorioCliente extends javax.swing.JDialog {
 
             } else {
                 PessoaJuridica pJ = (PessoaJuridica) cliente;
-                //ordem : private String[] colunas= {"Código ", "Nome", "Limite de crédito","Nome Fantasia" ,"CNPJ","CPF"};
+
                 dados.add(new Object[]{
                     pJ.getCodigo(),
                     pJ.getNome(),
@@ -219,7 +213,7 @@ public class RelatorioCliente extends javax.swing.JDialog {
         }
 
     }
-   
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

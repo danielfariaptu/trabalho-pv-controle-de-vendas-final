@@ -13,22 +13,18 @@ import tavv.controle.de.vendas.MenuPrincipal;
 public class Login extends javax.swing.JFrame {
 
     LoginDAO logDAO = new LoginDAO();
-   
-       
-    private Boolean chamarMenuPrincipal;
 
+    private Boolean chamarMenuPrincipal;
     private String senhaResultado;
     private static MenuPrincipal telaInicial;
 
     public Login() {
-       
-        
-        
+
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
         overlay.setVisible(false);
-        overlay.setBackground(new Color(51,34,94,80));
+        overlay.setBackground(new Color(51, 34, 94, 80));
         URL caminhoIcone = getClass().getResource("/icons/icone.png");
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(caminhoIcone);
         this.setIconImage(iconeTitulo);
@@ -58,7 +54,6 @@ public class Login extends javax.swing.JFrame {
 
         JPanel.setBackground(new java.awt.Color(0, 0, 51));
 
-        fieldNome.setBackground(new java.awt.Color(227, 226, 242));
         fieldNome.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         fieldNome.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         fieldNome.setBorder(null);
@@ -100,7 +95,6 @@ public class Login extends javax.swing.JFrame {
         labelLogin.setForeground(new java.awt.Color(255, 255, 255));
         labelLogin.setText("Login");
 
-        fieldSenha.setBackground(new java.awt.Color(227, 226, 242));
         fieldSenha.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         fieldSenha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         fieldSenha.setBorder(null);
@@ -223,26 +217,26 @@ public class Login extends javax.swing.JFrame {
             senhaResultado = logDAO.AutenticaSenha(fieldNome.getText(), fieldSenha.getText());
 
             chamarMenuPrincipal = logDAO.RealizaLogin(fieldNome.getText(), senhaResultado, fieldSenha.getText());
-            
-            if(chamarMenuPrincipal){
-             MenuPrincipal mp = new MenuPrincipal();
-		mp.setVisible(true);
+
+            if (chamarMenuPrincipal) {
+                MenuPrincipal mp = new MenuPrincipal();
+                mp.setVisible(true);
                 this.dispose();
-             
+
             }
         }
-           
+
     }//GEN-LAST:event_btnEntrarActionPerformed
 
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-      
+
         Cadastro dialog = new Cadastro(new javax.swing.JDialog(), true);
         overlay.setVisible(true);
-	dialog.setVisible(true);
+        dialog.setVisible(true);
         overlay.setVisible(false);
-        
-        
+
+
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void fieldSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldSenhaActionPerformed
@@ -254,7 +248,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JOptionPane.showMessageDialog(null, "Tabajara Atacado e Varejo de Vinhos, Todos os Direitos Reservados, 2018.");
+        JOptionPane.showMessageDialog(null, "Tabajara Atacado e Varejo de Vinhos, Todos os Direitos Reservados, 2018.\nSistema Desenvolvido por Daniel Faria Cardoso\n danielfariaptu@gmail.com");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {

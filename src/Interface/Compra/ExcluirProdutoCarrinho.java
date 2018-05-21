@@ -4,10 +4,8 @@
  * and open the template in the editor.
  */
 package Interface.Compra;
-import Interface.Produto.*;
 import Banco.*;
 import Model.*;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**

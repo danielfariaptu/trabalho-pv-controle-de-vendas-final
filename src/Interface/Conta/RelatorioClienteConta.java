@@ -1,16 +1,8 @@
 package Interface.Conta;
 
-import Interface.Cliente.*;
-import Interface.Produto.*;
-import Interface.Endereco.*;
 import Model.NewTableModel;
-import Interface.*;
 import Model.*;
 import Banco.*;
-import Controle.*;
-import Interface.Endereco.*;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import java.util.ArrayList;
 
@@ -24,7 +16,7 @@ public class RelatorioClienteConta extends javax.swing.JDialog {
 
     private PessoaFisica pF;
     private PessoaJuridica pJ;
-    private ContaDAO  contaDAO = new ContaDAO();
+    private ContaDAO contaDAO = new ContaDAO();
     private ArrayList<Cliente> clientes = new ArrayList<Cliente>();
     ArrayList<Object> dados = new ArrayList<>();
 
@@ -165,7 +157,7 @@ public class RelatorioClienteConta extends javax.swing.JDialog {
                             conta.setVisible(true);
                         } else {
                             JOptionPane.showMessageDialog(null, "Esse cliente ainda não possui conta a mesma será criada após a primeira compra!");
-                        }                        
+                        }
                         this.dispose();
 
                     } else {
@@ -173,7 +165,7 @@ public class RelatorioClienteConta extends javax.swing.JDialog {
                     }
                 }
                 if (cont == clientes.size()) {
-                    JOptionPane.showMessageDialog(rootPane, "Codigo não encontrado!");
+                    JOptionPane.showMessageDialog(rootPane, "Código não encontrado!");
                     field_idCliente.requestFocus();
                 }
 
@@ -215,7 +207,7 @@ public class RelatorioClienteConta extends javax.swing.JDialog {
 
             } else {
                 PessoaJuridica pJ = (PessoaJuridica) cliente;
-                //ordem : private String[] colunas= {"Código ", "Nome", "Limite de crédito","Nome Fantasia" ,"CNPJ","CPF"};
+
                 dados.add(new Object[]{
                     pJ.getCodigo(),
                     pJ.getNome(),

@@ -1,30 +1,16 @@
 package Interface.Cliente;
 
-import Interface.Conta.*;
-import Interface.Cliente.*;
-import Interface.Produto.*;
-import Interface.Endereco.*;
 import Model.NewTableModel;
-import Interface.*;
 import Model.*;
-import Banco.*;
-import Controle.*;
-import Interface.Endereco.*;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 import java.util.ArrayList;
-
 import java.util.Iterator;
 import javax.swing.JOptionPane;
-import javax.swing.table.TableModel;
+
 
 public class RelatorioCliente extends javax.swing.JDialog {
 
     private String[] colunas = {"Código ", "Nome", "Limite de crédito", "Nome Fantasia", "CNPJ", "CPF"};
     private int x;
-    private PessoaFisica pF;
-    private PessoaJuridica pJ;
     private ArrayList<Cliente> clientes = new ArrayList<Cliente>();
     ArrayList<Object> dados = new ArrayList<>();
 
@@ -237,7 +223,6 @@ public class RelatorioCliente extends javax.swing.JDialog {
 
             } else {
                 PessoaJuridica pJ = (PessoaJuridica) cliente;
-                //ordem : private String[] colunas= {"Código ", "Nome", "Limite de crédito","Nome Fantasia" ,"CNPJ","CPF"};
                 dados.add(new Object[]{
                     pJ.getCodigo(),
                     pJ.getNome(),

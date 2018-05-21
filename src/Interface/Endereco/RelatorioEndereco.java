@@ -1,22 +1,17 @@
 package Interface.Endereco;
 
 import Model.NewTableModel;
-import Interface.*;
 import Model.*;
 import Banco.*;
 import Controle.*;
-import Interface.Endereco.*;
-
 import java.util.ArrayList;
-
 import java.util.Iterator;
 import javax.swing.JOptionPane;
-import javax.swing.table.TableModel;
 
 public class RelatorioEndereco extends javax.swing.JDialog {
 
     private int fk_cliente;
-    private String[] colunas = {"Codigo", "Logradouro", "Número", "Bairro", "CEP"};
+    private String[] colunas = {"Código", "Logradouro", "Número", "Bairro", "CEP"};
 
     private EnderecoDAO endDAO;
     private int tipo;
@@ -188,7 +183,7 @@ public class RelatorioEndereco extends javax.swing.JDialog {
                     cont++;
                 }
                 if(cont == cliente.getEnderecos().size()){
-                    JOptionPane.showMessageDialog(rootPane, "Codigo não encontrado!");
+                    JOptionPane.showMessageDialog(rootPane, "Código não encontrado!");
                 }
 
             }

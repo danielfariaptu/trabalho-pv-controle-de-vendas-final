@@ -1,10 +1,9 @@
-
 package Interface.Cliente;
+
 import Banco.PessoaDAO;
 import Model.Cliente;
 import Model.PessoaFisica;
 import Model.PessoaJuridica;
-
 
 public class ConsultarCliente extends javax.swing.JDialog {
 
@@ -15,11 +14,10 @@ public class ConsultarCliente extends javax.swing.JDialog {
     private int excluido;
     private int tipoCliente;
 
-
     public ConsultarCliente(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
-        initComponents();       
-       
+        initComponents();
+
     }
 
     public ConsultarCliente(javax.swing.JDialog parent, boolean modal, int tipoCliente, Cliente cliente) {
@@ -27,20 +25,16 @@ public class ConsultarCliente extends javax.swing.JDialog {
         this.tipoCliente = tipoCliente;
         this.cliente = cliente;
         initComponents();
-          setLocationRelativeTo(null);
-         
-        
+        setLocationRelativeTo(null);
+
         TablePessoaJuridica.setVisible(false);
         TablePessoaFisica.setVisible(false);
-      
-        
+
         if (tipoCliente == 1) {
             ShowsCampoJuridica();
-           
 
         } else if (tipoCliente == 2) {
             ShowsCampoFisica();
-            
 
         }
 
@@ -529,9 +523,9 @@ public class ConsultarCliente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtn_FecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_FecharActionPerformed
-      this.dispose();
+        this.dispose();
 
-        
+
     }//GEN-LAST:event_jBtn_FecharActionPerformed
 
     private void closeIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeIconMouseClicked
@@ -566,8 +560,6 @@ public class ConsultarCliente extends javax.swing.JDialog {
         }
         //</editor-fold>
         //</editor-fold>
-     
-       
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -590,20 +582,20 @@ public class ConsultarCliente extends javax.swing.JDialog {
         id.setText(Integer.toString(pf.getCodigo()));
         nome.setText(pf.getNome());
         cpf.setText(pf.getCpf());
-        LimiteDeCredito.setText(Double.toString(pf.getLimiteCredito()));   
-       
+        LimiteDeCredito.setText(Double.toString(pf.getLimiteCredito()));
+
     }
 
     private void ShowsCampoJuridica() {
         TablePessoaJuridica.setVisible(true);
         PessoaJuridica pj = (PessoaJuridica) cliente;
-        
+
         idJuridica.setText(Integer.toString(pj.getCodigo()));
         nomeJuridica.setText(pj.getNome());
         nomeFantasia.setText(pj.getNomeFantasia());
         cnpj.setText(pj.getCnpj());
-        limiteCreditoJuridica.setText(Double.toString(pj.getLimiteCredito())); 
-        
+        limiteCreditoJuridica.setText(Double.toString(pj.getLimiteCredito()));
+
     }
 
 

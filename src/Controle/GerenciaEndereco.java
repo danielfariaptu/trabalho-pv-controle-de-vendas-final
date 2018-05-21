@@ -1,10 +1,8 @@
 package Controle;
 
 import Banco.EnderecoDAO;
-import Model.Cliente;
 import Model.Endereco;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class GerenciaEndereco {
 
@@ -26,18 +24,5 @@ public class GerenciaEndereco {
         ArrayList<Endereco> end = enderecoBD.relatorioEndereco();
 
         return end;
-    }
-
-      public Endereco retornaEndereco(String codigoEndereco) {
-       //int numero = Integer.parseInt(codigoEndereco);
-          /*
-        ArrayList<Endereco> end = relatorioEnderecos();
-        for (Endereco e : end) {;
-            if (e.getCodigo()  == (codigoEndereco)) {
-                return e;
-            }
-        }
-        */
-        return null;
     }
 }

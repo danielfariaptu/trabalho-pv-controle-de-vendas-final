@@ -1,20 +1,15 @@
 package Interface.Conta;
 
-import Interface.Cliente.*;
 import Banco.PessoaDAO;
 import Controle.GerenciaCompra;
 import Controle.GerenciaConta;
-import Model.Cliente;
-import Model.Compra;
 import Model.Fatura;
 import Model.Pagamento;
-import Model.PessoaFisica;
-import Model.PessoaJuridica;
-import java.time.LocalDate;
+import java.text.DecimalFormat;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
 
-public class ConsultarFatura extends javax.swing.JDialog {
+public class PagarFatura extends javax.swing.JDialog {
 
     private PessoaDAO pDAO = new PessoaDAO();
     private GerenciaCompra gerenciaCompra = new GerenciaCompra();
@@ -23,13 +18,13 @@ public class ConsultarFatura extends javax.swing.JDialog {
     private int parcelaPendente;
     private int parcelasPagas;
 
-    public ConsultarFatura(javax.swing.JDialog parent, boolean modal) {
+    public PagarFatura(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
     }
 
-    public ConsultarFatura(javax.swing.JDialog parent, boolean modal, Fatura fatura) {
+    public PagarFatura(javax.swing.JDialog parent, boolean modal, Fatura fatura) {
         super(parent, modal);
 
         this.fatura = fatura;
@@ -38,7 +33,7 @@ public class ConsultarFatura extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         btnPagar.setVisible(true);
         faturaPaga.setVisible(false);
-
+        resetar();
         ShowsCampos();
 
     }
@@ -58,6 +53,9 @@ public class ConsultarFatura extends javax.swing.JDialog {
         faturaPaga = new javax.swing.JLabel();
         painelConsultarFatura = new javax.swing.JPanel();
         fundo7 = new javax.swing.JLabel();
+        Painel12 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        valorparcela = new javax.swing.JLabel();
         Painel9 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         Juros = new javax.swing.JLabel();
@@ -84,6 +82,8 @@ public class ConsultarFatura extends javax.swing.JDialog {
         totalFatura = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        btnPagarProxima = new javax.swing.JButton();
+        btnPagarUltima = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -99,6 +99,31 @@ public class ConsultarFatura extends javax.swing.JDialog {
         painelConsultarFatura.setBackground(new java.awt.Color(255, 255, 255));
 
         fundo7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/fundoRelatorio.png"))); // NOI18N
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel16.setText("VALOR PARCELA:");
+
+        valorparcela.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        valorparcela.setForeground(new java.awt.Color(255, 0, 51));
+        valorparcela.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        javax.swing.GroupLayout Painel12Layout = new javax.swing.GroupLayout(Painel12);
+        Painel12.setLayout(Painel12Layout);
+        Painel12Layout.setHorizontalGroup(
+            Painel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Painel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(valorparcela, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        Painel12Layout.setVerticalGroup(
+            Painel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(valorparcela, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 102));
@@ -233,7 +258,7 @@ public class ConsultarFatura extends javax.swing.JDialog {
             .addGroup(Painel11Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel15)
-                .addGap(47, 47, 47)
+                .addGap(18, 18, 18)
                 .addComponent(parcelPag, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -250,7 +275,7 @@ public class ConsultarFatura extends javax.swing.JDialog {
         painelConsultarFatura.setLayout(painelConsultarFaturaLayout);
         painelConsultarFaturaLayout.setHorizontalGroup(
             painelConsultarFaturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelConsultarFaturaLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelConsultarFaturaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(painelConsultarFaturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelConsultarFaturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,10 +290,12 @@ public class ConsultarFatura extends javax.swing.JDialog {
                     .addComponent(Painel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fundo8, javax.swing.GroupLayout.PREFERRED_SIZE, 654, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(painelConsultarFaturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(Painel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Painel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Painel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(fundo12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Painel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(Painel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(19, 19, 19))
         );
         painelConsultarFaturaLayout.setVerticalGroup(
             painelConsultarFaturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,9 +317,11 @@ public class ConsultarFatura extends javax.swing.JDialog {
                 .addComponent(fundo12, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Painel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
+                .addGap(10, 10, 10)
                 .addComponent(Painel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 58, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Painel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         jPanel1.add(painelConsultarFatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 630, 370));
@@ -315,7 +344,7 @@ public class ConsultarFatura extends javax.swing.JDialog {
         btnPagar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnPagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/money.png"))); // NOI18N
         btnPagar.setMnemonic('S');
-        btnPagar.setText("Pagar Proxima Parcela");
+        btnPagar.setText("Pagar");
         btnPagar.setToolTipText("Salva os registros");
         btnPagar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPagar.setFocusPainted(false);
@@ -357,6 +386,36 @@ public class ConsultarFatura extends javax.swing.JDialog {
         jLabel4.setText("TOTAL: ");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 80, 40));
 
+        btnPagarProxima.setBackground(new java.awt.Color(255, 255, 255));
+        btnPagarProxima.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnPagarProxima.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/money.png"))); // NOI18N
+        btnPagarProxima.setMnemonic('S');
+        btnPagarProxima.setText("Pagar Próxima Parcela");
+        btnPagarProxima.setToolTipText("Salva os registros");
+        btnPagarProxima.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPagarProxima.setFocusPainted(false);
+        btnPagarProxima.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPagarProximaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnPagarProxima, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 470, 210, 40));
+
+        btnPagarUltima.setBackground(new java.awt.Color(255, 255, 255));
+        btnPagarUltima.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnPagarUltima.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/money.png"))); // NOI18N
+        btnPagarUltima.setMnemonic('S');
+        btnPagarUltima.setText("Pagar Última Parcela");
+        btnPagarUltima.setToolTipText("Salva os registros");
+        btnPagarUltima.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPagarUltima.setFocusPainted(false);
+        btnPagarUltima.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPagarUltimaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnPagarUltima, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 470, 210, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -392,6 +451,36 @@ public class ConsultarFatura extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_closeIconMouseClicked
 
+    private void btnPagarProximaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarProximaActionPerformed
+         int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja Pagar a 2ª  parcela?");
+
+        if (JOptionPane.YES_OPTION == opcao) {
+
+            gerenciaConta.pagarParcela(parcelaPendente, fatura);
+            JOptionPane.showMessageDialog(rootPane, "A 2ª parcela foi paga com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        }
+        if (JOptionPane.NO_OPTION == opcao) {
+            JOptionPane.showMessageDialog(rootPane, "A parcela não foi paga!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnPagarProximaActionPerformed
+
+    private void btnPagarUltimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarUltimaActionPerformed
+          int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja Pagar a 3ª parcela");
+
+        if (JOptionPane.YES_OPTION == opcao) {
+
+            gerenciaConta.pagarParcela(parcelaPendente, fatura);
+            JOptionPane.showMessageDialog(rootPane, "A 3ª parcela foi paga com sucesso", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        }
+        if (JOptionPane.NO_OPTION == opcao) {
+            JOptionPane.showMessageDialog(rootPane, "A parcela não foi paga!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnPagarUltimaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -409,14 +498,22 @@ public class ConsultarFatura extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultarFatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PagarFatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultarFatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PagarFatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultarFatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PagarFatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConsultarFatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PagarFatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -429,7 +526,7 @@ public class ConsultarFatura extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ConsultarFatura dialog = new ConsultarFatura(new javax.swing.JDialog(), true);
+                PagarFatura dialog = new PagarFatura(new javax.swing.JDialog(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -444,11 +541,11 @@ public class ConsultarFatura extends javax.swing.JDialog {
     private void ShowsCampos() {
         int parcelasPg = 0;
         Iterator i = fatura.getParcelas().iterator();
-        while(i.hasNext()){
+        while (i.hasNext()) {
             Pagamento pagamento = (Pagamento) i.next();
-            if(pagamento.getStatus() > 0){
+            if (pagamento.getStatus() > 0) {
                 parcelasPg++;
-            }else{
+            } else {
                 parcelaPendente = pagamento.getId();
             }
         }
@@ -462,23 +559,73 @@ public class ConsultarFatura extends javax.swing.JDialog {
 
         Juros.setText(Double.toString(fatura.getJuros()));
         qtdParcelas.setText(Integer.toString(fatura.getQuantParcelas()));
+        Double total = fatura.getTotal();
+        int parcelaAtual = parcelasPg + 1;
+        int qtdParcelas = fatura.getQuantParcelas();
+      
+        switch(parcelaAtual){ 
+            case 1:
+                btnPagar.setVisible(true);
+                break;
+            case 2: 
+                btnPagarProxima.setVisible(true);
+                break;
+            case 3: 
+                btnPagarUltima.setVisible(true);
+        }
+        
+        DecimalFormat df = new DecimalFormat("0.##");
+         String dx;
+         
+        switch (qtdParcelas) {
+            case 1:
+                
+                 dx = df.format(total);
+                valorparcela.setText(dx);
+                  
+                
+                break;
+            case 2:
+                
+                 dx = df.format(total/2);
+                valorparcela.setText(dx);
+                break;
+            case 3:
+                dx = df.format(total/3);
+                valorparcela.setText(dx);
+                break;
+        }
+                
+        totalFatura.setText(String.valueOf(fatura.getTotal()));
         parcelPag.setText(String.valueOf(parcelasPg));
+        
         if (parcelasPg == fatura.getQuantParcelas()) {
             btnPagar.setVisible(false);
             faturaPaga.setVisible(true);
+            
+            
         }
-        totalFatura.setText(String.valueOf(fatura.getTotal()));
+        
+        
+        
     }
-
+ private void resetar(){
+     btnPagar.setVisible(false);
+     btnPagarProxima.setVisible(false);
+     btnPagarUltima.setVisible(false);
+ }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Juros;
     private javax.swing.JPanel Painel10;
     private javax.swing.JPanel Painel11;
+    private javax.swing.JPanel Painel12;
     private javax.swing.JPanel Painel4;
     private javax.swing.JPanel Painel8;
     private javax.swing.JPanel Painel9;
     private javax.swing.JButton btnPagar;
+    private javax.swing.JButton btnPagarProxima;
+    private javax.swing.JButton btnPagarUltima;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel closeIcon;
     private javax.swing.JLabel codigoFatura;
@@ -494,6 +641,7 @@ public class ConsultarFatura extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
@@ -504,5 +652,6 @@ public class ConsultarFatura extends javax.swing.JDialog {
     private javax.swing.JLabel parcelPag;
     private javax.swing.JLabel qtdParcelas;
     private javax.swing.JLabel totalFatura;
+    private javax.swing.JLabel valorparcela;
     // End of variables declaration//GEN-END:variables
 }

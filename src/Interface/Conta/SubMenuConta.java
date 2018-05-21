@@ -1,10 +1,7 @@
-
 package Interface.Conta;
+
 import Banco.ContaDAO;
-import Banco.FaturaDAO;
-import Interface.Cliente.*;
 import Banco.PessoaDAO;
-import Controle.GerenciaCompra;
 import Controle.GerenciaConta;
 import Model.Cliente;
 import Model.Compra;
@@ -14,7 +11,6 @@ import Model.PessoaJuridica;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-
 
 public class SubMenuConta extends javax.swing.JDialog {
 
@@ -28,12 +24,11 @@ public class SubMenuConta extends javax.swing.JDialog {
     private Compra compra;
     private int excluido;
     private int tipoCliente;
-    
+
     private ArrayList<Conta> contas = new ArrayList<>();
 
-
     public SubMenuConta(javax.swing.JDialog parent, boolean modal) {
-        super(parent, modal);        
+        super(parent, modal);
         initComponents();
     }
 
@@ -45,24 +40,20 @@ public class SubMenuConta extends javax.swing.JDialog {
         this.conta.setCliente(cliente);
         initComponents();
         setLocationRelativeTo(null);
-         
-        
+
         TablePessoaJuridica.setVisible(false);
         TablePessoaFisica.setVisible(false);
-      
-        
+
         tipo();
 
     }
-    
-    public void tipo(){
+
+    public void tipo() {
         if (tipoCliente == 1) {
             ShowsCampoJuridica();
-           
 
         } else if (tipoCliente == 2) {
             ShowsCampoFisica();
-            
 
         }
     }
@@ -801,13 +792,13 @@ public class SubMenuConta extends javax.swing.JDialog {
     private void botaoPagamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPagamentoMouseClicked
         conta = contaDAO.buscarConta(cliente.getCodigo());
         conta.setCliente(cliente);
-        
-        if(gerenciaConta.comprasStatus(conta.getCompras()).size() > 0){
+
+        if (gerenciaConta.comprasStatus(conta.getCompras()).size() > 0) {
             conta.setCompras(gerenciaConta.comprasStatus(conta.getCompras()));
-            TelaPagamento pag = new TelaPagamento(this, true, conta);            
+            TelaGerarFatura pag = new TelaGerarFatura(this, true, conta);
             pag.setVisible(true);
             tipo();
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Não há compras pendentes");
         }
     }//GEN-LAST:event_botaoPagamentoMouseClicked
@@ -820,10 +811,10 @@ public class SubMenuConta extends javax.swing.JDialog {
     private void botaoComprasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoComprasMouseClicked
         conta = contaDAO.buscarConta(cliente.getCodigo());
         conta.setCliente(cliente);
-        
+
         RelatorioCompras compras = new RelatorioCompras(this, true, conta.getCliente(), conta.getCompras());
         compras.setVisible(true);
-        
+
     }//GEN-LAST:event_botaoComprasMouseClicked
 
     /**
@@ -855,8 +846,6 @@ public class SubMenuConta extends javax.swing.JDialog {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-     
-       
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -881,9 +870,9 @@ public class SubMenuConta extends javax.swing.JDialog {
         id.setText(Integer.toString(pf.getCodigo()));
         nome.setText(pf.getNome());
         cpf.setText(pf.getCpf());
-        LimiteDeCredito.setText(Double.toString(pf.getLimiteCredito()));   
+        LimiteDeCredito.setText(Double.toString(pf.getLimiteCredito()));
         TotalConta.setText(String.valueOf(conta.getTotal()));
-        
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String data = conta.getDataVencimento().format(formatter);
         dataVenc6.setText(data);
@@ -895,7 +884,7 @@ public class SubMenuConta extends javax.swing.JDialog {
         TablePessoaJuridica.setVisible(true);
         scrolFisica.setVisible(false);
         PessoaJuridica pj = (PessoaJuridica) cliente;
-        
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String data = conta.getDataVencimento().format(formatter);
         dataVenc.setText(data);
@@ -904,8 +893,8 @@ public class SubMenuConta extends javax.swing.JDialog {
         nomeJuridica.setText(pj.getNome());
         nomeFantasia.setText(pj.getNomeFantasia());
         cnpj.setText(pj.getCnpj());
-        limiteCreditoJuridica.setText(Double.toString(pj.getLimiteCredito())); 
-        
+        limiteCreditoJuridica.setText(Double.toString(pj.getLimiteCredito()));
+
     }
 
 

@@ -90,12 +90,12 @@ public class AdicionarCliente extends javax.swing.JDialog {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
         jBtn_Salvar = new javax.swing.JButton();
         jCBoxUf = new javax.swing.JComboBox<>();
         jCBoxTipoEndereco = new javax.swing.JComboBox<>();
         jBtn_Limpar = new javax.swing.JButton();
         field_CEP = new javax.swing.JFormattedTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -187,7 +187,7 @@ public class AdicionarCliente extends javax.swing.JDialog {
         jPanel1.add(jTF_NomeFantasia, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, 300, 30));
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Limite de Credito*:");
+        jLabel6.setText("Limite de Crédito*:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 140, -1));
         jPanel1.add(jTF_LimiteCredito, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 210, 30));
 
@@ -197,7 +197,7 @@ public class AdicionarCliente extends javax.swing.JDialog {
         jPanel1.add(jTF_Logradouro, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 430, 30));
 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Numero*:");
+        jLabel8.setText("Número*:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 340, 80, 20));
         jPanel1.add(jTF_numero, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 360, 190, 30));
 
@@ -212,7 +212,7 @@ public class AdicionarCliente extends javax.swing.JDialog {
         jPanel1.add(jTF_Bairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 420, 190, 30));
 
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Municipio*:");
+        jLabel11.setText("Município*:");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 80, -1));
         jPanel1.add(jTF_Municipio, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 480, 330, 30));
 
@@ -227,10 +227,6 @@ public class AdicionarCliente extends javax.swing.JDialog {
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Tipo de endereço*:");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 520, 140, -1));
-
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("Campos marcados com \"*\" são obrigatórios");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 620, 230, 40));
 
         jBtn_Salvar.setBackground(new java.awt.Color(255, 255, 255));
         jBtn_Salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-ok-32.png"))); // NOI18N
@@ -277,6 +273,11 @@ public class AdicionarCliente extends javax.swing.JDialog {
             ex.printStackTrace();
         }
         jPanel1.add(field_CEP, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 480, 190, 30));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Obs: Campos marcados com * são Obrigatórios!");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 620, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -398,18 +399,18 @@ public class AdicionarCliente extends javax.swing.JDialog {
     private void CadastrarPessoaFisica() {
 
         if (!jTf_Nome.getText().isEmpty()) {
-            if (!jTF_cpf.getText().isEmpty()) {
+            if (!jTF_cpf.getText().equals("   .   .   -  ")) {
                 if (!jTF_LimiteCredito.getText().isEmpty()) {
                     if (!jTF_Logradouro.getText().isEmpty()) {
                         if (!jTF_numero.getText().isEmpty()) {
                             if (!jTF_Bairro.getText().isEmpty()) {
                                 if (!jTF_Municipio.getText().isEmpty()) {
-                                    if (!field_CEP.getText().isEmpty()) {
+                                    if (!field_CEP.getText().equals("     -   ")) {
                                         if (!jCBoxUf.getItemAt(jCBoxUf.getSelectedIndex()).equals("- Selecione -")) {
                                             if (!jCBoxTipoEndereco.getItemAt(jCBoxTipoEndereco.getSelectedIndex()).equals("- Selecione -")) {
                                                 enderecos.add(capturarEndereco());
                                                 pf = new PessoaFisica(jTF_cpf.getText().trim(), jTf_Nome.getText().trim(), enderecos, Double.valueOf(jTF_LimiteCredito.getText().trim()));
-                                               
+
                                                 int id = pDAO.inserirPessoaFisica(pf);
                                                 if (id >= 0) {
                                                     limparCampos();
@@ -475,19 +476,19 @@ public class AdicionarCliente extends javax.swing.JDialog {
 
         if (!jTf_Nome.getText().isEmpty()) {
             if (!jTF_NomeFantasia.getText().isEmpty()) {
-                if (!jTF_cnpj.getText().isEmpty()) {
+                if (!jTF_cnpj.getText().equals("  .   .   /    -  ")) {
                     if (!jTF_LimiteCredito.getText().isEmpty()) {
                         if (!jTF_Logradouro.getText().isEmpty()) {
                             if (!jTF_numero.getText().isEmpty()) {
                                 if (!jTF_Bairro.getText().isEmpty()) {
                                     if (!jTF_Municipio.getText().isEmpty()) {
-                                        if (!field_CEP.getText().isEmpty()) {
+                                        if (!field_CEP.getText().equals("     -   ")) {
                                             if (!jCBoxUf.getItemAt(jCBoxUf.getSelectedIndex()).equals("- Selecione -")) {
                                                 if (!jCBoxTipoEndereco.getItemAt(jCBoxTipoEndereco.getSelectedIndex()).equals("- Selecione -")) {
 
                                                     enderecos.add(capturarEndereco());
                                                     pj = new PessoaJuridica(jTF_NomeFantasia.getText().trim(), jTF_cnpj.getText().trim(), jTf_Nome.getText().trim(), enderecos, Double.parseDouble(jTF_LimiteCredito.getText().trim()));
-                                                      
+
                                                     int id = pDAO.inserirPessoaJuridica(pj);
                                                     if (id >= 0) {
                                                         limparCampos();
@@ -634,8 +635,8 @@ public class AdicionarCliente extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

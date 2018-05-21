@@ -1,24 +1,15 @@
 package Interface.Conta;
 
-import Interface.Compra.*;
-import Interface.Endereco.*;
 import Model.NewTableModel;
-import Interface.*;
 import Model.*;
-import Banco.*;
-import Controle.*;
-import Interface.Endereco.*;
 import java.time.format.DateTimeFormatter;
-
 import java.util.ArrayList;
-
 import java.util.Iterator;
 import javax.swing.JOptionPane;
-import javax.swing.table.TableModel;
 
 public class RelatorioFaturas extends javax.swing.JDialog {
 
-    private String[] colunas = {"Código da Fatura", "Data de Quitação", "Juros", "Quantidade de Parcelas"};
+    private String[] colunas = {"Código da Fatura", "Data de Quitação", "Juros", "Quantidade de Parcelas","Total da Fatura"};
 
     private ArrayList<Fatura> faturas;
     private ArrayList<Cliente> clientes;
@@ -153,25 +144,25 @@ public class RelatorioFaturas extends javax.swing.JDialog {
             int cont = 0;
             while (i.hasNext()) {
                 Fatura fatura = (Fatura) i.next();
-                if (Integer.parseInt(field_codFatura.getText()) == fatura.getId()) {                    
-                    ConsultarFatura consultar = new ConsultarFatura(this, true, fatura);
+                if (Integer.parseInt(field_codFatura.getText()) == fatura.getId()) {
+                    PagarFatura consultar = new PagarFatura(this, true, fatura);
                     consultar.setVisible(true);
                     this.dispose();
                 } else {
                     cont++;
                 }
                 if (cont == faturas.size()) {
-                    JOptionPane.showMessageDialog(rootPane, "Codigo não encontrado!");
+                    JOptionPane.showMessageDialog(rootPane, "Código não encontrado!");
                 }
             }
         }
     }//GEN-LAST:event_MostrarActionPerformed
 
     private void tmFaturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tmFaturaMouseClicked
-           NewTableModel model = (NewTableModel)tmFatura.getModel();
+        NewTableModel model = (NewTableModel) tmFatura.getModel();
         int selectedRowIndex = tmFatura.getSelectedRow();
         field_codFatura.setText(model.getValueAt(selectedRowIndex, 0).toString());
-        
+
     }//GEN-LAST:event_tmFaturaMouseClicked
 
     public int getId() {
@@ -183,19 +174,19 @@ public class RelatorioFaturas extends javax.swing.JDialog {
         dados.clear();
 
         for (Fatura fatura : faturas) {
-            String data; 
-            if(fatura.getDataQuitacao() != null){
+            String data;
+            if (fatura.getDataQuitacao() != null) {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                data = fatura.getDataQuitacao().format(formatter);  
-            }else{
+                data = fatura.getDataQuitacao().format(formatter);
+            } else {
                 data = "Em aberto";
             }
             dados.add(new Object[]{
-                              
                 fatura.getId(),
                 data,
                 fatura.getJuros(),
-                fatura.getQuantParcelas()
+                fatura.getQuantParcelas(),
+                fatura.getTotal()
             });
             NewTableModel dadosFatura = new NewTableModel(dados, colunas);
             tmFatura.setModel(dadosFatura);

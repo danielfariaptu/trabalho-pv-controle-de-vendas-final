@@ -28,7 +28,6 @@ public class CadastroProduto extends javax.swing.JDialog {
 
         CadastroProduto = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        lbAviso = new javax.swing.JLabel();
         JCBoxUva = new javax.swing.JComboBox<>();
         tfNome = new javax.swing.JTextField();
         tfPreco = new javax.swing.JTextField();
@@ -45,6 +44,7 @@ public class CadastroProduto extends javax.swing.JDialog {
         btnLimpar = new javax.swing.JButton();
         closeIcon = new javax.swing.JLabel();
         JCBoxVinho = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setUndecorated(true);
@@ -64,10 +64,6 @@ public class CadastroProduto extends javax.swing.JDialog {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("CADASTRO DE PRODUTO");
         CadastroProduto.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 350, 43));
-
-        lbAviso.setForeground(new java.awt.Color(255, 255, 255));
-        lbAviso.setText("Os campos marcados com * são obrigatórios.");
-        CadastroProduto.add(lbAviso, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, -1, -1));
 
         JCBoxUva.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Selecione -", "Aglianico", "Barbera", "Bobal", "Cabernet", "Sauvignon", "Cape Riesling", "Chardonnay", "Corte Bordalês", "Dolcetto", "Gamay", "Grenache", "Grillo", "Malbec", "Merlot", "Monastrell", "Montepulciano", "Nero D'Avola", "Petit Verdot", "Pinot Grigio", "Pinot Noir", "Primitivo", "Sangiovese", "Sauvignon Blanc", "Syrah", "Tannat", "Tempranillo", "Trebbiano", "Várias Uvas", "Viognier" }));
         JCBoxUva.addActionListener(new java.awt.event.ActionListener() {
@@ -188,6 +184,11 @@ public class CadastroProduto extends javax.swing.JDialog {
         });
         CadastroProduto.add(JCBoxVinho, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, 300, 30));
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Obs: Campos marcados com * são Obrigatórios!");
+        CadastroProduto.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, 310, 20));
+
         getContentPane().add(CadastroProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 490));
 
         pack();
@@ -201,16 +202,16 @@ public class CadastroProduto extends javax.swing.JDialog {
                     if (!JCBoxUva.getItemAt(JCBoxUva.getSelectedIndex()).equals("- Selecione -")) {
                         if (!tfPaisOrigem.getText().isEmpty()) {
                             if (!JCBoxVinho.getItemAt(JCBoxVinho.getSelectedIndex()).equals("- Selecione -")) {
-                                
-                                    if (JOptionPane.showConfirmDialog(rootPane, "Deseja realmente cadastrar este produto? ", "Comfirma salvar?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-                                        gp.cadastrarProduto(tfNome.getText().trim(), Integer.valueOf(tfPreco.getText().trim()), tfCodigoBarras.getText().trim(), JCBoxUva.getItemAt(JCBoxUva.getSelectedIndex()), tfPaisOrigem.getText().trim(), JCBoxVinho.getItemAt(JCBoxUva.getSelectedIndex()));
 
-                                        JOptionPane.showMessageDialog(rootPane, "Produto cadastrado com sucesso!");
-                                        this.dispose();
-                                    } else {
-                                        tfNome.requestFocus();
-                                    }
-                                
+                                if (JOptionPane.showConfirmDialog(rootPane, "Deseja realmente cadastrar este produto? ", "Comfirma salvar?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+                                    gp.cadastrarProduto(tfNome.getText().trim(), Integer.valueOf(tfPreco.getText().trim()), tfCodigoBarras.getText().trim(), JCBoxUva.getItemAt(JCBoxUva.getSelectedIndex()), tfPaisOrigem.getText().trim(), JCBoxVinho.getItemAt(JCBoxUva.getSelectedIndex()));
+
+                                    JOptionPane.showMessageDialog(rootPane, "Produto cadastrado com sucesso!");
+                                    this.dispose();
+                                } else {
+                                    tfNome.requestFocus();
+                                }
+
                             } else {
                                 JOptionPane.showMessageDialog(rootPane, "Campo Tipo de Vinho obrigatório!");
                                 tfPreco.requestFocus();
@@ -343,7 +344,7 @@ public class CadastroProduto extends javax.swing.JDialog {
     private javax.swing.JButton btnLimpar;
     private javax.swing.JLabel closeIcon;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel lbAviso;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lbCodigoBarras;
     private javax.swing.JLabel lbNome;
     private javax.swing.JLabel lbPaisOrigem;

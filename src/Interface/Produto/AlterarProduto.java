@@ -1,10 +1,8 @@
 package Interface.Produto;
 
 import Banco.ProdutoDAO;
-import Interface.*;
 import Controle.GerenciaProduto;
 import Model.Produto;
-import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -34,7 +32,6 @@ public class AlterarProduto extends javax.swing.JDialog {
 
         CadastroProduto = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        lbAviso = new javax.swing.JLabel();
         JCBoxUva = new javax.swing.JComboBox<>();
         tfNome = new javax.swing.JTextField();
         tfPreco = new javax.swing.JTextField();
@@ -51,6 +48,7 @@ public class AlterarProduto extends javax.swing.JDialog {
         closeIcon = new javax.swing.JLabel();
         JCBoxVinho = new javax.swing.JComboBox<>();
         lbCodigoBarras1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setUndecorated(true);
@@ -70,10 +68,6 @@ public class AlterarProduto extends javax.swing.JDialog {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("ALTERAÇÃO DE PRODUTO");
         CadastroProduto.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 360, 43));
-
-        lbAviso.setForeground(new java.awt.Color(255, 255, 255));
-        lbAviso.setText("Os campos marcados com * são obrigatórios.");
-        CadastroProduto.add(lbAviso, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, -1, -1));
 
         JCBoxUva.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Selecione -", "Aglianico", "Barbera", "Bobal", "Cabernet", "Sauvignon", "Cape Riesling", "Chardonnay", "Corte Bordalês", "Dolcetto", "Gamay", "Grenache", "Grillo", "Malbec", "Merlot", "Monastrell", "Montepulciano", "Nero D'Avola", "Petit Verdot", "Pinot Grigio", "Pinot Noir", "Primitivo", "Sangiovese", "Sauvignon Blanc", "Syrah", "Tannat", "Tempranillo", "Trebbiano", "Várias Uvas", "Viognier" }));
         JCBoxUva.addActionListener(new java.awt.event.ActionListener() {
@@ -189,6 +183,11 @@ public class AlterarProduto extends javax.swing.JDialog {
         lbCodigoBarras1.setText("CÓDIGO DE BARRAS*:");
         CadastroProduto.add(lbCodigoBarras1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Obs: Campos marcados com * são Obrigatórios!");
+        CadastroProduto.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, 310, 20));
+
         getContentPane().add(CadastroProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 490));
 
         pack();
@@ -203,11 +202,11 @@ public class AlterarProduto extends javax.swing.JDialog {
                     if (!JCBoxUva.getItemAt(JCBoxUva.getSelectedIndex()).equals("- Selecione -")) {
                         if (!tfPaisOrigem.getText().isEmpty()) {
                             if (!JCBoxVinho.getItemAt(JCBoxVinho.getSelectedIndex()).equals("- Selecione -")) {
-                               
+
                                 int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja Realmente alterar o Produto?");
 
-                                if (JOptionPane.YES_OPTION == opcao) {                                   
-                                    
+                                if (JOptionPane.YES_OPTION == opcao) {
+
                                     produto.setNome(tfNome.getText());
                                     produto.setPreco(Double.parseDouble(tfPreco.getText()));
                                     produto.setTipoUva(JCBoxUva.getItemAt(JCBoxUva.getSelectedIndex()));
@@ -220,7 +219,7 @@ public class AlterarProduto extends javax.swing.JDialog {
                                 } else if (JOptionPane.NO_OPTION == opcao) {
                                     JOptionPane.showMessageDialog(rootPane, "Produto não alterado!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
                                     this.dispose();
-                                } 
+                                }
 
                             } else {
                                 JOptionPane.showMessageDialog(rootPane, "Campo País de Origem obrigatório!");
@@ -358,7 +357,7 @@ public class AlterarProduto extends javax.swing.JDialog {
     private javax.swing.JButton btnLimpar;
     private javax.swing.JLabel closeIcon;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel lbAviso;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lbCodigoBarras1;
     private javax.swing.JLabel lbNome;
     private javax.swing.JLabel lbPaisOrigem;

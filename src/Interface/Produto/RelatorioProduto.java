@@ -1,27 +1,18 @@
 package Interface.Produto;
 
-import Interface.Endereco.*;
 import Model.NewTableModel;
-import Interface.*;
 import Model.*;
-import Banco.*;
-import Controle.*;
-import Interface.Endereco.*;
-
 import java.util.ArrayList;
-
 import java.util.Iterator;
 import javax.swing.JOptionPane;
-import javax.swing.table.TableModel;
 
 public class RelatorioProduto extends javax.swing.JDialog {
 
-    private String[] colunas = {"Código", "Nome", "Preço", "Estoque","Tipo de Uva","Tipo de Vinho","País de Origem"};
-    
+    private String[] colunas = {"Código", "Nome", "Preço", "Estoque", "Tipo de Uva", "Tipo de Vinho", "País de Origem"};
+
     private ArrayList<Produto> produtos = new ArrayList<>();
     ArrayList<Object> dados = new ArrayList<>();
     private int tipo;
-    
 
     public RelatorioProduto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -33,7 +24,7 @@ public class RelatorioProduto extends javax.swing.JDialog {
         desbloqueiaProduto();
     }
 
-    public RelatorioProduto(javax.swing.JFrame parent, boolean modal, ArrayList<Produto> produtos,int tipo) {
+    public RelatorioProduto(javax.swing.JFrame parent, boolean modal, ArrayList<Produto> produtos, int tipo) {
         super(parent, modal);
         initComponents();
         this.tipo = tipo;
@@ -145,29 +136,29 @@ public class RelatorioProduto extends javax.swing.JDialog {
             int cont = 0;
             while (i.hasNext()) {
                 Produto produto = (Produto) i.next();
-                if (field_codProduto.getText().equals(produto.getCodigoBarras())){
+                if (field_codProduto.getText().equals(produto.getCodigoBarras())) {
                     if (tipo == 2) {
-                        
+
                         AlterarProduto alterar = new AlterarProduto(this, true, produto);
                         alterar.setVisible(true);
                         this.dispose();
-                        
+
                     } else if (tipo == 3) {
-                           ConsultarProduto consultar = new  ConsultarProduto(this, true, produto);
-                           consultar.setVisible(true);
-                           this.dispose();
+                        ConsultarProduto consultar = new ConsultarProduto(this, true, produto);
+                        consultar.setVisible(true);
+                        this.dispose();
                     } else {
-                        
+
                         ExcluirProduto excluir = new ExcluirProduto(this, true, produto);
                         excluir.setVisible(true);
                         this.dispose();
-                        
+
                     }
-                }else{
+                } else {
                     cont++;
                 }
-                if(cont == produtos.size()){
-                    JOptionPane.showMessageDialog(rootPane, "Codigo não encontrado!");
+                if (cont == produtos.size()) {
+                    JOptionPane.showMessageDialog(rootPane, "Código não encontrado!");
                 }
 
             }
@@ -178,10 +169,10 @@ public class RelatorioProduto extends javax.swing.JDialog {
     }//GEN-LAST:event_MostrarCodProdActionPerformed
 
     private void tmProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tmProdutoMouseClicked
-        NewTableModel model = (NewTableModel)tmProduto.getModel();
+        NewTableModel model = (NewTableModel) tmProduto.getModel();
         int selectedRowIndex = tmProduto.getSelectedRow();
         field_codProduto.setText(model.getValueAt(selectedRowIndex, 0).toString());
-        
+
     }//GEN-LAST:event_tmProdutoMouseClicked
 
     public void tbShowDados() {
@@ -203,8 +194,6 @@ public class RelatorioProduto extends javax.swing.JDialog {
         }
     }
 
-  
-    
     private void desbloqueiaProduto() {
         label.setVisible(true);
         field_codProduto.setVisible(true);

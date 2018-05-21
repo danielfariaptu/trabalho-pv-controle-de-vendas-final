@@ -3,7 +3,6 @@ package Controle;
 import Banco.PagamentoDAO;
 import Model.Pagamento;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class GerenciaPagamento {
 

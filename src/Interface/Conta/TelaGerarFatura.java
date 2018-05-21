@@ -1,19 +1,13 @@
 package Interface.Conta;
 
-import Interface.Cliente.*;
-import Banco.PessoaDAO;
 import Controle.GerenciaCompra;
 import Controle.GerenciaConta;
-
 import Model.CalculaJuros;
 import Model.Cliente;
 import Model.Compra;
 import Model.Conta;
 import Model.NewTableModel;
 import Model.Pagamento;
-import Model.PessoaFisica;
-import Model.PessoaJuridica;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -22,7 +16,7 @@ import java.util.GregorianCalendar;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
 
-public class TelaPagamento extends javax.swing.JDialog {
+public class TelaGerarFatura extends javax.swing.JDialog {
 
     private GerenciaCompra gerenciaCompra = new GerenciaCompra();
     private GerenciaConta gerenciaFatura = new GerenciaConta();
@@ -37,13 +31,13 @@ public class TelaPagamento extends javax.swing.JDialog {
 
     private String[] colunas = {"Total da Compra", "Quantidade de Produtos", "Data de Compra"};
 
-    public TelaPagamento(javax.swing.JDialog parent, boolean modal) {
+    public TelaGerarFatura(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
     }
 
-    public TelaPagamento(javax.swing.JDialog parent, boolean modal, Conta conta) {
+    public TelaGerarFatura(javax.swing.JDialog parent, boolean modal, Conta conta) {
         super(parent, modal);
         this.compras = conta.getCompras();
         this.cliente = conta.getCliente();
@@ -288,7 +282,6 @@ public class TelaPagamento extends javax.swing.JDialog {
         Calendar cal = new GregorianCalendar();
         LocalDate dataAgora = LocalDate.now();
 
-        
         if (!DataPagamento.getText().equals("  /  /    ")) {
 
             LocalDate dataSimulada = LocalDate.parse(DataPagamento.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
@@ -320,11 +313,11 @@ public class TelaPagamento extends javax.swing.JDialog {
     }//GEN-LAST:event_closeIconMouseClicked
 
     private void btnFinalizarFatura1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarFatura1ActionPerformed
-        int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja Realmente Pagar a Fatura?");
+        int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja Realmente Gerar a Fatura?");
 
         if (JOptionPane.YES_OPTION == opcao) {
             gerenciaFatura.montarFatura(conta, juros, Integer.parseInt(comboParcelas.getItemAt(comboParcelas.getSelectedIndex())), gerenciaCompra.getTotalCompras(compras));
-            JOptionPane.showMessageDialog(rootPane, "Fatura paga com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Fatura gerada com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
             Iterator i = conta.getCompras().iterator();
             while (i.hasNext()) {
                 Compra compra = (Compra) i.next();
@@ -335,7 +328,7 @@ public class TelaPagamento extends javax.swing.JDialog {
             this.dispose();
         }
         if (JOptionPane.NO_OPTION == opcao) {
-            JOptionPane.showMessageDialog(rootPane, "A Fatura não foi paga!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "A Fatura não foi gerada!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         }
     }//GEN-LAST:event_btnFinalizarFatura1ActionPerformed
@@ -361,14 +354,22 @@ public class TelaPagamento extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaPagamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGerarFatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaPagamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGerarFatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaPagamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGerarFatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaPagamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGerarFatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -381,7 +382,7 @@ public class TelaPagamento extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TelaPagamento dialog = new TelaPagamento(new javax.swing.JDialog(), true);
+                TelaGerarFatura dialog = new TelaGerarFatura(new javax.swing.JDialog(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -398,7 +399,7 @@ public class TelaPagamento extends javax.swing.JDialog {
         if (!DataPagamento.getText().equals("  /  /    ")) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate dataSimulada = LocalDate.parse(DataPagamento.getText(), formatter);
-            juros = calculaJuros.calculaJurosPorAtraso(gerenciaCompra.getTotalCompras(compras), dataSimulada);
+            juros = calculaJuros.calculaJurosPorAtraso(gerenciaCompra.getTotalCompras(compras), conta.getDataVencimento(), dataSimulada);
         }
         int parcelas = Integer.parseInt(comboParcelas.getItemAt(comboParcelas.getSelectedIndex()));
         juros += calculaJuros.calculaJurosPorParcelamento(gerenciaCompra.getTotalCompras(compras), parcelas);

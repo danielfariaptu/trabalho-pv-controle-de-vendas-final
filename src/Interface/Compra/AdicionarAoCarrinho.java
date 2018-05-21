@@ -1,30 +1,17 @@
 package Interface.Compra;
 
-import Interface.Produto.*;
-import Interface.Endereco.*;
 import Model.NewTableModel;
-import Interface.*;
 import Model.*;
-import Banco.*;
-import Controle.*;
-import Interface.Endereco.*;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 import java.util.ArrayList;
-
 import java.util.Iterator;
 import javax.swing.JOptionPane;
-import javax.swing.table.TableModel;
 
 public class AdicionarAoCarrinho extends javax.swing.JDialog {
 
-    private String[] colunas = {"Código ", "Nome", "Preço", "Estoque","Tipo de Uva","Tipo de Vinho","País de Origem"};
-    
+    private String[] colunas = {"Código ", "Nome", "Preço", "Estoque", "Tipo de Uva", "Tipo de Vinho", "País de Origem"};
+
     private ArrayList<Produto> produtos = new ArrayList<>();
     ArrayList<Object> dados = new ArrayList<>();
-    private int tipo;
-    private Compra compra;
     private ArrayList<Produto> carrinho;
 
     public AdicionarAoCarrinho(java.awt.Frame parent, boolean modal) {
@@ -142,35 +129,34 @@ public class AdicionarAoCarrinho extends javax.swing.JDialog {
         if ((field_codProduto.getText().isEmpty())) {
             JOptionPane.showMessageDialog(this, "Por favor informe o código do produto!");
             field_codProduto.requestFocus();
-        } else {            
-                Iterator i = produtos.iterator();
+        } else {
+            Iterator i = produtos.iterator();
             int cont = 0;
             while (i.hasNext()) {
                 Produto produto = (Produto) i.next();
                 if (field_codProduto.getText().equals(produto.getCodigoBarras())) {
                     carrinho.add(produto);
                     JOptionPane.showMessageDialog(rootPane, "Produto adicionado ao carrinho com sucesso!");
-                }else{
+                } else {
                     cont++;
                 }
-                if(cont == produtos.size()){
+                if (cont == produtos.size()) {
                     JOptionPane.showMessageDialog(rootPane, "Codigo não encontrado!");
                 }
 
-            }    
+            }
         }
     }//GEN-LAST:event_AdicionarCarrinhoActionPerformed
 
     private void tmProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tmProdutoMouseClicked
-         NewTableModel model = (NewTableModel)tmProduto.getModel();
+        NewTableModel model = (NewTableModel) tmProduto.getModel();
         int selectedRowIndex = tmProduto.getSelectedRow();
         field_codProduto.setText(model.getValueAt(selectedRowIndex, 0).toString());
-        
+
     }//GEN-LAST:event_tmProdutoMouseClicked
 
     public void tbShowDados() {
-        
-        // tratar listar no table model.
+
         ArrayList<Produto> prod = produtos;
         dados.clear();
         for (Produto p : prod) {
@@ -188,9 +174,6 @@ public class AdicionarAoCarrinho extends javax.swing.JDialog {
             validate();
         }
     }
-
-  
-    
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

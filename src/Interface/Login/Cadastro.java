@@ -1,4 +1,3 @@
-
 package Interface.Login;
 
 import Criptografia.BCrypt;
@@ -11,21 +10,18 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import tavv.controle.de.vendas.MenuPrincipal;
 
+public class Cadastro extends javax.swing.JDialog {
 
-public class Cadastro extends javax.swing.JDialog{
-    
- CadastroDAO cadDAO = new CadastroDAO();
+    CadastroDAO cadDAO = new CadastroDAO();
 
     private static MenuPrincipal telaInicial;
     private Boolean fecharCad;
-   
-    
+
     public Cadastro(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
-        
-       
+
         initComponents();
-         setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
         URL caminhoIcone = getClass().getResource("/icons/icone.png");
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(caminhoIcone);
         this.setIconImage(iconeTitulo);
@@ -191,7 +187,7 @@ public class Cadastro extends javax.swing.JDialog{
     }// </editor-fold>//GEN-END:initComponents
 
     private void fieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNomeActionPerformed
- 
+
     }//GEN-LAST:event_fieldNomeActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
@@ -207,16 +203,13 @@ public class Cadastro extends javax.swing.JDialog{
 
                 String salGerado = BCrypt.gensalt();
 
-                              
                 String senhaHasheada = BCrypt.hashpw(fieldSenha.getText(), salGerado);
-                
+
                 fecharCad = cadDAO.CadastroUser(fieldNome.getText(), senhaHasheada);
-                
-              if(fecharCad){
-                  this.dispose();
-              }
-              
-                
+
+                if (fecharCad) {
+                    this.dispose();
+                }
 
             }
 
@@ -264,17 +257,17 @@ public class Cadastro extends javax.swing.JDialog{
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-	public void run() {
-		Cadastro dialog = new Cadastro(new javax.swing.JDialog(), true);
-		dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-			@Override
-			public void windowClosing(java.awt.event.WindowEvent e) {
-				System.exit(0);
-			}
-		});
-		dialog.setVisible(true);
-	}
-});
+            public void run() {
+                Cadastro dialog = new Cadastro(new javax.swing.JDialog(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

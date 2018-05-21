@@ -1,13 +1,8 @@
 package Interface.Endereco;
 
-import Interface.*;
 import Model.*;
 import Banco.*;
-import Controle.*;
-
-
 import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
 
 public class AdicionarEndereco extends javax.swing.JDialog {
@@ -35,7 +30,6 @@ public class AdicionarEndereco extends javax.swing.JDialog {
 
         CadastroProduto = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        lbAviso = new javax.swing.JLabel();
         field_Logradouro = new javax.swing.JTextField();
         field_Complemento = new javax.swing.JTextField();
         labelLogradouro = new javax.swing.JLabel();
@@ -56,6 +50,7 @@ public class AdicionarEndereco extends javax.swing.JDialog {
         lbTipoVinho1 = new javax.swing.JLabel();
         jCBoxTipoEndereco = new javax.swing.JComboBox<>();
         field_CEP = new javax.swing.JFormattedTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setUndecorated(true);
@@ -75,10 +70,6 @@ public class AdicionarEndereco extends javax.swing.JDialog {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("CADASTRO DE ENDEREÇO");
         CadastroProduto.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 350, 43));
-
-        lbAviso.setForeground(new java.awt.Color(255, 255, 255));
-        lbAviso.setText("Os campos marcados com * são obrigatórios.");
-        CadastroProduto.add(lbAviso, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, 250, 30));
 
         field_Logradouro.setNextFocusableComponent(field_Complemento);
         CadastroProduto.add(field_Logradouro, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 300, 29));
@@ -227,6 +218,11 @@ public class AdicionarEndereco extends javax.swing.JDialog {
         }
         CadastroProduto.add(field_CEP, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 300, 30));
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Obs: Campos marcados com * são Obrigatórios!");
+        CadastroProduto.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, 310, 20));
+
         getContentPane().add(CadastroProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 490));
 
         pack();
@@ -238,7 +234,7 @@ public class AdicionarEndereco extends javax.swing.JDialog {
             if (!field_Numero.getText().isEmpty()) {
                 if (!field_Bairro.getText().isEmpty()) {
                     if (!field_Municipio.getText().isEmpty()) {
-                        if (!field_CEP.getText().isEmpty()) {
+                        if (!field_CEP.getText().equals("     -   ")) {
                             if (!jCBoxUf.getItemAt(jCBoxUf.getSelectedIndex()).equals("- Selecione -")) {
                                 if (!jCBoxTipoEndereco.getItemAt(jCBoxTipoEndereco.getSelectedIndex()).equals("- Selecione -")) {
                                     int tipo;
@@ -288,9 +284,7 @@ public class AdicionarEndereco extends javax.swing.JDialog {
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void btnConfirmarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnConfirmarKeyPressed
-        if (evt.getKeyCode() == 10) {
-            btnConfirmarActionPerformed(null);
-        }
+    
     }//GEN-LAST:event_btnConfirmarKeyPressed
 
     private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
@@ -307,9 +301,7 @@ public class AdicionarEndereco extends javax.swing.JDialog {
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnLimparKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnLimparKeyPressed
-        if (evt.getKeyCode() == 10) {
-            btnLimparActionPerformed(null);
-        }
+       
     }//GEN-LAST:event_btnLimparKeyPressed
 
     private void closeIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeIconMouseClicked
@@ -318,7 +310,7 @@ public class AdicionarEndereco extends javax.swing.JDialog {
     }//GEN-LAST:event_closeIconMouseClicked
 
     private void field_NumeroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_field_NumeroFocusLost
-        lbAviso.setVisible(false);
+     
     }//GEN-LAST:event_field_NumeroFocusLost
 
     private void field_NumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_field_NumeroKeyTyped
@@ -402,8 +394,8 @@ public class AdicionarEndereco extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> jCBoxTipoEndereco;
     private javax.swing.JComboBox<String> jCBoxUf;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel labelLogradouro;
-    private javax.swing.JLabel lbAviso;
     private javax.swing.JLabel lbCodigoBarras;
     private javax.swing.JLabel lbCodigoBarras1;
     private javax.swing.JLabel lbPaisOrigem;

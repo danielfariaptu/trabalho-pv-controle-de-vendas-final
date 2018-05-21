@@ -597,7 +597,6 @@ public class ExcluirCliente extends javax.swing.JDialog {
         });
     }
 
-    //jCBoxTipoEndereco.getItemAt(jCBoxTipoEndereco.getSelectedIndex())
     private void ExcluirPessoaFisica() {
 
         int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja Realmente excluir a Pessoa Física informada?");
@@ -653,7 +652,7 @@ public class ExcluirCliente extends javax.swing.JDialog {
         nomeJuridica.setText(pj.getNome());
         nomeFantasia.setText(pj.getNomeFantasia());
         cnpj.setText(pj.getCnpj());
-        limiteCreditoJuridica.setText(String.valueOf(pj.getLimiteCredito())); 
+        limiteCreditoJuridica.setText(String.valueOf(pj.getLimiteCredito()));
 
     }
 

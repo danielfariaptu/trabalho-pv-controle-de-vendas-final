@@ -3,16 +3,13 @@ package tavv.controle.de.vendas;
 import Interface.Login.Login;
 import Banco.PessoaDAO;
 import Banco.ProdutoDAO;
-import Banco.RelatoriosDAO;
 import Controle.GerenciaProduto;
 import Interface.Cliente.*;
 import Interface.Compra.AdicionarAoCarrinho;
 import Interface.Compra.FecharCarrinho;
 import Interface.Conta.RelatorioClienteConta;
-import Interface.Endereco.PesquisarEndereco;
 import Interface.Endereco.RelatorioClienteEndereco;
 import Interface.Produto.*;
-import Interface.Endereco.RelatorioEndereco;
 import Interface.Reports.RelatorioClientesJasper;
 import Model.*;
 import Model.Cliente;
@@ -21,8 +18,6 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
 import java.util.ArrayList;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 public class MenuPrincipal extends javax.swing.JFrame {
 
@@ -45,6 +40,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         setSize(1280, 800);
+
         overlay.setVisible(false);
         overlay.setBackground(new Color(51, 34, 94, 80));
 
@@ -64,10 +60,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         PainelInicio.setVisible(true);
         PainelInicio.setBackground(new Color(0, 0, 51, 111));
-        
-      
+
         botaoInicio.setBackground(new Color(30, 28, 46));
-       
+
         PainelInicio.setVisible(true);
 
         PainelRelatoriosJasper.setVisible(false);
@@ -168,10 +163,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
         labelCliente3 = new javax.swing.JLabel();
         btn_Gerar = new javax.swing.JButton();
         comboBox = new javax.swing.JComboBox<>();
-        BotaoAlterar = new javax.swing.JLabel();
+        fundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Principal - TAVV ");
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                formMouseDragged(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         overlay.setBackground(new java.awt.Color(0, 0, 51));
@@ -1106,10 +1106,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         getContentPane().add(PainelRelatoriosJasper, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 800, 530));
 
-        BotaoAlterar.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        BotaoAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/liquor-store-back.jpg"))); // NOI18N
-        BotaoAlterar.setLabelFor(BotaoAlterar);
-        getContentPane().add(BotaoAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 800));
+        fundo.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/liquor-store-back.jpg"))); // NOI18N
+        fundo.setLabelFor(fundo);
+        getContentPane().add(fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 800));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1410,6 +1410,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btn_GerarActionPerformed
 
+    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formMouseDragged
+
     public void resetaMenu() {
         PainelCliente.setVisible(false);
         PainelEndereco.setVisible(false);
@@ -1476,7 +1480,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel BotaoAlterar;
     private javax.swing.JPanel ClienteTitle;
     private javax.swing.JPanel CompraTitle;
     private javax.swing.JPanel EndTitle;
@@ -1514,6 +1517,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel botaoRemoverProd;
     private javax.swing.JButton btn_Gerar;
     private javax.swing.JComboBox<String> comboBox;
+    private javax.swing.JLabel fundo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;

@@ -102,7 +102,7 @@ public class RelatorioClientesJasper extends javax.swing.JDialog {
             
         } else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("Compra")) {
         
-            relatDAO.runReportClienteFisica();
+            relatDAO.runReportCompra();
 
         } else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("Conta")) {
             

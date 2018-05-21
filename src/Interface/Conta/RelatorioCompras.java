@@ -1,19 +1,11 @@
 package Interface.Conta;
 
-import Interface.Compra.*;
-import Interface.Endereco.*;
 import Model.NewTableModel;
-import Interface.*;
 import Model.*;
 import Banco.*;
-import Controle.*;
-import Interface.Endereco.*;
-
 import java.util.ArrayList;
-
 import java.util.Iterator;
 import javax.swing.JOptionPane;
-import javax.swing.table.TableModel;
 
 public class RelatorioCompras extends javax.swing.JDialog {
 
@@ -162,7 +154,7 @@ public class RelatorioCompras extends javax.swing.JDialog {
                     cont++;
                 }
                 if (cont == compras.size()) {
-                    JOptionPane.showMessageDialog(rootPane, "Codigo não encontrado!");
+                    JOptionPane.showMessageDialog(rootPane, "Código não encontrado!");
                 }
             }
         }

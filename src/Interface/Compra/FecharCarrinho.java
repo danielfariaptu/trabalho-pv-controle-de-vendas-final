@@ -1,21 +1,13 @@
 package Interface.Compra;
 
-import Interface.Produto.*;
-import Interface.Endereco.*;
 import Model.NewTableModel;
-import Interface.*;
 import Model.*;
-import Banco.*;
 import Controle.*;
-import Interface.Endereco.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
 import java.util.ArrayList;
-
 import java.util.Iterator;
 import javax.swing.JOptionPane;
-import javax.swing.table.TableModel;
 
 public class FecharCarrinho extends javax.swing.JDialog {
 
@@ -23,11 +15,10 @@ public class FecharCarrinho extends javax.swing.JDialog {
 
     private ArrayList<Produto> carrinho;
     private ArrayList<Object> dados = new ArrayList<>();
-    
-    
+
     private Compra compra = new Compra();
     private GerenciaCompra gc = new GerenciaCompra();
-    
+
     //DATA
     private LocalDate hoje = LocalDate.now();
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -135,9 +126,9 @@ public class FecharCarrinho extends javax.swing.JDialog {
         dataLocal.setForeground(new java.awt.Color(255, 255, 255));
         dataLocal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         dataLocal.setLabelFor(label);
-        jPanel3.add(dataLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 150, 30));
+        jPanel3.add(dataLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 150, 30));
 
-        CadastroProduto.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 500, 240, 50));
+        CadastroProduto.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 500, 240, 60));
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 51));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Total da Compra", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14), new java.awt.Color(255, 255, 255))); // NOI18N
@@ -200,94 +191,109 @@ public class FecharCarrinho extends javax.swing.JDialog {
 
     private void FinalizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FinalizarCompraActionPerformed
 
-        //tratar finalizar compra
-        int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja Realmente Finalizar a compra?");
+        NewTableModel model = (NewTableModel) tmCompra.getModel();
 
-        if (JOptionPane.YES_OPTION == opcao) {
-            compra.setProdutos(carrinho);
-            compra.setTotal(gc.getTotal(carrinho));
-            compra.setData(hoje);
-            
-            RelatorioCliente relatorioCliente = new RelatorioCliente(this, true);
-            relatorioCliente.setVisible(true);
-            Cliente cliente = relatorioCliente.getId();
-            if(cliente.getCodigo() > -1){
-                if(cliente.getLimiteCredito() >= compra.getTotal()){
-                     /*double total = 0;
-                     Iterator i = gc.getConta(cliente.getCodigo()).getCompras().iterator();
-                     if(i.hasNext()){
-                         total = gc.getTotalComprasAbertas(gc.getConta(cliente.getCodigo()).getCompras());
-                     }                   
-                     total += compra.getTotal();*/
-                    //if(cliente.getLimiteCredito() >= total){
+        int rowcount = model.getRowCount();
+        if (rowcount != 0) {
+            int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja Realmente Finalizar a compra?");
+
+            if (JOptionPane.YES_OPTION == opcao) {
+                compra.setProdutos(carrinho);
+                compra.setTotal(gc.getTotal(carrinho));
+                compra.setData(hoje);
+
+                RelatorioCliente relatorioCliente = new RelatorioCliente(this, true);
+                relatorioCliente.setVisible(true);
+                Cliente cliente = relatorioCliente.getId();
+                if (cliente.getCodigo() > -1) {
+                    if (cliente.getLimiteCredito() >= compra.getTotal()) {
+
                         gc.finalizarCompra(compra, cliente.getCodigo());
                         JOptionPane.showMessageDialog(rootPane, "Compra realizada com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
                         carrinho.clear();
-                        this.dispose();/*
-                    }else{
-                        JOptionPane.showMessageDialog(null, "Compras em aberto mais nova compra superam limite de crédito do Cliente!");
-                    }*/
-                }else{
-                    JOptionPane.showMessageDialog(null, "Compra supera o limite de credito do Cliente!");
-                }                    
-            }            
-        } else if (JOptionPane.NO_OPTION == opcao) {
-            JOptionPane.showMessageDialog(rootPane, "Compra não realizada!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
-            this.dispose();
+                        this.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Compra supera o limite de crédito do Cliente!");
+                    }
+                }
+            } else if (JOptionPane.NO_OPTION == opcao) {
+                JOptionPane.showMessageDialog(rootPane, "Compra não realizada!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+            }
+
+        } else {
+
+            JOptionPane.showMessageDialog(null, "Nenhum produto no carrinho!");
         }
+
     }//GEN-LAST:event_FinalizarCompraActionPerformed
 
     private void RemoverCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoverCarrinhoActionPerformed
 
-        if ((field_codProduto.getText().isEmpty())) {
-            JOptionPane.showMessageDialog(this, "Por favor informe o código do produto!");
-            field_codProduto.requestFocus();
-        } else {
+        NewTableModel model = (NewTableModel) tmCompra.getModel();
 
-            Iterator i = carrinho.iterator();
-            int cont = 0;
-            while (i.hasNext()) {
-                Produto produto = (Produto) i.next();
-                if (field_codProduto.getText().equals(produto.getCodigoBarras())) {
+        int rowcount = model.getRowCount();
+        if (rowcount != 0) {
+            if ((field_codProduto.getText().isEmpty())) {
+                JOptionPane.showMessageDialog(this, "Por favor informe o código do produto!");
+                field_codProduto.requestFocus();
+            } else {
 
-                    int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja Realmente Remover do carrinho?");
+                Iterator i = carrinho.iterator();
+                int cont = 0;
+                while (i.hasNext()) {
+                    Produto produto = (Produto) i.next();
+                    if (field_codProduto.getText().equals(produto.getCodigoBarras())) {
 
-                    if (JOptionPane.YES_OPTION == opcao) {
+                        int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja Realmente Remover do carrinho?");
 
-                        i.remove();
-                        cont--;
-                        
-                        JOptionPane.showMessageDialog(rootPane, "Produto removido do carrinho!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
-                        tbShowDados();
-                        break;
-                    } else if (JOptionPane.NO_OPTION == opcao) {
-                        JOptionPane.showMessageDialog(rootPane, "Produto não removido!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+                        if (JOptionPane.YES_OPTION == opcao) {
 
+                            i.remove();
+                            cont--;
+
+                            JOptionPane.showMessageDialog(rootPane, "Produto removido do carrinho!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+                            tbShowDados();
+                            break;
+                        } else if (JOptionPane.NO_OPTION == opcao) {
+                            JOptionPane.showMessageDialog(rootPane, "Produto não removido!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+
+                        }
+                    } else {
+                        cont++;
                     }
-                } else {
-                    cont++;
-                }
-                if (cont == carrinho.size()) {
-                    JOptionPane.showMessageDialog(rootPane, "Codigo não encontrado!");
+                    if (cont == carrinho.size()) {
+                        JOptionPane.showMessageDialog(rootPane, "Codigo não encontrado!");
+                    }
+
                 }
 
             }
-
+        } else {
+            JOptionPane.showMessageDialog(null, "Nenhum produto no carrinho!");
         }
+
+
     }//GEN-LAST:event_RemoverCarrinhoActionPerformed
 
     private void tmCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tmCompraMouseClicked
-        /*NewTableModel model = (NewTableModel)tmCompra.getModel();
+
+        NewTableModel model = (NewTableModel) tmCompra.getModel();
+
         int selectedRowIndex = tmCompra.getSelectedRow();
-        field_codProduto.setText(model.getValueAt(selectedRowIndex, 0).toString());*/
-        
+        int rowcount = model.getRowCount();
+        if (rowcount == 0) {
+            field_codProduto.setText("");
+        } else {
+            field_codProduto.setText(model.getValueAt(selectedRowIndex, 0).toString());
+        }
     }//GEN-LAST:event_tmCompraMouseClicked
 
     public void tbShowDados() {
         total.setText(String.valueOf(gc.getTotal(carrinho)));
         dataLocal.setText(hojeFormatado);
         ArrayList<Produto> prod = carrinho;
-        
+
         dados.clear();
         for (Produto p : prod) {
             dados.add(new Object[]{

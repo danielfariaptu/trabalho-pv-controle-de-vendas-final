@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Interface.Endereco;
+
 import Banco.*;
 import Model.*;
 import java.util.ArrayList;
@@ -24,14 +25,14 @@ public class ExcluirEndereco extends javax.swing.JDialog {
     private Endereco end;
     private int cliCod;
     private ArrayList<Endereco> enderecos = new ArrayList<>();
-    
+
     /**
      * Creates new form NewJDialog
      */
     public ExcluirEndereco(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
-        initComponents();   
-       
+        initComponents();
+
     }
 
     public ExcluirEndereco(javax.swing.JDialog parent, boolean modal, int id, Endereco endereco, int cliCod) {
@@ -40,8 +41,8 @@ public class ExcluirEndereco extends javax.swing.JDialog {
         this.end = endereco;
         this.cliCod = cliCod;
         initComponents();
-          setLocationRelativeTo(null);
-            showsCampos();
+        setLocationRelativeTo(null);
+        showsCampos();
     }
 
     /**
@@ -530,11 +531,11 @@ public class ExcluirEndereco extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-      
+
         excluirEnd();
         this.dispose();
 
-        
+
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void closeIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeIconMouseClicked
@@ -542,31 +543,27 @@ public class ExcluirEndereco extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_closeIconMouseClicked
 
-   
-    
-    private void excluirEnd(){
-        
+    private void excluirEnd() {
 
         int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja Realmente excluir o Endereço informado?");
 
         if (JOptionPane.YES_OPTION == opcao) {
             excluido = 1;
-            
+
             eDAO.deletarEndereco(id);
 
             JOptionPane.showMessageDialog(rootPane, "Endereço excluído com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
-        }
-        else if (JOptionPane.NO_OPTION == opcao) {
+        } else if (JOptionPane.NO_OPTION == opcao) {
             JOptionPane.showMessageDialog(rootPane, "Endereço não excluído!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         }
 
-    
     }
-     private void showsCampos(){
-       codigoCliente.setText(String.valueOf(cliCod));
-       codigoEnd.setText(String.valueOf(end.getCodigo()));
+
+    private void showsCampos() {
+        codigoCliente.setText(String.valueOf(cliCod));
+        codigoEnd.setText(String.valueOf(end.getCodigo()));
         logradouro.setText(end.getLogradouro());
         numero.setText(String.valueOf(end.getNumero()));
         complemento.setText(end.getComplemento());
@@ -577,9 +574,8 @@ public class ExcluirEndereco extends javax.swing.JDialog {
         estado.setText(end.getEstado());
     }
 
-     
     public static void main(String args[]) {
-      
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 ExcluirEndereco dialog = new ExcluirEndereco(new javax.swing.JDialog(), true);
@@ -592,10 +588,8 @@ public class ExcluirEndereco extends javax.swing.JDialog {
                 dialog.setVisible(true);
             }
         });
-}
+    }
 
-    
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Painel10;
