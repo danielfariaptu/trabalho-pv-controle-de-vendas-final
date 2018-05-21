@@ -190,7 +190,7 @@ public class FecharCarrinho extends javax.swing.JDialog {
     }//GEN-LAST:event_closeIconMouseClicked
 
     private void FinalizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FinalizarCompraActionPerformed
-
+        if(gc.getTotal(carrinho) != 0){
         NewTableModel model = (NewTableModel) tmCompra.getModel();
 
         int rowcount = model.getRowCount();
@@ -225,11 +225,14 @@ public class FecharCarrinho extends javax.swing.JDialog {
 
             JOptionPane.showMessageDialog(null, "Nenhum produto no carrinho!");
         }
+         } else {
+          JOptionPane.showMessageDialog(null, "Carrinho vazio!!!");
+    }
 
     }//GEN-LAST:event_FinalizarCompraActionPerformed
 
     private void RemoverCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoverCarrinhoActionPerformed
-
+    if(gc.getTotal(carrinho) != 0){
         NewTableModel model = (NewTableModel) tmCompra.getModel();
 
         int rowcount = model.getRowCount();
@@ -272,12 +275,14 @@ public class FecharCarrinho extends javax.swing.JDialog {
         } else {
             JOptionPane.showMessageDialog(null, "Nenhum produto no carrinho!");
         }
-
+    } else {
+          JOptionPane.showMessageDialog(null, "Carrinho vazio!!!");
+    }
 
     }//GEN-LAST:event_RemoverCarrinhoActionPerformed
 
     private void tmCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tmCompraMouseClicked
-
+        if(gc.getTotal(carrinho) != 0){
         NewTableModel model = (NewTableModel) tmCompra.getModel();
 
         int selectedRowIndex = tmCompra.getSelectedRow();
@@ -286,6 +291,7 @@ public class FecharCarrinho extends javax.swing.JDialog {
             field_codProduto.setText("");
         } else {
             field_codProduto.setText(model.getValueAt(selectedRowIndex, 0).toString());
+        }
         }
     }//GEN-LAST:event_tmCompraMouseClicked
 

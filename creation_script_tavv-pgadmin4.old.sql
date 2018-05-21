@@ -11,7 +11,7 @@ CREATE DATABASE tavv
     TABLESPACE = pg_default
     CONNECTION LIMIT = -1;
 	
--- Table: public.cliente
+	-- Table: public.cliente
 
 -- DROP TABLE public.cliente;
 
@@ -36,6 +36,7 @@ TABLESPACE pg_default;
 ALTER TABLE public.cliente
     OWNER to postgres;
 	
+	
 -- Table: public.compra
 
 -- DROP TABLE public.compra;
@@ -45,6 +46,8 @@ CREATE TABLE public.compra
     compra_id integer NOT NULL DEFAULT nextval('compra_compra_id_seq'::regclass),
     fk_conta_id integer NOT NULL DEFAULT nextval('compra_fk_conta_id_seq'::regclass),
     data character varying(20) COLLATE pg_catalog."default",
+    status integer,
+    total double precision,
     CONSTRAINT compra_pkey PRIMARY KEY (compra_id),
     CONSTRAINT fk_conta_conta_id FOREIGN KEY (fk_conta_id)
         REFERENCES public.conta (conta_id) MATCH SIMPLE
@@ -58,6 +61,8 @@ TABLESPACE pg_default;
 
 ALTER TABLE public.compra
     OWNER to postgres;
+	
+	
 	
 -- Table: public.conta
 
@@ -83,6 +88,7 @@ TABLESPACE pg_default;
 ALTER TABLE public.conta
     OWNER to postgres;
 	
+
 -- Table: public.endereco
 
 -- DROP TABLE public.endereco;
@@ -123,10 +129,10 @@ CREATE TABLE public.fatura
 (
     fatura_id integer NOT NULL DEFAULT nextval('fatura_fatura_id_seq'::regclass),
     quantidade_parcelas integer,
-    data_quitacao date,
+    data_quitacao character varying COLLATE pg_catalog."default",
     juros double precision,
     conta_id integer NOT NULL DEFAULT nextval('fatura_conta_id_seq'::regclass),
-    excluido boolean NOT NULL,
+    total double precision,
     CONSTRAINT fatura_pkey PRIMARY KEY (fatura_id),
     CONSTRAINT fk_conta_conta_id FOREIGN KEY (conta_id)
         REFERENCES public.conta (conta_id) MATCH SIMPLE
@@ -142,9 +148,6 @@ ALTER TABLE public.fatura
     OWNER to postgres;
 	
 	
-	
-	
-	
 -- Table: public.pagamento
 
 -- DROP TABLE public.pagamento;
@@ -156,7 +159,7 @@ CREATE TABLE public.pagamento
     tipo integer,
     juros double precision,
     fk_fatura_id integer NOT NULL DEFAULT nextval('pagamento_fk_fatura_id_seq'::regclass),
-    excluido boolean NOT NULL,
+    status integer,
     CONSTRAINT pagamento_pkey PRIMARY KEY (pagamento_id, fk_fatura_id),
     CONSTRAINT fk_fatura_id FOREIGN KEY (fk_fatura_id)
         REFERENCES public.fatura (fatura_id) MATCH SIMPLE
@@ -170,7 +173,6 @@ TABLESPACE pg_default;
 
 ALTER TABLE public.pagamento
     OWNER to postgres;
-	
 	
 -- Table: public.produto
 
@@ -194,8 +196,7 @@ TABLESPACE pg_default;
 
 ALTER TABLE public.produto
     OWNER to postgres;
-	
-	
+
 	
 -- Table: public.produto_compra
 
@@ -222,7 +223,7 @@ TABLESPACE pg_default;
 
 ALTER TABLE public.produto_compra
     OWNER to postgres;
-	
+
 -- Table: public.usuario
 
 -- DROP TABLE public.usuario;
