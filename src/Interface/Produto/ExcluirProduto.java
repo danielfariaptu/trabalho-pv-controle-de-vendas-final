@@ -370,9 +370,15 @@ public class ExcluirProduto extends javax.swing.JDialog {
         if (JOptionPane.YES_OPTION == opcao) {
             excluido = 1;
 
-            proDAO.excluirProduto(prod.getCodigoBarras());
-
+            boolean result = proDAO.excluirProduto(prod.getCodigoBarras());
+            
+            if(!result){ 
+                   JOptionPane.showMessageDialog(null, "Não foi possível excluir o produto!!!\nProduto tem dependência com compra.", "Falha na exclusão", JOptionPane.ERROR_MESSAGE);
+                
+            }else {
+           
             JOptionPane.showMessageDialog(rootPane, "Produto excluído com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+            } 
             this.dispose();
         } else if (JOptionPane.NO_OPTION == opcao) {
             JOptionPane.showMessageDialog(rootPane, "Produto não excluído!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);

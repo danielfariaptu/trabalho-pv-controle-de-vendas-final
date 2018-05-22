@@ -128,6 +128,9 @@ public class RelatorioProduto extends javax.swing.JDialog {
     }//GEN-LAST:event_closeIconMouseClicked
 
     private void MostrarCodProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarCodProdActionPerformed
+         NewTableModel model = (NewTableModel) tmProduto.getModel();
+        int rowcount = model.getRowCount();
+        if(rowcount != 0){ 
         if ((field_codProduto.getText().isEmpty())) {
             JOptionPane.showMessageDialog(this, "Por favor informe o código do produto!");
             field_codProduto.requestFocus();
@@ -164,7 +167,10 @@ public class RelatorioProduto extends javax.swing.JDialog {
             }
 
         }
-
+        }else{ 
+            
+                    JOptionPane.showMessageDialog(rootPane, "Não há produto cadastrado!");
+        }
 
     }//GEN-LAST:event_MostrarCodProdActionPerformed
 

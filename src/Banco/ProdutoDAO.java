@@ -51,7 +51,11 @@ public class ProdutoDAO {
             stm.execute("DELETE FROM produto WHERE nome = " + nome + "");
             return "sucesso";
         } catch (SQLException ex) {
-            return ex.toString();
+           
+                JOptionPane.showMessageDialog(null, "Não é possível excluir o produto!!!", "Falha na exclusão", JOptionPane.ERROR_MESSAGE);
+                return "erro";
+
+            
         }
     }
 
@@ -104,7 +108,7 @@ public class ProdutoDAO {
             return null;
         }
     }
-    public void excluirProduto(String codigo){
+    public boolean excluirProduto(String codigo){
         String sql;
         PreparedStatement ps;
         
@@ -117,8 +121,11 @@ public class ProdutoDAO {
             ps.close();
            
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro ao excluir produto", JOptionPane.ERROR_MESSAGE);
-        }      
+            e.toString();
+          return false ;
+
+        }   
+        return true;
     }
         public ArrayList relatorioProdutoCompra(int idCompra) {
         ArrayList<Produto> produtos;
