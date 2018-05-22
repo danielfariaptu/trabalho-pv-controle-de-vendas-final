@@ -18,14 +18,13 @@ public class RelatorioEndereco extends javax.swing.JDialog {
     private Cliente cliente;
     private Endereco end;
     private int codCli;
-    
 
     GerenciaEndereco ge;
 
     public RelatorioEndereco(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
- 
+
     }
 
     public RelatorioEndereco(javax.swing.JDialog parent, boolean modal, Cliente cliente, int tipo, int codCli) {
@@ -36,8 +35,7 @@ public class RelatorioEndereco extends javax.swing.JDialog {
         this.codCli = codCli;
         setLocationRelativeTo(null);
         tbShowDados();
-     
-       
+
     }
 
     @SuppressWarnings("unchecked")
@@ -153,6 +151,11 @@ public class RelatorioEndereco extends javax.swing.JDialog {
     }//GEN-LAST:event_closeIconMouseClicked
 
     private void MostrarCodClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarCodClienteActionPerformed
+
+        NewTableModel model = (NewTableModel) tmEnderecos.getModel();
+
+        int rowcount = model.getRowCount();
+
         if ((field_codEndereco.getText().isEmpty())) {
             JOptionPane.showMessageDialog(this, "Por favor informe o código do endereço!");
             field_codEndereco.requestFocus();
@@ -166,23 +169,26 @@ public class RelatorioEndereco extends javax.swing.JDialog {
                         AlterarEndereco alterar = new AlterarEndereco(this, true, endereco);
                         alterar.setVisible(true);
                         dispose();
-                        
-                        
+
                     } else if (tipo == 3) {
-                           ConsultarEndereco consultar = new  ConsultarEndereco(this, true, endereco,codCli);
-                           consultar.setVisible(true);
-                           dispose();
-                           
-                           
-                    } else {
-                        ExcluirEndereco excluir = new ExcluirEndereco(this, true, Integer.parseInt(field_codEndereco.getText()),endereco,codCli);
-                        excluir.setVisible(true);
+                        ConsultarEndereco consultar = new ConsultarEndereco(this, true, endereco, codCli);
+                        consultar.setVisible(true);
                         dispose();
+
+                    } else {
+                        if (rowcount != 1) {
+                            ExcluirEndereco excluir = new ExcluirEndereco(this, true, Integer.parseInt(field_codEndereco.getText()), endereco, codCli);
+                            excluir.setVisible(true);
+                            dispose();
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "Cliente tem que ter ao menos 1 endereço!");
+                        }
+
                     }
-                }else{
+                } else {
                     cont++;
                 }
-                if(cont == cliente.getEnderecos().size()){
+                if (cont == cliente.getEnderecos().size()) {
                     JOptionPane.showMessageDialog(rootPane, "Código não encontrado!");
                 }
 
@@ -194,17 +200,17 @@ public class RelatorioEndereco extends javax.swing.JDialog {
     }//GEN-LAST:event_MostrarCodClienteActionPerformed
 
     private void tmEnderecosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tmEnderecosMouseClicked
-          NewTableModel model = (NewTableModel)tmEnderecos.getModel();
+        NewTableModel model = (NewTableModel) tmEnderecos.getModel();
         int selectedRowIndex = tmEnderecos.getSelectedRow();
         field_codEndereco.setText(model.getValueAt(selectedRowIndex, 0).toString());
-        
+
     }//GEN-LAST:event_tmEnderecosMouseClicked
 
     public void tbShowDados() {
         ArrayList<Object> dados = new ArrayList<>();
         dados.clear();
         ArrayList<Endereco> end = cliente.getEnderecos();
-       
+
         for (Endereco e : end) {
             dados.add(new Object[]{
                 e.getCodigo(),
@@ -219,7 +225,6 @@ public class RelatorioEndereco extends javax.swing.JDialog {
         }
     }
 
-   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
