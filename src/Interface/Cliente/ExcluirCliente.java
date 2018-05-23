@@ -603,9 +603,13 @@ public class ExcluirCliente extends javax.swing.JDialog {
 
         if (JOptionPane.YES_OPTION == opcao) {
             excluido = 1;
-            pDAO.deletarPessoa(cliente.getCodigo());
-
+            boolean result = pDAO.deletarPessoa(cliente.getCodigo());
+            if(!result){ 
+                   JOptionPane.showMessageDialog(null, "Não foi possível excluir o Cliente!!!\nEste Cliente possui vínculo com conta.", "Falha na exclusão", JOptionPane.ERROR_MESSAGE);
+                
+            }else {
             JOptionPane.showMessageDialog(rootPane, "Cliente excluído com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            }
             this.dispose();
         }
         if (JOptionPane.NO_OPTION == opcao) {
@@ -621,9 +625,14 @@ public class ExcluirCliente extends javax.swing.JDialog {
 
         if (JOptionPane.YES_OPTION == opcao) {
             excluido = 1;
-            pDAO.deletarPessoa(cliente.getCodigo());
+            boolean result = pDAO.deletarPessoa(cliente.getCodigo());
 
+            if(!result){ 
+                   JOptionPane.showMessageDialog(null, "Não foi possível excluir o Cliente!!!\nEste Cliente possui vínculo com conta.", "Falha na exclusão", JOptionPane.ERROR_MESSAGE);
+                
+            }else {
             JOptionPane.showMessageDialog(rootPane, "Cliente excluído com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            }
             this.dispose();
         }
         if (JOptionPane.NO_OPTION == opcao) {

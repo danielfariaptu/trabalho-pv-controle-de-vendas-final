@@ -81,7 +81,7 @@ public class PessoaDAO {
         } catch (SQLException e) {
              JOptionPane.showMessageDialog(null, "Usuário com o mesmo CPF foi encontrado! \nUsuário: " , "CPF já existente", JOptionPane.ERROR_MESSAGE);
              return -1;
-            //JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            
         }
         return id;
     }
@@ -159,7 +159,7 @@ public class PessoaDAO {
             ps.close();
            
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            
             return false;
         }        
         
@@ -173,7 +173,7 @@ public class PessoaDAO {
 
             return true;
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+          
             return false;
         }
         

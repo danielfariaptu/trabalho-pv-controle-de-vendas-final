@@ -390,7 +390,7 @@ public class PagarFatura extends javax.swing.JDialog {
         btnPagarProxima.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnPagarProxima.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/money.png"))); // NOI18N
         btnPagarProxima.setMnemonic('S');
-        btnPagarProxima.setText("Pagar Próxima Parcela");
+        btnPagarProxima.setText("Pagar Segunda Parcela");
         btnPagarProxima.setToolTipText("Salva os registros");
         btnPagarProxima.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPagarProxima.setFocusPainted(false);
@@ -405,7 +405,7 @@ public class PagarFatura extends javax.swing.JDialog {
         btnPagarUltima.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnPagarUltima.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/money.png"))); // NOI18N
         btnPagarUltima.setMnemonic('S');
-        btnPagarUltima.setText("Pagar Última Parcela");
+        btnPagarUltima.setText("Pagar Terceira Parcela");
         btnPagarUltima.setToolTipText("Salva os registros");
         btnPagarUltima.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPagarUltima.setFocusPainted(false);
@@ -556,10 +556,14 @@ public class PagarFatura extends javax.swing.JDialog {
         } else {
             dataQuitacao.setText("Em aberto");
         }
-
-        Juros.setText(Double.toString(fatura.getJuros()));
+        DecimalFormat df = new DecimalFormat("#00.00");
+         String jur;
+         jur = df.format(fatura.getJuros());
+         
+        Juros.setText(jur.replaceAll(",", "."));
         qtdParcelas.setText(Integer.toString(fatura.getQuantParcelas()));
-        Double total = fatura.getTotal();
+        Double total = fatura.getTotal() + fatura.getJuros();
+        Double totalParcelas = fatura.getTotal();
         int parcelaAtual = parcelasPg + 1;
         int qtdParcelas = fatura.getQuantParcelas();
       
@@ -574,35 +578,36 @@ public class PagarFatura extends javax.swing.JDialog {
                 btnPagarUltima.setVisible(true);
         }
         
-        DecimalFormat df = new DecimalFormat("0.##");
          String dx;
          
         switch (qtdParcelas) {
             case 1:
                 
-                 dx = df.format(total);
-                valorparcela.setText(dx);
+                 dx = df.format(totalParcelas);
+                valorparcela.setText(dx.replaceAll(",", "."));
+                
                   
                 
                 break;
             case 2:
                 
-                 dx = df.format(total/2);
-                valorparcela.setText(dx);
+                 dx = df.format(totalParcelas/2);
+                valorparcela.setText(dx.replaceAll(",", "."));
                 break;
             case 3:
-                dx = df.format(total/3);
-                valorparcela.setText(dx);
+                dx = df.format(totalParcelas/3);
+                valorparcela.setText(dx.replaceAll(",", "."));
                 break;
         }
-                
-        totalFatura.setText(String.valueOf(fatura.getTotal()));
+           String dx2 = df.format(total);
+        totalFatura.setText(String.valueOf(dx2.replaceAll(",", ".")));
         parcelPag.setText(String.valueOf(parcelasPg));
         
         if (parcelasPg == fatura.getQuantParcelas()) {
             btnPagar.setVisible(false);
             faturaPaga.setVisible(true);
-            
+            btnPagarProxima.setVisible(false);
+            btnPagarUltima.setVisible(false);
             
         }
         

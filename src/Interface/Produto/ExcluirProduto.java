@@ -373,7 +373,7 @@ public class ExcluirProduto extends javax.swing.JDialog {
             boolean result = proDAO.excluirProduto(prod.getCodigoBarras());
             
             if(!result){ 
-                   JOptionPane.showMessageDialog(null, "Não foi possível excluir o produto!!!\nProduto tem dependência com compra.", "Falha na exclusão", JOptionPane.ERROR_MESSAGE);
+                   JOptionPane.showMessageDialog(null, "Não foi possível excluir o produto!!!\nEste Produto possui vínculo com compra.", "Falha na exclusão", JOptionPane.ERROR_MESSAGE);
                 
             }else {
            

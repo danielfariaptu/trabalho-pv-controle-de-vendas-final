@@ -19,7 +19,6 @@ public class FecharCarrinho extends javax.swing.JDialog {
     private Compra compra = new Compra();
     private GerenciaCompra gc = new GerenciaCompra();
 
-    //DATA
     private LocalDate hoje = LocalDate.now();
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private String hojeFormatado = hoje.format(formatter);

@@ -2,6 +2,7 @@ package Interface.Conta;
 
 import Model.NewTableModel;
 import Model.*;
+import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -181,10 +182,17 @@ public class RelatorioFaturas extends javax.swing.JDialog {
             } else {
                 data = "Em aberto";
             }
+            
+             DecimalFormat df = new DecimalFormat("#00.00");
+         String jur;
+        
+         jur = df.format(fatura.getJuros());
+         
+      
             dados.add(new Object[]{
                 fatura.getId(),
                 data,
-                fatura.getJuros(),
+                jur.replaceAll(",", "."),
                 fatura.getQuantParcelas(),
                 fatura.getTotal()
             });

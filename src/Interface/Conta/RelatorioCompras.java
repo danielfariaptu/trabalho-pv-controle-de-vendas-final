@@ -3,6 +3,8 @@ package Interface.Conta;
 import Model.NewTableModel;
 import Model.*;
 import Banco.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
@@ -174,12 +176,17 @@ public class RelatorioCompras extends javax.swing.JDialog {
     public void tbShowDados() {
         ArrayList<Object> dados = new ArrayList<>();
         dados.clear();
-
+         LocalDate cData;
+           DateTimeFormatter formatter;
+           String hojeFormatado;
         for (Compra compra : compras) {
+             cData = compra.getData();
+            formatter= DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            hojeFormatado= cData.format(formatter);
             dados.add(new Object[]{
                 compra.getId(),
                 compra.getProdutos().size(),
-                compra.getData(),
+                hojeFormatado,
                 compra.getTotal()
             });
             NewTableModel dadosCompra = new NewTableModel(dados, colunas);

@@ -3,6 +3,8 @@ package Interface.Conta;
 import Banco.PessoaDAO;
 import Model.Cliente;
 import Model.Compra;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class ConsultarCompra extends javax.swing.JDialog {
 
@@ -495,6 +497,13 @@ public class ConsultarCompra extends javax.swing.JDialog {
     }
 
     private void ShowsCampos() {
+        LocalDate cData;
+        DateTimeFormatter formatter;
+        String hojeFormatado;
+
+        cData = compra.getData();
+        formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        hojeFormatado = cData.format(formatter);
 
         codigoCliente.setText(Integer.toString(cliente.getCodigo()));
         nomeCliente.setText(cliente.getNome());
@@ -502,7 +511,9 @@ public class ConsultarCompra extends javax.swing.JDialog {
 
         codigoCompra.setText(String.valueOf(compra.getId()));
         qtdProdutos.setText(Integer.toString(compra.getProdutos().size()));
-        dataCompra.setText(String.valueOf(compra.getData()));
+
+        dataCompra.setText(String.valueOf(hojeFormatado));
+
         totalCompra.setText(Double.toString(compra.getTotal()));
     }
 

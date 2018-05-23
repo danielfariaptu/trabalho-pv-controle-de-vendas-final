@@ -8,6 +8,7 @@ import Model.Compra;
 import Model.Conta;
 import Model.NewTableModel;
 import Model.Pagamento;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -81,6 +82,7 @@ public class TelaGerarFatura extends javax.swing.JDialog {
         DataPagamento = new javax.swing.JFormattedTextField();
         btnFinalizarFatura1 = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -199,7 +201,7 @@ public class TelaGerarFatura extends javax.swing.JDialog {
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Juros Por Atraso");
+        jLabel8.setText("Juros ");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, 160, 40));
 
         comboParcelas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -226,8 +228,8 @@ public class TelaGerarFatura extends javax.swing.JDialog {
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Obs: O Juro de parcelamento é de 7%.");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 520, 410, 70));
+        jLabel11.setText("Obs: Os Juros por atraso são de 7% ao mês.");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 310, 40));
 
         try {
             DataPagamento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -257,6 +259,11 @@ public class TelaGerarFatura extends javax.swing.JDialog {
         jLabel12.setText("Valor Total");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, 100, 40));
 
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Os Juros de parcelamento  são de 7% por parcela.");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 530, 370, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -273,12 +280,7 @@ public class TelaGerarFatura extends javax.swing.JDialog {
 
     private void btnSimularDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimularDataActionPerformed
         calculaJuros();
-        /* if (!DataPagamento.getText().equals("  /  /    ")) {
-            calculaJuros();
-        } else {
-            JOptionPane.showMessageDialog(null, "Por favor informe uma data!");
-        }*/
-
+      
         Calendar cal = new GregorianCalendar();
         LocalDate dataAgora = LocalDate.now();
 
@@ -300,6 +302,7 @@ public class TelaGerarFatura extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "A data digitada é inválida para simulação!!\n" + "Dia: " + dataSimulada.getDayOfMonth() + "Mês: " + dataSimulada.getMonth().getValue() + "Ano: " + dataSimulada.getYear()); //C
             } else {
                 calculaJuros();
+               
             }
 
         } else {
@@ -403,18 +406,29 @@ public class TelaGerarFatura extends javax.swing.JDialog {
         }
         int parcelas = Integer.parseInt(comboParcelas.getItemAt(comboParcelas.getSelectedIndex()));
         juros += calculaJuros.calculaJurosPorParcelamento(gerenciaCompra.getTotalCompras(compras), parcelas);
-        jurosPorAtraso.setText(String.valueOf(juros));
+       
+        DecimalFormat df = new DecimalFormat("#00.00");
+         String dx;
+         dx = df.format(juros);
+        jurosPorAtraso.setText(String.valueOf(dx).replaceAll(",", "."));
     }
 
     public void tbShowDados() {
         jurosPorAtraso.setText("0.0");
         valorTotal.setText(String.valueOf(gerenciaCompra.getTotalCompras(compras)));
         dados.clear();
+        
+           LocalDate cData;
+           DateTimeFormatter formatter;
+           String hojeFormatado;
         for (Compra compra : compras) {
+             cData = compra.getData();
+            formatter= DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            hojeFormatado= cData.format(formatter);
             dados.add(new Object[]{
                 compra.getTotal(),
                 compras.size(),
-                compra.getData()});
+                hojeFormatado});
             NewTableModel dadosCompra = new NewTableModel(dados, colunas);
             tmCompras.setModel(dadosCompra);
             repaint();
@@ -434,6 +448,7 @@ public class TelaGerarFatura extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
